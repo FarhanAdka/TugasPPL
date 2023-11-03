@@ -7,25 +7,20 @@ use Illuminate\Supprt\Facades\Auth;
 
 class UserController extends Controller
 {
-    
-    function mahasiswa(){
-        echo "selamat datang mahasiswa";
-        echo "<h1>". Auth::user()->name ."</h1>";
+    function index(){
+        echo "selamat datang";
         echo "<a href='/logout'>Logout >></a>";
+    }
+    function mahasiswa(){
+        return view('mahasiswa.dashboard');
     }
     function operator(){
-        echo "selamat datang operator";
-        echo "<h1>". Auth::user()->name ."</h1>";
-        echo "<a href='/logout'>Logout >></a>";
+        return view('operator.dashboard');
     }
     function dosenWali(){
-        echo "selamat datang dosen wali";
-        echo "<h1>". Auth::user()->name ."</h1>";
-        echo "<a href='/logout'>Logout >></a>";
+        return view('dosenWali.dashboard');
     }
     function departemen(){
-        echo "selamat datang departemen";
-        echo "<h1>". Auth::user()->name ."</h1>";
-        echo "<a href='/logout'>Logout >></a>";
+        return view('departemen.dashboard');
     }
 }
