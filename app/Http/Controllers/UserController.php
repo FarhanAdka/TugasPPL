@@ -12,15 +12,36 @@ class UserController extends Controller
     }
 
     function mahasiswa(){
-        return view('admin');;
+        $data = array (
+            'active_home' => 'active',
+            'title' => 'Mahasiswa',
+        );
+        return view('Mahasiswa/homeMahasiswa', $data);
     }
+
     function operator(){
-        return view('admin');
+        $data = array (
+            'active_side' => 'active',
+            'active_sub' => 'active',
+            'active_user' => 'active',
+            'title' => 'Operator',
+        );
+        return view('Operator/homeOperator', $data);
     }
+
     function dosenWali(){
-        return view('admin');
+        $data = array (
+            'active_home' => 'active',
+            'title' => 'Dosen Wali',
+        );
+        return view('DosenWali/homedosenWali', $data);
     }
+
     function departemen(){
-        return view('admin');
+        $data = array (
+            'active_home' => 'active',
+            'title' => 'Departemen',
+        );
+        return view('Departemen/homeDepartemen', $data);
     }
 }

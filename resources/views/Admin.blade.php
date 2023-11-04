@@ -26,7 +26,7 @@
         @endif
 
         @if(Auth::user()->role == 'dosenWali')
-        <li class = "list-group-item">Menu Dosen Wali</li>
+        <li class = "list-group-item">Menu DosenWali</li>
         @endif
 
         @if(Auth::user()->role == 'departemen')
