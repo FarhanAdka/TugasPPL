@@ -12,11 +12,11 @@
     <div class="container py-5">
         <div class="w-50 center border rounded px-3 py-3 mx-auto">
         <h1>Login</h1>
-        @if($errors->any)
+        @if($errors->any())
             <div class="alert alert-danger">
                 <ul>
                     @foreach($errors->all() as $item)
-                    <li>{{$item}}</li>
+                    <li>{{ $item }}</li>
                     @endforeach
                 </ul>
             </div>

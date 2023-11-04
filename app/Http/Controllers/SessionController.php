@@ -17,8 +17,8 @@ class SessionController extends Controller
             'email'=>'required',
             'password'=>'required'
         ],[
-            'email.required'=>'Email wajib diisi',
-            'password.required'=>'Password wajib diisi'
+            'email.required' => 'Email wajib diisi',
+            'password.required' => 'Password wajib diisi',
         ]
     );
 
@@ -34,7 +34,7 @@ class SessionController extends Controller
         elseif(Auth::user()->role == 'operator'){
             return redirect('user/operator');
         }
-        elseif(Auth::user()->role == 'dosen wali'){
+        elseif(Auth::user()->role == 'dosenWali'){
             return redirect('user/dosenWali');
         }
         elseif(Auth::user()->role == 'departemen'){
@@ -42,7 +42,7 @@ class SessionController extends Controller
         }
     }
     else{
-        return redirect('')->withErrors('Email atau pasword tidak sesuai')->withInput();
+        return redirect('admin');
     }
 }
     function logout(){

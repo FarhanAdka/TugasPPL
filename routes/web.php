@@ -24,9 +24,12 @@ Route::get('/home',function (){
 });
 
 Route::middleware(['auth'])->group(function (){
-    Route::get('/user/mahasiswa',[userController::class,'mahasiswa']);
-    Route::get('/user/operator',[UserController::class,'operator']);
-    Route::get('/user/dosenWali',[UserController::class,'dosenWali']);
-    Route::get('/user/departemen',[UserController::class,'departemen']);
+    Route::get('/user',[userController::class,'index']);
+    Route::get('/user/mahasiswa',[userController::class,'mahasiswa'])->middleware('userAkses:mahasiswa');
+    Route::get('/user/mahasiswa/IRS',[userController::class,'mahasiswa'])->middleware('userAkses:mahasiswa');
+
+    Route::get('/user/operator',[UserController::class,'operator'])->middleware('userAkses:operator');
+    Route::get('/user/dosenWali',[UserController::class,'dosenWali'])->middleware('userAkses:dosenWali');
+    Route::get('/user/departemen',[UserController::class,'departemen'])->middleware('userAkses:departemen');
     Route::get('/logout',[SessionController::class, 'logout']);
 });

@@ -3,29 +3,45 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Illuminate\Supprt\Facades\Auth;
+use Illuminate\Support\Facades\Auth;
 
 class UserController extends Controller
 {
-    
+    function index(){
+        return view('admin');
+    }
+
     function mahasiswa(){
-        echo "selamat datang mahasiswa";
-        echo "<h1>". Auth::user()->name ."</h1>";
-        echo "<a href='/logout'>Logout >></a>";
+        $data = array (
+            'active_home' => 'active',
+            'title' => 'Mahasiswa',
+        );
+        return view('Mahasiswa/homeMahasiswa', $data);
     }
+
     function operator(){
-        echo "selamat datang operator";
-        echo "<h1>". Auth::user()->name ."</h1>";
-        echo "<a href='/logout'>Logout >></a>";
+        $data = array (
+            'active_side' => 'active',
+            'active_sub' => 'active',
+            'active_user' => 'active',
+            'title' => 'Operator',
+        );
+        return view('Operator/homeOperator', $data);
     }
+
     function dosenWali(){
-        echo "selamat datang dosen wali";
-        echo "<h1>". Auth::user()->name ."</h1>";
-        echo "<a href='/logout'>Logout >></a>";
+        $data = array (
+            'active_home' => 'active',
+            'title' => 'Dosen Wali',
+        );
+        return view('DosenWali/homedosenWali', $data);
     }
+
     function departemen(){
-        echo "selamat datang departemen";
-        echo "<h1>". Auth::user()->name ."</h1>";
-        echo "<a href='/logout'>Logout >></a>";
+        $data = array (
+            'active_home' => 'active',
+            'title' => 'Departemen',
+        );
+        return view('Departemen/homeDepartemen', $data);
     }
 }
