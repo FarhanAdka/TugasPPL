@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\MahasiswaController;
 use App\Http\Controllers\OperatorController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\SessionController;
@@ -30,7 +31,11 @@ Route::middleware(['auth'])->group(function (){
 
     //Mahasiswa
     Route::get('/user/mahasiswa',[userController::class,'mahasiswa'])->middleware('userAkses:mahasiswa');
-    Route::get('/user/mahasiswa/IRS',[userController::class,'mahasiswa'])->middleware('userAkses:mahasiswa');
+    Route::get('/user/mahasiswa/ProfileMahasiswa',[MahasiswaController::class,'Profile'])->middleware('userAkses:mahasiswa');
+    Route::get('/user/mahasiswa/IRS',[MahasiswaController::class,'IRS'])->middleware('userAkses:mahasiswa');
+    Route::get('/user/mahasiswa/KHS',[MahasiswaController::class,'KHS'])->middleware('userAkses:mahasiswa');
+    Route::get('/user/mahasiswa/PKL',[MahasiswaController::class,'PKL'])->middleware('userAkses:mahasiswa');
+    Route::get('/user/mahasiswa/Skripsi',[MahasiswaController::class,'Skripsi'])->middleware('userAkses:mahasiswa');
 
     //Operator
     Route::get('/user/operator',[UserController::class,'operator'])->middleware('userAkses:operator');

@@ -193,40 +193,67 @@
             </header>
           <div id="main-content">      
             <div class="page-heading">
-              <div class="page-title">
-                <div class="row">
-                  <div class="col-12 col-md-6 order-md-1 order-last">
-                    <h3>Mahasiswa</h3>
-                    <p class="text-subtitle text-muted">Navbar will appear on the top of the page.</p>
-                  </div>
-                  <div class="col-12 col-md-6 order-md-2 order-first">
-                    <nav aria-label="breadcrumb" class="breadcrumb-header float-start float-lg-end">
-                      <ol class="breadcrumb">
-                        <li class="breadcrumb-item"><a href="index.html">Dashboard</a></li>
-                        <li class="breadcrumb-item active" aria-current="page">Profile</li>
-                      </ol>
-                    </nav>
-                  </div>
+                <div class="page-title">
+                    <div class="row">
+                        <div class="col-12 col-md-6 order-md-1 order-last">
+                            <h3>Data IRS</h3>
+                            <p class="text-subtitle text-muted">Multiple form layouts, you can use.</p>
+                        </div>
+                        <div class="col-12 col-md-6 order-md-2 order-first">
+                            <nav aria-label="breadcrumb" class="breadcrumb-header float-start float-lg-end">
+                                <ol class="breadcrumb">
+                                    <li class="breadcrumb-item"><a href="index.html">Dashboard</a></li>
+                                    <li class="breadcrumb-item active" aria-current="page">Data IRS</li>
+                                </ol>
+                            </nav>
+                        </div>
+                    </div>
                 </div>
-              </div>
-    
-              <section class="section">
-              <div class="card">
-                <div class="card-header">
-                  <h4 class="card-title">Default </h4>
-                </div>
-                <div class="card-body">
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Magnam, commodi? Ullam quaerat similique iusto
-                    temporibus, vero aliquam praesentium, odit deserunt eaque nihil saepe hic deleniti? Placeat delectus
-                    quibusdam ratione ullam!
-                </div>
-              </div>
-              </section>
-
-            </div>
           </div>
         </div>
+
+    <!-- Basic Vertical form layout section start -->
+    <section id="basic-vertical-layouts">
+        <div class="row match-height">
+            <div class="col-md-6 col-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h4 class="card-title">Vertical Form</h4>
+                    </div>
+                    <div class="card-content">
+                        <div class="card-body">
+                            <form class="form form-vertical">
+                                <div class="form-body">
+                                    <div class="row">
+                                        <div class="col-12">
+                                            <div class="form-group">
+                                                <label for="first-name-vertical">Semester Aktif</label>
+                                                <input type="text" id="first-name-vertical" class="form-control"
+                                                    name="fname" placeholder="Semester Aktif">
+                                            </div>
+                                        </div>
+                                        <div class="col-12">
+                                            <div class="form-group">
+                                                <label for="email-id-vertical">Jumlah SKS</label>
+                                                <input type="email" id="email-id-vertical" class="form-control"
+                                                    name="email-id" placeholder="Jumalah SKS">
+                                            </div>
+                                        </div>
+                                        <div class="col-12 d-flex justify-content-end">
+                                            <button type="submit" class="btn btn-primary me-1 mb-1">Submit</button>
+                                            <button type="reset"
+                                                class="btn btn-light-secondary me-1 mb-1">Reset</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
     </div>
+
+
 
     <script src="/assets/static/js/components/dark.js"></script>
     <script src="/assets/extensions/perfect-scrollbar/perfect-scrollbar.min.js"></script> 
