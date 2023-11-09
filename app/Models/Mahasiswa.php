@@ -20,6 +20,7 @@ class Mahasiswa extends Model
         'email',
         'angkatan',
         'jalur_masuk',
+        'status',
         'doswal',
     ];
 

@@ -117,7 +117,7 @@
                                 <form action="{{route('mahasiswa.store')}}" method="POST" >
                                     @csrf
                                     <div class="mb-3">
-                                        <label for="username" class="form-label">Username</label>
+                                        <label for="username" class="form-label">Username/NIM</label>
                                         <input type="text" value="{{ old('username') }}" name="username"
                                             class="form-control">
                                     </div>
