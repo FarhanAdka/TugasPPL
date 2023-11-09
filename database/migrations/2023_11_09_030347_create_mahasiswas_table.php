@@ -15,14 +15,14 @@ return new class extends Migration {
             $table->bigInteger('user_id')->unsigned();
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->bigInteger('doswal')->unsigned();
-            $table->foreign('doswal')->references('id')->on('dosen_walis')->onDelete('cascade');
-            $table->string('alamat');
-            $table->string('kab_kota');
-            $table->string('provinsi');
-            $table->string('no_hp');
-            $table->string('email');
-            $table->string('angkatan');
-            $table->string('jalur_masuk');
+            $table->foreign('doswal')->references('id')->on('users')->onDelete('cascade');
+            $table->string('alamat')->nullable();
+            $table->string('kab_kota')->nullable();
+            $table->string('provinsi')->nullable();
+            $table->string('no_hp')->nullable();
+            $table->string('email')->nullable();
+            $table->string('angkatan')->nullable();
+            $table->string('jalur_masuk')->nullable();
             $table->timestamps();
         });
     }

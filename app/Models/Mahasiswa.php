@@ -12,7 +12,7 @@ class Mahasiswa extends Model
     use HasFactory;
 
     protected $fillable = [
-        'username',
+        'user_id',
         'alamat',
         'kab_kota',
         'provinsi',
@@ -25,12 +25,12 @@ class Mahasiswa extends Model
 
     function doswal()
     {
-        return $this->belongsTo(DosenWali::class, 'doswal');
+        return $this->belongsTo(User::class, 'doswal');
     }
 
     function user()
     {
-        return $this->belongsTo(User::class, 'username');
+        return $this->belongsTo(User::class, 'mahasiswa');
     }
 
 }
