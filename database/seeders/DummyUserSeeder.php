@@ -16,25 +16,25 @@ class DummyUserSeeder extends Seeder
         $userData = [
                 [
                     'name'=>'op1',
-                    'username'=>'op1@gmail.com',
+                    'username'=>'operator1',
                     'role'=>'operator',
                     'password'=>bcrypt('123456')
                 ],
                 [
                     'name'=>'mh1',
-                    'username'=>'mh1@gmail.com',
+                    'username'=>'mahasiswa1',
                     'role'=>'mahasiswa',
                     'password'=>bcrypt('123456')
                 ],
                 [
                     'name'=>'dp1',
-                    'username'=>'dp1@gmail.com',
+                    'username'=>'departemen1',
                     'role'=>'departemen',
                     'password'=>bcrypt('123456')
                 ],
                 [
                     'name'=>'dw1',
-                    'username'=>'dw1@gmail.com',
+                    'username'=>'doswal1',
                     'role'=>'dosen_wali',
                     'password'=>bcrypt('123456')
                 ]
