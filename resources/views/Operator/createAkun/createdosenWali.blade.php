@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{{ $title }}</title>
+    <title>Tambah Akun Dosen Wali</title>
     
     
     
@@ -211,13 +211,13 @@
               <div class="page-title">
                 <div class="row">
                   <div class="col-12 col-md-6 order-md-1 order-last">
-                    <h3>{{ $title }}</h3>
+                    <h3>Tambah Akun Dosen Wali</h3>
                     <p class="text-subtitle text-muted">Navbar will appear on the top of the page.</p>
                   </div>
                   <div class="col-12 col-md-6 order-md-2 order-first">
                     <nav aria-label="breadcrumb" class="breadcrumb-header float-start float-lg-end">
                       <ol class="breadcrumb">
-                        <li class="breadcrumb-item active" aria-current="page">Dashboard</li>
+                        <li class="breadcrumb-item"><a href="/user/operator">Dashboard</a></li>
                         <li class="breadcrumb-item"><a href="/user/operator/profile">Profile</a></li>
                       </ol>
                     </nav>
@@ -227,13 +227,34 @@
     
               <section class="section">
               <div class="card">
-                <div class="card-header">
-                  <h4 class="card-title">Default </h4>
-                </div>
                 <div class="card-body">
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Magnam, commodi? Ullam quaerat similique iusto
-                    temporibus, vero aliquam praesentium, odit deserunt eaque nihil saepe hic deleniti? Placeat delectus
-                    quibusdam ratione ullam!
+                    @if($errors->any())
+                    <div class="alert alert-danger">
+                        <ul>
+                            @foreach($errors->all() as $item)
+                            <li>{{ $item }}</li>
+                            @endforeach
+                        </ul>
+                    </div>
+                @endif
+                <form action="" method="POST">
+                    @csrf
+                    <div class="mb-3">
+                        <label for="username" class="form-label">Username</label>
+                        <input type="text" value="{{old('username')}}" name="username" class="form-control">
+                    </div>
+                    <div class="mb-3">
+                        <label for="nim" class="form-label">NIP</label>
+                        <input type="text" value="{{old('nim')}}" name="nim" class="form-control">
+                    </div>
+                    <div class="mb-3">
+                        <label for="password" class="form-label">Password</label>
+                        <input type="password" name="password" class="form-control">
+                    </div>
+                    <div class="mb-3 d-grid">
+                        <button name="submit" type="submit" class="btn btn-primary">Buat Akun</button>
+                    </div>
+                </form>
                 </div>
               </div>
               </section>

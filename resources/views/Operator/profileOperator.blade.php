@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{{ $title }}</title>
+    <title>Profile</title>
     
     
     
@@ -211,14 +211,14 @@
               <div class="page-title">
                 <div class="row">
                   <div class="col-12 col-md-6 order-md-1 order-last">
-                    <h3>{{ $title }}</h3>
+                    <h3>Profile</h3>
                     <p class="text-subtitle text-muted">Navbar will appear on the top of the page.</p>
                   </div>
                   <div class="col-12 col-md-6 order-md-2 order-first">
                     <nav aria-label="breadcrumb" class="breadcrumb-header float-start float-lg-end">
                       <ol class="breadcrumb">
-                        <li class="breadcrumb-item active" aria-current="page">Dashboard</li>
-                        <li class="breadcrumb-item"><a href="/user/operator/profile">Profile</a></li>
+                        <li class="breadcrumb-item"><a href="/user/operator">Dashboard</a></li>
+                        <li class="breadcrumb-item active" aria-current="page">Profile</li>
                       </ol>
                     </nav>
                   </div>
@@ -231,9 +231,7 @@
                   <h4 class="card-title">Default </h4>
                 </div>
                 <div class="card-body">
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Magnam, commodi? Ullam quaerat similique iusto
-                    temporibus, vero aliquam praesentium, odit deserunt eaque nihil saepe hic deleniti? Placeat delectus
-                    quibusdam ratione ullam!
+                    Profile
                 </div>
               </div>
               </section>
