@@ -15,7 +15,7 @@ class MahasiswaController extends Controller
     }
     function IRS(){
         $data = array (
-            'active_home' => 'active',
+            'active_side' => 'active',
             'title' => 'Mahasiswa',
         );
         return view('Mahasiswa/IRS', $data);
@@ -23,7 +23,7 @@ class MahasiswaController extends Controller
 
     function KHS(){
         $data = array (
-            'active_home' => 'active',
+            'active_side' => 'active',
             'title' => 'Mahasiswa',
         );
         return view('Mahasiswa/KHS', $data);
