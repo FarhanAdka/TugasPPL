@@ -40,7 +40,9 @@ class UserController extends Controller
     function departemen(){
         $data = array (
             'active_home' => 'active',
-            'title' => 'Departemen',
+            'Role' => 'Departemen',
+            'UserName' => '\\\UserName///',
+            'Title' => 'Dashboar Departemen',
         );
         return view('Departemen/homeDepartemen', $data);
     }

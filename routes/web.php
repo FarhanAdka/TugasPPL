@@ -4,6 +4,7 @@ use App\Http\Controllers\MahasiswaController;
 use App\Http\Controllers\OperatorController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\SessionController;
+use App\Http\Controllers\DepartemenController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -57,5 +58,12 @@ Route::middleware(['auth'])->group(function (){
 
     //Departemen
     Route::get('/user/departemen',[UserController::class,'departemen'])->middleware('userAkses:departemen');
+    Route::get('/user/departemen/DataMahasiswa',[DepartemenController::class,'dataMHS'])->name('/user/departemen/DataMahasiswa');
+    Route::get('/user/departemen/ProfilDepartemen',[DepartemenController::class,'ProfilDepartemen'])->name('/user//departemen/ProfilDepartemen');
+    Route::get('/user/departemen/ProgresPKL',[DepartemenController::class,'ProgresPKL'])->name('/user/departemen/ProgresPKL');
+    Route::get('/user/departemen/ProgresSkripsi',[DepartemenController::class,'ProgresSkripsi'])->name('/user/departemen/ProgresSkripsi');
+
     Route::get('/logout',[SessionController::class, 'logout']);
 });
+
+
