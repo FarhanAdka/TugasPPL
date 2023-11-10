@@ -66,8 +66,7 @@
                                     </li>
 
                                     <li>
-                                        <a class="dropdown-item" href="#"><i
-                                                class="icon-mid bi bi-gear me-2"></i>
+                                        <a class="dropdown-item" href="#"><i class="icon-mid bi bi-gear me-2"></i>
                                             Settings</a>
                                     </li>
 
@@ -120,24 +119,24 @@
                                     </thead>
                                     <tbody>
                                         @foreach ($mahasiswa as $mhs)
-                                        <tr>
-                                            <td>{{ $mhs->id }}</td>
-                                            <td>{{ $mhs->name }}</td>
-                                            <td>{{ $mhs->username }}</td>
-                                            <td>
-                                                <form action="/user/operator/kelolamahasiswa/{{ $mhs->id }}"
-                                                    method="POST">
-                                                    <a class="btn btn-primary"
-                                                        href="/user/operator/kelolamahasiswa/{{ $mhs->id }}/edit">Edit</a>
-                                                    @csrf
-                                                    @method('DELETE')
-                                                    <button type="submit" class="btn btn-danger">Delete</button>
-                                                </form>
-                                            </td>
-                                        </tr>
-                                            @endforeach
+                                            <tr>
+                                                <td>{{ $mhs->id }}</td>
+                                                <td>{{ $mhs->name }}</td>
+                                                <td>{{ $mhs->username }}</td>
+                                                <td>
+                                                    <form action="/user/operator/kelolamahasiswa/{{ $mhs->id }}"
+                                                        method="POST">
+                                                        <a class="btn btn-primary"
+                                                            href="/user/operator/kelolamahasiswa/{{ $mhs->id }}/edit">Edit</a>
+                                                        @csrf
+                                                        @method('DELETE')
+                                                        <button type="submit" class="btn btn-danger">Delete</button>
+                                                    </form>
+                                                </td>
+                                            </tr>
+                                        @endforeach
                                     </tbody>
-                                        
+
                                 </table>
                             </div>
                         </div>
