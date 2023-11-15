@@ -183,11 +183,18 @@
                     <form class="form">
                       <div class="form-body">
                         <div class="row">
-                          
+                      
                           <div class="col-12">
                             <div class="form-group">
                               <label for="form-semester-aktif">Semester Aktif</label>
-                              <input type="text" id="semester-aktif" class="form-control" name="semester-aktif" placeholder="Semester Aktif">
+                              <select id="semester-aktif" class="form-control" name="semester-aktif">
+                                <option value="" disabled selected hidden>Pilih Semester</option>
+                                <?php
+                                for ($i = 1; $i <= 14; $i++) {
+                                    echo "<option value='$i'>$i</option>";
+                                  }
+                                ?>
+                              </select>
                             </div>
                           </div>
                           
@@ -201,7 +208,7 @@
                           <div class="col-12">
                             <div class="form-group">
                               <label for="scan-irs">Scan IRS</label>
-                              <input type="file" class="multiple-files-filepond" multiple> 
+                              <input type="file" class="basic-filepond" multiple> 
                             </div>
                           </div>
                           
