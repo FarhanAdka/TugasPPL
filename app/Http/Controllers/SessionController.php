@@ -29,7 +29,7 @@ class SessionController extends Controller
 
     if(Auth::attempt($infologin)){
         if(Auth::user()->role == 'mahasiswa'){
-            return redirect('user/mahasiswa/ProfileMahasiswa');
+            return redirect('user/mahasiswa/');
         }
         elseif(Auth::user()->role == 'operator'){
             return redirect('user/operator');
