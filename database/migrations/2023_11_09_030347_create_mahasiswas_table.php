@@ -21,7 +21,7 @@ return new class extends Migration {
             $table->string('provinsi')->nullable();
             $table->string('no_hp')->nullable();
             $table->string('email')->nullable();
-            $table->string('angkatan')->nullable();
+            $table->year('angkatan')->nullable();
             $table->string('jalur_masuk')->nullable();
             $table->enum('status', ['Aktif','Cuti','Mangkir','Do','Undur_diri','Lulus','Meninggal_dunia'])->default('Aktif');
             $table->timestamps();
