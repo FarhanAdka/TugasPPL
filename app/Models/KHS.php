@@ -8,4 +8,17 @@ use Illuminate\Database\Eloquent\Model;
 class KHS extends Model
 {
     use HasFactory;
+    protected $fillable = [
+        'id_mahasiswa',
+        'semester_aktif',
+        'jumlah_sks',
+        'ip',
+        'ipk',
+        'status',
+        'scan_khs',
+    ];
+
+    function user(){
+        return $this->belongsTo(User::class, 'id_mahasiswa');
+    }
 }

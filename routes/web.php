@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\IRSController;
+use App\Http\Controllers\KHSController;
 use App\Http\Controllers\MahasiswaController;
 use App\Http\Controllers\OperatorController;
 use App\Http\Controllers\UserController;
@@ -32,14 +34,8 @@ Route::middleware(['auth'])->group(function (){
 
     //Mahasiswa
     Route::get('/user/mahasiswa',[userController::class,'mahasiswa'])->middleware('userAkses:mahasiswa');
-    Route::get('/user/mahasiswa/ProfileMahasiswa',[MahasiswaController::class,'Profile'])->middleware('userAkses:mahasiswa');
-    Route::get('/user/mahasiswa/IsiIRS',[MahasiswaController::class,'IsiIRS'])->middleware('userAkses:mahasiswa');
-    Route::get('/user/mahasiswa/DataIRS',[MahasiswaController::class,'DataIRS'])->middleware('userAkses:mahasiswa');
-    Route::get('/user/mahasiswa/IsiKHS',[MahasiswaController::class,'IsiKHS'])->middleware('userAkses:mahasiswa');
-    Route::get('/user/mahasiswa/DataKHS',[MahasiswaController::class,'DataKHS'])->middleware('userAkses:mahasiswa');
-    Route::get('/user/mahasiswa/PKL',[MahasiswaController::class,'PKL'])->middleware('userAkses:mahasiswa');
-    Route::get('/user/mahasiswa/Skripsi',[MahasiswaController::class,'Skripsi'])->middleware('userAkses:mahasiswa');
-
+    Route::resource('/user/mahasiswa/IRS', IRSController::class)->middleware('userAkses:mahasiswa');
+    Route::resource('/user/mahasiswa/KHS', KHSController::class)->middleware('userAkses:mahasiswa');
     //Operator
     Route::get('/user/operator',[UserController::class,'operator'])->middleware('userAkses:operator');
     Route::get('/user/operator/profile',[OperatorController::class,'profile'])->middleware('userAkses:operator');

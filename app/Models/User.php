@@ -43,4 +43,27 @@ class User extends Authenticatable
     protected $casts = [
         'password' => 'hashed',
     ];
+
+    function mahasiswa()
+    {
+        return $this->hasOne(Mahasiswa::class, 'user_id');
+    }
+
+    function dosen()
+    {
+        return $this->hasOne(DosenWali::class, 'user_id');
+    }
+
+    function khs()
+    {
+        return $this->hasOne(KHS::class, 'id_mahasiswa');
+    }
+
+    function irs()
+    {
+        return $this->hasOne(IRS::class, 'id_mahasiswa');
+    }
+    
+
+
 }

@@ -69,7 +69,7 @@ class OperatorController extends Controller
 
         // Step 1: Create a new User record
         $user = User::create($data);
-
+        
         // Step 2: Retrieve the User's ID
         $user_id = $user->id;
 

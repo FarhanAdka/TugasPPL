@@ -13,6 +13,12 @@ return new class extends Migration
     {
         Schema::create('i_r_s', function (Blueprint $table) {
             $table->id();
+            $table->bigInteger('id_mahasiswa')->unsigned();
+            $table->foreign('id_mahasiswa')->references('id')->on('users')->onDelete('cascade');
+            $table->integer('jumlah_sks');
+            $table->string('semester_aktif');
+            $table->boolean('status')->default(false);  
+            $table->string('scan_irs')->nullable();
             $table->timestamps();
         });
     }

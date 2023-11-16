@@ -13,6 +13,14 @@ return new class extends Migration
     {
         Schema::create('k_h_s', function (Blueprint $table) {
             $table->id();
+            $table->bigInteger('id_mahasiswa')->unsigned();
+            $table->foreign('id_mahasiswa')->references('id')->on('users')->onDelete('cascade');
+            $table->string('semester_aktif');
+            $table->integer('jumlah_sks');
+            $table->float('ip');
+            $table->float('ipk');
+            $table->boolean('status')->default(false);
+            $table->string('scan_khs')->nullable();
             $table->timestamps();
         });
     }
