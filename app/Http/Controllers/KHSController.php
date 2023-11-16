@@ -43,7 +43,14 @@ class KHSController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $khs = new KHS();
+        $khs->id_mahasiswa = auth()->user()->id;
+        $khs->jumlah_sks = $request->jumlah_sks;
+        $khs->ip = $request->ip;
+        $khs->ipk = $request->ipk;
+        $khs->semester_aktif = $request->semester_aktif;
+        $khs->save();
+        return redirect()->route('KHS.index');
     }
 
     /**
@@ -75,6 +82,14 @@ class KHSController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $khs = khs::find($id); // Ganti Mahasiswa dengan model yang Anda gunakan
+
+    if (!$khs) {
+        return redirect()->back()->with('error', 'Data not found.');
+    }
+
+    $khs->delete();
+
+    return redirect()->route('KHS.index')->with('success', 'Data deleted successfully.'); // Ganti 'route_name' dengan nama rute yang ingin Anda tuju setelah penghapusan data.
     }
 }

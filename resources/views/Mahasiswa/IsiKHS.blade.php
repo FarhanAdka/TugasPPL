@@ -99,14 +99,15 @@
                 <div class="card-content">
                   <div class="card-body">
                   
-                    <form class="form">
+                    <form class="form" action="{{route('KHS.store')}}" method="POST">
+                      @csrf
                       <div class="form-body">
                         <div class="row">
                           
                           <div class="col-12">
                             <div class="form-group">
                               <label for="form-semester-aktif">Semester Aktif</label>
-                              <select id="semester-aktif" class="form-control" name="semester-aktif">
+                              <select id="semester_aktif" class="form-control" name="semester_aktif">
                                 <option value="" disabled selected hidden>Pilih Semester</option>
                                 <?php
                                 for ($i = 1; $i <= 14; $i++) {
@@ -120,27 +121,27 @@
                           <div class="col-12">
                             <div class="form-group">
                               <label for="form-jumlah-sks">Jumlah SKS Semester</label>
-                              <input type="text" id="jumlah-sks" class="form-control" name="jumlah-sks" placeholder="Jumlah SKS">
+                              <input type="text" id="jumlah_sks" class="form-control" name="jumlah_sks" placeholder="Jumlah SKS">
                             </div>
                           </div>
 
                           <div class="col-12">
                             <div class="form-group">
-                              <label for="form-jumlah-sks">IP Semester</label>
-                              <input type="text" id="jumlah-sks" class="form-control" name="jumlah-sks" placeholder="Jumlah SKS">
+                              <label for="form-ip">IP Semester</label>
+                              <input type="text" id="ip" class="form-control" name="ip" placeholder="IP">
                             </div>
                           </div>
 
                           <div class="col-12">
                             <div class="form-group">
-                              <label for="form-jumlah-sks">IP Kumulatif</label>
-                              <input type="text" id="jumlah-sks" class="form-control" name="jumlah-sks" placeholder="Jumlah SKS">
+                              <label for="form-ipk">IP Kumulatif</label>
+                              <input type="text" id="ipk" class="form-control" name="ipk" placeholder="IPK">
                             </div>
                           </div>
                           
                           <div class="col-12">
                             <div class="form-group">
-                              <label for="scan-irs">Scan KHS</label>
+                              <label for="scan-krs">Scan KHS</label>
                               <input type="file" class="multiple-files-filepond" multiple> 
                             </div>
                           </div>
