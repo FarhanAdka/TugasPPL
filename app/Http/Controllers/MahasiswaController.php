@@ -6,27 +6,47 @@ use Illuminate\Http\Request;
 
 class MahasiswaController extends Controller
 {
+    //Profile
     function Profile(){
         $data = array (
             'active_home' => 'active',
-            'title' => 'Mahasiswa',
+            'title' => 'Profile',
         );
         return view('Mahasiswa/ProfileMahasiswa', $data);
     }
-    function IRS(){
+    //IRS
+    function IsiIRS(){
         $data = array (
-            'active_side' => 'active',
-            'title' => 'Mahasiswa',
+            'active_side' => 'active', 
+            'active_user' => 'active',
+            'title' => 'Isi IRS',
         );
-        return view('Mahasiswa/IRS', $data);
+        return view('Mahasiswa/IsiIRS', $data);
     }
-
-    function KHS(){
+    function DataIRS(){
         $data = array (
             'active_side' => 'active',
-            'title' => 'Mahasiswa',
+            'active_user' => 'active',
+            'title' => 'Data IRS',
         );
-        return view('Mahasiswa/KHS', $data);
+        return view('Mahasiswa/DataIRS', $data);
+    }
+    //KHS
+    function IsiKHS(){
+        $data = array (
+            'active_side' => 'active',
+            'active_user' => 'active',
+                       
+            'title' => 'Isi KHS',
+        );
+        return view('Mahasiswa/IsiKHS', $data);
+    }
+    function DataKHS(){
+        $data = array (
+            'active_side' => 'active',
+            'title' => 'Data KHS',
+        );
+        return view('Mahasiswa/DataKHS', $data);
     }
 
     function PKL(){

@@ -56,46 +56,75 @@
           </div>
         </div>
         <section class="section">
-        <div class="sidebar-menu">
-          <ul class="menu">
-            <li class="sidebar-title">Menu</li>
-
-            <li class="sidebar-item">
-              <a href="/user/mahasiswa/ProfileMahasiswa" class='sidebar-link'>
-                <i class="bi bi-grid-fill"></i>
-                <span>Profile</span>
-              </a>
-            </li>
-
-            <li class="sidebar-item">
-              <a href="/user/mahasiswa/IRS" class='sidebar-link'>
-                <i class="bi bi-grid-fill"></i>
-                <span>Data IRS</span>
-              </a>
-            </li>
-
-            <li class="sidebar-item @if(isset($active_side)) {{ $active_side }} @endif">
-              <a href="/user/mahasiswa/KHS" class='sidebar-link'>
-                <i class="bi bi-grid-fill"></i>
-                <span>Data KHS</span>
-              </a>
-            </li>
-
-            <li class="sidebar-item">
-              <a href="/user/mahasiswa/PKL" class='sidebar-link'>
-                <i class="bi bi-grid-fill"></i>
-                <span>Data PKL</span>
-              </a>
-            </li>
-
-            <li class="sidebar-item">
-              <a href="/user/mahasiswa/Skripsi" class='sidebar-link'>
-                <i class="bi bi-collection-fill"></i>
-                <span>Data Skripsi</span>
-              </a>
-            </li>
-          </ul>
-        </div>
+          <div class="sidebar-menu">
+            <ul class="menu">
+              <li class="sidebar-title">Menu</li>
+  
+              <li class="sidebar-item">
+                <a href="/user/mahasiswa/ProfileMahasiswa" class='sidebar-link'>
+                  <i class="bi bi-grid-fill"></i>
+                  <span>Profile</span>
+                </a>
+              </li>
+  
+              <li class="sidebar-item has-sub">
+                <a href="#" class='sidebar-link'>
+                    <i class="bi bi-collection-fill"></i>
+                    <span>IRS</span>
+                </a>
+                <ul class="submenu">
+                  <li class="submenu-item">
+                      <a href="/user/mahasiswa/IsiIRS" class="submenu-link">
+                        <i class="bi bi-grid-fill"></i>
+                        <span>Isi IRS</span>
+                      </a>
+                  </li>
+                  <li class="submenu-item">
+                      <a href="/user/mahasiswa/DataIRS" class="submenu-link">
+                        <i class="bi bi-grid-fill"></i>
+                        <span>Data IRS</span>
+                      </a>
+                  </li>
+                </ul>
+              </li>
+  
+              <li class="sidebar-item @if (isset($active_side)) {{ $active_side }} @endif has-sub">
+                <a href="#" class='sidebar-link'>
+                    <i class="bi bi-collection-fill"></i>
+                    <span>KHS</span>
+                </a>
+                <ul class="submenu @if (isset($active_sub)) {{ $active_sub }} @endif ">
+                  <li class="submenu-item @if (isset($active_user)) {{ $active_user }} @endif ">
+                      <a href="/user/mahasiswa/IsiKHS" class="submenu-link">
+                        <i class="bi bi-grid-fill"></i>
+                        <span>Isi KHS</span>
+                      </a>
+                  </li>
+                  <li class="submenu-item">
+                      <a href="/user/mahasiswa/DataKHS" class="submenu-link">
+                        <i class="bi bi-grid-fill"></i>
+                        <span>Data KHS</span>
+                      </a>
+                  </li>
+                </ul>
+              </li>
+  
+  
+              <li class="sidebar-item">
+                <a href="/user/mahasiswa/PKL" class='sidebar-link'>
+                  <i class="bi bi-collection-fill"></i>
+                  <span>Data PKL</span>
+                </a>
+              </li>
+  
+              <li class="sidebar-item">
+                <a href="/user/mahasiswa/Skripsi" class='sidebar-link'>
+                  <i class="bi bi-collection-fill"></i>
+                  <span>Data Skripsi</span>
+                </a>
+              </li>
+            </ul>
+          </div>
         </section>
 
       </div>
@@ -158,8 +187,8 @@
           <div class="page-title">
             <div class="row">
               <div class="col-12 col-md-6 order-md-1 order-last">
-                <h3>Data KHS</h3>
-                <p class="text-subtitle text-muted">Data KHS Mahasiswa</p>
+                <h3>KHS</h3>
+                <p class="text-subtitle text-muted">Isi KHS Mahasiswa</p>
               </div>
               
               <div class="col-12 col-md-6 order-md-2 order-first">

@@ -63,70 +63,75 @@
               </div>
 
 
-
-
-
-
-
-
-
-    <div class="sidebar-menu">
-        <ul class="menu">
-            <li class="sidebar-title">Menu</li>
-            
-            <li
-                class="sidebar-item  @if(isset($active_home)) {{ $active_home }} @endif">
+          <div class="sidebar-menu">
+            <ul class="menu">
+              <li class="sidebar-title">Menu</li>
+  
+              <li class="sidebar-item @if (isset($active_home)) {{ $active_home }} @endif ">
                 <a href="/user/mahasiswa/ProfileMahasiswa" class='sidebar-link'>
-                    <i class="bi bi-grid-fill"></i>
-                    <span>Profile</span>
+                  <i class="bi bi-grid-fill"></i>
+                  <span>Profile</span>
                 </a>
-            </li>
-
-
-            <li
-                class="sidebar-item @if(isset($active_side)) {{ $active_side }} @endif">
-                <a href="/user/mahasiswa/IRS" class='sidebar-link'>
-                    <i class="bi bi-grid-fill"></i>
-                    <span>Data IRS</span>
-                </a>
-            </li>
-
-
-            <li
-                class="sidebar-item @if(isset($active_side)) {{ $active_side }} @endif">
-                <a href="/user/mahasiswa/KHS" class='sidebar-link'>
-                    <i class="bi bi-grid-fill"></i>
-                    <span>Data KHS</span>
-                </a>
-            </li>
-
-
-            <li
-                class="sidebar-item @if(isset($active_side)) {{ $active_side }} @endif">
-                <a href="/user/mahasiswa/PKL" class='sidebar-link'>
-                    <i class="bi bi-grid-fill"></i>
-                    <span>Data PKL</span>
-                </a>
-            </li>
-
-
-            <li
-                class="sidebar-item @if(isset($active_side)) {{ $active_side }} @endif">
-                <a href="/user/mahasiswa/Skripsi" class='sidebar-link'>
+              </li>
+  
+              <li class="sidebar-item has-sub">
+                <a href="#" class='sidebar-link'>
                     <i class="bi bi-collection-fill"></i>
-                    <span>Data Skripsi</span>
+                    <span>IRS</span>
                 </a>
-            </li>
-        </ul>
-    </div>
-
-
-
-
-
-
-
-
+                <ul class="submenu">
+                  <li class="submenu-item">
+                      <a href="/user/mahasiswa/IsiIRS" class="submenu-link">
+                        <i class="bi bi-grid-fill"></i>
+                        <span>Isi IRS</span>
+                      </a>
+                  </li>
+                  <li class="submenu-item">
+                      <a href="/user/mahasiswa/DataIRS" class="submenu-link">
+                        <i class="bi bi-grid-fill"></i>
+                        <span>Data IRS</span>
+                      </a>
+                  </li>
+                </ul>
+              </li>
+  
+              <li class="sidebar-item has-sub">
+                <a href="#" class='sidebar-link'>
+                    <i class="bi bi-collection-fill"></i>
+                    <span>KHS</span>
+                </a>
+                <ul class="submenu">
+                  <li class="submenu-item">
+                      <a href="/user/mahasiswa/IsiKHS" class="submenu-link">
+                        <i class="bi bi-grid-fill"></i>
+                        <span>Isi KHS</span>
+                      </a>
+                  </li>
+                  <li class="submenu-item">
+                      <a href="/user/mahasiswa/DataKHS" class="submenu-link">
+                        <i class="bi bi-grid-fill"></i>
+                        <span>Data KHS</span>
+                      </a>
+                  </li>
+                </ul>
+              </li>
+  
+  
+              <li class="sidebar-item">
+                <a href="/user/mahasiswa/PKL" class='sidebar-link'>
+                  <i class="bi bi-collection-fill"></i>
+                  <span>Data PKL</span>
+                </a>
+              </li>
+  
+              <li class="sidebar-item">
+                <a href="/user/mahasiswa/Skripsi" class='sidebar-link'>
+                  <i class="bi bi-collection-fill"></i>
+                  <span>Data Skripsi</span>
+                </a>
+              </li>
+            </ul>
+          </div>
 
 </div>
         </div>
@@ -196,8 +201,7 @@
               <div class="page-title">
                 <div class="row">
                   <div class="col-12 col-md-6 order-md-1 order-last">
-                    <h3>Mahasiswa</h3>
-                    <p class="text-subtitle text-muted">Navbar will appear on the top of the page.</p>
+                    <h3>Profile</h3>
                   </div>
                   <div class="col-12 col-md-6 order-md-2 order-first">
                     <nav aria-label="breadcrumb" class="breadcrumb-header float-start float-lg-end">
@@ -209,19 +213,65 @@
                   </div>
                 </div>
               </div>
-    
+              
               <section class="section">
-              <div class="card">
-                <div class="card-header">
-                  <h4 class="card-title">Default </h4>
+                <div class="row">
+                    <div class="col-12">
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="d-flex justify-content-center align-items-center flex-column">
+                                    <div class="avatar avatar-2xl">
+                                        <img src="/assets/compiled/jpg/1.jpg" alt="Avatar">
+                                    </div>
+        
+                                    <h3 class="mt-3">John Doe</h3>
+                                    <p class="text-small">Junior Software Engineer</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="basicInput">Basic Input</label>
+                                    <input type="text" class="form-control" id="basicInput" placeholder="Enter email">
+                                </div>
+        
+                                <div class="form-group">
+                                    <label for="helpInputTop">Input text with help</label>
+                                    <small class="text-muted">eg.<i>someone@example.com</i></small>
+                                    <input type="text" class="form-control" id="helpInputTop">
+                                </div>
+        
+                                <div class="form-group">
+                                    <label for="helperText">With Helper Text</label>
+                                    <input type="text" id="helperText" class="form-control" placeholder="Name">
+                                    <p><small class="text-muted">Find helper text here for given textbox.</small></p>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="disabledInput">Disabled Input</label>
+                                    <input type="text" class="form-control" id="disabledInput" placeholder="Disabled Text"
+                                        disabled>
+                                </div>
+                                <div class="form-group">
+                                    <label for="readonlyInput">Readonly Input</label>
+                                    <input type="text" class="form-control" id="readonlyInput" readonly="readonly"
+                                        value="You can't update me :P">
+                                </div>
+        
+                                <div class="form-group">
+                                    <label for="disabledInput">Static Text</label>
+                                    <p class="form-control-static" id="staticInput">email@mazer.com</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                <div class="card-body">
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Magnam, commodi? Ullam quaerat similique iusto
-                    temporibus, vero aliquam praesentium, odit deserunt eaque nihil saepe hic deleniti? Placeat delectus
-                    quibusdam ratione ullam!
-                </div>
-              </div>
-              </section>
+            </section>
 
             </div>
           </div>

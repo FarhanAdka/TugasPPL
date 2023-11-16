@@ -33,8 +33,10 @@ Route::middleware(['auth'])->group(function (){
     //Mahasiswa
     Route::get('/user/mahasiswa',[userController::class,'mahasiswa'])->middleware('userAkses:mahasiswa');
     Route::get('/user/mahasiswa/ProfileMahasiswa',[MahasiswaController::class,'Profile'])->middleware('userAkses:mahasiswa');
-    Route::get('/user/mahasiswa/IRS',[MahasiswaController::class,'IRS'])->middleware('userAkses:mahasiswa');
-    Route::get('/user/mahasiswa/KHS',[MahasiswaController::class,'KHS'])->middleware('userAkses:mahasiswa');
+    Route::get('/user/mahasiswa/IsiIRS',[MahasiswaController::class,'IsiIRS'])->middleware('userAkses:mahasiswa');
+    Route::get('/user/mahasiswa/DataIRS',[MahasiswaController::class,'DataIRS'])->middleware('userAkses:mahasiswa');
+    Route::get('/user/mahasiswa/IsiKHS',[MahasiswaController::class,'IsiKHS'])->middleware('userAkses:mahasiswa');
+    Route::get('/user/mahasiswa/DataKHS',[MahasiswaController::class,'DataKHS'])->middleware('userAkses:mahasiswa');
     Route::get('/user/mahasiswa/PKL',[MahasiswaController::class,'PKL'])->middleware('userAkses:mahasiswa');
     Route::get('/user/mahasiswa/Skripsi',[MahasiswaController::class,'Skripsi'])->middleware('userAkses:mahasiswa');
 
