@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\IRS;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
+use Redirect;
 
 class IRSController extends Controller
 {
@@ -49,7 +51,16 @@ class IRSController extends Controller
         $irs->id_mahasiswa = auth()->user()->id;
         $irs->jumlah_sks = $request->jumlah_sks;
         $irs->semester_aktif = $request->semester_aktif;
+        
+        //dd($request->all());
+        // Handle file upload
+        if ($request->hasFile('scan_irs')) {
+            $file = $request->file('scan_irs');
+            $path = $file->store('irs_files'); // 'irs_files' is the directory within the storage folder where the file will be stored
+            $irs->scan_irs = $path; // Assuming 'file_path' is the column in your IRS model to store the file path
+        }
         $irs->save();
+
         return redirect()->route('IRS.index');
     }
 
@@ -58,7 +69,12 @@ class IRSController extends Controller
      */
     public function show(string $id)
     {
-        //
+        $data = [
+            'active_side' => 'active',
+            'title' => 'Data IRS',
+            'active_user' => 'active',
+        ];
+        return view('mahasiswa/DataIRS', $data);
     }
 
     /**
@@ -66,7 +82,17 @@ class IRSController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $irs = IRS::find($id);
+        $semester = IRS::where('id_mahasiswa', auth()->user()->id)->pluck('semester_aktif')->toArray();
+        $avail_semester = array_diff_assoc(['1', '2', '3', '4', '5', '6', '7', '8'], $semester);
+        $data = [
+            'active_side' => 'active',
+            'title' => 'Edit IRS',
+            'active_user' => 'active',
+            'irs' => $irs,
+            'avail_semester' => $avail_semester,
+        ];
+        return view('mahasiswa/EditIRS', $data);
     }
 
     /**
@@ -74,7 +100,12 @@ class IRSController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $irs = IRS::findOrFail($id);
+        $irs->fill($request->post())->save();
+
+        // Fetch the updated IRS data
+        //$updatedIRS = IRS::where('id_mahasiswa', auth()->user()->id)->get();
+        return redirect()->route('IRS.index');
     }
 
     /**
@@ -82,6 +113,41 @@ class IRSController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $irs = IRS::find($id);
+        $irs_path = $irs->scan_irs;
+
+        if($irs_path != null){
+            Storage::delete($irs_path);
+        }
+        $irs->delete();
+        
+        return redirect()->route('IRS.index');
+
+    }
+
+    public function download(string $id)
+    {
+        $irs = IRS::find($id);
+
+        // Perform a check if the authenticated user has access to this file
+        if (auth()->user()->id != $irs->id_mahasiswa) {
+            return Redirect::back()->with('error', 'Unauthorized access');
+        }
+
+        // Get the file path
+        $filePath = storage_path('app/' . $irs->scan_irs);
+
+        // Check if the file exists
+        if (!file_exists($filePath)) {
+            return Redirect::back()->with('error', 'File not found');
+        }
+
+        // Set the appropriate headers to force download
+        $headers = [
+            'Content-Type' => 'application/octet-stream',
+        ];
+
+        // Return the file as a response with headers to force download
+        return response()->file($filePath);
     }
 }

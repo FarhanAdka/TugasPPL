@@ -18,7 +18,7 @@
 
   <div id="app">
 
-    <x-mahasiswa.sidebar />
+<x-mahasiswa.sidebar />
 
     <div id="main" class='layout-navbar navbar-fixed'>
 
@@ -77,8 +77,10 @@
           <div class="page-title">
             <div class="row">
               <div class="col-12 col-md-6 order-md-1 order-last">
-                <h3>{{ $title }}</h3>
+                <h3>IRS</h3>
+                <p class="text-subtitle text-muted">Edit IRS Mahasiswa</p>
               </div>
+              
               <div class="col-12 col-md-6 order-md-2 order-first">
                 <nav aria-label="breadcrumb" class="breadcrumb-header float-start float-lg-end">
                   <ol class="breadcrumb">
@@ -90,45 +92,58 @@
             </div>
           </div>
           
-          <section class="section">
-            <div class="card">
-                <div class="card-header">
-                    <h4 class="card-title">Data IRS</h4>
+          <div class="row match-height">
+          
+            <div class="col-md-12 col-12">
+              <div class="card">
+                <div class="card-content">
+                  <div class="card-body">
+                  
+                    <form class="form" action="{{route('IRS.update', $irs->id)}}" method="POST" enctype="multipart/form-data">
+                      @csrf
+                      @method('PUT')
+                      <div class="form-body">
+                        <div class="row">
+                      
+                          <div class="col-12">
+                            <div class="form-group">
+                              <label for="form-semester-aktif">Semester Aktif</label>
+                              <select id="semester_aktif" class="form-control" name="semester_aktif">
+                                <option value="{{$irs->semester_aktif}}" selected>{{$irs->semester_aktif}}</option>
+                                @foreach ($avail_semester as $s)
+                                <option value="{{ $s }}">{{ $s }}</option>
+                                @endforeach
+                              </select>
+                            </div>
+                          </div>
+                          
+                          <div class="col-12">
+                            <div class="form-group">
+                              <label for="form-jumlah-sks">Jumlah SKS</label>
+                              <input type="text" id="jumlah_sks" class="form-control" name="jumlah_sks" placeholder="Jumlah SKS" value="{{$irs->jumlah_sks}}">
+                            </div>
+                          </div>
+                          
+                          <div class="col-12">
+                            <div class="form-group">
+                            </div>
+                          </div>
+                          
+                          <div class="col-12 d-flex justify-content-end">
+                            <button type="submit" class="btn btn-primary me-1 mb-1">Edit</button>
+                            <button type="reset" class="btn btn-light-secondary me-1 mb-1">Reset</button>
+                          </div>
+                          
+                        </div>
+                      </div>
+                    </form>
+                    
+                  </div>
                 </div>
-                <div class="card-body">
-                    <table class="table table-bordered table-striped">
-                        <thead>
-                            <tr>
-                                <th>Semester</th>
-                                <th>Jumlah SKS</th>
-                                <th>Scan IRS</th>
-                                <th>Status</th>
-                                <th width="280px">Action</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            @foreach ($irs as $ir)
-                            <tr>
-                                <td>{{ $ir->semester_aktif }}</td>
-                                <td>{{ $ir->jumlah_sks }}</td>
-                                <td><a href="{{route('irs.download', ['id'=> $ir->id])}}">Lihat</a></td>
-                                <td>{{ $ir->status }}</td>
-                                <td>
-                                    <form action="{{ route('IRS.destroy',$ir->id) }}" method="POST">
-                                        <a class="btn btn-info" href="{{ route('IRS.show',$ir->id) }}">Show</a>
-                                        <a class="btn btn-primary" href="{{ route('IRS.edit',$ir->id) }}">Edit</a>
-                                        @csrf
-                                        @method('DELETE')
-                                        <button type="submit" class="btn btn-danger">Delete</button>
-                                    </form>    
-                                </td>
-                            </tr>
-                            @endforeach
-                        </tbody>    
-                    </table>
-                </div>
+              </div>
             </div>
-          </section>
+            
+          </div>
           
         </div>
         
