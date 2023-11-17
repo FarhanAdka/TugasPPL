@@ -99,7 +99,7 @@
                 <div class="card-content">
                   <div class="card-body">
                   
-                    <form class="form" action="{{route('KHS.store')}}" method="POST">
+                    <form class="form" action="{{route('KHS.store')}}" method="POST" enctype="multipart/form-data">
                       @csrf
                       <div class="form-body">
                         <div class="row">
@@ -142,7 +142,7 @@
                           <div class="col-12">
                             <div class="form-group">
                               <label for="scan-krs">Scan KHS</label>
-                              <input type="file" class="multiple-files-filepond" multiple> 
+                              <input type="file" id= "scan_khs" class="multiple-files-filepond" name="scan_khs" multiple> 
                             </div>
                           </div>
                           
