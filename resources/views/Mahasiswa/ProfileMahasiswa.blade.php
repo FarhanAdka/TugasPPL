@@ -189,13 +189,13 @@
                                                     <div class = "col-12 col-md-6">
                                                         <div class="form-group">
 
-                                                            <label for="Provinsi" class="form-label">Provisnsi</label>
+                                                            <label for="Provinsi" class="form-label">Provinsi</label>
                                                             <select name="Provinsi" id="Provinsi"
                                                                 class="form-control" required>
-                                                                <option value="male">Laksff</option>
-                                                                <option value="female">csn</option>
-                                                                <option value="male">Laksff</option>
-                                                                <option value="female">sf</option>
+                                                                <option> Jawa Tengah </option>
+                                                                <option> Jawa Timur </option>
+                                                                <option> Jawa Barat </option>
+                                                                <option> Jambi </option>
                                                             </select>
                                                         </div>
                                                     </div>
