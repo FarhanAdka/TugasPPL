@@ -13,6 +13,11 @@ return new class extends Migration
     {
         Schema::create('skripsis', function (Blueprint $table) {
             $table->id();
+            $table->bigInteger('id_mahasiswa')->unsigned();
+            $table->foreign('id_mahasiswa')->references('id')->on('users')->onDelete('cascade');
+            $table->float('nilai');
+            $table->boolean('status')->default(false);
+            $table->string('scan_skripsi')->nullable();
             $table->timestamps();
         });
     }

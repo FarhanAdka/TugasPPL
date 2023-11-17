@@ -13,6 +13,11 @@ return new class extends Migration
     {
         Schema::create('p_k_l_s', function (Blueprint $table) {
             $table->id();
+            $table->bigInteger('id_mahasiswa')->unsigned();
+            $table->foreign('id_mahasiswa')->references('id')->on('users')->onDelete('cascade');
+            $table->float('nilai');
+            $table->boolean('status')->default(false);
+            $table->string('scan_pkl')->nullable();
             $table->timestamps();
         });
     }
