@@ -7,6 +7,7 @@ use App\Http\Controllers\OperatorController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\SessionController;
 use App\Http\Controllers\DepartemenController;
+use App\Models\Mahasiswa;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -36,20 +37,21 @@ Route::middleware(['auth'])->group(function (){
     Route::get('/user/mahasiswa',[userController::class,'mahasiswa'])->middleware('userAkses:mahasiswa');
     Route::resource('/user/mahasiswa/IRS', IRSController::class)->middleware('userAkses:mahasiswa');
     Route::resource('/user/mahasiswa/KHS', KHSController::class)->middleware('userAkses:mahasiswa');
+    Route::get('/user/mahasiswa/profile',[MahasiswaController::class,'profile'])->middleware('userAkses:mahasiswa');
     //Operator
     Route::get('/user/operator',[UserController::class,'operator'])->middleware('userAkses:operator');
     Route::get('/user/operator/profile',[OperatorController::class,'profile'])->middleware('userAkses:operator');
-    //Buat akun
-    Route::get('/user/operator/tambahMahasiswa',[OperatorController::class,'createMahasiswa'])->middleware('userAkses:operator');
-    Route::post('/user/operator/tambahMahasiswa',[OperatorController::class,'storemhs'])->middleware('userAkses:operator')->name('mahasiswa.store');
-    Route::get('/user/operator/tambahdosenWali',[OperatorController::class,'createdosenWali'])->middleware('userAkses:operator');
-    Route::post('/user/operator/tambahdosenWali', [OperatorController::class, 'storedoswal'])->middleware('userAkses:operator')->name('dosenwali.store');
+        //Buat akun
+        Route::get('/user/operator/tambahMahasiswa',[OperatorController::class,'createMahasiswa'])->middleware('userAkses:operator');
+        Route::post('/user/operator/tambahMahasiswa',[OperatorController::class,'storemhs'])->middleware('userAkses:operator')->name('mahasiswa.store');
+        Route::get('/user/operator/tambahdosenWali',[OperatorController::class,'createdosenWali'])->middleware('userAkses:operator');
+        Route::post('/user/operator/tambahdosenWali', [OperatorController::class, 'storedoswal'])->middleware('userAkses:operator')->name('dosenwali.store');
 
 
-    Route::get('/user/operator/tambahOperator',[OperatorController::class,'createOperator'])->middleware('userAkses:operator');
-    //Kelola akun
-    Route::get('/user/operator/kelolaMahasiswa',[OperatorController::class,'kelolaMahasiswa'])->middleware('userAkses:operator');
-    Route::get('/user/operator/keloladosenWali',[OperatorController::class,'keloladosenWali'])->middleware('userAkses:operator');
+        Route::get('/user/operator/tambahOperator',[OperatorController::class,'createOperator'])->middleware('userAkses:operator');
+        //Kelola akun
+        Route::get('/user/operator/kelolaMahasiswa',[OperatorController::class,'kelolaMahasiswa'])->middleware('userAkses:operator');
+        Route::get('/user/operator/keloladosenWali',[OperatorController::class,'keloladosenWali'])->middleware('userAkses:operator');
 
     //Dosen Wali
     Route::get('/user/dosenWali',[UserController::class,'dosenWali'])->middleware('userAkses:dosenWali');

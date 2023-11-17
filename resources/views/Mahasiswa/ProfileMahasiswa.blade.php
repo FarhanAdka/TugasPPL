@@ -22,7 +22,7 @@
     <script src="/assets/static/js/initTheme.js"></script>
 
     <div id="app">
-    <x-mahasiswa.sidebar/>
+        <x-mahasiswa.sidebar />
         <div id="main" class='layout-navbar navbar-fixed'>
             <header>
                 <nav class="navbar navbar-expand navbar-light navbar-top">
@@ -70,8 +70,8 @@
                                     </li>
 
                                     <li>
-                                        <a class="dropdown-item" href="#"><i
-                                                class="icon-mid bi bi-gear me-2"></i> Settings</a>
+                                        <a class="dropdown-item" href="#"><i class="icon-mid bi bi-gear me-2"></i>
+                                            Settings</a>
                                     </li>
 
                                     <li>
@@ -122,46 +122,195 @@
                                     </div>
                                 </div>
                             </div>
+
+
+
                             <div class="card">
                                 <div class="card-body">
+
                                     <div class="row">
                                         <div class="col-md-6">
-                                            <div class="form-group">
-                                                <label for="basicInput">Basic Input</label>
-                                                <input type="text" class="form-control" id="basicInput"
-                                                    placeholder="Enter email">
-                                            </div>
+                                            @foreach ($userMhs as $user)
+                                                @csrf
+                                                <div class="form-group">
+                                                    <label for="NIM">NIM</label>
+                                                    <input type="text" class="form-control" id="NIM"
+                                                        value="{{ $user->username }}" placeholder="Enter email"
+                                                        disabled>
+                                                </div>
 
-                                            <div class="form-group">
-                                                <label for="helpInputTop">Input text with help</label>
-                                                <small class="text-muted">eg.<i>someone@example.com</i></small>
-                                                <input type="text" class="form-control" id="helpInputTop">
-                                            </div>
 
-                                            <div class="form-group">
-                                                <label for="helperText">With Helper Text</label>
-                                                <input type="text" id="helperText" class="form-control"
-                                                    placeholder="Name">
-                                                <p><small class="text-muted">Find helper text here for given
-                                                        textbox.</small></p>
-                                            </div>
+                                                <div class="form-group">
+                                                    <label for="Nama">Nama</label>
+                                                    <input type="text" class="form-control" id="Nama"
+                                                        value="{{ $user->name }}" placeholder="Enter your name . . ."
+                                                        required>
+                                                </div>
+                                            @endforeach
+
+
+                                            @foreach ($mahasiswa as $mhs)
+                                                @csrf
+                                                <div class="form-group">
+                                                    <label for="Email">Email</label>
+                                                    <input type="text" class="form-control" id="Email"
+                                                        value="{{ $mhs->email }}"placeholder="Enter your email . . ."
+                                                        required>
+                                                </div>
+
+                                                <div class="form-group">
+                                                    <label for="No Telepon">No Telepon</label>
+                                                    <input type="text" class="form-control" id="No Telepon"
+                                                        value="{{ $mhs->no_hp }}"placeholder="Enter your No Telepon . . ."
+                                                        required>
+                                                </div>
+
+                                                <div class="form-group">
+                                                    <label for="Jalur Masuk">Jalur Masuk</label>
+                                                    <select name="Jalur masuk" id="Jalur Masuk"
+                                                                class="form-control" required>
+                                                                <option value="male">SNMPTN</option>
+                                                                <option value="female">SBMPTN</option>
+                                                                <option value="female">Mandiri</option>
+                                                                <option value="female">Lainnya</option>
+                                                            </select>                                                    
+                                                </div>
+
+                                                {{-- <div class="form-group">
+                                                    <label for="gender" class="form-label">Jenis Kelamin</label>
+                                                    <select name="gender" id="gender" class="form-control"
+                                                        required>
+                                                        <option value="male">Laki-Laki</option>
+                                                        <option value="female">Perempuan</option>
+                                                    </select>
+                                                </div> --}}
+
+                                                <div class="row">
+                                                    <div class = "col-12 col-md-6">
+                                                        <div class="form-group">
+
+                                                            <label for="Provinsi" class="form-label">Provisnsi</label>
+                                                            <select name="Provinsi" id="Provinsi"
+                                                                class="form-control" required>
+                                                                <option value="male">Laksff</option>
+                                                                <option value="female">csn</option>
+                                                                <option value="male">Laksff</option>
+                                                                <option value="female">sf</option>
+                                                            </select>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class = "col-12 col-md-6">
+                                                        <div class="form-group">
+                                                            <label for="Kabupaten" class="form-label">Kabupaten
+                                                                Kota</label>
+                                                            <select name="Kabupaten" id="Kabupaten"
+                                                                class="form-control" required>
+                                                                <option value="male">Lzzc</option>
+                                                                <option value="female">vxc</option>
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                {{-- 
+                                                <div class="row">
+                                                    <div class = "col-12 col-md-6">
+                                                        <div class="form-group">
+
+                                                            <label for="Tempat Lahir" class="form-label">Tempat
+                                                                Lahir</label>
+                                                            <select name="Tempat Lahir" id="Provinsi"
+                                                                value="{{ $mhs->tempat_lahir }}" class="form-control"
+                                                                required>
+
+
+                                                            </select>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class = "col-12 col-md-6">
+                                                        <div class="form-group">
+                                                            <label for="Tanggal Lahir" class="form-label">Tanggal
+                                                                Lahir
+                                                            </label>
+                                                            <input type="date" name="birthday" id="birthday"
+                                                                class="form-control" placeholder="Your Birthday">
+
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                </div> --}}
+
+
+
                                         </div>
+
+
                                         <div class="col-md-6">
                                             <div class="form-group">
-                                                <label for="disabledInput">Disabled Input</label>
-                                                <input type="text" class="form-control" id="disabledInput"
-                                                    placeholder="Disabled Text" disabled>
+                                                <label for="Program Studi">Program Studi</label>
+                                                <input type="text" class="form-control" id="Program Studi"
+                                                    value="INFORMATIKA" placeholder="Disabled Text" disabled required>
                                             </div>
+
+
                                             <div class="form-group">
-                                                <label for="readonlyInput">Readonly Input</label>
-                                                <input type="text" class="form-control" id="readonlyInput"
-                                                    readonly="readonly" value="You can't update me :P">
+                                                <label for="Angkatan">Angkatan</label>
+                                                <input type="text" class="form-control" id="Angkatan"
+                                                    value="{{ $mhs->angkatan }}" placeholder="Angkatan Mhs" disabled
+                                                    required>
+                                            </div>
+
+
+                                            <div class="form-group">
+                                                <label for="Status">Status</label>
+                                                <input type="text" class="form-control" id="Status"
+                                                    value="{{ $mhs->status }}" placeholder="Status mahasiswa"
+                                                    disabled required>
                                             </div>
 
                                             <div class="form-group">
-                                                <label for="disabledInput">Static Text</label>
-                                                <p class="form-control-static" id="staticInput">email@mazer.com</p>
+                                                <label for="Status">Alamat</label>
+                                                <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" required></textarea>
                                             </div>
+
+                                            <div class="form-group">
+                                                <img id="#model-preview" scr="https://via.placeholder.com/150"
+                                                    alt="preview">
+                                            </div>
+
+                                            <div class="form-group">
+                                                <label for="Foto">Foto</label>
+                                                <input type="file" class="form-control" name="File"
+                                                    aceppt ="image/*" placeholder="Foto" required>
+                                            </div>
+                                            @endforeach
+
+
+
+
+
+                                            {{-- // 'user_id',
+                                            // 'alamat',
+                                            // 'kab_kota',
+                                            // 'provinsi',
+                                            // 'no_hp',
+                                            // 'email',
+                                            // 'angkatan',
+                                            // 'jalur_masuk',
+                                            // 'status',
+                                            // 'doswal', --}}
+
+                                            <div class="form-group">
+                                                <button type="submit" class="btn btn-primary">
+                                                    <i class="fa fa-save"></i> Save Changes
+                                                </button>
+                                                <a href="#" class="btn btn-danger">
+                                                    <i class="fa fa-undo"></i>Kembali
+                                                </a>
+                                            </div>
+
+
                                         </div>
                                     </div>
                                 </div>
@@ -172,6 +321,23 @@
             </div>
         </div>
     </div>
+    <script>
+        function readURL(input, id) {
+            id = id || '#modal-preview';
+            if (input.files && input.files[0]) {
+                var read = new FileReader();
+
+                reader.onload = function(e) {
+                    $(id).attr('src', e.target.result);
+                };
+
+                reader.readAsDataURL(input.files[0]);
+                $('#modeal-preview').removeClass('hidden');
+                $('#start').hide();
+
+            }
+        }
+    </script>
 
     <script src="/assets/static/js/components/dark.js"></script>
     <script src="/assets/extensions/perfect-scrollbar/perfect-scrollbar.min.js"></script>
