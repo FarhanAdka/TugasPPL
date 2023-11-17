@@ -99,7 +99,7 @@
                 <div class="card-content">
                   <div class="card-body">
                   
-                    <form class="form" action="{{route('IRS.store')}}" method="POST">
+                    <form class="form" action="{{route('IRS.store')}}" method="POST" enctype="multipart/form-data">
                       @csrf
                       <div class="form-body">
                         <div class="row">
@@ -126,7 +126,7 @@
                           <div class="col-12">
                             <div class="form-group">
                               <label for="scan_irs">Scan IRS</label>
-                              <input type="file" class="basic-filepond" multiple> 
+                              <input type="file" class="basic-filepond" id="scan_irs" name="scan_irs" multiple> 
                             </div>
                           </div>
                           

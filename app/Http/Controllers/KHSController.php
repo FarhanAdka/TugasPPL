@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\KHS;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
+use Redirect;
 
 class KHSController extends Controller
 {
@@ -43,7 +45,14 @@ class KHSController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $khs = new KHS();
+        $khs->id_mahasiswa = auth()->user()->id;
+        $khs->jumlah_sks = $request->jumlah_sks;
+        $khs->ip = $request->ip;
+        $khs->ipk = $request->ipk;
+        $khs->semester_aktif = $request->semester_aktif;
+        $khs->save();
+        return redirect()->route('KHS.index');
     }
 
     /**
@@ -51,7 +60,14 @@ class KHSController extends Controller
      */
     public function show(string $id)
     {
-        //
+        {
+            $data = [
+                'active_side' => 'active',
+                'title' => 'Data KHS',
+                'active_user' => 'active',
+            ];
+            return view('mahasiswa/DataKHS', $data);
+        }
     }
 
     /**
@@ -59,7 +75,17 @@ class KHSController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $khs = KHS::find($id);
+        $semester = KHS::where('id_mahasiswa', auth()->user()->id)->pluck('semester_aktif')->toArray();
+        $avail_semester = array_diff_assoc(['1', '2', '3', '4', '5', '6', '7', '8'], $semester);
+        $data = [
+            'active_side' => 'active',
+            'title' => 'Edit KHS',
+            'active_user' => 'active',
+            'khs' => $khs,
+            'avail_semester' => $avail_semester,
+        ];
+        return view('mahasiswa/EditKHS', $data);
     }
 
     /**
@@ -67,7 +93,12 @@ class KHSController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $khs = KHS::findOrFail($id);
+        $khs->fill($request->post())->save();
+
+        // Fetch the updated KHS data
+        //$updatedIRS = KHS::where('id_mahasiswa', auth()->user()->id)->get();
+        return redirect()->route('KHS.index');
     }
 
     /**
@@ -75,6 +106,40 @@ class KHSController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $khs = khs::find($id); // Ganti Mahasiswa dengan model yang Anda gunakan
+
+    if (!$khs) {
+        return redirect()->back()->with('error', 'Data not found.');
+    }
+
+    $khs->delete();
+
+    return redirect()->route('KHS.index')->with('success', 'Data deleted successfully.'); // Ganti 'route_name' dengan nama rute yang ingin Anda tuju setelah penghapusan data.
+    }
+
+    public function download(string $id)
+    {
+        $khs = KHS::find($id);
+
+        // Perform a check if the authenticated user has access to this file
+        if (auth()->user()->id != $khs->id_mahasiswa) {
+            return Redirect::back()->with('error', 'Unauthorized access');
+        }
+
+        // Get the file path
+        $filePath = storage_path('app/' . $khs->scan_irs);
+
+        // Check if the file exists
+        if (!file_exists($filePath)) {
+            return Redirect::back()->with('error', 'File not found');
+        }
+
+        // Set the appropriate headers to force download
+        $headers = [
+            'Content-Type' => 'application/octet-stream',
+        ];
+
+        // Return the file as a response with headers to force download
+        return response()->file($filePath);
     }
 }
