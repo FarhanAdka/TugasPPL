@@ -51,6 +51,12 @@ class KHSController extends Controller
         $khs->ip = $request->ip;
         $khs->ipk = $request->ipk;
         $khs->semester_aktif = $request->semester_aktif;
+        //dd($request->hasFile('scan_khs'));
+        if ($request->hasFile('scan_khs')) {
+            $file = $request->file('scan_khs');
+            $path = $file->store('khs_files'); // 'irs_files' is the directory within the storage folder where the file will be stored
+            $khs->scan_khs = $path; // Assuming 'file_path' is the column in your IRS model to store the file path
+        }
         $khs->save();
         return redirect()->route('KHS.index');
     }
@@ -127,7 +133,7 @@ class KHSController extends Controller
         }
 
         // Get the file path
-        $filePath = storage_path('app/' . $khs->scan_irs);
+        $filePath = storage_path('app/' . $khs->scan_khs);
 
         // Check if the file exists
         if (!file_exists($filePath)) {
