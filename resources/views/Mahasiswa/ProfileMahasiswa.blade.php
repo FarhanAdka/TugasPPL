@@ -270,6 +270,13 @@
                                             </div>
 
                                             <div class="form-group">
+                                                <label for="Doswal">Dosen Wali</label>
+                                                <input type="text" class="form-control" id="Doswal"
+                                                    value="{{ $mhs->doswal }}"
+                                                    disabled required>
+                                            </div>
+
+                                            <div class="form-group">
                                                 <label for="Status">Alamat</label>
                                                 <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" required></textarea>
                                             </div>

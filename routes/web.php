@@ -37,12 +37,9 @@ Route::middleware(['auth'])->group(function (){
     Route::get('/user/mahasiswa',[userController::class,'mahasiswa'])->middleware('userAkses:mahasiswa');
     Route::resource('/user/mahasiswa/IRS', IRSController::class)->middleware('userAkses:mahasiswa');
     Route::resource('/user/mahasiswa/KHS', KHSController::class)->middleware('userAkses:mahasiswa');
-<<<<<<< HEAD
     Route::get('/user/mahasiswa/profile',[MahasiswaController::class,'profile'])->middleware('userAkses:mahasiswa');
-=======
     Route::get('/user/mahasiswa/fileIRS/{id}', [IRSController::class, 'download'])->middleware('userAkses:mahasiswa')->name('irs.download');
     Route::get('/user/mahasiswa/fileKHS/{id}', [KHSController::class, 'download'])->middleware('userAkses:mahasiswa')->name('khs.download');
->>>>>>> 15b73a24bbc3f6fc37c2e206034940713ac64937
     //Operator
     Route::get('/user/operator',[UserController::class,'operator'])->middleware('userAkses:operator');
     Route::get('/user/operator/profile',[OperatorController::class,'profile'])->middleware('userAkses:operator');
