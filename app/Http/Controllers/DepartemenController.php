@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Departemen;
+use App\Models\IRS;
+use App\Models\KHS;
+use App\Models\Mahasiswa;
 use App\Models\User;
 use Illuminate\Http\Request;
 
@@ -60,56 +63,26 @@ class DepartemenController extends Controller
          return view('Departemen/ProgresSkripsi', $data);
     }
 
-    public function index()
-    {
- 
+    public function ProgresStudi(string $mahasiswa){
+        //dd($mahasiswa);
+        $user = User::where('id', $mahasiswa)->first();
+        $mahasiswa = Mahasiswa::where('user_id', $mahasiswa)->first();
+        $khs = KHS::where('id_mahasiswa', $mahasiswa->user_id)->get();
+        $irs = IRS::where('id_mahasiswa', $mahasiswa->user_id)->get();
+        $doswal = User::where('id', $mahasiswa->doswal)->first();
+        $data = array (
+            'active_home' => 'active',
+            'Role' => 'Departemen',
+            'UserName' => '\\\UserName///',
+            'Title' => 'Progres Studi',
+            'user' => $user,
+            'mahasiswa' => $mahasiswa,
+            'khs' => $khs,
+            'irs' => $irs,
+            'nama_doswal'=>$doswal->name,
+        );
+        return view('Departemen/detilMahasiswa', $data);
+        //dd($khs);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request)
-    {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     */
-    public function show(Departemen $departemen)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(Departemen $departemen)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, Departemen $departemen)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(Departemen $departemen)
-    {
-        //
-    }
 }

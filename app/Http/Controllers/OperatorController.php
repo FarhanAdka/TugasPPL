@@ -93,15 +93,16 @@ class OperatorController extends Controller
             'id_mahasiswa' => $user_id,
             'nilai' => null,
             'tanggal_lulus' => null,
-            'status' => null,
+            'status' => false,
             'scan_pkl' => null,
+
         ]);
-        Skripsi::created([
+        Skripsi::create([
             'id_mahasiswa' => $user_id,
             'nilai' => null,
             'tanggal_lulus' => null,
             'lama_studi' => null,
-            'status' => null,
+            'status' => false,
             'scan_skripsi' => null,
         ]);
         return redirect('/user/operator/kelolaMahasiswa');

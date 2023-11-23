@@ -10,10 +10,11 @@ class PKL extends Model
     use HasFactory;
     protected $fillable = [
         'id_mahasiswa',
+        'semester',
         'nilai',
         'tanggal_lulus',
         'status',
-        'scan_pkl'
+        'scan_pkl',
     ];
 
     function user(){

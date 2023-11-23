@@ -91,12 +91,14 @@ Route::middleware(['auth'])->group(function (){
     Route::get('/user/dosenWali',[UserController::class,'dosenWali'])->middleware('userAkses:dosen_wali');
 
     //Departemen
-    Route::get('/user/departemen',[UserController::class,'departemen'])->middleware('userAkses:departemen');
-    Route::get('/user/departemen/DataMahasiswa',[DepartemenController::class,'dataMHS'])->middleware('userAkses:departemen');
-    Route::get('/user/departemen/ProfilDepartemen',[DepartemenController::class,'ProfilDepartemen'])->middleware('userAkses:departemen');
-    Route::get('/user/departemen/ProgresPKL',[DepartemenController::class,'ProgresPKL'])->middleware('userAkses:departemen');
-    Route::get('/user/departemen/ProgresSkripsi',[DepartemenController::class,'ProgresSkripsi'])->middleware('userAkses:departemen');
-
+    Route::middleware(['userAkses:departemen'])->group(function (){
+        Route::get('/user/departemen',[UserController::class,'departemen'])->middleware('userAkses:departemen');
+        Route::get('/user/departemen/DataMahasiswa',[DepartemenController::class,'dataMHS']);
+        Route::get('/user/departemen/ProfilDepartemen',[DepartemenController::class,'ProfilDepartemen']);
+        Route::get('/user/departemen/ProgresPKL',[DepartemenController::class,'ProgresPKL']);
+        Route::get('/user/departemen/ProgresSkripsi',[DepartemenController::class,'ProgresSkripsi']);
+        Route::get('/user/departemen/ProgresStudi/{ProgresStudi}',[DepartemenController::class,'ProgresStudi'])->name('dept.studi');
+    });
     Route::get('/logout',[SessionController::class, 'logout']);
 });
 

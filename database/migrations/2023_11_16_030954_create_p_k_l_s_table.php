@@ -16,6 +16,7 @@ return new class extends Migration
             $table->bigInteger('id_mahasiswa')->unsigned();
             $table->foreign('id_mahasiswa')->references('id')->on('users')->onDelete('cascade');
             $table->string('tanggal_lulus')->nullable();
+            $table->integer('semester')->nullable();
             $table->float('nilai')->nullable();
             $table->boolean('status')->default(false);
             $table->string('scan_pkl')->nullable();
