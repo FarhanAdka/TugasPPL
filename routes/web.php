@@ -9,6 +9,7 @@ use App\Http\Controllers\SkripsiController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\SessionController;
 use App\Http\Controllers\DepartemenController;
+use App\Http\Controllers\DoswalController;
 use App\Models\Mahasiswa;
 use Illuminate\Support\Facades\Route;
 
@@ -87,9 +88,15 @@ Route::middleware(['auth'])->group(function (){
         Route::get('/user/operator/keloladosenWali',[OperatorController::class,'keloladosenWali'])->middleware('userAkses:operator');
 
     //Dosen Wali
-   
-    Route::get('/user/dosenWali',[UserController::class,'dosenWali'])->middleware('userAkses:dosen_wali');
-
+    Route::middleware(['userAkses:dosen_wali'])->group(function (){
+        Route::get('/user/dosenWali',[UserController::class,'dosenWali'])->middleware('userAkses:dosen_wali');
+        Route::get('/user/dosenWali/verifikasiPKL', [DoswalController::class, 'indexVerifPKL'])->name('Doswal.indexVerifPKL');
+        Route::post('/user/dosenWali/approvePKL/{id}', [DoswalController::class ,'approvePKL'])->name('Doswal.approvePKL');
+        Route::delete('/user/dosenWali/deletePKL/{id}', [DoswalController::class ,'deleteSinglePKL'])->name('Doswal.deleteSinglePKL');
+        Route::get('/user/dosenWali/verifikasiSkripsi', [DoswalController::class, 'indexVerifSkripsi'])->name('Doswal.indexVerifSkripsi');
+        Route::post('/user/dosenWali/approveSkripsi/{id}', [DoswalController::class ,'approveSkripsi'])->name('Doswal.approveSkripsi');
+        Route::delete('/user/dosenWali/deleteSkripsi/{id}', [DoswalController::class ,'deleteSingleSkripsi'])->name('Doswal.deleteSingleSkripsi');
+    });
     //Departemen
     Route::middleware(['userAkses:departemen'])->group(function (){
         Route::get('/user/departemen',[UserController::class,'departemen'])->middleware('userAkses:departemen');
