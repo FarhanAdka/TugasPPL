@@ -16,26 +16,35 @@ class DoswalController extends Controller
      */
     public function indexIRS()
     {
-        $mahhasiswa = Mahasiswa::where('doswal', auth()->user()->id)->get();
-        $irs = IRS::where('id_mahasiswa', auth()->user()->id)->get();
+        $mahasiswa = Mahasiswa::where('doswal', auth()->user()->id)->get();
+        $irs = collect();
+        foreach ($mahasiswa as $mhs) {
+            $irsMahasiswa = $mhs->irs; // Mendapatkan PKL dari setiap mahasiswa
+            $irs = $irs->merge($irsMahasiswa); // Menggabungkan PKL dari setiap mahasiswa ke dalam satu koleksi
+        }
         $data = [
-                'active_side' => 'active',
-                'title' => 'Data IRS',
-                'active_user' => 'active',
-                'irs' => $irs,
-            ];
-        return view('Dosen.IRSindex', $data);
+            'active_side' => 'active',
+            'title' => 'Data IRS',
+            'active_user' => 'active',
+            'mahasiswa'=>$mahasiswa,
+            'irs' => $irs
+        ];
     }
 
     public function indexVerifIRS()
     {
-        $irs = IRS::where('status', false)->get(); // Menggunakan '->get()' untuk mengambil hasil query
-
+        $mahasiswa = Mahasiswa::where('doswal', auth()->user()->id)->get();
+        $irs = collect();
+        foreach ($mahasiswa as $mhs) {
+            $irsMahasiswa = $mhs->irs->where('status', 'false')->get(); // Mendapatkan PKL dari setiap mahasiswa
+            $irs = $irs->merge($irsMahasiswa); // Menggabungkan PKL dari setiap mahasiswa ke dalam satu koleksi
+        }
         $data = [
             'active_side' => 'active',
             'title' => 'Permintaan Verifikasi IRS',
             'active_user' => 'active',
-            'irs' => $irs,
+            'mahasiswa'=>$mahasiswa,
+            'irs' => $irs
         ];
 
         return view('Dosen.IRSVerifindex', $data);
@@ -43,13 +52,17 @@ class DoswalController extends Controller
 
     public function indexKHS()
     {
-        $mahhasiswa = Mahasiswa::where('doswal', auth()->user()->id)->get();
-        $khs = KHS::where('id_mahasiswa', auth()->user()->id)->get();
+        $mahasiswa = Mahasiswa::where('doswal', auth()->user()->id)->get();
+        $khs = collect();
+        foreach ($mahasiswa as $mhs) {
+            $khsMahasiswa = $mhs->khs; // Mendapatkan PKL dari setiap mahasiswa
+            $khs = $khs->merge($khsMahasiswa); // Menggabungkan PKL dari setiap mahasiswa ke dalam satu koleksi
+        }
         $data = [
             'active_side' => 'active',
             'title' => 'Data KHS',
             'active_user' => 'active',
-            'mahasiswa'=>$mahhasiswa,
+            'mahasiswa'=>$mahasiswa,
             'khs' => $khs
         ];
         return view('Dosen.KHSindex', $data);
@@ -57,13 +70,18 @@ class DoswalController extends Controller
 
     public function indexVerifKHS()
     {
-        $khs = KHS::where('status', false)->get(); // Menggunakan '->get()' untuk mengambil hasil query
-
+        $mahasiswa = Mahasiswa::where('doswal', auth()->user()->id)->get();
+        $khs = collect();
+        foreach ($mahasiswa as $mhs) {
+            $khsMahasiswa = $mhs->khs->where('status', 'false')->get(); // Mendapatkan PKL dari setiap mahasiswa
+            $khs = $khs->merge($khsMahasiswa); // Menggabungkan PKL dari setiap mahasiswa ke dalam satu koleksi
+        }
         $data = [
             'active_side' => 'active',
             'title' => 'Permintaan Verifikasi KHS',
             'active_user' => 'active',
-            'khs' => $khs,
+            'mahasiswa'=>$mahasiswa,
+            'khs' => $khs
         ];
 
         return view('Dosen.KHSVerifindex', $data);
@@ -71,40 +89,53 @@ class DoswalController extends Controller
 
     public function indexPKL()
     {
-        $mahhasiswa = Mahasiswa::where('doswal', auth()->user()->id)->get();
-        $pkl = PKL::where('id_mahasiswa', auth()->user()->id)->get();
+        $mahasiswa = Mahasiswa::where('doswal', auth()->user()->id)->get();
+        $pkl = collect();
+        foreach ($mahasiswa as $mhs) {
+            $pklMahasiswa = $mhs->pkl; // Mendapatkan PKL dari setiap mahasiswa
+            $pkl = $pkl->merge($pklMahasiswa); // Menggabungkan PKL dari setiap mahasiswa ke dalam satu koleksi
+        }
         $data = [
             'active_side' => 'active',
             'title' => 'Data PKL',
             'active_user' => 'active',
-            'mahasiswa'=>$mahhasiswa,
+            'mahasiswa'=>$mahasiswa,
             'pkl' => $pkl
         ];
         return view('Dosen.PKLindex', $data);
     }
 
+    
     public function indexVerifPKL()
     {
-        $pkl = PKL::where('status', false)->get(); // Menggunakan '->get()' untuk mengambil hasil query
-
+        $mahasiswa = Mahasiswa::where('doswal', auth()->user()->id)->get();
+        $pkl = collect();
+        foreach ($mahasiswa as $mhs) {
+            $pklMahasiswa = $mhs->pkl->where('status', 'false')->get(); // Mendapatkan PKL dari setiap mahasiswa
+            $pkl = $pkl->merge($pklMahasiswa); // Menggabungkan PKL dari setiap mahasiswa ke dalam satu koleksi
+        }
         $data = [
             'active_side' => 'active',
             'title' => 'Permintaan Verifikasi PKL',
             'active_user' => 'active',
-            'pkl' => $pkl,
+            'mahasiswa'=>$mahasiswa,
+            'pkl' => $pkl
         ];
-
-        return view('Dosen.PKLVerifindex', $data);
+        return view('Dosen.VerifPKLindex', $data);
     }
     public function indexSkripsi()
     {
-        $mahhasiswa = Mahasiswa::where('doswal', auth()->user()->id)->get();
-        $skripsi = Skripsi::where('id_mahasiswa', auth()->user()->id)->get();
+        $mahasiswa = Mahasiswa::where('doswal', auth()->user()->id)->get();
+        $skripsi = collect();
+        foreach ($mahasiswa as $mhs) {
+            $skripsiMahasiswa = $mhs->skripsi; // Mendapatkan PKL dari setiap mahasiswa
+            $skripsi = $skripsi->merge($skripsiMahasiswa); // Menggabungkan PKL dari setiap mahasiswa ke dalam satu koleksi
+        }
         $data = [
             'active_side' => 'active',
             'title' => 'Data Skripsi',
             'active_user' => 'active',
-            'mahasiswa'=>$mahhasiswa,
+            'mahasiswa'=>$mahasiswa,
             'skripsi' => $skripsi
         ];
         return view('Dosen.Skripsiindex', $data);
@@ -112,13 +143,18 @@ class DoswalController extends Controller
 
     public function indexVerifSkripsi()
     {
-        $skripsi = Skripsi::where('status', false)->get(); // Menggunakan '->get()' untuk mengambil hasil query
-
+        $mahasiswa = Mahasiswa::where('doswal', auth()->user()->id)->get();
+        $skripsi = collect();
+        foreach ($mahasiswa as $mhs) {
+            $skripsiMahasiswa = $mhs->skripsi->where('status', 'false')->get(); // Mendapatkan PKL dari setiap mahasiswa
+            $skripsi = $skripsi->merge($skripsiMahasiswa); // Menggabungkan PKL dari setiap mahasiswa ke dalam satu koleksi
+        }
         $data = [
             'active_side' => 'active',
             'title' => 'Permintaan Verifikasi Skripsi',
             'active_user' => 'active',
-            'skripsi' => $skripsi,
+            'mahasiswa'=>$mahasiswa,
+            'skripsi' => $skripsi
         ];
 
         return view('Dosen.SkripsiVerifindex', $data);
