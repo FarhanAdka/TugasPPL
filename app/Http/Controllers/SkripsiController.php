@@ -9,66 +9,91 @@ use Redirect;
 
 class SkripsiController extends Controller
 {
-    function index(){
-        $skripsi = Skripsi::where('id_mahasiswa', auth()->user()->id)->get();
+    function index()
+    {
+        $skripsi = Skripsi::where('id_mahasiswa', auth()->user()->id)->get()->first();
+        //dd($skripsi);
         $data = [
             'active_side' => 'active',
-            'title' => 'Data Skripsi',
+            'title' => 'Data skripsi',
             'active_user' => 'active',
             'skripsi' => $skripsi
         ];
+        return redirect()->route('skripsi.create');
+
     }
 
     public function create()
     {
-        $data = array (
-            'active_side' => 'active', 
+        $skripsi = Skripsi::where('id_mahasiswa', auth()->user()->id)->get();
+        //dd($skripsi);
+        $data = array(
+            'active_side' => 'active',
             'active_user' => 'active',
-            'title' => 'Isi Skripsi'
+            'title' => 'Isi skripsi',
+            'skripsi' => $skripsi->first()
+
         );
-        return view('Mahasiswa/IsiSkripsi', $data);
+        return view('Mahasiswa/skripsi', $data);
     }
     public function show(string $id)
-    {
-        {
+    { {
             $data = [
                 'active_side' => 'active',
                 'title' => 'Data Skripsi',
                 'active_user' => 'active',
             ];
-            return view('mahasiswa/DataSkripsi', $data);
+            return view('mahasiswa/Dataskripsi', $data);
         }
     }
     public function edit(string $id)
     {
-        $skripsi = Skripsi::find($id);
+        $skripsi = skripsi::where('id_mahasiswa', auth()->user()->id)->get();
         $data = [
             'active_side' => 'active',
-            'title' => 'Edit Skripsi',
+            'title' => 'Edit skripsi',
             'active_user' => 'active',
             'skripsi' => $skripsi
         ];
-        return view('mahasiswa/EditSkripsi', $data);
+        return view('mahasiswa/Editskripsi', $data);
     }
     public function update(Request $request, string $id)
     {
-        $skripsi = Skripsi::findOrFail($id);
+        $skripsi = skripsi::findOrFail($id);
         $skripsi->fill($request->post())->save();
 
-        return redirect()->route('Skripsi.index');
+        // Fetch the updated KHS data
+        //$updatedIRS = KHS::where('id_mahasiswa', auth()->user()->id)->get();
+        return redirect()->route('skripsi.index');
+    }
+
+    public function store(Request $request)
+    {
+        $data = $request->all();
+        //dd($data);
+        $skripsi = Skripsi::where('id_mahasiswa', auth()->user()->id)->get()->first();
+        if ($request->hasFile('scan_skripsi')) {
+            $data['scan_skripsi'] = $request->file('scan_skripsi')->store('scan_skripsi');
+            if ($skripsi->scan_skripsi != null) {
+                Storage::delete($skripsi->scan_skripsi);
+            }
+        }
+        $skripsi->fill($data);
+        $skripsi->save();
+        return redirect('/user/mahasiswa/Skripsi');
     }
 
     public function destroy(string $id)
     {
-        $skripsi = skripsi::find($id); // Ganti Mahasiswa dengan model yang Anda gunakan
+        $skripsi = Skripsi::find($id); // Ganti Mahasiswa dengan model yang Anda gunakan
 
-    if (!$skripsi) {
-        return redirect()->back()->with('error', 'Data not found.');
-    }
+        if (!$skripsi) {
+            return redirect()->back()->with('error', 'Data not found.');
+        }
 
-    $skripsi->delete();
+        $skripsi->delete();
 
-    return redirect()->route('Skripsi.index')->with('success', 'Data deleted successfully.'); // Ganti 'route_name' dengan nama rute yang ingin Anda tuju setelah penghapusan data.
+        return redirect()->route('skripsi.index')->with('success', 'Data deleted successfully.'); // Ganti 'route_name' dengan nama rute yang ingin Anda tuju setelah penghapusan data.
     }
 
     public function download(string $id)
@@ -81,7 +106,7 @@ class SkripsiController extends Controller
         }
 
         // Get the file path
-        $filePath = storage_path('app/' . $skripsi->scan_khs);
+        $filePath = storage_path('app/' . $skripsi->scan_skripsi);
 
         // Check if the file exists
         if (!file_exists($filePath)) {

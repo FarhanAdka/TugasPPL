@@ -5,6 +5,7 @@ use App\Http\Controllers\KHSController;
 use App\Http\Controllers\MahasiswaController;
 use App\Http\Controllers\OperatorController;
 use App\Http\Controllers\PKLController;
+use App\Http\Controllers\SkripsiController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\SessionController;
 use App\Http\Controllers\DepartemenController;
@@ -45,6 +46,12 @@ Route::middleware(['auth'])->group(function (){
     Route::get('/user/mahasiswa/fileIRS/{id}', [IRSController::class, 'download'])->middleware('userAkses:mahasiswa')->name('irs.download');
     Route::get('/user/mahasiswa/fileKHS/{id}', [KHSController::class, 'download'])->middleware('userAkses:mahasiswa')->name('khs.download');
     Route::get('/user/mahasiswa/filePKL/{id}', [PKLController::class, 'download'])->middleware('userAkses:mahasiswa')->name('pkl.download');
+    Route::get('/user/mahasiswa/fileSkripsi/{id}', [SkripsiController::class, 'download'])->middleware('userAkses:mahasiswa')->name('skripsi.download');
+
+    Route::get('/user/mahasiswa/Skripsi', [SkripsiController::class, 'index'])->middleware('userAkses:mahasiswa');
+    Route::get('/user/mahasiswa/Skripsi/create', [SkripsiController::class, 'create'])->middleware('userAkses:mahasiswa')->name('skripsi.create');
+    Route::post('/user/mahasiswa/Skripsi', [SkripsiController::class, 'store'])->middleware('userAkses:mahasiswa')->name('skripsi.store');
+
     
     //Operator
     Route::get('/user/operator',[UserController::class,'operator'])->middleware('userAkses:operator');

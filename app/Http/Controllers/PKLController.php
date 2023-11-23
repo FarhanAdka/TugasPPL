@@ -69,7 +69,7 @@ class PKLController extends Controller
 
     public function store(Request $request){
         $data = $request->all();
-        dd($data);
+        //dd($data);
         $pkl = PKL::where('id_mahasiswa', auth()->user()->id)->get()->first();
         if ($request->hasFile('scan_pkl')) {
             $data['scan_pkl'] = $request->file('scan_pkl')->store('scan_pkl');

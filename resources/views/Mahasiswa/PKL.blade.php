@@ -114,18 +114,30 @@
                                                 <div class="col-12">
                                                     <div class="form-group">
                                                         <label for="tanggal_lulus">Tanggal Lulus</label>
+                                                        @if (isset($pkl->tanggal_lulus))
+                                                            <input type="date" id="tanggal_lulus" class="form-control"
+                                                                name="tanggal_lulus" placeholder="Tanggal Lulus"
+                                                                value="{{ $pkl->tanggal_lulus }}" disabled>
+                                                        @else
                                                         <input type="date" id="tanggal_lulus" class="form-control"
                                                             name="tanggal_lulus" placeholder="Tanggal Lulus"
-                                                            value="{{ $pkl->tanggal_lulus }}" disabled>
+                                                            value="{{ $pkl->tanggal_lulus }}">
+                                                        @endif
                                                     </div>
                                                 </div>
 
                                                 <div class="col-12">
                                                     <div class="form-group">
                                                         <label for="nilai">Nilai PKL</label>
+                                                        @if (isset($pkl->nilai))
+                                                            <input type="text" id="nilai" class="form-control"
+                                                                name="nilai" placeholder="Nilai"
+                                                                value="{{ $pkl->nilai }}" disabled>
+                                                        @else
                                                         <input type="text" id="nilai" class="form-control"
                                                             name="nilai" placeholder="Nilai"
                                                             value="{{ $pkl->nilai }}" disabled>
+                                                        @endif
                                                     </div>
                                                 </div>
 
@@ -138,7 +150,7 @@
                                                     @endif
                                                     <div class="form-group">
                                                         @if (isset($pkl->scan_pkl))
-                                                            <label for="scan_pkl" hidden>Edit Scan PKL</label>
+                                                            <label id="label_edit" for="scan_pkl" hidden>Edit Scan PKL</label>
                                                         @else
                                                             <label for="scan_pkl">Tambah Scan PKL</label>
                                                         @endif
@@ -156,7 +168,7 @@
                                                             class="btn btn-primary me-1 mb-1">Tambah</button>
                                                     @endif
                                                     <button id="reset" type="reset"
-                                                        class="btn btn-light-secondary me-1 mb-1" hidden>Reset</button>
+                                                        class="btn btn-light-secondary me-1 mb-1"hidden>Reset</button>
                                                     @if (isset($pkl->scan_pkl) && isset($pkl->tanggal_lulus) && isset($pkl->nilai))
                                                         <button id="toggleDisable" type="button"
                                                             class="btn btn-primary me-1 mb-1">Edit</button>
@@ -176,19 +188,31 @@
                                             var resetButton = document.getElementById('reset');
                                             var toggleButton = document.getElementById('toggleDisable');
                                             var file = document.getElementById('scan_pkl');
+                                            var label = document.getElementById('label_edit');
 
                                             // Toggle the buttons' hidden state
                                             editButton.hidden = !editButton.hidden;
                                             resetButton.hidden = !resetButton.hidden;
                                             file.hidden = !file.hidden;
+                                            label.hidden = !label.hidden;
 
                                             toggleButton.textContent = toggleButton.textContent === 'Edit' ?
                                                 'Cancel' : 'Edit';
 
                                             // Loop through each input and toggle the disabled attribute
                                             inputs.forEach(function(input) {
-                                                input.disabled = !input.disabled;
+                                                if (input.disabled) {
+                                                    input.removeAttribute('disabled');
+                                                } else {
+                                                    input.setAttribute('disabled', 'true');
+                                                }
                                             });
+                                            var csrfTokenInput = document.querySelector('input[name="_token"]');
+                                            if (csrfTokenInput.disabled) {
+                                                csrfTokenInput.removeAttribute('disabled');
+                                            } else {
+                                                csrfTokenInput.setAttribute('disabled', 'true');
+                                            }
                                         }
 
                                         // Add an event listener to the button to trigger the function
