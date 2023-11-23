@@ -116,10 +116,9 @@
                                 <td>{{ $kh->ip }}</td>
                                 <td>{{ $kh->ipk }}</td>
                                 <td><a href="{{route('khs.download', ['id'=> $kh->id])}}">Lihat</a></td>
-                                <td>{{ $kh->status }}</td>
+                                <td>{{ $kh->status ? "Sudah disetujui" : "Belum disetujui" }}</td>
                                 <td>
                                     <form action="{{ route('KHS.destroy',$kh->id) }}" method="POST">
-                                        <a class="btn btn-info" href="{{ route('KHS.show',$kh->id) }}">Show</a>
                                         <a class="btn btn-primary" href="{{ route('KHS.edit',$kh->id) }}">Edit</a>
                                         @csrf
                                         @method('DELETE')

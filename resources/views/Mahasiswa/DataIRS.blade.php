@@ -112,10 +112,10 @@
                                 <td>{{ $ir->semester_aktif }}</td>
                                 <td>{{ $ir->jumlah_sks }}</td>
                                 <td><a href="{{route('irs.download', ['id'=> $ir->id])}}">Lihat</a></td>
-                                <td>{{ $ir->status }}</td>
+                                <td>{{ $ir->status ? "Sudah disetujui" : "Belum disetujui" }}</td>
                                 <td>
                                     <form action="{{ route('IRS.destroy',$ir->id) }}" method="POST">
-                                        <a class="btn btn-info" href="{{ route('IRS.show',$ir->id) }}">Show</a>
+                                
                                         <a class="btn btn-primary" href="{{ route('IRS.edit',$ir->id) }}">Edit</a>
                                         @csrf
                                         @method('DELETE')

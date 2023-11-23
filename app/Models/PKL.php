@@ -11,6 +11,7 @@ class PKL extends Model
     protected $fillable = [
         'id_mahasiswa',
         'nilai',
+        'tanggal_lulus',
         'status',
         'scan_pkl'
     ];

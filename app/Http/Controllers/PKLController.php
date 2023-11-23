@@ -10,23 +10,30 @@ use Redirect;
 class PKLController extends Controller
 {
     function index(){
-        $pkl = PKL::where('id_mahasiswa', auth()->user()->id)->get();
+        $pkl = PKL::where('id_mahasiswa', auth()->user()->id)->get()->first();
+        //dd($pkl);
         $data = [
             'active_side' => 'active',
             'title' => 'Data PKL',
             'active_user' => 'active',
             'pkl' => $pkl
         ];
+        return redirect()->route('PKL.create');
+
     }
 
     public function create()
     {
+        $pkl = PKL::where('id_mahasiswa', auth()->user()->id)->get();
+        //dd($pkl);
         $data = array (
             'active_side' => 'active', 
             'active_user' => 'active',
-            'title' => 'Isi PKL'
+            'title' => 'Isi PKL',
+            'pkl' => $pkl->first()
+
         );
-        return view('Mahasiswa/IsiPKL', $data);
+        return view('Mahasiswa/PKL', $data);
     }
     public function show(string $id)
     {
@@ -41,7 +48,7 @@ class PKLController extends Controller
     }
     public function edit(string $id)
     {
-        $pkl = PKL::find($id);
+        $pkl = PKL::where('id_mahasiswa', auth()->user()->id)->get();
         $data = [
             'active_side' => 'active',
             'title' => 'Edit PKL',
@@ -58,6 +65,21 @@ class PKLController extends Controller
         // Fetch the updated KHS data
         //$updatedIRS = KHS::where('id_mahasiswa', auth()->user()->id)->get();
         return redirect()->route('PKL.index');
+    }
+
+    public function store(Request $request){
+        $data = $request->all();
+        dd($data);
+        $pkl = PKL::where('id_mahasiswa', auth()->user()->id)->get()->first();
+        if ($request->hasFile('scan_pkl')) {
+            $data['scan_pkl'] = $request->file('scan_pkl')->store('scan_pkl');
+            if($pkl->scan_pkl != null){
+                Storage::delete($pkl->scan_pkl);
+            }
+        }
+        $pkl->fill($data);
+        $pkl->save();
+        return redirect('/user/mahasiswa/PKL');
     }
 
     public function destroy(string $id)
@@ -83,7 +105,7 @@ class PKLController extends Controller
         }
 
         // Get the file path
-        $filePath = storage_path('app/' . $pkl->scan_khs);
+        $filePath = storage_path('app/' . $pkl->scan_pkl);
 
         // Check if the file exists
         if (!file_exists($filePath)) {

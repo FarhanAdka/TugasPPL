@@ -2,10 +2,14 @@
 
 namespace Database\Seeders;
 
+use App\Models\PKL;
+use App\Models\Skripsi;
 use App\Models\User;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
-
+use App\Models\Mahasiswa;
+use App\Models\DosenWali;
+use App\Models\Departemen;
 class DummyUserSeeder extends Seeder
 {
     /**
@@ -42,5 +46,27 @@ class DummyUserSeeder extends Seeder
             foreach($userData as $key => $val){
                 User::create($val);
             }
+            $mhs_id = User::where('username', 'mahasiswa1')->first()->id;
+            $dw_id = User::where('username', 'doswal1')->first()->id;
+            Mahasiswa::create(
+                [
+                    'user_id' => $mhs_id,
+                    'doswal' => $dw_id,
+                    'angkatan' => '2018',
+                ]
+                );
+
+            PKL::create(
+                [
+                    'id_mahasiswa' => $mhs_id,
+                ]
+                );
+
+            Skripsi::create(
+                [
+                    'id_mahasiswa' => $mhs_id,
+                ]
+                );
+            
     }
 }

@@ -15,8 +15,10 @@ return new class extends Migration
             $table->id();
             $table->bigInteger('id_mahasiswa')->unsigned();
             $table->foreign('id_mahasiswa')->references('id')->on('users')->onDelete('cascade');
-            $table->float('nilai');
+            $table->float('nilai')->nullable();
             $table->boolean('status')->default(false);
+            $table->string('tanggal_lulus')->nullable();
+            $table->integer('lama_studi')->nullable();
             $table->string('scan_skripsi')->nullable();
             $table->timestamps();
         });

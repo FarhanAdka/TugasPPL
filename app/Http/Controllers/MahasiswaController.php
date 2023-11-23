@@ -12,15 +12,16 @@ class MahasiswaController extends Controller
     function Profile(){
         $userMhs = User::where('id', auth()->user()->id)->get();
         $mahasiswa = Mahasiswa::where('user_id', auth()->user()->id)->get();
+        $doswal = User::where('id', $mahasiswa->first()->doswal)->get()->first();
         $data = array (
             'active_home' => 'active',
-            'title' => 'Kelola Akun Mahasiswa',
             'title' => 'Profile',
             'mahasiswa' => $mahasiswa,
             'userMhs' => $userMhs,
+            'nama_doswal' => $doswal->name,
             
         );
-
+        //dd($doswal);
 
         
         return view('Mahasiswa/ProfileMahasiswa', $data);

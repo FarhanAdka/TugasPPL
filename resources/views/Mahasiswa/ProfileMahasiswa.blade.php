@@ -20,7 +20,6 @@
 <body>
 
     <script src="/assets/static/js/initTheme.js"></script>
-
     <div id="app">
         <x-mahasiswa.sidebar />
         <div id="main" class='layout-navbar navbar-fixed'>
@@ -272,7 +271,7 @@
                                             <div class="form-group">
                                                 <label for="Doswal">Dosen Wali</label>
                                                 <input type="text" class="form-control" id="Doswal"
-                                                    value="{{ $mhs->doswal }}"
+                                                    value="{{ $nama_doswal }}" 
                                                     disabled required>
                                             </div>
 

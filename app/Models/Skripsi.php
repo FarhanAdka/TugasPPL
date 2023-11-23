@@ -11,6 +11,8 @@ class Skripsi extends Model
     protected $fillable = [
         'id_mahasiswa',
         'nilai',
+        'tanggal_lulus',
+        'lama_studi',
         'status',
         'scan_skripsi'
     ];

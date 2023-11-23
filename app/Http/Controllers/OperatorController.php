@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\PKL;
+use App\Models\Skripsi;
 use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\Mahasiswa;
@@ -86,6 +88,21 @@ class OperatorController extends Controller
             'provinsi' => null,
             'kab_kota' => null,
             'alamat' => null,
+        ]);
+        PKL::create([
+            'id_mahasiswa' => $user_id,
+            'nilai' => null,
+            'tanggal_lulus' => null,
+            'status' => null,
+            'scan_pkl' => null,
+        ]);
+        Skripsi::created([
+            'id_mahasiswa' => $user_id,
+            'nilai' => null,
+            'tanggal_lulus' => null,
+            'lama_studi' => null,
+            'status' => null,
+            'scan_skripsi' => null,
         ]);
         return redirect('/user/operator/kelolaMahasiswa');
     }
