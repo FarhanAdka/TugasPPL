@@ -86,6 +86,12 @@ Route::middleware(['auth'])->group(function (){
         Route::get('/user/operator/kelolaMahasiswa',[OperatorController::class,'kelolaMahasiswa'])->middleware('userAkses:operator');
         Route::get('/user/operator/keloladosenWali',[OperatorController::class,'keloladosenWali'])->middleware('userAkses:operator');
 
+        //Edit akun
+        Route::put('/user/operator/keloladosenWali/edit/{id}',[OperatorController::class,'updatedosenWali'])->name('updatedosenWali')->middleware('userAkses:operator');
+        Route::get('/user/operator/keloladosenWali/edit/{id}',[OperatorController::class,'editdosenWali'])->middleware('userAkses:operator');
+
+        Route::put('/user/operator/kelolaMahasiswa/edit/{id}',[OperatorController::class,'updateMahasiswa'])->name('updateMahasiswa')->middleware('userAkses:operator');
+        Route::get('/user/operator/kelolaMahasiswa/edit/{id}',[OperatorController::class,'editMahasiswa'])->middleware('userAkses:operator');
     //Dosen Wali
    
     Route::get('/user/dosenWali',[UserController::class,'dosenWali'])->middleware('userAkses:dosen_wali');

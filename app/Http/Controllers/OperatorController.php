@@ -8,6 +8,8 @@ use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\Mahasiswa;
 use App\Models\DosenWali;
+use League\Uri\UriTemplate\Operator;
+
 class OperatorController extends Controller
 {
     //Profile
@@ -54,6 +56,58 @@ class OperatorController extends Controller
         );
         return view('operator/kelolaAkun/kelolaMahasiswa', $data);
     }
+
+    function editMahasiswa($id){
+        // Menggunakan findOrFail untuk menemukan data mahasiswa berdasarkan ID
+        $Mahasiswa = User::findOrFail($id);
+    
+        $data = array (
+            'active_home' => 'active',
+            'title' => 'Edit Akun Mahasiswa',
+            'Mahasiswa' => $Mahasiswa,
+        );
+    
+        return view('operator/kelolaAkun/editMahasiswa', $data);
+    }
+    
+    function updateMahasiswa(Request $request, $id){
+        // Validasi input
+        $request->validate([
+            'username' => 'required',
+            'name' => 'required',
+            'password' => 'nullable|min:6', // Tambahkan nullable agar tidak wajib diisi
+        ]);
+    
+        // Mengambil data dari request
+        $data = $request->only(['username', 'name', 'password']);
+    
+        // Jika password tidak diisi, tidak mengubah password yang ada
+        if (empty($data['password'])) {
+            unset($data['password']);
+        } else {
+            // Jika password diisi, hash password baru
+            $data['password'] = bcrypt($data['password']);
+        }
+    
+        // Mengupdate data mahaiswa berdasarkan ID
+        User::findOrFail($id)->update($data);
+    
+        // Redirect ke halaman kelola mahasiswa
+        return redirect('/user/operator/kelolaMahasiswa');
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
     function keloladosenWali(){
         $doswal = User::where('role', 'dosen_wali')->paginate(10);
         $data = array (
@@ -63,6 +117,49 @@ class OperatorController extends Controller
         );
         return view('operator/kelolaAkun/keloladosenWali', $data);
     }
+
+    function editdosenWali($id){
+        // Menggunakan findOrFail untuk menemukan data dosen wali berdasarkan ID
+        $doswal = User::findOrFail($id);
+    
+        $data = array (
+            'active_home' => 'active',
+            'title' => 'Edit Akun Dosen Wali',
+            'doswal' => $doswal,
+        );
+    
+        return view('operator/kelolaAkun/editdosenWali', $data);
+    }
+    
+    function updatedosenWali(Request $request, $id){
+        // Validasi input
+        $request->validate([
+            'username' => 'required',
+            'name' => 'required',
+            'password' => 'nullable|min:6', // Tambahkan nullable agar tidak wajib diisi
+        ]);
+    
+        // Mengambil data dari request
+        $data = $request->only(['username', 'name', 'password']);
+    
+        // Jika password tidak diisi, tidak mengubah password yang ada
+        if (empty($data['password'])) {
+            unset($data['password']);
+        } else {
+            // Jika password diisi, hash password baru
+            $data['password'] = bcrypt($data['password']);
+        }
+    
+        // Mengupdate data dosen wali berdasarkan ID
+        User::findOrFail($id)->update($data);
+    
+        // Redirect ke halaman kelola dosen wali
+        return redirect('/user/operator/keloladosenWali');
+    }
+
+    
+
+
 
     function storemhs(Request $request){
         $data = $request->all();
@@ -114,5 +211,10 @@ class OperatorController extends Controller
         $data['password'] = bcrypt($data['password']);
         User::create($data);
         return redirect('/user/operator/keloladosenWali');
+    }
+
+    function destroyMhs($id){
+        $mahasis = User::findOrFail($id)->delete();  
+        return redirect('user/operator/kelolaMahasiswa')->with('success', 'Berhasil Menghapus data..', $mahasis);
     }
 }

@@ -115,17 +115,17 @@
                                 @endif
 
 
-                                <form action="{{ route('updatedosenWali', $doswal->id) }}" method="POST">
+                                <form action="{{ route('updateMahasiswa', $Mahasiswa->id) }}" method="POST">
                                     @csrf
                                     @method('PUT') <!-- Menambahkan metode PUT untuk update -->
                                     <div class="mb-3">
                                         <label for="username" class="form-label">Username/NIP</label>
-                                        <input type="text" value="{{ $doswal->username }}" name="username"
+                                        <input type="text" value="{{ $Mahasiswa->username }}" name="username"
                                             class="form-control">
                                     </div>
                                     <div class="mb-3">
                                         <label for="name" class="form-label">Nama</label>
-                                        <input type="text" value="{{ $doswal->name }}" name="name"
+                                        <input type="text" value="{{ $Mahasiswa->name }}" name="name"
                                             class="form-control">
                                     </div>
                                     <div class="mb-3">

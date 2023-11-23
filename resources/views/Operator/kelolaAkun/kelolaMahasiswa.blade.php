@@ -124,17 +124,21 @@
                                                 <td>{{ $mhs->name }}</td>
                                                 <td>{{ $mhs->username }}</td>
                                                 <td>
-                                                    <form action="/user/operator/kelolamahasiswa/{{ $mhs->id }}"
-                                                        method="POST">
+                                                    <form action="/user/operator/kelolaMahasiswa/{{ $mhs->id }}" method="POST">
+                                                        
                                                         <a class="btn btn-primary"
-                                                            href="/user/operator/kelolamahasiswa/{{ $mhs->id }}/edit">Edit</a>
-                                                        @csrf
+                                                            href="/user/operator/kelolaMahasiswa/edit/{{ $mhs->id  }}">Edit</a>
+                                                        @csrf 
+                                        @endforeach
+
+                                                        @foreach($destroyMhs as $hps )
                                                         @method('DELETE')
-                                                        <button type="submit" class="btn btn-danger">Delete</button>
+                                                        <button type="submit" class="btn btn-danger" action="{{$destroyMhs->$hps }}">Delete</button>
+                                                        @endforeach
                                                     </form>
                                                 </td>
                                             </tr>
-                                        @endforeach
+                                        
                                     </tbody>
 
                                 </table>
