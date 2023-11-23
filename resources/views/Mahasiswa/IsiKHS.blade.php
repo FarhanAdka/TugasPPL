@@ -138,6 +138,13 @@
                               <input type="text" id="ipk" class="form-control" name="ipk" placeholder="IPK">
                             </div>
                           </div>
+
+                          <div class="col-12">
+                            <div class="form-group">
+                              <label for="form-sksk">Jumlah SKS Kumulatif</label>
+                              <input type="text" id="sksk" class="form-control" name="sksk" placeholder="SKS Kumulatif">
+                            </div>
+                          </div>
                           
                           <div class="col-12">
                             <div class="form-group">

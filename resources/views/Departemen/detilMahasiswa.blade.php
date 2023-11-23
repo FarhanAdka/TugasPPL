@@ -184,34 +184,51 @@
                                         <h3>Semester</h3>
                                     </div>
                                     <div class="row text-center">
-                                        @for ($i = 1; $i <= 14; $i++)
+                                        @for ($i = 0; $i < 14; $i++)
                                             <div class="p-2 col-md-2">
-                                                @if ($i <= 14)
-                                                    <button class="btn btn-primary"
-                                                        data-bs-target="#semester{{ $i }}"
-                                                        data-bs-toggle="modal">Semester
-                                                        {{ $i }}</button>
+                                                @if ($i < 14)
 
-                                                    <div class="modal fade" id="semester{{ $i }}"
+                                                    @php
+                                                        if ($i+1 == $smt_skripsi) {
+                                                            $color = 'btn-success';
+                                                        } else {
+                                                            $color = 'btn-primary';
+                                                        }
+                                                        if($i+1 == $smt_pkl){
+                                                            $color = 'btn-secondary';
+                                                        }
+                                                        if(isset($smt[$i])){
+                                                            $disabled = '';
+                                                        } else {
+                                                            $disabled = 'disabled';
+                                                        }
+                                                        
+                                                    @endphp
+                                                    <button class="btn {{$color}}"
+                                                        data-bs-target="#semester{{ $i + 1 }}"
+                                                        data-bs-toggle="modal" {{$disabled}}>Semester
+                                                        {{ $i + 1 }}</button>
+
+                                                    <div class="modal fade" id="semester{{ $i + 1}}"
                                                         tabindex="-1" aria-labelledby="exampleModalLabel"
                                                         aria-hidden="true">
                                                         <div class="modal-dialog">
                                                             <div class="modal-content">
                                                                 <div class="modal-header">
                                                                     <h5 class="modal-title">Semester
-                                                                        {{ $i }}</h5>
+                                                                        {{ $i + 1 }}</h5>
                                                                     <button type="button" class="btn-close"
                                                                         data-bs-dismiss="modal"
                                                                         aria-label="Close"></button>
                                                                 </div>
                                                                 <div class="modal-body">
                                                                     <ul class="nav nav-tabs"
-                                                                        id="myTab-{{ $i }}"
+                                                                        id="myTab-{{ $i + 1 }}"
                                                                         role="tablist">
                                                                         <li class="nav-item" role="presentation">
                                                                             <button class="nav-link active"
                                                                                 id="IRS-tab" data-bs-toggle="tab"
-                                                                                data-bs-target="#IRS{{ $i }}"
+                                                                                data-bs-target="#IRS{{ $i + 1 }}"
                                                                                 type="button" role="tab"
                                                                                 aria-controls="IRS"
                                                                                 aria-selected="true">IRS</button>
@@ -219,7 +236,7 @@
                                                                         <li class="nav-item" role="presentation">
                                                                             <button class="nav-link" id="KHS-tab"
                                                                                 data-bs-toggle="tab"
-                                                                                data-bs-target="#KHS{{ $i }}"
+                                                                                data-bs-target="#KHS{{ $i + 1 }}"
                                                                                 type="button" role="tab"
                                                                                 aria-controls="profile"
                                                                                 aria-selected="false">KHS</button>
@@ -227,34 +244,34 @@
                                                                     </ul>
                                                                     <div class="tab-content" id="myTabContent">
                                                                         <div class="tab-pane fade show active"
-                                                                            id="IRS{{ $i }}"
+                                                                            id="IRS{{ $i + 1 }}"
                                                                             role="tabpanel"
-                                                                            aria-labelledby="IRS-tab-{{ $i }}">
+                                                                            aria-labelledby="IRS-tab-{{ $i + 1 }}">
                                                                             <div class="p-1 col-md-4">
-                                                                                SKS Diambil:
+                                                                                SKS Diambil: {{ isset($irs[$i]) ? $irs[$i]->jumlah_sks : 0 }}
                                                                             </div>
                                                                             <div class="p-1 col-md-4">
                                                                                 <a href="">Lihat IRS</a>
                                                                             </div>
                                                                         </div>
                                                                         <div class="tab-pane fade"
-                                                                            id="KHS{{ $i }}"
+                                                                            id="KHS{{ $i + 1 }}"
                                                                             role="tabpanel"
-                                                                            aria-labelledby="KHS-tab-{{ $i }}">
+                                                                            aria-labelledby="KHS-tab-{{ $i + 1 }}">
                                                                             <div class="p-1 col-md-4">
-                                                                                IP Semester:
+                                                                                IP Semester: {{ isset($khs[$i]) ? $khs[$i]->ip : 0 }}
                                                                             </div>
                                                                             <div class="p-1 col-md-4">
-                                                                                SKS Semester:
+                                                                                SKS Semester: {{ isset($khs[$i]) ? $khs[$i]->jumlah_sks : 0 }}
                                                                             </div>
                                                                             <div class="p-1 col-md-4">
-                                                                                IP Kumulatif:
+                                                                                IP Kumulatif: {{ isset($khs[$i]) ? $khs[$i]->ipk : 0 }}
                                                                             </div>
                                                                             <div class="p-1 col-md-4">
-                                                                                SKS Kumulatif:
+                                                                                SKS Kumulatif: {{ isset($khs[$i]) ? $khs[$i]->sks_kumulatif : 0 }}
                                                                             </div>
                                                                             <div class="p-1 col-md-4">
-                                                                                <a>Lihat KHS</a>
+                                                                                <a href="">Lihat KHS</a>
                                                                             </div>
                                                                         </div>
                                                                     </div>

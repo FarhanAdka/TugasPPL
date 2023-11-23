@@ -16,6 +16,7 @@ class KHS extends Model
         'ipk',
         'status',
         'scan_khs',
+        'sks_kumulatif',
     ];
 
     function user(){
