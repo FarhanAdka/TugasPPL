@@ -86,7 +86,8 @@ Route::middleware(['auth'])->group(function (){
         Route::get('/user/operator/keloladosenWali',[OperatorController::class,'keloladosenWali'])->middleware('userAkses:operator');
 
     //Dosen Wali
-    Route::get('/user/dosenWali',[UserController::class,'dosenWali'])->middleware('userAkses:dosenWali');
+   
+    Route::get('/user/dosenWali',[UserController::class,'dosenWali'])->middleware('userAkses:dosen_wali');
 
     //Departemen
     Route::get('/user/departemen',[UserController::class,'departemen'])->middleware('userAkses:departemen');

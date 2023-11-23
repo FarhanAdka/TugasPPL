@@ -34,7 +34,7 @@ class SessionController extends Controller
         elseif(Auth::user()->role == 'operator'){
             return redirect('user/operator');
         }
-        elseif(Auth::user()->role == 'dosenWali'){
+        elseif(Auth::user()->role == 'dosen_wali'){
             return redirect('user/dosenWali');
         }
         elseif(Auth::user()->role == 'departemen'){
