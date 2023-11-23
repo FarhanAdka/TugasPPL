@@ -171,7 +171,7 @@
                                                     @endif
                                                     <button id="reset" type="reset"
                                                         class="btn btn-light-secondary me-1 mb-1"hidden>Reset</button>
-                                                    @if (isset($skripsi->scan_skripsi) && isset($skripsi->tanggal_lulus) && isset($skripsi->nilai))
+                                                    @if (isset($skripsi->scan_skripsi) && isset($skripsi->tanggal_lulus) && isset($skripsi->nilai) && $skripsi->status == 0)
                                                         <button id="toggleDisable" type="button"
                                                             class="btn btn-primary me-1 mb-1">Edit</button>
                                                     @endif

@@ -36,21 +36,38 @@ Route::middleware(['auth'])->group(function (){
     Route::get('/user',[userController::class,'index']);
 
     //Mahasiswa
-    Route::get('/user/mahasiswa',[userController::class,'mahasiswa'])->middleware('userAkses:mahasiswa');
-    Route::resource('/user/mahasiswa/IRS', IRSController::class)->middleware('userAkses:mahasiswa');
-    Route::resource('/user/mahasiswa/KHS', KHSController::class)->middleware('userAkses:mahasiswa');
-    Route::get('/user/mahasiswa/PKL', [PKLController::class, 'index'])->middleware('userAkses:mahasiswa');
-    Route::get('/user/mahasiswa/PKL/create', [PKLController::class, 'create'])->middleware('userAkses:mahasiswa')->name('PKL.create');
-    Route::post('/user/mahasiswa/PKL', [PKLController::class, 'store'])->middleware('userAkses:mahasiswa')->name('PKL.store');
-    Route::get('/user/mahasiswa/profile',[MahasiswaController::class,'profile'])->middleware('userAkses:mahasiswa');
-    Route::get('/user/mahasiswa/fileIRS/{id}', [IRSController::class, 'download'])->middleware('userAkses:mahasiswa')->name('irs.download');
-    Route::get('/user/mahasiswa/fileKHS/{id}', [KHSController::class, 'download'])->middleware('userAkses:mahasiswa')->name('khs.download');
-    Route::get('/user/mahasiswa/filePKL/{id}', [PKLController::class, 'download'])->middleware('userAkses:mahasiswa')->name('pkl.download');
-    Route::get('/user/mahasiswa/fileSkripsi/{id}', [SkripsiController::class, 'download'])->middleware('userAkses:mahasiswa')->name('skripsi.download');
+    Route::middleware(['userAkses:mahasiswa'])->group(function (){
+        Route::get('/user/mahasiswa',[userController::class,'mahasiswa']);
+        Route::resource('/user/mahasiswa/IRS', IRSController::class);
+        Route::resource('/user/mahasiswa/KHS', KHSController::class);
+        Route::get('/user/mahasiswa/PKL', [PKLController::class, 'index']);
+        Route::get('/user/mahasiswa/PKL/create', [PKLController::class, 'create'])->name('PKL.create');
+        Route::post('/user/mahasiswa/PKL', [PKLController::class, 'store'])->name('PKL.store');
+        Route::get('/user/mahasiswa/profile',[MahasiswaController::class,'profile']);
+        Route::get('/user/mahasiswa/fileIRS/{id}', [IRSController::class, 'download'])->name('irs.download');
+        Route::get('/user/mahasiswa/fileKHS/{id}', [KHSController::class, 'download'])->name('khs.download');
+        Route::get('/user/mahasiswa/filePKL/{id}', [PKLController::class, 'download'])->name('pkl.download');
+        Route::get('/user/mahasiswa/fileSkripsi/{id}', [SkripsiController::class, 'download'])->name('skripsi.download');
 
-    Route::get('/user/mahasiswa/Skripsi', [SkripsiController::class, 'index'])->middleware('userAkses:mahasiswa');
-    Route::get('/user/mahasiswa/Skripsi/create', [SkripsiController::class, 'create'])->middleware('userAkses:mahasiswa')->name('skripsi.create');
-    Route::post('/user/mahasiswa/Skripsi', [SkripsiController::class, 'store'])->middleware('userAkses:mahasiswa')->name('skripsi.store');
+        Route::get('/user/mahasiswa/Skripsi', [SkripsiController::class, 'index']);
+        Route::get('/user/mahasiswa/Skripsi/create', [SkripsiController::class, 'create'])->name('skripsi.create');
+        Route::post('/user/mahasiswa/Skripsi', [SkripsiController::class, 'store'])->name('skripsi.store');
+    });
+    // Route::get('/user/mahasiswa',[userController::class,'mahasiswa'])->middleware('userAkses:mahasiswa');
+    // Route::resource('/user/mahasiswa/IRS', IRSController::class)->middleware('userAkses:mahasiswa');
+    // Route::resource('/user/mahasiswa/KHS', KHSController::class)->middleware('userAkses:mahasiswa');
+    // Route::get('/user/mahasiswa/PKL', [PKLController::class, 'index'])->middleware('userAkses:mahasiswa');
+    // Route::get('/user/mahasiswa/PKL/create', [PKLController::class, 'create'])->middleware('userAkses:mahasiswa')->name('PKL.create');
+    // Route::post('/user/mahasiswa/PKL', [PKLController::class, 'store'])->middleware('userAkses:mahasiswa')->name('PKL.store');
+    // Route::get('/user/mahasiswa/profile',[MahasiswaController::class,'profile'])->middleware('userAkses:mahasiswa');
+    // Route::get('/user/mahasiswa/fileIRS/{id}', [IRSController::class, 'download'])->middleware('userAkses:mahasiswa')->name('irs.download');
+    // Route::get('/user/mahasiswa/fileKHS/{id}', [KHSController::class, 'download'])->middleware('userAkses:mahasiswa')->name('khs.download');
+    // Route::get('/user/mahasiswa/filePKL/{id}', [PKLController::class, 'download'])->middleware('userAkses:mahasiswa')->name('pkl.download');
+    // Route::get('/user/mahasiswa/fileSkripsi/{id}', [SkripsiController::class, 'download'])->middleware('userAkses:mahasiswa')->name('skripsi.download');
+
+    // Route::get('/user/mahasiswa/Skripsi', [SkripsiController::class, 'index'])->middleware('userAkses:mahasiswa');
+    // Route::get('/user/mahasiswa/Skripsi/create', [SkripsiController::class, 'create'])->middleware('userAkses:mahasiswa')->name('skripsi.create');
+    // Route::post('/user/mahasiswa/Skripsi', [SkripsiController::class, 'store'])->middleware('userAkses:mahasiswa')->name('skripsi.store');
 
     
     //Operator
