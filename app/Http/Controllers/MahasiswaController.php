@@ -10,9 +10,10 @@ class MahasiswaController extends Controller
 {
     //Profile
     function Profile(){
-        $userMhs = User::where('id', auth()->user()->id)->get();
-        $mahasiswa = Mahasiswa::where('user_id', auth()->user()->id)->get();
+        $userMhs = User::where('id', auth()->user()->id)->get()->first();
+        $mahasiswa = Mahasiswa::where('user_id', auth()->user()->id)->get()->first();
         $doswal = User::where('id', $mahasiswa->first()->doswal)->get()->first();
+        //dd($mahasiswa);
         $data = array (
             'active_home' => 'active',
             'title' => 'Profile',
@@ -25,6 +26,20 @@ class MahasiswaController extends Controller
 
         
         return view('Mahasiswa/ProfileMahasiswa', $data);
+    }
+
+    function update(Request $request){
+        $data = $request->all();
+        $user = User::where('id', auth()->user()->id)->get()->first();
+        $mhs = Mahasiswa::where('user_id', auth()->user()->id)->get()->first();
+        $user->has_setup = true;
+        $user->save();
+        //dd($mhs);
+        $mhs->update($data);
+        $mhs->save();
+
+        return redirect()->route('mahasiswa.profile');
+        //dd($request->all());
     }
     //IRS
     function IsiIRS(){

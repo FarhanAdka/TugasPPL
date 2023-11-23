@@ -43,7 +43,8 @@ Route::middleware(['auth'])->group(function (){
         Route::get('/user/mahasiswa/PKL', [PKLController::class, 'index']);
         Route::get('/user/mahasiswa/PKL/create', [PKLController::class, 'create'])->name('PKL.create');
         Route::post('/user/mahasiswa/PKL', [PKLController::class, 'store'])->name('PKL.store');
-        Route::get('/user/mahasiswa/profile',[MahasiswaController::class,'profile']);
+        Route::get('/user/mahasiswa/profile',[MahasiswaController::class,'profile'])->name('mahasiswa.profile');
+        Route::post('/user/mahasiswa/profile',[MahasiswaController::class,'update'])->name('mahasiswa.update');
         Route::get('/user/mahasiswa/fileIRS/{id}', [IRSController::class, 'download'])->name('irs.download');
         Route::get('/user/mahasiswa/fileKHS/{id}', [KHSController::class, 'download'])->name('khs.download');
         Route::get('/user/mahasiswa/filePKL/{id}', [PKLController::class, 'download'])->name('pkl.download');

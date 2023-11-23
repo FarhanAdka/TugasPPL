@@ -15,6 +15,7 @@
         type="image/png">
     <link rel="stylesheet" href="/assets/compiled/css/app.css">
     <link rel="stylesheet" href="/assets/compiled/css/app-dark.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/css/select2.min.css" rel="stylesheet" />
 </head>
 
 <body>
@@ -47,7 +48,7 @@
                                 <a href="#" data-bs-toggle="dropdown" aria-expanded="false">
                                     <div class="user-menu d-flex">
                                         <div class="user-name text-end me-3">
-                                            <h6 class="mb-0 text-gray-600">John Ducky</h6>
+                                            <h6 class="mb-0 text-gray-600">{{ $userMhs->nama }}</h6>
                                             <p class="mb-0 text-sm text-gray-600">Mahsiswa</p>
                                         </div>
                                         <div class="user-img d-flex align-items-center">
@@ -88,6 +89,7 @@
                 </nav>
             </header>
             <div id="main-content">
+                <script src="{{ asset('regions.js') }}"></script>
                 <div class="page-heading">
                     <div class="page-title">
                         <div class="row">
@@ -115,8 +117,8 @@
                                                 <img src="/assets/compiled/jpg/1.jpg" alt="Avatar">
                                             </div>
 
-                                            <h3 class="mt-3">John Doe</h3>
-                                            <p class="text-small">Junior Software Engineer</p>
+                                            <h3 class="mt-3">{{$userMhs->name}}</h3>
+                                            <p class="text-small">Mahasiswa</p>
                                         </div>
                                     </div>
                                 </div>
@@ -126,176 +128,142 @@
 
                             <div class="card">
                                 <div class="card-body">
-
                                     <div class="row">
                                         <div class="col-md-6">
-                                            @foreach ($userMhs as $user)
+                                                <form action="{{route('mahasiswa.update')}}" method="POST">
                                                 @csrf
                                                 <div class="form-group">
                                                     <label for="NIM">NIM</label>
                                                     <input type="text" class="form-control" id="NIM"
-                                                        value="{{ $user->username }}" placeholder="Enter email"
-                                                        disabled>
+                                                    value="{{ $userMhs->username }}" placeholder="Enter email" disabled>
                                                 </div>
-
-
+                                                
+                                                
                                                 <div class="form-group">
                                                     <label for="Nama">Nama</label>
                                                     <input type="text" class="form-control" id="Nama"
-                                                        value="{{ $user->name }}" placeholder="Enter your name . . ."
-                                                        required>
+                                                    value="{{ $userMhs->name }}" placeholder="Enter your name . . ."
+                                                    required>
                                                 </div>
-                                            @endforeach
-
-
-                                            @foreach ($mahasiswa as $mhs)
-                                                @csrf
                                                 <div class="form-group">
                                                     <label for="Email">Email</label>
-                                                    <input type="text" class="form-control" id="Email"
-                                                        value="{{ $mhs->email }}"placeholder="Enter your email . . ."
-                                                        required>
+                                                    <input type="text" class="form-control" id="Email" name="email"
+                                                    value="{{ $mahasiswa->email }}"placeholder="Enter your email . . ."
+                                                    required>
+                                                </div>
+                                                
+                                                <div class="form-group">
+                                                    <label for="no_telp">No Telepon</label>
+                                                    <input type="text" class="form-control" id="no_telp" name="no_hp"
+                                                    value="{{ $mahasiswa->no_hp }}"placeholder="Enter your No Telepon . . ."
+                                                    required>
                                                 </div>
 
                                                 <div class="form-group">
-                                                    <label for="No Telepon">No Telepon</label>
-                                                    <input type="text" class="form-control" id="No Telepon"
-                                                        value="{{ $mhs->no_hp }}"placeholder="Enter your No Telepon . . ."
-                                                        required>
-                                                </div>
+                                                <label for="Jalur Masuk">Jalur Masuk</label>
+                                                <select name="jalur_masuk" id="Jalur Masuk" class="form-control" value="{{ $mahasiswa->jalur_masuk }}"
+                                                    required>
+                                                    <option value="">Pilih Jalur Masuk</option>
+                                                    <option value="snmptn"{{$mahasiswa->jalur_masuk == "snmptn" ? 'selected' : ""}}>SNMPTN</option>
+                                                    <option value="sbmptn" {{$mahasiswa->jalur_masuk == "sbmptn" ? 'selected' : ""}}>SBMPTN</option>
+                                                    <option value="mandiri" {{$mahasiswa->jalur_masuk == "mandiri" ? 'selected' : ""}}>Mandiri</option>
+                                                    <option value="lainnya" {{$mahasiswa->jalur_masuk == "lainnya" ? 'selected' : ""}}>Lainnya</option>
+                                                </select>
+                                            </div>
 
-                                                <div class="form-group">
-                                                    <label for="Jalur Masuk">Jalur Masuk</label>
-                                                    <select name="Jalur masuk" id="Jalur Masuk"
-                                                                class="form-control" required>
-                                                                <option value="male">SNMPTN</option>
-                                                                <option value="female">SBMPTN</option>
-                                                                <option value="female">Mandiri</option>
-                                                                <option value="female">Lainnya</option>
-                                                            </select>                                                    
-                                                </div>
-
-                                                {{-- <div class="form-group">
-                                                    <label for="gender" class="form-label">Jenis Kelamin</label>
-                                                    <select name="gender" id="gender" class="form-control"
+                                            {{-- <div class="form-group">
+                                                <label for="gender" class="form-label">Jenis Kelamin</label>
+                                                <province name="gender" id="gender" class="form-control"
+                                                required>
+                                                <option value="male">Laki-Laki</option>
+                                                <option value="female">Perempuan</option>
+                                            </province>
+                                        </div> --}}
+                                        
+                                            <div class="row">
+                                                <div class = "col-12 col-md-6">
+                                                    <div class="form-group">
+                                                        
+                                                        <label for="Provinsi" class="form-label">Provinsi</label>
+                                                        <select name="provinsi" id="Provinsi" class="form-control" value="{{ $mahasiswa->provinsi }}"   
                                                         required>
-                                                        <option value="male">Laki-Laki</option>
-                                                        <option value="female">Perempuan</option>
+                                                        <option value="">Pilih Provinsi</option>
                                                     </select>
-                                                </div> --}}
-
-                                                <div class="row">
-                                                    <div class = "col-12 col-md-6">
-                                                        <div class="form-group">
-
-                                                            <label for="Provinsi" class="form-label">Provinsi</label>
-                                                            <select name="Provinsi" id="Provinsi"
-                                                                class="form-control" required>
-                                                                <option> Jawa Tengah </option>
-                                                                <option> Jawa Timur </option>
-                                                                <option> Jawa Barat </option>
-                                                                <option> Jambi </option>
-                                                            </select>
-                                                        </div>
-                                                    </div>
-
-                                                    <div class = "col-12 col-md-6">
-                                                        <div class="form-group">
-                                                            <label for="Kabupaten" class="form-label">Kabupaten
-                                                                Kota</label>
-                                                            <select name="Kabupaten" id="Kabupaten"
-                                                                class="form-control" required>
-                                                                <option value="male">Lzzc</option>
-                                                                <option value="female">vxc</option>
-                                                            </select>
-                                                        </div>
+                                                </div>
+                                            </div>
+                                            
+                                            <div class = "col-12 col-md-6">
+                                                <div class="form-group">
+                                                    <label for="Kabupaten" class="form-label">Kabupaten
+                                                        Kota</label>
+                                                        <select name="kab_kota" id="Kabupaten" class="form-control"
+                                                        required>
+                                                            <option value="">Pilih Kabupaten/Kota</option>
+                                                            <!-- Add other options here -->
+                                                        </select>
                                                     </div>
                                                 </div>
-                                                {{-- 
+                                            </div>
+                                            {{-- 
                                                 <div class="row">
                                                     <div class = "col-12 col-md-6">
                                                         <div class="form-group">
-
+                                                            
                                                             <label for="Tempat Lahir" class="form-label">Tempat
                                                                 Lahir</label>
-                                                            <select name="Tempat Lahir" id="Provinsi"
+                                                                <province name="Tempat Lahir" id="Provinsi"
                                                                 value="{{ $mhs->tempat_lahir }}" class="form-control"
                                                                 required>
-
-
-                                                            </select>
+                                                                
+                                                                
+                                                            </province>
                                                         </div>
                                                     </div>
-
+                                                    
                                                     <div class = "col-12 col-md-6">
                                                         <div class="form-group">
                                                             <label for="Tanggal Lahir" class="form-label">Tanggal
                                                                 Lahir
                                                             </label>
                                                             <input type="date" name="birthday" id="birthday"
-                                                                class="form-control" placeholder="Your Birthday">
-
-                                                            </select>
-                                                        </div>
+                                                            class="form-control" placeholder="Your Birthday">
+                                                            
+                                                        </province>
                                                     </div>
-                                                </div> --}}
-
-
-
+                                                </div>
+                                            </div> --}}
+                                            
+                                            
+                                            
                                         </div>
-
-
+                                        
+                                        
                                         <div class="col-md-6">
-                                            <div class="form-group">
-                                                <label for="Program Studi">Program Studi</label>
-                                                <input type="text" class="form-control" id="Program Studi"
-                                                    value="INFORMATIKA" placeholder="Disabled Text" disabled required>
-                                            </div>
-
-
                                             <div class="form-group">
                                                 <label for="Angkatan">Angkatan</label>
                                                 <input type="text" class="form-control" id="Angkatan"
-                                                    value="{{ $mhs->angkatan }}" placeholder="Angkatan Mhs" disabled
-                                                    required>
+                                                value="{{ $mahasiswa->angkatan }}" placeholder="Angkatan Mhs"
+                                                disabled required>
                                             </div>
-
-
+                                            
+                                            
                                             <div class="form-group">
                                                 <label for="Status">Status</label>
                                                 <input type="text" class="form-control" id="Status"
-                                                    value="{{ $mhs->status }}" placeholder="Status mahasiswa"
-                                                    disabled required>
+                                                value="{{ $mahasiswa->status }}" placeholder="Status mahasiswa"
+                                                disabled required>
                                             </div>
-
+                                            
                                             <div class="form-group">
                                                 <label for="Doswal">Dosen Wali</label>
                                                 <input type="text" class="form-control" id="Doswal"
-                                                    value="{{ $nama_doswal }}" 
-                                                    disabled required>
+                                                value="{{ $nama_doswal }}" disabled required>
                                             </div>
-
+                                            
                                             <div class="form-group">
                                                 <label for="Status">Alamat</label>
-                                                <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" required></textarea>
+                                                <textarea class="form-control" id="exampleFormControlTextarea1" name="alamat" rows="3" required>{{$mahasiswa->alamat}}</textarea>
                                             </div>
-
-                                            <div class="form-group">
-                                                <img id="#model-preview" scr="https://via.placeholder.com/150"
-                                                    alt="preview">
-                                            </div>
-
-                                            <div class="form-group">
-                                                <label for="Foto">Foto</label>
-                                                <input type="file" class="form-control" name="File"
-                                                    aceppt ="image/*" placeholder="Foto" required>
-                                            </div>
-                                            @endforeach
-
-
-
-
-
                                             {{-- // 'user_id',
                                             // 'alamat',
                                             // 'kab_kota',
@@ -306,7 +274,7 @@
                                             // 'jalur_masuk',
                                             // 'status',
                                             // 'doswal', --}}
-
+                                            
                                             <div class="form-group">
                                                 <button type="submit" class="btn btn-primary">
                                                     <i class="fa fa-save"></i> Save Changes
@@ -315,19 +283,72 @@
                                                     <i class="fa fa-undo"></i>Kembali
                                                 </a>
                                             </div>
-
-
+                                        </form>
+                                            
+                                            
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                    </section>
-
+                        </section>
+                        
+                    </div>
                 </div>
             </div>
-        </div>
     </div>
     <script>
+        //console.log(allProvinsi)
+        //console.log(regions)
+        //console.log($userMhs)
+        const province = document.getElementById("Provinsi");
+        const kota = document.getElementById("Kabupaten");
+        //console.log('{{ $mahasiswa->jalur_masuk }}')
+        //console.log('jalur masuk : ' + mhs_jalur_masuk)
+        // Loop through allProvinsi and create an option for each entry
+        allProvinsi.forEach(provinsi => {
+            const option = document.createElement("option");
+            option.value = provinsi;
+            option.text = provinsi;
+            if (provinsi === '{{ $mahasiswa->provinsi }}') {
+                option.selected = true;
+            }
+            province.appendChild(option);
+        });
+        allKota.forEach(kabupaten => {
+            const option = document.createElement("option");
+            option.value = kabupaten;
+            option.text = kabupaten;
+            if (kabupaten === '{{ $mahasiswa->kab_kota }}') {
+                option.selected = true;
+            }
+            kota.appendChild(option);
+        });
+        // Update Kabupaten based on Province
+        province.addEventListener("change", updateKabupaten);
+
+        function updateKabupaten() {
+            const currentProvince = province.value;
+            //console.log(currentProvince)
+            kota.innerHTML = "";
+            regions.findIndex(prov => {
+                console.log(prov)
+                if (prov.provinsi === currentProvince) {
+                    prov.kota.forEach(kabupaten => {
+                        const option = document.createElement("option");
+                        option.value = kabupaten;
+                        option.text = kabupaten;
+                        kota.appendChild(option);
+                    });
+                }
+            });
+            // regions.forEach(kabupaten => {
+            //     const option = document.createElement("option");
+            //     option.value = kabupaten;
+            //     option.text = kabupaten;
+            //     kota.appendChild(option);
+            // });
+        }
+
         function readURL(input, id) {
             id = id || '#modal-preview';
             if (input.files && input.files[0]) {
@@ -343,6 +364,21 @@
 
             }
         }
+    </script>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js"></script>
+
+    <script>
+        $(document).ready(function() {
+            $('#Kabupaten').select2({
+                placeholder: 'Search for Kabupaten',
+                allowClear: true,
+                tags: true,
+                tokenSeparators: [',', ' '],
+                dropdownParent: $('#Kabupaten').parent()
+            });
+        });
     </script>
 
     <script src="/assets/static/js/components/dark.js"></script>

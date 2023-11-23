@@ -1,3 +1,4 @@
+//console.log('regions.js loaded');
 const regions = [
     {
         "provinsi": "Aceh",
@@ -716,3 +717,8 @@ const regions = [
         ]
     }
 ]
+const allProvinsi = regions.map((region) => region.provinsi);
+//const wadah = regions.filter((region) => region.provinsi === 'Jawa Barat'); 
+const allKota = regions.map((region) => region.kota).flat();
+//console.log('allKota', allKota);
+//console.log(regions.filter((region) => region.provinsi === 'Jawa Barat')[0].kota);
