@@ -26,11 +26,14 @@ class PKLController extends Controller
     {
         $pkl = PKL::where('id_mahasiswa', auth()->user()->id)->get();
         //dd($pkl);
+        $avail_semester = [1,2,3,4,5,6,7,8,9,10,11,12,13,14];
+        //dd($avail_semester);         
         $data = array (
             'active_side' => 'active', 
             'active_user' => 'active',
             'title' => 'Isi PKL',
-            'pkl' => $pkl->first()
+            'pkl' => $pkl->first(),
+            'avail_semester' => $avail_semester,
 
         );
         return view('Mahasiswa/PKL', $data);

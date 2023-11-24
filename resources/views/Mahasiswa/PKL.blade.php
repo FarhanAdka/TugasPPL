@@ -113,15 +113,31 @@
                                             <div class="form-body">
                                                 <div class="col-12">
                                                     <div class="form-group">
+                                                        <label for="form-semester-aktif">Semester Aktif</label>
+                                                        <select id="semester_aktif" class="form-control"
+                                                            name="semester_aktif">
+                                                            <option value="" disabled selected hidden>Pilih
+                                                                Semester</option>
+                                                            @foreach ($avail_semester as $s)
+                                                                <option value="{{ $s }}" {{isset($pkl->semester_aktif)}}>{{ $s }}
+                                                                </option>
+                                                            @endforeach
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                                <div class="col-12">
+                                                    <div class="form-group">
                                                         <label for="tanggal_lulus">Tanggal Lulus</label>
                                                         @if (isset($pkl->tanggal_lulus))
-                                                            <input type="date" id="tanggal_lulus" class="form-control"
-                                                                name="tanggal_lulus" placeholder="Tanggal Lulus"
+                                                            <input type="date" id="tanggal_lulus"
+                                                                class="form-control" name="tanggal_lulus"
+                                                                placeholder="Tanggal Lulus"
                                                                 value="{{ $pkl->tanggal_lulus }}" disabled>
                                                         @else
-                                                        <input type="date" id="tanggal_lulus" class="form-control"
-                                                            name="tanggal_lulus" placeholder="Tanggal Lulus"
-                                                            value="{{ $pkl->tanggal_lulus }}">
+                                                            <input type="date" id="tanggal_lulus"
+                                                                class="form-control" name="tanggal_lulus"
+                                                                placeholder="Tanggal Lulus"
+                                                                value="{{ $pkl->tanggal_lulus }}">
                                                         @endif
                                                     </div>
                                                 </div>
@@ -134,9 +150,9 @@
                                                                 name="nilai" placeholder="Nilai"
                                                                 value="{{ $pkl->nilai }}" disabled>
                                                         @else
-                                                        <input type="text" id="nilai" class="form-control"
-                                                            name="nilai" placeholder="Nilai"
-                                                            value="{{ $pkl->nilai }}" disabled>
+                                                            <input type="text" id="nilai" class="form-control"
+                                                                name="nilai" placeholder="Nilai"
+                                                                value="{{ $pkl->nilai }}">
                                                         @endif
                                                     </div>
                                                 </div>
@@ -150,12 +166,17 @@
                                                     @endif
                                                     <div class="form-group">
                                                         @if (isset($pkl->scan_pkl))
-                                                            <label id="label_edit" for="scan_pkl" hidden>Edit Scan PKL</label>
+                                                            <label id="label_edit" for="scan_pkl" hidden>Edit Scan
+                                                                PKL</label>
+                                                            <input type="file" id="scan_pkl" class="form-control"
+                                                                name="scan_pkl" placeholder="Scan PKL" disabled
+                                                                hidden>
                                                         @else
                                                             <label for="scan_pkl">Tambah Scan PKL</label>
+
+                                                            <input type="file" id="scan_pkl" class="form-control"
+                                                                name="scan_pkl" placeholder="Scan PKL">
                                                         @endif
-                                                        <input type="file" id="scan_pkl" class="form-control"
-                                                            name="scan_pkl" placeholder="Scan PKL" disabled hidden>
                                                     </div>
                                                 </div>
 

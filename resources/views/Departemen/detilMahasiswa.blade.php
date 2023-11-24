@@ -251,7 +251,7 @@
                                                                                 SKS Diambil: {{ isset($irs[$i]) ? $irs[$i]->jumlah_sks : 0 }}
                                                                             </div>
                                                                             <div class="p-1 col-md-4">
-                                                                                <a href="">Lihat IRS</a>
+                                                                                <a href="{{route('dept.IRS', (isset($irs[$i]) ? $irs[$i]->id : ""))}}">Lihat IRS</a>
                                                                             </div>
                                                                         </div>
                                                                         <div class="tab-pane fade"
@@ -271,7 +271,7 @@
                                                                                 SKS Kumulatif: {{ isset($khs[$i]) ? $khs[$i]->sks_kumulatif : 0 }}
                                                                             </div>
                                                                             <div class="p-1 col-md-4">
-                                                                                <a href="">Lihat KHS</a>
+                                                                                <a href="{{route('dept.KHS', (isset($khs[$i]) ? $khs[$i]->id : ""))}}">Lihat KHS</a>
                                                                             </div>
                                                                         </div>
                                                                     </div>

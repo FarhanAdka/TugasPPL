@@ -10,6 +10,7 @@ use App\Models\PKL;
 use App\Models\Skripsi;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Redirect;
 
 class DepartemenController extends Controller
 {
@@ -103,6 +104,57 @@ class DepartemenController extends Controller
         );
         return view('Departemen/detilMahasiswa', $data);
         //dd($khs);
+    }
+
+    public function IRS(string $id){
+        $irs = IRS::find($id);
+
+        // Perform a check if the authenticated user has access to this file
+        if (auth()->user()->role != 'departemen') {
+            return Redirect::back()->with('error', 'Unauthorized access');
+        }
+
+        // Get the file path
+        $filePath = storage_path('app/' . $irs->scan_irs);
+
+        // Check if the file exists
+        if (!file_exists($filePath)) {
+            return Redirect::back()->with('error', 'File not found');
+        }
+
+        // Set the appropriate headers to force download
+        $headers = [
+            'Content-Type' => 'application/octet-stream',
+        ];
+
+        // Return the file as a response with headers to force download
+        return response()->file($filePath);
+    }
+
+    public function KHS(string $id)
+    {
+        $khs = KHS::find($id);
+
+        // Perform a check if the authenticated user has access to this file
+        if (auth()->user()->role != 'departemen') {
+            return Redirect::back()->with('error', 'Unauthorized access');
+        }
+
+        // Get the file path
+        $filePath = storage_path('app/' . $khs->scan_khs);
+
+        // Check if the file exists
+        if (!file_exists($filePath)) {
+            return Redirect::back()->with('error', 'File not found');
+        }
+
+        // Set the appropriate headers to force download
+        $headers = [
+            'Content-Type' => 'application/octet-stream',
+        ];
+
+        // Return the file as a response with headers to force download
+        return response()->file($filePath);
     }
 
 }

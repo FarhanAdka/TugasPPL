@@ -80,6 +80,8 @@ Route::middleware(['auth'])->group(function (){
         Route::post('/user/operator/tambahMahasiswa',[OperatorController::class,'storemhs'])->middleware('userAkses:operator')->name('mahasiswa.store');
         Route::get('/user/operator/tambahdosenWali',[OperatorController::class,'createdosenWali'])->middleware('userAkses:operator');
         Route::post('/user/operator/tambahdosenWali', [OperatorController::class, 'storedoswal'])->middleware('userAkses:operator')->name('dosenwali.store');
+        Route::get('/user/operator/tambahDataMahasiswa',[OperatorController::class,'createDataMahasiswa'])->middleware('userAkses:operator')->name('datamhs.create');
+        Route::post('/user/operator/tambahDataMahasiswa',[OperatorController::class,'storeDataMahasiswa'])->middleware('userAkses:operator')->name('datamhs.store');
 
 
         Route::get('/user/operator/tambahOperator',[OperatorController::class,'createOperator'])->middleware('userAkses:operator');
@@ -105,6 +107,8 @@ Route::middleware(['auth'])->group(function (){
         Route::get('/user/departemen/ProgresPKL',[DepartemenController::class,'ProgresPKL']);
         Route::get('/user/departemen/ProgresSkripsi',[DepartemenController::class,'ProgresSkripsi']);
         Route::get('/user/departemen/ProgresStudi/{ProgresStudi}',[DepartemenController::class,'ProgresStudi'])->name('dept.studi');
+        Route::get('/user/departemen/KHS/{id}',[DepartemenController::class,'KHS'])->name('dept.KHS');
+        Route::get('/user/departemen/IRS/{id}',[DepartemenController::class,'IRS'])->name('dept.IRS');
     });
     Route::get('/logout',[SessionController::class, 'logout']);
 });

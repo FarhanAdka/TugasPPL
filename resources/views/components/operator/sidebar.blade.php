@@ -72,8 +72,7 @@
                                 </li>
 
                                 <li class="submenu-item  ">
-                                    <a href="extra-component-sweetalert.html" class="submenu-link">Tambah Data</a>
-
+                                    <a href="{{route('datamhs.create')}}" class="submenu-link">Tambah Data Mahasiswa</a>
                                 </li>
 
 
