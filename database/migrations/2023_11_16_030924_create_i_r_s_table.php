@@ -16,7 +16,7 @@ return new class extends Migration
             $table->bigInteger('id_mahasiswa')->unsigned();
             $table->foreign('id_mahasiswa')->references('id')->on('users')->onDelete('cascade');
             $table->integer('jumlah_sks');
-            $table->string('semester_aktif');
+            $table->integer('semester_aktif');
             $table->boolean('status')->default(false);  
             $table->string('scan_irs')->nullable();
             $table->timestamps();

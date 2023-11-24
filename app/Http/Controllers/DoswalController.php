@@ -19,7 +19,7 @@ class DoswalController extends Controller
         $mahasiswa = Mahasiswa::where('doswal', auth()->user()->id)->get();
         $irs = collect();
         foreach ($mahasiswa as $mhs) {
-            $irsMahasiswa = $mhs->irs; // Mendapatkan PKL dari setiap mahasiswa
+            $irsMahasiswa = IRS::where('id_mahasiswa', $mhs->id)->where('status', true)->get();
             $irs = $irs->merge($irsMahasiswa); // Menggabungkan PKL dari setiap mahasiswa ke dalam satu koleksi
         }
         $data = [
@@ -29,6 +29,8 @@ class DoswalController extends Controller
             'mahasiswa'=>$mahasiswa,
             'irs' => $irs
         ];
+
+        return view('DosenWali.IRSindex', $data);
     }
 
     public function indexVerifIRS()
@@ -36,7 +38,7 @@ class DoswalController extends Controller
         $mahasiswa = Mahasiswa::where('doswal', auth()->user()->id)->get();
         $irs = collect();
         foreach ($mahasiswa as $mhs) {
-            $irsMahasiswa = $mhs->irs->where('status', 'false')->get(); // Mendapatkan PKL dari setiap mahasiswa
+            $irsMahasiswa = IRS::where('id_mahasiswa', $mhs->id)->where('status', false)->get();
             $irs = $irs->merge($irsMahasiswa); // Menggabungkan PKL dari setiap mahasiswa ke dalam satu koleksi
         }
         $data = [
@@ -47,15 +49,59 @@ class DoswalController extends Controller
             'irs' => $irs
         ];
 
-        return view('Dosen.IRSVerifindex', $data);
+        return view('DosenWali.verifIRSindex', $data);
     }
+
+    public function approveIRS($id)
+    {
+        $irs = IRS::find($id);
+        if ($irs) {
+            $irs->status = true; // Mengubah status dari 'false' menjadi 'true'
+            $irs->save(); // Menyimpan perubahan pada IRS
+        }
+
+        // Redirect atau tampilkan pesan berhasil
+        return redirect()->route('Doswal.verifIRSindex')->with('success', 'IRS Berhasil Disetujui.');
+    }
+
+    public function deleteSingleIRS($id)
+    {
+        $irs = IRS::find($id);
+        if ($irs) {
+            $irs->delete();
+            return redirect()->route('Doswal.verifIRSindex')->with('success', 'IRS berhasil dihapus.');
+        } else {
+            return redirect()->route('Doswal.verifIRSindex')->with('error', 'IRS tidak ditemukan.');
+        }
+    }
+
+    public function showIRS(string $id)
+{
+    $irs = IRS::find($id);
+
+    if (!$irs) {
+        return redirect()->route('Doswal.verifIRSindex')->with('error', 'IRS tidak ditemukan.');
+    }
+
+    // Lakukan load relasi jika diperlukan
+    $irs->load('mahasiswa'); // Menggunakan contoh relasi 'mahasiswa', sesuaikan dengan relasi yang ada
+
+    $data = [
+        'active_side' => 'active',
+        'title' => 'Detail IRS',
+        'active_user' => 'active',
+        'irs' => $irs,
+    ];
+
+    return view('DosenWali.detailIRS', $data);
+}
 
     public function indexKHS()
     {
         $mahasiswa = Mahasiswa::where('doswal', auth()->user()->id)->get();
         $khs = collect();
         foreach ($mahasiswa as $mhs) {
-            $khsMahasiswa = $mhs->khs; // Mendapatkan PKL dari setiap mahasiswa
+            $khsMahasiswa = KHS::where('id_mahasiswa', $mhs->id)->where('status', true)->get();
             $khs = $khs->merge($khsMahasiswa); // Menggabungkan PKL dari setiap mahasiswa ke dalam satu koleksi
         }
         $data = [
@@ -65,7 +111,7 @@ class DoswalController extends Controller
             'mahasiswa'=>$mahasiswa,
             'khs' => $khs
         ];
-        return view('Dosen.KHSindex', $data);
+        return view('DosenWali.KHSindex', $data);
     }
 
     public function indexVerifKHS()
@@ -73,7 +119,7 @@ class DoswalController extends Controller
         $mahasiswa = Mahasiswa::where('doswal', auth()->user()->id)->get();
         $khs = collect();
         foreach ($mahasiswa as $mhs) {
-            $khsMahasiswa = $mhs->khs->where('status', 'false')->get(); // Mendapatkan PKL dari setiap mahasiswa
+            $khsMahasiswa = KHS::where('id_mahasiswa', $mhs->id)->where('status', false)->get();
             $khs = $khs->merge($khsMahasiswa); // Menggabungkan PKL dari setiap mahasiswa ke dalam satu koleksi
         }
         $data = [
@@ -84,7 +130,30 @@ class DoswalController extends Controller
             'khs' => $khs
         ];
 
-        return view('Dosen.KHSVerifindex', $data);
+        return view('DosenWali.verifKHSindex', $data);
+    }
+
+    public function approveKHS($id)
+    {
+        $khs = KHS::find($id);
+        if ($khs) {
+            $khs->status = true; // Mengubah status dari 'false' menjadi 'true'
+            $khs->save(); // Menyimpan perubahan pada KHS
+        }
+
+        // Redirect atau tampilkan pesan berhasil
+        return redirect()->route('Doswal.verifKHSindex')->with('success', 'KHS Berhasil Disetujui.');
+    }
+
+    public function deleteSingleKHS($id)
+    {
+        $khs = KHS::find($id);
+        if ($khs) {
+            $khs->delete();
+            return redirect()->route('Doswal.verifKHSindex')->with('success', 'KHS berhasil dihapus.');
+        } else {
+            return redirect()->route('Doswal.verifKHSindex')->with('error', 'KHS tidak ditemukan.');
+        }
     }
 
     public function indexPKL()
@@ -92,7 +161,7 @@ class DoswalController extends Controller
         $mahasiswa = Mahasiswa::where('doswal', auth()->user()->id)->get();
         $pkl = collect();
         foreach ($mahasiswa as $mhs) {
-            $pklMahasiswa = $mhs->pkl; // Mendapatkan PKL dari setiap mahasiswa
+            $pklMahasiswa = PKL::where('id_mahasiswa', $mhs->id)->where('status', true)->get();
             $pkl = $pkl->merge($pklMahasiswa); // Menggabungkan PKL dari setiap mahasiswa ke dalam satu koleksi
         }
         $data = [
@@ -102,7 +171,7 @@ class DoswalController extends Controller
             'mahasiswa'=>$mahasiswa,
             'pkl' => $pkl
         ];
-        return view('Dosen.PKLindex', $data);
+        return view('DosenWali.PKLindex', $data);
     }
 
     
@@ -111,7 +180,7 @@ class DoswalController extends Controller
         $mahasiswa = Mahasiswa::where('doswal', auth()->user()->id)->get();
         $pkl = collect();
         foreach ($mahasiswa as $mhs) {
-            $pklMahasiswa = $mhs->pkl->where('status', 'false')->get(); // Mendapatkan PKL dari setiap mahasiswa
+            $pklMahasiswa = PKL::where('id_mahasiswa', $mhs->id)->where('status', false)->get();
             $pkl = $pkl->merge($pklMahasiswa); // Menggabungkan PKL dari setiap mahasiswa ke dalam satu koleksi
         }
         $data = [
@@ -121,14 +190,37 @@ class DoswalController extends Controller
             'mahasiswa'=>$mahasiswa,
             'pkl' => $pkl
         ];
-        return view('Dosen.VerifPKLindex', $data);
+        return view('DosenWali.VerifPKLindex', $data);
     }
+
+    public function approvePKL($id)
+    {
+        $pkl = PKL::find($id);
+        if ($pkl) {
+            $pkl->status = true; // Mengubah status dari 'false' menjadi 'true'
+            $pkl->save(); // Menyimpan perubahan pada pkl
+        }
+        // Redirect atau tampilkan pesan berhasil
+        return redirect()->route('Doswal.indexVerifPKL')->with('success', 'PKL Berhasil Disetujui.');
+    }
+
+    public function deleteSinglePKL($id)
+    {
+        $pkl = PKL::find($id); // Temukan entitas PKL berdasarkan ID
+        if ($pkl) {
+            $pkl->delete(); // Hapus entitas PKL jika ditemukan
+            return redirect()->route('Doswal.verifPKLindex')->with('success', 'PKL berhasil dihapus.');
+        } else {
+            return redirect()->route('Doswal.verifPKLindex')->with('error', 'PKL tidak ditemukan.');
+        }
+    }
+
     public function indexSkripsi()
     {
         $mahasiswa = Mahasiswa::where('doswal', auth()->user()->id)->get();
         $skripsi = collect();
         foreach ($mahasiswa as $mhs) {
-            $skripsiMahasiswa = $mhs->skripsi; // Mendapatkan PKL dari setiap mahasiswa
+            $skripsiMahasiswa = Skripsi::where('id_mahasiswa', $mhs->id)->where('status', true)->get();
             $skripsi = $skripsi->merge($skripsiMahasiswa); // Menggabungkan PKL dari setiap mahasiswa ke dalam satu koleksi
         }
         $data = [
@@ -138,7 +230,7 @@ class DoswalController extends Controller
             'mahasiswa'=>$mahasiswa,
             'skripsi' => $skripsi
         ];
-        return view('Dosen.Skripsiindex', $data);
+        return view('DosenWali.Skripsiindex', $data);
     }
 
     public function indexVerifSkripsi()
@@ -146,7 +238,7 @@ class DoswalController extends Controller
         $mahasiswa = Mahasiswa::where('doswal', auth()->user()->id)->get();
         $skripsi = collect();
         foreach ($mahasiswa as $mhs) {
-            $skripsiMahasiswa = $mhs->skripsi->where('status', 'false')->get(); // Mendapatkan PKL dari setiap mahasiswa
+            $skripsiMahasiswa = Skripsi::where('id_mahasiswa', $mhs->id)->where('status', false)->get();
             $skripsi = $skripsi->merge($skripsiMahasiswa); // Menggabungkan PKL dari setiap mahasiswa ke dalam satu koleksi
         }
         $data = [
@@ -157,8 +249,32 @@ class DoswalController extends Controller
             'skripsi' => $skripsi
         ];
 
-        return view('Dosen.SkripsiVerifindex', $data);
+        return view('DosenWali.verifSkripsiindex', $data);
     }
+
+    public function approveSkripsi($id)
+    {
+        $skripsi = Skripsi::find($id);
+        if ($skripsi) {
+            $skripsi->status = true; // Mengubah status dari 'false' menjadi 'true'
+            $skripsi->save(); // Menyimpan perubahan pada Skripsi
+        }
+
+        // Redirect atau tampilkan pesan berhasil
+        return redirect()->route('Doswal.verifSkripsiindex')->with('success', 'Skripsi Berhasil Disetujui.');
+    }
+
+    public function deleteSingleSkripsi($id)
+    {
+        $skripsi = Skripsi::find($id);
+        if ($skripsi) {
+            $skripsi->delete();
+            return redirect()->route('Doswal.verifSkripsiindex')->with('success', 'Skripsi berhasil dihapus.');
+        } else {
+            return redirect()->route('Doswal.verifSkripsiindex')->with('error', 'Skripsi tidak ditemukan.');
+        }
+    }
+
     /**
      * Show the form for creating a new resource.
      */

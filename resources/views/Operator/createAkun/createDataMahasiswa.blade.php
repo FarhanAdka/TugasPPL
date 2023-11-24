@@ -114,37 +114,13 @@
                                         </ul>
                                     </div>
                                 @endif
-                                <form action="{{route('mahasiswa.store')}}" method="POST" >
+                                <form action="{{route('datamhs.store')}}" method="POST" enctype="multipart/form-data">
                                     @csrf
-                                    <div class="mb-3">
-                                        <label for="username" class="form-label">NIM</label>
-                                        <input type="text" value="{{ old('username') }}" name="username"
-                                            class="form-control">
-                                    </div>
-                                    <div class="mb-3">
-                                        <label for="name" class="form-label">Nama</label>
-                                        <input type="text" value="{{ old('name') }}" name="name"
-                                            class="form-control">
-                                    <div class="mb-3">
-                                        <label for="angkatan" class="form-label">Angkatan</label>
-                                        <select name="angkatan" class="form-select">
-                                            <option value="">Pilih Angkatan</option>
-                                            @for ($year = 2033; $year >= 2013; $year--)
-                                                <option value="{{ $year }}" {{ old('angkatan') == $year ? 'selected' : '' }}>{{ $year }}</option>
-                                            @endfor
-                                        </select>
-                                        {{-- <label for="angkatan" class="form-label">Angkatan</label>
-                                        <input type="text" value="{{ old('angkatan') }}" name="angkatan"
-                                            class="form-control"> --}}
-                                    </div>
-                                    <div class="mb-3">
-                                        <label for="doswal" class="form-label">Dosen Wali</label>
-                                        <select name="doswal" class="form-select">
-                                            <option value="">Pilih Dosen Wali</option>
-                                            @foreach ($doswal as $item)
-                                                <option value="{{ $item->id }}">{{ $item->name }}</option>
-                                            @endforeach
-                                        </select>
+                                    <div class="col-12">
+                                        <div class="form-group">
+                                          <label for="generateAkunMahasiswa">Upload File Mahasiswa Baru</label>
+                                          <input type="file" id="csvmhs" name="csvmhs" class="basic-filepond" multiple> 
+                                        </div>
                                     </div>
                                     <div class="mb-3 d-grid">
                                         <button name="submit" type="submit" class="btn btn-primary">Buat

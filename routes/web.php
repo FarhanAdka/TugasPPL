@@ -9,6 +9,7 @@ use App\Http\Controllers\SkripsiController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\SessionController;
 use App\Http\Controllers\DepartemenController;
+use App\Http\Controllers\DoswalController;
 use App\Models\Mahasiswa;
 use Illuminate\Support\Facades\Route;
 
@@ -79,6 +80,8 @@ Route::middleware(['auth'])->group(function (){
         Route::post('/user/operator/tambahMahasiswa',[OperatorController::class,'storemhs'])->middleware('userAkses:operator')->name('mahasiswa.store');
         Route::get('/user/operator/tambahdosenWali',[OperatorController::class,'createdosenWali'])->middleware('userAkses:operator');
         Route::post('/user/operator/tambahdosenWali', [OperatorController::class, 'storedoswal'])->middleware('userAkses:operator')->name('dosenwali.store');
+        Route::get('/user/operator/tambahDataMahasiswa',[OperatorController::class,'createDataMahasiswa'])->middleware('userAkses:operator')->name('datamhs.create');
+        Route::post('/user/operator/tambahDataMahasiswa',[OperatorController::class,'storeDataMahasiswa'])->middleware('userAkses:operator')->name('datamhs.store');
 
 
         Route::get('/user/operator/tambahOperator',[OperatorController::class,'createOperator'])->middleware('userAkses:operator');
@@ -93,9 +96,21 @@ Route::middleware(['auth'])->group(function (){
         Route::put('/user/operator/kelolaMahasiswa/edit/{id}',[OperatorController::class,'updateMahasiswa'])->name('updateMahasiswa')->middleware('userAkses:operator');
         Route::get('/user/operator/kelolaMahasiswa/edit/{id}',[OperatorController::class,'editMahasiswa'])->middleware('userAkses:operator');
     //Dosen Wali
-   
-    Route::get('/user/dosenWali',[UserController::class,'dosenWali'])->middleware('userAkses:dosen_wali');
-
+    Route::middleware(['userAkses:dosen_wali'])->group(function (){
+        Route::get('/user/dosenWali',[UserController::class,'dosenWali'])->middleware('userAkses:dosen_wali');
+        Route::get('/user/dosenWali/verifikasiIRS', [DoswalController::class, 'indexVerifIRS'])->name('Doswal.indexVerifIRS');
+        Route::post('/user/dosenWali/approveIRS/{id}', [DoswalController::class ,'approveIRS'])->name('Doswal.approveIRS');
+        Route::delete('/user/dosenWali/deleteIRS/{id}', [DoswalController::class ,'deleteSingleIRS'])->name('Doswal.deleteSingleIRS');
+        Route::get('/user/dosenWali/verifikasiKHS', [DoswalController::class, 'indexVerifKHS'])->name('Doswal.indexVerifKHS');
+        Route::post('/user/dosenWali/approveKHS/{id}', [DoswalController::class ,'approveKHS'])->name('Doswal.approveKHS');
+        Route::delete('/user/dosenWali/deleteKHS/{id}', [DoswalController::class ,'deleteSingleKHS'])->name('Doswal.deleteSingleKHS');
+        Route::get('/user/dosenWali/verifikasiPKL', [DoswalController::class, 'indexVerifPKL'])->name('Doswal.indexVerifPKL');
+        Route::post('/user/dosenWali/approvePKL/{id}', [DoswalController::class ,'approvePKL'])->name('Doswal.approvePKL');
+        Route::delete('/user/dosenWali/deletePKL/{id}', [DoswalController::class ,'deleteSinglePKL'])->name('Doswal.deleteSinglePKL');
+        Route::get('/user/dosenWali/verifikasiSkripsi', [DoswalController::class, 'indexVerifSkripsi'])->name('Doswal.indexVerifSkripsi');
+        Route::post('/user/dosenWali/approveSkripsi/{id}', [DoswalController::class ,'approveSkripsi'])->name('Doswal.approveSkripsi');
+        Route::delete('/user/dosenWali/deleteSkripsi/{id}', [DoswalController::class ,'deleteSingleSkripsi'])->name('Doswal.deleteSingleSkripsi');
+    });
     //Departemen
     Route::middleware(['userAkses:departemen'])->group(function (){
         Route::get('/user/departemen',[UserController::class,'departemen'])->middleware('userAkses:departemen');
@@ -104,6 +119,8 @@ Route::middleware(['auth'])->group(function (){
         Route::get('/user/departemen/ProgresPKL',[DepartemenController::class,'ProgresPKL']);
         Route::get('/user/departemen/ProgresSkripsi',[DepartemenController::class,'ProgresSkripsi']);
         Route::get('/user/departemen/ProgresStudi/{ProgresStudi}',[DepartemenController::class,'ProgresStudi'])->name('dept.studi');
+        Route::get('/user/departemen/KHS/{id}',[DepartemenController::class,'KHS'])->name('dept.KHS');
+        Route::get('/user/departemen/IRS/{id}',[DepartemenController::class,'IRS'])->name('dept.IRS');
     });
     Route::get('/logout',[SessionController::class, 'logout']);
 });

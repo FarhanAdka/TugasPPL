@@ -179,7 +179,7 @@
                                             <tr>
                                                 <th>Nama</th>
                                                 <th>ID</th>
-                                                <th>Wali</th>
+                                                <th>Dosen Wali</th>
                                                 <th>Angkatan</th>
                                                 <th>Aksi</th>
                                             </tr>
@@ -190,8 +190,8 @@
                                                 <tr>
                                                     <td>{{ $mhs->name }}</td>
                                                     <td>{{ $mhs->id }}</td>
-                                                    <td>{{ $mhs->angkatan }}</td>
                                                     <td>{{ $mhs->doswal }}</td>
+                                                    <td>{{ $mhs->mahasiswa->angkatan }}</td>
                                                     <td>
                                                         <form
                                                             action="/user/departemen/DataMahasiswa{{ $mhs->id }}"

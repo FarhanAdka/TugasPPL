@@ -51,6 +51,7 @@ class KHSController extends Controller
         $khs->ip = $request->ip;
         $khs->ipk = $request->ipk;
         $khs->semester_aktif = $request->semester_aktif;
+        $khs->sks_kumulatif = $request->sksk;
         //dd($request->hasFile('scan_khs'));
         if ($request->hasFile('scan_khs')) {
             $file = $request->file('scan_khs');

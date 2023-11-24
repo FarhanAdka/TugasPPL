@@ -85,7 +85,7 @@
 
             <li
                 class="sidebar-item @if(isset($active_side)) {{ $active_side }} @endif">
-                <a href="/user/dosenWali/verifikasiIRS" class='sidebar-link'>
+                <a href="/user/mahasiswa/IRS" class='sidebar-link'>
                     <i class="bi bi-grid-fill"></i>
                     <span>Data Mahasiswa</span>
                 </a>
@@ -202,16 +202,43 @@
               </div>
     
               <section class="section">
-              <div class="card">
-                <div class="card-header">
-                  <h4 class="card-title">Default </h4>
+                <div class="card">
+                    <div class="card-header">
+                        <h4 class="card-title">Permintaan Verifikasi PKL</h4>
+                    </div>
+                    <div class="card-body">
+                        <table class="table table-bordered table-striped">
+                            <thead>
+                                <tr>
+                                    <th>NIM</th>
+                                    <th>Nilai</th>
+                                    <th>Scan PKL</th>
+                                    <th>Status</th>
+                                    <th width="280px">Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach ($pkl as $pk)
+                                <tr>
+                                    <td>{{ $pk->id_mahasiswa }}</td>
+                                    <td>{{ $pk->nilai }}</td>
+                                    <td><a href="{{route('pkl.download', ['id'=> $pk->id])}}">Lihat</a></td>
+                                    <td>{{ $pk->status ? "Sudah disetujui" : "Belum disetujui" }}</td>
+                                    <td>
+                                        <form action="{{ route('Doswal.deleteSinglePKL',$pk->id) }}" method="POST">
+                                
+                                            <a class="btn btn-primary" href="{{ route('Doswal.approvePKL',$pk->id) }}">Approve</a>
+                                            @csrf
+                                            @method('DELETE')
+                                            <button type="submit" class="btn btn-danger">Delete</button>
+                                        </form>    
+                                    </td>
+                                </tr>
+                                @endforeach
+                            </tbody>    
+                        </table>
+                    </div>
                 </div>
-                <div class="card-body">
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Magnam, commodi? Ullam quaerat similique iusto
-                    temporibus, vero aliquam praesentium, odit deserunt eaque nihil saepe hic deleniti? Placeat delectus
-                    quibusdam ratione ullam!
-                </div>
-              </div>
               </section>
 
             </div>

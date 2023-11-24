@@ -85,7 +85,7 @@
 
             <li
                 class="sidebar-item @if(isset($active_side)) {{ $active_side }} @endif">
-                <a href="/user/dosenWali/verifikasiIRS" class='sidebar-link'>
+                <a href="/user/mahasiswa/IRS" class='sidebar-link'>
                     <i class="bi bi-grid-fill"></i>
                     <span>Data Mahasiswa</span>
                 </a>
@@ -207,9 +207,40 @@
                   <h4 class="card-title">Default </h4>
                 </div>
                 <div class="card-body">
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Magnam, commodi? Ullam quaerat similique iusto
-                    temporibus, vero aliquam praesentium, odit deserunt eaque nihil saepe hic deleniti? Placeat delectus
-                    quibusdam ratione ullam!
+                    @if ($skripsi->count() > 0)
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Nama</th>
+                                <!-- Sesuaikan dengan kolom-kolom yang ada pada model PKL -->
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach ($skripsi as $item)
+                                <tr>
+                                    <td>{{ $item->id }}</td>
+                                    <td>{{ $item->nama }}</td>
+                                    <!-- Sesuaikan dengan kolom-kolom yang ada pada model PKL -->
+                                    <td>
+                                        <form action="{{ route('Doswal.approveSkripsi', ['id' => $item->id]) }}" method="post">
+                                            @csrf
+                                            <button type="submit" class="btn btn-primary">Approve</button>
+                                        </form>
+                                        <form action="{{ route('Doswal.deleteSingleSkripsi', ['id' => $item->id]) }}" method="post">
+                                            @csrf
+                                            @method('DELETE')
+                                            <button type="submit" class="btn btn-danger">Delete</button>
+                                        </form>
+                                    </td>
+                                </tr>
+                            @endforeach
+                        </tbody>
+                    </table>
+                @else
+                    <p>Tidak ada data Skripsi yang perlu diverifikasi.</p>
+                @endif
                 </div>
               </div>
               </section>
