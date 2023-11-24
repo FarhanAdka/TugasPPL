@@ -75,6 +75,27 @@ class DoswalController extends Controller
         }
     }
 
+    public function showIRS(string $id)
+{
+    $irs = IRS::find($id);
+
+    if (!$irs) {
+        return redirect()->route('Doswal.verifIRSindex')->with('error', 'IRS tidak ditemukan.');
+    }
+
+    // Lakukan load relasi jika diperlukan
+    $irs->load('mahasiswa'); // Menggunakan contoh relasi 'mahasiswa', sesuaikan dengan relasi yang ada
+
+    $data = [
+        'active_side' => 'active',
+        'title' => 'Detail IRS',
+        'active_user' => 'active',
+        'irs' => $irs,
+    ];
+
+    return view('DosenWali.detailIRS', $data);
+}
+
     public function indexKHS()
     {
         $mahasiswa = Mahasiswa::where('doswal', auth()->user()->id)->get();

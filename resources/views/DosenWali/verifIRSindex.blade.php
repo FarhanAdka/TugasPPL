@@ -85,7 +85,7 @@
 
             <li
                 class="sidebar-item @if(isset($active_side)) {{ $active_side }} @endif">
-                <a href="/user/dosenWali/verifikasiIRS" class='sidebar-link'>
+                <a href="/user/mahasiswa/IRS" class='sidebar-link'>
                     <i class="bi bi-grid-fill"></i>
                     <span>Data Mahasiswa</span>
                 </a>
@@ -202,16 +202,45 @@
               </div>
     
               <section class="section">
-              <div class="card">
-                <div class="card-header">
-                  <h4 class="card-title">Default </h4>
+                <div class="card">
+                    <div class="card-header">
+                        <h4 class="card-title">Permintaan Verifikasi IRS</h4>
+                    </div>
+                    <div class="card-body">
+                        <table class="table table-bordered table-striped">
+                            <thead>
+                                <tr>
+                                    <th>NIM</th>
+                                    <th>Semester</th>
+                                    <th>Jumlah SKS</th>
+                                    <th>Scan IRS</th>
+                                    <th>Status</th>
+                                    <th width="280px">Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach ($irs as $ir)
+                                <tr>
+                                    <td>{{ $ir->id_mahasiswa}}</td>
+                                    <td>{{ $ir->semester_aktif }}</td>
+                                    <td>{{ $ir->jumlah_sks }}</td>
+                                    <td><a href="{{route('irs.download', ['id'=> $ir->id])}}">Lihat</a></td>
+                                    <td>{{ $ir->status ? "Sudah disetujui" : "Belum disetujui" }}</td>
+                                    <td>
+                                        <form action="{{ route('Doswal.deleteSingleIRS',$ir->id) }}" method="POST">
+                                
+                                            <a class="btn btn-primary" href="{{ route('Doswal.approveIRS',$ir->id) }}">Approve</a>
+                                            @csrf
+                                            @method('DELETE')
+                                            <button type="submit" class="btn btn-danger">Delete</button>
+                                        </form>    
+                                    </td>
+                                </tr>
+                                @endforeach
+                            </tbody>    
+                        </table>
+                    </div>
                 </div>
-                <div class="card-body">
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Magnam, commodi? Ullam quaerat similique iusto
-                    temporibus, vero aliquam praesentium, odit deserunt eaque nihil saepe hic deleniti? Placeat delectus
-                    quibusdam ratione ullam!
-                </div>
-              </div>
               </section>
 
             </div>
