@@ -66,8 +66,7 @@
                                     </li>
 
                                     <li>
-                                        <a class="dropdown-item" href="#"><i
-                                                class="icon-mid bi bi-gear me-2"></i>
+                                        <a class="dropdown-item" href="#"><i class="icon-mid bi bi-gear me-2"></i>
                                             Settings</a>
                                     </li>
 
@@ -120,24 +119,24 @@
                                     </thead>
                                     <tbody>
                                         @foreach ($doswal as $dos)
-                                        <tr>
-                                            <td>{{ $dos->id }}</td>
-                                            <td>{{ $dos->name }}</td>
-                                            <td>{{ $dos->username }}</td>
-                                            <td>
-                                                <form action="/user/operator/kelolaDosenWali/{{ $dos->id }}"
-                                                    method="POST">
-                                                    <a class="btn btn-primary"
-                                                        href="/user/operator/kelolaDosenWali/{{ $dos->id }}/edit">Edit</a>
-                                                    @csrf
-                                                    @method('DELETE')
-                                                    <button type="submit" class="btn btn-danger">Delete</button>
-                                                </form>
-                                            </td>
-                                        </tr>
-                                            @endforeach
-                                        </tbody>
-                                        {{ $doswal->links() }}
+                                            <tr>
+                                                <td>{{ $dos->id }}</td>
+                                                <td>{{ $dos->name }}</td>
+                                                <td>{{ $dos->username }}</td>
+                                                <td>
+                                                    <form action="/user/operator/kelolaDosenWali/{{ $dos->id }}" method="POST">
+                                                        
+                                                        <a class="btn btn-primary"
+                                                            href="/user/operator/keloladosenWali/edit/{{ $dos->id }}">Edit</a>
+                                                        @csrf 
+                                                        @method('DELETE')
+                                                        <button type="submit" class="btn btn-danger">Delete</button>
+                                                    </form>
+                                                </td>
+                                            </tr>
+                                        @endforeach
+                                    </tbody>
+                                    {{ $doswal->links() }}
                                 </table>
                             </div>
                         </div>

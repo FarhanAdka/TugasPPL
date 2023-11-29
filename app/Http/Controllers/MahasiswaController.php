@@ -20,6 +20,7 @@ class MahasiswaController extends Controller
             'mahasiswa' => $mahasiswa,
             'userMhs' => $userMhs,
             'nama_doswal' => $doswal->name,
+            'UserName' => $userMhs->name,
             
         );
         //dd($doswal);
@@ -47,6 +48,7 @@ class MahasiswaController extends Controller
             'active_side' => 'active', 
             'active_user' => 'active',
             'title' => 'Isi IRS',
+            
         );
         return view('Mahasiswa/IsiIRS', $data);
     }

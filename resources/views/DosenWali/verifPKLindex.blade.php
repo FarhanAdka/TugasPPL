@@ -103,7 +103,7 @@
 
             <li
                 class="sidebar-item @if(isset($active_side)) {{ $active_side }} @endif">
-                <a href="#" class='sidebar-link'>
+                <a href="/user/dosenWali/verifikasiSkripsi" class='sidebar-link'>
                     <i class="bi bi-grid-fill"></i>
                     <span>Progres Skripsi</span>
                 </a>
@@ -202,47 +202,43 @@
               </div>
     
               <section class="section">
-              <div class="card">
-                <div class="card-header">
-                  <h4 class="card-title">Default </h4>
-                </div>
-                <div class="card-body">
-                    @if ($pkl->count() > 0)
-                    <table class="table table-striped">
-                        <thead>
-                            <tr>
-                                <th>ID</th>
-                                <th>Nama</th>
-                                <!-- Sesuaikan dengan kolom-kolom yang ada pada model PKL -->
-                                <th>Action</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            @foreach ($pkl as $item)
+                <div class="card">
+                    <div class="card-header">
+                        <h4 class="card-title">Permintaan Verifikasi PKL</h4>
+                    </div>
+                    <div class="card-body">
+                        <table class="table table-bordered table-striped">
+                            <thead>
                                 <tr>
-                                    <td>{{ $item->id }}</td>
-                                    <td>{{ $item->nama }}</td>
-                                    <!-- Sesuaikan dengan kolom-kolom yang ada pada model PKL -->
+                                    <th>NIM</th>
+                                    <th>Nilai</th>
+                                    <th>Scan PKL</th>
+                                    <th>Status</th>
+                                    <th width="280px">Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach ($pkl as $pk)
+                                <tr>
+                                    <td>{{ $pk->id_mahasiswa }}</td>
+                                    <td>{{ $pk->nilai }}</td>
+                                    <td><a href="{{route('pkl.download', ['id'=> $pk->id])}}">Lihat</a></td>
+                                    <td>{{ $pk->status ? "Sudah disetujui" : "Belum disetujui" }}</td>
                                     <td>
-                                        <form action="{{ route('approvePKL', ['id' => $item->id]) }}" method="post">
-                                            @csrf
-                                            <button type="submit" class="btn btn-primary">Approve</button>
-                                        </form>
-                                        <form action="{{ route('deleteSinglePKL', ['id' => $item->id]) }}" method="post">
+                                        <form action="{{ route('Doswal.deleteSinglePKL',$pk->id) }}" method="POST">
+                                
+                                            <a class="btn btn-primary" href="{{ route('Doswal.approvePKL',$pk->id) }}">Approve</a>
                                             @csrf
                                             @method('DELETE')
                                             <button type="submit" class="btn btn-danger">Delete</button>
-                                        </form>
+                                        </form>    
                                     </td>
                                 </tr>
-                            @endforeach
-                        </tbody>
-                    </table>
-                @else
-                    <p>Tidak ada data PKL yang perlu diverifikasi.</p>
-                @endif
+                                @endforeach
+                            </tbody>    
+                        </table>
+                    </div>
                 </div>
-              </div>
               </section>
 
             </div>

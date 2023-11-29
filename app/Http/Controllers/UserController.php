@@ -42,7 +42,7 @@ class UserController extends Controller
             'active_home' => 'active',
             'Role' => 'Departemen',
             'UserName' => '\\\UserName///',
-            'Title' => 'Dashboar Departemen',
+            'Title' => 'Dashboard',
         );
         return view('Departemen/homeDepartemen', $data);
     }

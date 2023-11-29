@@ -113,8 +113,11 @@
                                         </ul>
                                     </div>
                                 @endif
-                                <form action="{{ route('dosenwali.store') }}" method="POST">
+
+
+                                <form action="{{ route('updatedosenWali', $doswal->id) }}" method="POST">
                                     @csrf
+                                    @method('PUT') <!-- Menambahkan metode PUT untuk update -->
                                     <div class="mb-3">
                                         <label for="username" class="form-label">NIM</label>
                                         <input type="text" value="{{ old('username') }}" name="username"
@@ -122,18 +125,22 @@
                                     </div>
                                     <div class="mb-3">
                                         <label for="name" class="form-label">Nama</label>
-                                        <input type="text" value="{{ old('name') }}" name="name"
+                                        <input type="text" value="{{ $doswal->name }}" name="name"
                                             class="form-control">
                                     </div>
                                     <div class="mb-3">
-                                        <label for="password" class="form-label">Password</label>
+                                        <label for="password" class="form-label">Password (Biarkan kosong jika tidak
+                                            ingin mengubah)</label>
                                         <input type="password" name="password" class="form-control">
                                     </div>
                                     <div class="mb-3 d-grid">
-                                        <button name="submit" type="submit" class="btn btn-primary">Buat
+                                        <button name="submit" type="submit" class="btn btn-primary">Update
                                             Akun</button>
                                     </div>
                                 </form>
+
+
+
                             </div>
                         </div>
                     </section>
