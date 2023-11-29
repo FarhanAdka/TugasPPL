@@ -180,7 +180,8 @@ class OperatorController extends Controller
 =======
     function storemhs(Request $request)
     {
->>>>>>> 5e461cf2ccf2e57aab538ce43c969ec2bc2a06e4
+>>>>>>> 5e461cf2ccf2e57aab538ce43c969ec2bc2a06e
+
         $data = $request->all();
         $data['role'] = 'mahasiswa';
         $data['password'] = bcrypt('123456');
