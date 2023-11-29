@@ -87,6 +87,8 @@ Route::middleware(['auth'])->group(function (){
         Route::get('/user/operator/tambahOperator',[OperatorController::class,'createOperator'])->middleware('userAkses:operator');
         //Kelola akun
         Route::get('/user/operator/kelolaMahasiswa',[OperatorController::class,'kelolaMahasiswa'])->middleware('userAkses:operator');
+        Route::get('/user/operator/kelolamahasiswa/{id}/edit',[OperatorController::class,'editMahasiswa'])->middleware('userAkses:operator')->name('mahasiswa.edit');
+        Route::put('/user/operator/kelolamahasiswa/{id}',[OperatorController::class,'updateMahasiswa'])->middleware('userAkses:operator')->name('kelolamahasiswa.store');
         Route::get('/user/operator/keloladosenWali',[OperatorController::class,'keloladosenWali'])->middleware('userAkses:operator');
 
     //Dosen Wali

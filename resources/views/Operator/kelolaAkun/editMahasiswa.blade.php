@@ -113,7 +113,7 @@
                                         </ul>
                                     </div>
                                 @endif
-                                <form action="{{ route('dosenwali.store') }}" method="POST">
+                                <form action="{{ route('kelolamahasiswa.store') }}" method="POST">
                                     @csrf
                                     <div class="mb-3">
                                         <label for="username" class="form-label">NIM</label>
@@ -130,7 +130,7 @@
                                         <input type="password" name="password" class="form-control">
                                     </div>
                                     <div class="mb-3 d-grid">
-                                        <button name="submit" type="submit" class="btn btn-primary">Buat
+                                        <button name="submit" type="submit" class="btn btn-primary">Edit
                                             Akun</button>
                                     </div>
                                 </form>

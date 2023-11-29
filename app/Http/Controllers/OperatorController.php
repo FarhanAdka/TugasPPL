@@ -126,6 +126,22 @@ class OperatorController extends Controller
         return redirect('/user/operator/keloladosenWali');
     }
 
+    function editMahasiswa(string $id){
+        //dd($id);
+        $user = User::where('id', $id)->first();
+        //dd($user);
+        $data = array(
+            'active_home' => 'active',
+            'title' => 'Edit Akun Mahasiswa',
+            'user' => $user,
+        );
+        return view('operator/kelolaAkun/editMahasiswa', $data); 
+    }
+
+    function updateMahasiswa(string $id){
+        $user = User::where('id', $id)->first();
+        dd($user);
+    }
     function createDataMahasiswa()
     {
         $data = array(
@@ -139,39 +155,82 @@ class OperatorController extends Controller
     {
         if ($request->hasFile('csvmhs')) {
             $file = $request->file('csvmhs');
-
             // Storing the file
             $filePath = $file->store('csv_files');
-
+            
             // Getting the absolute path to the stored file
             $absolutePath = storage_path('app/' . $filePath);
-
+            
             // Opening the file for reading
             $csvFile = fopen($absolutePath, 'r');
-
+            
             // Reading the headers
             $headers = fgetcsv($csvFile);
 
             // Initialize an array to hold CSV data
             $csvData = [];
-
+            
             // Reading the file line by line
             while (($row = fgetcsv($csvFile)) !== false) {
                 // Combine headers with row values and create associative array
-                $rowData = array_combine($headers, $row);
+                //dd(count($headers) == count($row)); -> it printed out true but the array_combine still won't work
+                $cleanHeaders = array_map('trim', $headers);
+                $cleanRow = array_map('trim', $row);
+                //dd($cleanHeaders);
 
+                $rowData = array_combine($cleanHeaders, $cleanRow);
+                
                 // Append the row data to the CSV data array
                 $csvData[] = $rowData;
-
+                
                 // Process each row here if needed
                 // For example, create Mahasiswa models using $rowData
             }
             // Close the file handler
             fclose($csvFile);
+            //dd($csvData);
             
             // Now $csvData contains an array of associative arrays representing CSV rows
-            for ($i=0; $i < count($csvData)+1; $i++) { 
-                //dd($csvData[$i]);
+            for ($i=0; $i < count($csvData); $i++) { 
+                //dd($csvData[$i]['dosen_wali']);
+                $doswal = User::where('name', $csvData[$i]['dosen_wali'])->first()->id;
+                //dd($doswal);
+                User::create([
+                    'name' => $csvData[$i]['name'],
+                    'username' => $csvData[$i]['username'],
+                    'password' => bcrypt('123456'),
+                    'role' => 'mahasiswa',
+                ]);
+                $user_id = User::where('username', $csvData[$i]['username'])->first()->id;
+                Mahasiswa::create(
+                    [
+                        'user_id' => $user_id,
+                        'angkatan' => $csvData[$i]['angkatan'],
+                        'doswal' => $doswal,
+                        'jalur_masuk' => null,
+                        'email' => null,
+                        'no_hp' => null,
+                        'provinsi' => null,
+                        'kab_kota' => null,
+                        'alamat' => null,
+                    ]
+                    );
+                PKL::create([
+                    'id_mahasiswa' => $user_id,
+                    'nilai' => null,
+                    'tanggal_lulus' => null,
+                    'status' => false,
+                    'scan_pkl' => null,
+
+                ]);
+                Skripsi::create([
+                    'id_mahasiswa' => $user_id,
+                    'nilai' => null,
+                    'tanggal_lulus' => null,
+                    'lama_studi' => null,
+                    'status' => false,
+                    'scan_skripsi' => null,
+                ]);
             }
             // Redirect with success message
             return redirect('/user/operator/kelolaMahasiswa')->with('success', 'Data Mahasiswa imported successfully!');

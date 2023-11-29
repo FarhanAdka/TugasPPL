@@ -110,9 +110,10 @@
                               <select id="semester_aktif" class="form-control" name="semester_aktif">
                                 <option value="" disabled selected hidden>Pilih Semester</option>
                                 <?php
-                                for ($i = 1; $i <= 14; $i++) {
-                                    echo "<option value='$i'>$i</option>";
-                                  }
+                                foreach ($avail_semester as $key => $value) {
+                                  echo "<option value='$value'>$value</option>";
+                                } 
+                                  
                                 ?>
                               </select>
                             </div>

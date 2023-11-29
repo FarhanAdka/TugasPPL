@@ -30,9 +30,12 @@ class KHSController extends Controller
      */
     public function create()
     {
-        $avail_semester = KHS::where('id_mahasiswa', auth()->user()->id)->pluck('semester_aktif')->toArray();
-        $data = array (
-            'active_side' => 'active', 
+        $semester = KHS::where('id_mahasiswa', auth()->user()->id)->pluck('semester_aktif')->toArray();
+        sort($semester);
+        //dd($semester);
+        $avail_semester = array_diff_assoc([1, 2, 3, 4, 5, 6, 7, 8], $semester);
+        $data = array(
+            'active_side' => 'active',
             'active_user' => 'active',
             'title' => 'Isi KHS',
             'avail_semester' => $avail_semester,
@@ -66,8 +69,7 @@ class KHSController extends Controller
      * Display the specified resource.
      */
     public function show(string $id)
-    {
-        {
+    { {
             $data = [
                 'active_side' => 'active',
                 'title' => 'Data KHS',
@@ -115,13 +117,13 @@ class KHSController extends Controller
     {
         $khs = khs::find($id); // Ganti Mahasiswa dengan model yang Anda gunakan
 
-    if (!$khs) {
-        return redirect()->back()->with('error', 'Data not found.');
-    }
+        if (!$khs) {
+            return redirect()->back()->with('error', 'Data not found.');
+        }
 
-    $khs->delete();
+        $khs->delete();
 
-    return redirect()->route('KHS.index')->with('success', 'Data deleted successfully.'); // Ganti 'route_name' dengan nama rute yang ingin Anda tuju setelah penghapusan data.
+        return redirect()->route('KHS.index')->with('success', 'Data deleted successfully.'); // Ganti 'route_name' dengan nama rute yang ingin Anda tuju setelah penghapusan data.
     }
 
     public function download(string $id)

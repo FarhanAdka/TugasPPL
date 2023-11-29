@@ -31,7 +31,10 @@ class IRSController extends Controller
     public function create()
     {
         $semester = IRS::where('id_mahasiswa', auth()->user()->id)->pluck('semester_aktif')->toArray();
-        $avail_semester = array_diff_assoc(['1', '2', '3', '4', '5', '6', '7', '8'], $semester);
+        sort($semester);
+        //dd($semester);
+        $avail_semester = array_diff_assoc([1, 2, 3, 4, 5, 6, 7, 8], $semester);
+        //dd($avail_semester);
         $data = array (
             'active_side' => 'active', 
             'active_user' => 'active',
