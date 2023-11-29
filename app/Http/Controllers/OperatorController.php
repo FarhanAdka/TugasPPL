@@ -8,11 +8,11 @@ use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\Mahasiswa;
 use App\Models\DosenWali;
-<<<<<<< HEAD
+
 use League\Uri\UriTemplate\Operator;
-=======
+
 use Illuminate\Support\Facades\Storage;
->>>>>>> 5e461cf2ccf2e57aab538ce43c969ec2bc2a06e4
+
 
 class OperatorController extends Controller
 {
@@ -65,20 +65,7 @@ class OperatorController extends Controller
         );
         return view('operator/kelolaAkun/kelolaMahasiswa', $data);
     }
-<<<<<<< HEAD
 
-    function editMahasiswa($id){
-        // Menggunakan findOrFail untuk menemukan data mahasiswa berdasarkan ID
-        $Mahasiswa = User::findOrFail($id);
-    
-        $data = array (
-            'active_home' => 'active',
-            'title' => 'Edit Akun Mahasiswa',
-            'Mahasiswa' => $Mahasiswa,
-        );
-    
-        return view('operator/kelolaAkun/editMahasiswa', $data);
-    }
     
     function updateMahasiswa(Request $request, $id){
         // Validasi input
@@ -118,11 +105,10 @@ class OperatorController extends Controller
 
 
 
-    function keloladosenWali(){
-=======
+
+
     function keloladosenWali()
     {
->>>>>>> 5e461cf2ccf2e57aab538ce43c969ec2bc2a06e4
         $doswal = User::where('role', 'dosen_wali')->paginate(10);
         $data = array(
             'active_home' => 'active',
@@ -132,7 +118,6 @@ class OperatorController extends Controller
         return view('operator/kelolaAkun/keloladosenWali', $data);
     }
 
-<<<<<<< HEAD
     function editdosenWali($id){
         // Menggunakan findOrFail untuk menemukan data dosen wali berdasarkan ID
         $doswal = User::findOrFail($id);
@@ -176,11 +161,9 @@ class OperatorController extends Controller
 
 
 
-    function storemhs(Request $request){
-=======
+
     function storemhs(Request $request)
     {
->>>>>>> 5e461cf2ccf2e57aab538ce43c969ec2bc2a06e
 
         $data = $request->all();
         $data['role'] = 'mahasiswa';
@@ -244,11 +227,6 @@ class OperatorController extends Controller
             'user' => $user,
         );
         return view('operator/kelolaAkun/editMahasiswa', $data); 
-    }
-
-    function updateMahasiswa(string $id){
-        $user = User::where('id', $id)->first();
-        dd($user);
     }
     function createDataMahasiswa()
     {
@@ -347,7 +325,4 @@ class OperatorController extends Controller
         // If no file is uploaded or an error occurred
         return redirect()->back()->with('error', 'Failed to import data.');
     }
-
-
->>>>>>> 5e461cf2ccf2e57aab538ce43c969ec2bc2a06e4
 }
