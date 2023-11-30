@@ -57,11 +57,20 @@ class DepartemenController extends Controller
 
     public function ProgresPKL()
     {
+        $pkl = PKL::where('status', true)->get();
+        foreach ($pkl as $p) {
+            $p->mahasiswa = Mahasiswa::where('id', $p->id_mahasiswa)->get()->first();
+            $p->mahasiswa->nim = User::where('id', $p->mahasiswa->user_id)->get()->first()->username;
+            $p->mahasiswa->doswal = User::where('id', $p->mahasiswa->doswal)->get()->first()->name;
+            $p->mahasiswa->nama = User::where('id', $p->mahasiswa->user_id)->get()->first()->name;
+        }
+        //dd($pkl);
         $data = array (
             'active_home' => 'active',
             'Role' => 'Departemen',
             'UserName' => '\\\UserName///',
             'Title' => 'Progres PKL',
+            'pkl' => $pkl,
         );
          return view('Departemen/ProgresPKL', $data);
     }
@@ -72,7 +81,7 @@ class DepartemenController extends Controller
             'active_home' => 'active',
             'Role' => 'Departemen',
             'UserName' => '\\\UserName///',
-            'Title' => 'Pregres Skripsi',
+            'Title' => 'Progres Skripsi',
         );
          return view('Departemen/ProgresSkripsi', $data);
     }

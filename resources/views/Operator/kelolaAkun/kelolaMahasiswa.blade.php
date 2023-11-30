@@ -113,7 +113,7 @@
                                         <tr>
                                             <th>ID</th>
                                             <th>Nama</th>
-                                            <th>Username</th>
+                                            <th>NIM</th>
                                             <th width="280px">Action</th>
                                         </tr>
                                     </thead>
@@ -129,11 +129,9 @@
                                                         <a class="btn btn-primary"
                                                             href="/user/operator/kelolaMahasiswa/edit/{{ $mhs->id  }}">Edit</a>
                                                         @csrf 
-                                        @endforeach
-
-                                                        @foreach($destroyMhs as $hps )
+                        
                                                         @method('DELETE')
-                                                        <button type="submit" class="btn btn-danger" action="{{$destroyMhs->$hps }}">Delete</button>
+                                                        <button type="submit" class="btn btn-danger" action="">Delete</button>
                                                         @endforeach
                                                     </form>
                                                 </td>
