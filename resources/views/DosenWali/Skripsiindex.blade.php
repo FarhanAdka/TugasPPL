@@ -121,7 +121,7 @@
                             <tbody>
                                 @foreach ($skripsi as $skrip)
                                 <tr>
-                                    <td>{{ $skrip->id_mahasiswa}}</td>
+                                    <td>{{ $skrip->mahasiswa->nim}}</td>
                                     <td>{{ $skrip->tanggal_lulus }}</td>
                                     
                                     <td>{{ $skrip->nilai }}</td>

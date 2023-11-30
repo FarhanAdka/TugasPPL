@@ -37,6 +37,10 @@ class IRSController extends Controller
         //     $irs = $irs->merge($irsMahasiswa); // Menggabungkan PKL dari setiap mahasiswa ke dalam satu koleksi
         // }
         $irs = IRS::where('status', false)->get();
+        foreach ($irs as $ir) {
+            $ir->mahasiswa = Mahasiswa::where('id', $ir->id_mahasiswa)->get()->first();
+            $ir->mahasiswa->nim = User::where('id', $ir->mahasiswa->user_id)->get()->first()->username;
+        }
         $data = [
             'active_side' => 'active',
             'title' => 'Permintaan Verifikasi IRS',
@@ -51,6 +55,11 @@ class IRSController extends Controller
     public function indexDosen()
     {
         $irs = IRS::where('status', true)->get();
+        foreach ($irs as $ir) {
+            $ir->mahasiswa = Mahasiswa::where('id', $ir->id_mahasiswa)->get()->first();
+            $ir->mahasiswa->nim = User::where('id', $ir->mahasiswa->user_id)->get()->first()->username;
+        }
+        //dd($irs);
         $data = [
             'active_side' => 'active',
             'title' => 'Data IRS',

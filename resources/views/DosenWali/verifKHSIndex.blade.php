@@ -124,7 +124,7 @@
                             <tbody>
                                 @foreach ($khs as $kh)
                                 <tr>
-                                    <td>{{ $kh->id_mahasiswa}}</td>
+                                    <td>{{ $kh->mahasiswa->nim}}</td>
                                     <td>{{ $kh->semester_aktif }}</td>
                                     <td>{{ $kh->jumlah_sks }}</td>
                                     <td>{{ $kh->sks_kumulatif }}</td>

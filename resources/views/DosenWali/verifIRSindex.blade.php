@@ -121,7 +121,7 @@
                             <tbody>
                                 @foreach ($irs as $ir)
                                 <tr>
-                                    <td>{{ $ir->id_mahasiswa}}</td>
+                                    <td>{{ $ir->mahasiswa->nim}}</td>
                                     <td>{{ $ir->semester_aktif }}</td>
                                     <td>{{ $ir->jumlah_sks }}</td>
                                     <td><a href="{{route('irs.download', ['id'=> $ir->id])}}">Lihat</a></td>

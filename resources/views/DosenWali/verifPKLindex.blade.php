@@ -122,7 +122,7 @@
                             <tbody>
                                 @foreach ($pkl as $pk)
                                 <tr>
-                                    <td>{{ $pk->id_mahasiswa}}</td>
+                                    <td>{{ $pk->mahasiswa->nim}}</td>
                                     <td>{{ $pk->tanggal_lulus }}</td>
                                     <td>{{ $pk->semester }}</td>
                                     <td>{{ $pk->nilai }}</td>

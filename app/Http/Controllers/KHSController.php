@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\KHS;
+use App\Models\Mahasiswa;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use Redirect;
@@ -28,6 +30,10 @@ class KHSController extends Controller
     public function indexVerif()
     {
         $khs = KHS::where('status', false)->get();
+        foreach ($khs as $k) {
+            $k->mahasiswa = Mahasiswa::where('id', $k->id_mahasiswa)->get()->first();
+            $k->mahasiswa->nim = User::where('id', $k->mahasiswa->user_id)->get()->first()->username;
+        }
         $data = [
             'active_side' => 'active',
             'title' => 'Permintaan Verifikasi KHS',
@@ -42,6 +48,10 @@ class KHSController extends Controller
     public function indexDosen()
     {
         $khs = KHS::where('status', true)->get();
+        foreach ($khs as $k) {
+            $k->mahasiswa = Mahasiswa::where('id', $k->id_mahasiswa)->get()->first();
+            $k->mahasiswa->nim = User::where('id', $k->mahasiswa->user_id)->get()->first()->username;
+        }   
         $data = [
             'active_side' => 'active',
             'title' => 'List KHS',
