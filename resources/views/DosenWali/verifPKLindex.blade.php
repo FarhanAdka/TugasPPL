@@ -111,8 +111,10 @@
                             <thead>
                                 <tr>
                                     <th>NIM</th>
+                                    <th>Tanggal Lulus</th>
+                                    <th>Semester</th>
                                     <th>Nilai</th>
-                                    <th>Scan PKL</th>
+                                    <th>Scan KHS</th>
                                     <th>Status</th>
                                     <th width="280px">Action</th>
                                 </tr>
@@ -120,14 +122,16 @@
                             <tbody>
                                 @foreach ($pkl as $pk)
                                 <tr>
-                                    <td>{{ $pk->mahasiswa->user->username }}</td>
+                                    <td>{{ $pk->id_mahasiswa}}</td>
+                                    <td>{{ $pk->tanggal_lulus }}</td>
+                                    <td>{{ $pk->semester }}</td>
                                     <td>{{ $pk->nilai }}</td>
                                     <td><a href="{{route('pkl.download', ['id'=> $pk->id])}}">Lihat</a></td>
                                     <td>{{ $pk->status ? "Sudah disetujui" : "Belum disetujui" }}</td>
                                     <td>
-                                        <form action="{{ route('Doswal.deleteSinglePKL',$pk->id) }}" method="POST">
+                                        <form action="{{ route('PKL.delete',$pk->id) }}" method="POST">
                                 
-                                            <a class="btn btn-primary" href="{{ route('Doswal.approvePKL',$pk->id) }}">Approve</a>
+                                            <a class="btn btn-primary" href="{{ route('PKL.approve',$pk->id) }}">Approve</a>
                                             @csrf
                                             @method('DELETE')
                                             <button type="submit" class="btn btn-danger">Delete</button>

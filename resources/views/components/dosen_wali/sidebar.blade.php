@@ -97,7 +97,7 @@
                                 </a>
                             </li>
                             <li class="submenu-item @if (isset($active_sub)) {{ $active_sub }} @endif">
-                                <a href=" class="submenu-link">
+                                <a href="/user/dosenWali/KHS" class="submenu-link">
                                     <i class="bi bi-grid-fill"></i>
                                     <span>List KHS</span>
                                 </a>
@@ -105,18 +105,46 @@
                         </ul>
                     </li>
 
-                    <li class="sidebar-item">
-                        <a href="/user/dosenWali/verifikasiPKL" class='sidebar-link'>
+                    <li class="sidebar-item @if (isset($active_side)) {{ $active_side }} @endif has-sub">
+                        <a href="#" class='sidebar-link'>
                             <i class="bi bi-collection-fill"></i>
-                            <span>Progres PKL</span>
+                            <span>Data PKL</span>
                         </a>
+                        <ul class="submenu @if (isset($active_sub)) {{ $active_sub }} @endif">
+                            <li class="submenu-item ">
+                                <a href="/user/dosenWali/verifikasiPKL" class="submenu-link">
+                                    <i class="bi bi-grid-fill"></i>
+                                    <span>Permintaan Verifikasi</span>
+                                </a>
+                            </li>
+                            <li class="submenu-item @if (isset($active_sub)) {{ $active_sub }} @endif">
+                                <a href="/user/dosenWali/PKL" class="submenu-link">
+                                    <i class="bi bi-grid-fill"></i>
+                                    <span>List PKL</span>
+                                </a>
+                            </li>
+                        </ul>
                     </li>
 
-                    <li class="sidebar-item">
-                        <a href="/user/dosenWali/verifikasiSkripsi" class='sidebar-link'>
+                    <li class="sidebar-item @if (isset($active_side)) {{ $active_side }} @endif has-sub">
+                        <a href="#" class='sidebar-link'>
                             <i class="bi bi-collection-fill"></i>
-                            <span>Progres Skripsi</span>
+                            <span>Data Skripsi</span>
                         </a>
+                        <ul class="submenu @if (isset($active_sub)) {{ $active_sub }} @endif">
+                            <li class="submenu-item ">
+                                <a href="" class="submenu-link">
+                                    <i class="bi bi-grid-fill"></i>
+                                    <span>Permintaan Verifikasi</span>
+                                </a>
+                            </li>
+                            <li class="submenu-item @if (isset($active_sub)) {{ $active_sub }} @endif">
+                                <a href="" class="submenu-link">
+                                    <i class="bi bi-grid-fill"></i>
+                                    <span>List Skripsi</span>
+                                </a>
+                            </li>
+                        </ul>
                     </li>
                 </ul>
             </div>

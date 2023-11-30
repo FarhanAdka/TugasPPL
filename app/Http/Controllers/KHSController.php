@@ -27,7 +27,7 @@ class KHSController extends Controller
 
     public function indexVerif()
     {
-        $irs = KHS::where('status', false)->get();
+        $khs = KHS::where('status', false)->get();
         $data = [
             'active_side' => 'active',
             'title' => 'Permintaan Verifikasi KHS',
@@ -41,17 +41,17 @@ class KHSController extends Controller
 
     public function indexDosen()
     {
-        $irs = KHS::where('status', true)->get();
+        $khs = KHS::where('status', true)->get();
         $data = [
             'active_side' => 'active',
-            'title' => 'Permintaan Verifikasi KHS',
+            'title' => 'List KHS',
             'active_user' => 'active',
             // 'mahasiswa'=>$mahasiswa,
             // 'irs' => $irs
             // 'nim' => $nim
         ];
 
-        return view('DosenWali.IRSindex', compact('KHS'), $data);
+        return view('DosenWali.KHSindex', compact('khs'), $data);
     }
 
     /**

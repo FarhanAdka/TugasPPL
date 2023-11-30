@@ -22,6 +22,34 @@ class PKLController extends Controller
 
     }
 
+    public function indexVerif()
+    {
+        $pkl = PKL::where('status', false)->get();
+        $data = [
+            'active_side' => 'active',
+            'title' => 'Permintaan Verifikasi PKL',
+            'active_user' => 'active',
+            // 'mahasiswa'=>$mahasiswa,
+            // 'irs' => $irs
+            // 'nim' => $nim
+        ];
+        return view('DosenWali.verifPKLindex', compact('pkl'), $data); // Menampilkan view dengan data IRS yang sudah diambil
+    }
+
+    public function indexDosen()
+    {
+        $pkl = PKL::where('status', true)->get();
+        $data = [
+            'active_side' => 'active',
+            'title' => 'List PKL',
+            'active_user' => 'active',
+            // 'mahasiswa'=>$mahasiswa,
+            // 'irs' => $irs
+            // 'nim' => $nim
+        ];
+
+        return view('DosenWali.PKLindex', compact('pkl'), $data);
+    }
     public function create()
     {
         $pkl = PKL::where('id_mahasiswa', auth()->user()->id)->get();
@@ -122,5 +150,21 @@ class PKLController extends Controller
 
         // Return the file as a response with headers to force download
         return response()->file($filePath);
+    }
+
+    public function approve($id){
+        $pkl = PKL::find($id);
+
+        $pkl->status = true;
+        $pkl->save();
+
+        return redirect()->back()->with('success', 'PKL telah disetujui');
+    }
+    public function delete($id){
+        $pkl=PKL::find($id);
+        if ($pkl) {
+            $pkl->delete();
+            return redirect()->back()->with('success', 'PKL berhasil dihapus.');
+        }
     }
 }

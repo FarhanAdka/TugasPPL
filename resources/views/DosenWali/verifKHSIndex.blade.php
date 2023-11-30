@@ -113,6 +113,9 @@
                                     <th>NIM</th>
                                     <th>Semester</th>
                                     <th>Jumlah SKS</th>
+                                    <th>SKS Kumuluatif</th>
+                                    <th>IP Semester</th>
+                                    <th>IPK</th>
                                     <th>Scan KHS</th>
                                     <th>Status</th>
                                     <th width="280px">Action</th>
@@ -124,12 +127,15 @@
                                     <td>{{ $kh->id_mahasiswa}}</td>
                                     <td>{{ $kh->semester_aktif }}</td>
                                     <td>{{ $kh->jumlah_sks }}</td>
-                                    <td><a href="{{route('khs.download', ['id'=> $ir->id])}}">Lihat</a></td>
-                                    <td>{{ $ir->status ? "Sudah disetujui" : "Belum disetujui" }}</td>
+                                    <td>{{ $kh->sks_kumulatif }}</td>
+                                    <td>{{ $kh->ip }}</td>
+                                    <td>{{ $kh->ipk }}</td>
+                                    <td><a href="{{route('khs.download', ['id'=> $kh->id])}}">Lihat</a></td>
+                                    <td>{{ $kh->status ? "Sudah disetujui" : "Belum disetujui" }}</td>
                                     <td>
-                                        <form action="{{ route('Doswal.deleteSingleIRS',$ir->id) }}" method="POST">
+                                        <form action="{{ route('KHS.delete',$kh->id) }}" method="POST">
                                 
-                                            <a class="btn btn-primary" href="{{ route('Doswal.approveIRS',$ir->id) }}">Approve</a>
+                                            <a class="btn btn-primary" href="{{ route('KHS.approve',$kh->id) }}">Approve</a>
                                             @csrf
                                             @method('DELETE')
                                             <button type="submit" class="btn btn-danger">Delete</button>
