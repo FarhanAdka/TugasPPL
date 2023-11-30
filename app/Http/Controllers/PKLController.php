@@ -24,7 +24,7 @@ class PKLController extends Controller
 
     public function indexVerif()
     {
-        $pkl = PKL::where('status', false)->get();
+        $pkl = PKL::where('status', false)->whereNotNull('scan_pkl')->get();
         $data = [
             'active_side' => 'active',
             'title' => 'Permintaan Verifikasi PKL',
