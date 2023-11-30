@@ -21,11 +21,14 @@ class DepartemenController extends Controller
     public function DataMHS()
     {
         $mahasiswa = User::where('role', 'mahasiswa')->paginate(10);
-        //dd($mahasiswa[0]->id);
+        //dd($mahasiswa[0]);
         foreach ($mahasiswa as $mhs){
             $mhs->mahasiswa = Mahasiswa::where('user_id', $mhs->id)->first();
             $mhs->doswal = User::where('id', $mhs->mahasiswa->doswal)->first()->name;
+            //var_dump($mhs->doswal);
+            //dd($mhs->doswal);
         }
+        //dd($mahasiswa);
         //dd($mahasiswa[0]->mahasiswa->angkatan);
         // $mhs = Mahasiswa::where('user_id', $mahasiswa->id)->first();
         // $doswal = User::where('id', $mhs->doswal)->first()->name;
