@@ -169,98 +169,34 @@
                                         <div class="row text-center">
                                             <h6 class="text-muted font-semibold">- Progres PKL Seluruh Mahasiswa Aktif
                                                 -</h6>
-                                            <h4>1.123.456</h4>
                                         </div>
                                     </div>
 
                                     <div class="row mt-1 mx-4">
-                                        <div class="col-12 col-lg-3">
+                                        @foreach ($tahun_shown as $tahun)
+                                        <div class="col col-lg-2">
                                             <div class="card background-color:rgba(255, 255, 255, 0.5) ">
+                                                
                                                 <div class="card-body px-4 py-4-5">
-                                                    <h6 class="font-extrabold text-center">Tahun: 2021</h6>
+                                                    <h6 class="font-extrabold text-center">{{$tahun}}</h6>
                                                     <div class="d-flex justify-content-between">
                                                         <div>
                                                             <h6 class="text-muted font-semibold mb-0 text-center">Belum
                                                             </h6>
-                                                            <h6 class="text-muted font-semibold mb-0 text-center">45
+                                                            <h6 class="text-muted font-semibold mb-0 text-center">{{sizeof($pkl[$tahun]['belum'])}}
                                                             </h6>
                                                         </div>
                                                         <div>
                                                             <h6 class="text-muted font-semibold mb-0 text-center">Sudah
                                                             </h6>
-                                                            <h6 class="text-muted font-semibold mb-0 text-center">20
+                                                            <h6 class="text-muted font-semibold mb-0 text-center">{{sizeof($pkl[$tahun]['sudah'])}}
                                                             </h6>
                                                         </div>
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
-
-                                        <div class="col-12 col-lg-3">
-                                            <div class="card bg-light">
-                                                <div class="card-body px-4 py-4-5">
-                                                    <h6 class="font-extrabold text-center">Tahun: 2020</h6>
-                                                    <div class="d-flex justify-content-between">
-                                                        <div>
-                                                            <h6 class="text-muted font-semibold mb-0 text-center">Belum
-                                                            </h6>
-                                                            <h6 class="text-muted font-semibold mb-0 text-center">45
-                                                            </h6>
-                                                        </div>
-                                                        <div>
-                                                            <h6 class="text-muted font-semibold mb-0 text-center">Sudah
-                                                            </h6>
-                                                            <h6 class="text-muted font-semibold mb-0 text-center">20
-                                                            </h6>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                        <div class="col-12 col-lg-3">
-                                            <div class="card bg-light">
-                                                <div class="card-body px-4 py-4-5">
-                                                    <h6 class="font-extrabold text-center">Tahun: 2019</h6>
-                                                    <div class="d-flex justify-content-between">
-                                                        <div>
-                                                            <h6 class="text-muted font-semibold mb-0 text-center">Belum
-                                                            </h6>
-                                                            <h6 class="text-muted font-semibold mb-0 text-center">45
-                                                            </h6>
-                                                        </div>
-                                                        <div>
-                                                            <h6 class="text-muted font-semibold mb-0 text-center">Sudah
-                                                            </h6>
-                                                            <h6 class="text-muted font-semibold mb-0 text-center">20
-                                                            </h6>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                        <div class="col-12 col-lg-3">
-                                            <div class="card bg-light">
-                                                <div class="card-body px-4 py-4-5">
-                                                    <h6 class="font-extrabold text-center">Tahun: 2018</h6>
-                                                    <div class="d-flex justify-content-between">
-                                                        <div>
-                                                            <h6 class="text-muted font-semibold mb-0 text-center">Belum
-                                                            </h6>
-                                                            <h6 class="text-muted font-semibold mb-0 text-center">45
-                                                            </h6>
-                                                        </div>
-                                                        <div>
-                                                            <h6 class="text-muted font-semibold mb-0 text-center">Sudah
-                                                            </h6>
-                                                            <h6 class="text-muted font-semibold mb-0 text-center">20
-                                                            </h6>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
+                                        @endforeach
 
                                         <!-- Tambahkan card lain di sini dengan struktur yang sama -->
                                     </div>

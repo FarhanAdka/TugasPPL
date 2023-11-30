@@ -121,7 +121,7 @@
                                 <form action="{{route('dosenwali.store')}}" method="POST">
                                     @csrf
                                     <div class="mb-3">
-                                        <label for="username" class="form-label">Username/NIP</label>
+                                        <label for="username" class="form-label">NIP</label>
                                         <input type="text" value="{{ old('username') }}" name="username"
                                             class="form-control">
                                     </div>

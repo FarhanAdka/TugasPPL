@@ -122,13 +122,13 @@
                                 <form action="" method="POST">
                                     @csrf
                                     <div class="mb-3">
-                                        <label for="username" class="form-label">Username</label>
+                                        <label for="username" class="form-label">NIP</label>
                                         <input type="text" value="{{ old('username') }}" name="username"
                                             class="form-control">
                                     </div>
                                     <div class="mb-3">
-                                        <label for="nim" class="form-label">NIP</label>
-                                        <input type="text" value="{{ old('nim') }}" name="nim"
+                                        <label for="nama" class="form-label">Nama</label>
+                                        <input type="text" value="{{ old('nim') }}" name="nama"
                                             class="form-control">
                                     </div>
                                     <div class="mb-3">
