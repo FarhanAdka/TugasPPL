@@ -104,7 +104,7 @@
               <section class="section">
                 <div class="card">
                     <div class="card-header">
-                        <h4 class="card-title">Permintaan Verifikasi IRS</h4>
+                        <h4 class="card-title">List IRS</h4>
                     </div>
                     <div class="card-body">
                         <table class="table table-bordered table-striped">
@@ -115,7 +115,6 @@
                                     <th>Jumlah SKS</th>
                                     <th>Scan IRS</th>
                                     <th>Status</th>
-                                    <th width="280px">Action</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -126,15 +125,6 @@
                                     <td>{{ $ir->jumlah_sks }}</td>
                                     <td><a href="{{route('irs.download', ['id'=> $ir->id])}}">Lihat</a></td>
                                     <td>{{ $ir->status ? "Sudah disetujui" : "Belum disetujui" }}</td>
-                                    <td>
-                                        <form action="{{ route('IRS.delete',$ir->id) }}" method="POST">
-                                
-                                            <a class="btn btn-primary" href="{{ route('IRS.approve',$ir->id) }}">Approve</a>
-                                            @csrf
-                                            @method('DELETE')
-                                            <button type="submit" class="btn btn-danger">Delete</button>
-                                        </form>    
-                                    </td>
                                 </tr>
                                 @endforeach
                             </tbody>    

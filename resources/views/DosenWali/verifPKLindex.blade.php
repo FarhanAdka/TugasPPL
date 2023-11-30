@@ -120,7 +120,7 @@
                             <tbody>
                                 @foreach ($pkl as $pk)
                                 <tr>
-                                    <td>{{ $pk->id_mahasiswa }}</td>
+                                    <td>{{ $pk->mahasiswa->user->username }}</td>
                                     <td>{{ $pk->nilai }}</td>
                                     <td><a href="{{route('pkl.download', ['id'=> $pk->id])}}">Lihat</a></td>
                                     <td>{{ $pk->status ? "Sudah disetujui" : "Belum disetujui" }}</td>

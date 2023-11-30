@@ -72,13 +72,13 @@
                             <li class="submenu-item ">
                                 <a href="/user/dosenWali/verifikasiIRS" class="submenu-link">
                                     <i class="bi bi-grid-fill"></i>
-                                    <span>Belum Di Approve</span>
+                                    <span>Permintaan Verifikasi</span>
                                 </a>
                             </li>
                             <li class="submenu-item @if (isset($active_sub)) {{ $active_sub }} @endif">
-                                <a href="" class="submenu-link">
+                                <a href="/user/dosenWali/IRS" class="submenu-link">
                                     <i class="bi bi-grid-fill"></i>
-                                    <span>Sudah Di Approve</span>
+                                    <span>List IRS</span>
                                 </a>
                             </li>
                         </ul>
@@ -93,13 +93,13 @@
                             <li class="submenu-item ">
                                 <a href="/user/dosenWali/verifikasiKHS" class="submenu-link">
                                     <i class="bi bi-grid-fill"></i>
-                                    <span>Belum Di Approve</span>
+                                    <span>Permintaan Verifikasi</span>
                                 </a>
                             </li>
                             <li class="submenu-item @if (isset($active_sub)) {{ $active_sub }} @endif">
                                 <a href=" class="submenu-link">
                                     <i class="bi bi-grid-fill"></i>
-                                    <span>Sudah Di Approve</span>
+                                    <span>List KHS</span>
                                 </a>
                             </li>
                         </ul>

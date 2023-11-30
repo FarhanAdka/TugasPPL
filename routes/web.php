@@ -100,18 +100,11 @@ Route::middleware(['auth'])->group(function (){
     //Dosen Wali
     Route::middleware(['userAkses:dosen_wali'])->group(function (){
         Route::get('/user/dosenWali',[UserController::class,'dosenWali'])->middleware('userAkses:dosen_wali');
-        Route::get('/user/dosenWali/verifikasiIRS', [DoswalController::class, 'indexVerifIRS'])->name('Doswal.indexVerifIRS');
-        Route::post('/user/dosenWali/approveIRS/{id}', [DoswalController::class ,'approveIRS'])->name('Doswal.approveIRS');
-        Route::delete('/user/dosenWali/deleteIRS/{id}', [DoswalController::class ,'deleteSingleIRS'])->name('Doswal.deleteSingleIRS');
-        Route::get('/user/dosenWali/verifikasiKHS', [DoswalController::class, 'indexVerifKHS'])->name('Doswal.indexVerifKHS');
-        Route::post('/user/dosenWali/approveKHS/{id}', [DoswalController::class ,'approveKHS'])->name('Doswal.approveKHS');
-        Route::delete('/user/dosenWali/deleteKHS/{id}', [DoswalController::class ,'deleteSingleKHS'])->name('Doswal.deleteSingleKHS');
-        Route::get('/user/dosenWali/verifikasiPKL', [DoswalController::class, 'indexVerifPKL'])->name('Doswal.indexVerifPKL');
-        Route::post('/user/dosenWali/approvePKL/{id}', [DoswalController::class ,'approvePKL'])->name('Doswal.approvePKL');
-        Route::delete('/user/dosenWali/deletePKL/{id}', [DoswalController::class ,'deleteSinglePKL'])->name('Doswal.deleteSinglePKL');
-        Route::get('/user/dosenWali/verifikasiSkripsi', [DoswalController::class, 'indexVerifSkripsi'])->name('Doswal.indexVerifSkripsi');
-        Route::post('/user/dosenWali/approveSkripsi/{id}', [DoswalController::class ,'approveSkripsi'])->name('Doswal.approveSkripsi');
-        Route::delete('/user/dosenWali/deleteSkripsi/{id}', [DoswalController::class ,'deleteSingleSkripsi'])->name('Doswal.deleteSingleSkripsi');
+        Route::get('/user/dosenWali/verifikasiIRS', [IRSController::class, 'indexVerif'])->name('verifIRS');
+        Route::get('/user/dosenWali/IRS', [IRSController::class, 'indexDosen'])->name('indexIRS');
+        Route::get('/user/dosenWali/approveIRS/{id}', [IRSController::class ,'approve'])->name('IRS.approve');
+        Route::delete('/user/dosenWali/deleteIRS/{id}', [IRSController::class ,'delete'])->name('IRS.delete');
+        
     });
     //Departemen
     Route::middleware(['userAkses:departemen'])->group(function (){

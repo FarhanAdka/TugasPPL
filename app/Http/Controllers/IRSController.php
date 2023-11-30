@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\IRS;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
+use App\Models\Mahasiswa;
+use App\Models\User;
 use Redirect;
 
 class IRSController extends Controller
@@ -23,6 +25,42 @@ class IRSController extends Controller
             ];
         //dd($irs);
         return view('mahasiswa/DataIRS', $data);
+    }
+
+    public function indexVerif()
+    {
+        // $mahasiswa = Mahasiswa::where('doswal', auth()->user()->id)->get();
+        // $irs = collect();
+        // foreach ($mahasiswa as $mhs) {
+        //     $nim = User::where('username', $mhs->user_id)->get()->first()->username;
+        //     $irsMahasiswa = IRS::where('id_mahasiswa', $mhs->id)->where('status', true)->get();
+        //     $irs = $irs->merge($irsMahasiswa); // Menggabungkan PKL dari setiap mahasiswa ke dalam satu koleksi
+        // }
+        $irs = IRS::where('status', false)->get();
+        $data = [
+            'active_side' => 'active',
+            'title' => 'Permintaan Verifikasi IRS',
+            'active_user' => 'active',
+            // 'mahasiswa'=>$mahasiswa,
+            // 'irs' => $irs
+            // 'nim' => $nim
+        ];
+        return view('DosenWali.verifIRSindex', compact('irs'), $data); // Menampilkan view dengan data IRS yang sudah diambil
+    }
+
+    public function indexDosen()
+    {
+        $irs = IRS::where('status', true)->get();
+        $data = [
+            'active_side' => 'active',
+            'title' => 'Data IRS',
+            'active_user' => 'active',
+            // 'mahasiswa'=>$mahasiswa,
+            // 'irs' => $irs
+            // 'nim' => $nim
+        ];
+
+        return view('DosenWali.IRSindex', compact('irs'), $data);
     }
 
     /**
@@ -124,7 +162,7 @@ class IRSController extends Controller
         }
         $irs->delete();
         
-        return redirect()->route('IRS.index');
+        return redirect()->back()->with('success', 'IRS telah dihapus');
 
     }
 
@@ -152,5 +190,21 @@ class IRSController extends Controller
 
         // Return the file as a response with headers to force download
         return response()->file($filePath);
+    }
+
+    public function approve($id){
+        $irs = IRS::find($id);
+
+        $irs->status = true;
+        $irs->save();
+
+        return redirect()->back()->with('success', 'IRS telah disetujui');
+    }
+    public function delete($id){
+        $irs=IRS::find($id);
+        if ($irs) {
+            $irs->delete();
+            return redirect()->back()->with('success', 'IRS berhasil dihapus.');
+        }
     }
 }

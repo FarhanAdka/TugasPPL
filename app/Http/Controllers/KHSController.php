@@ -25,6 +25,35 @@ class KHSController extends Controller
         return view('mahasiswa/DataKHS', $data);
     }
 
+    public function indexVerif()
+    {
+        $irs = KHS::where('status', false)->get();
+        $data = [
+            'active_side' => 'active',
+            'title' => 'Permintaan Verifikasi KHS',
+            'active_user' => 'active',
+            // 'mahasiswa'=>$mahasiswa,
+            // 'irs' => $irs
+            // 'nim' => $nim
+        ];
+        return view('DosenWali.verifKHSindex', compact('khs'), $data); // Menampilkan view dengan data IRS yang sudah diambil
+    }
+
+    public function indexDosen()
+    {
+        $irs = KHS::where('status', true)->get();
+        $data = [
+            'active_side' => 'active',
+            'title' => 'Permintaan Verifikasi KHS',
+            'active_user' => 'active',
+            // 'mahasiswa'=>$mahasiswa,
+            // 'irs' => $irs
+            // 'nim' => $nim
+        ];
+
+        return view('DosenWali.IRSindex', compact('KHS'), $data);
+    }
+
     /**
      * Show the form for creating a new resource.
      */
@@ -123,7 +152,7 @@ class KHSController extends Controller
 
         $khs->delete();
 
-        return redirect()->route('KHS.index')->with('success', 'Data deleted successfully.'); // Ganti 'route_name' dengan nama rute yang ingin Anda tuju setelah penghapusan data.
+        return redirect()->back()->with('success', 'Data deleted successfully.'); // Ganti 'route_name' dengan nama rute yang ingin Anda tuju setelah penghapusan data.
     }
 
     public function download(string $id)
@@ -150,5 +179,21 @@ class KHSController extends Controller
 
         // Return the file as a response with headers to force download
         return response()->file($filePath);
+    }
+
+    public function approve($id){
+        $khs = KHS::find($id);
+
+        $khs->status = true;
+        $khs->save();
+
+        return redirect()->back()->with('success', 'KHS telah disetujui');
+    }
+    public function delete($id){
+        $khs=KHS::find($id);
+        if ($khs) {
+            $khs->delete();
+            return redirect()->back()->with('success', 'KHS berhasil dihapus.');
+        }
     }
 }
