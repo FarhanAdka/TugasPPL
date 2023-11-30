@@ -178,53 +178,32 @@
                                 </div>
                                 <div class="card-body">
                                     <table class="table table-striped" id="table1">
-                                        <thead>
+<thead>
                                             <tr>
-                                                <th>Name</th>
-                                                <th>Email</th>
-                                                <th>Phone</th>
-                                                <th>City</th>
-                                                <th>Status</th>
+                                                <th>Nama</th>
+                                                <th>ID</th>
+                                                <th>Dosen Wali</th>
+                                                <th>Angkatan</th>
+                                                <th>Aksi</th>
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            <tr>
-                                                <td>Graiden</td>
-                                                <td>vehicula.aliquet@semconsequat.co.uk</td>
-                                                <td>076 4820 8838</td>
-                                                <td>Offenburg</td>
-                                                <td>
-                                                    <span class="badge bg-success">Active</span>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>Dale</td>
-                                                <td>fringilla.euismod.enim@quam.ca</td>
-                                                <td>0500 527693</td>
-                                                <td>New Quay</td>
-                                                <td>
-                                                    <span class="badge bg-success">Active</span>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>Nathaniel</td>
-                                                <td>mi.Duis@diam.edu</td>
-                                                <td>(012165) 76278</td>
-                                                <td>Grumo Appula</td>
-                                                <td>
-                                                    <span class="badge bg-danger">Inactive</span>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>Darius</td>
-                                                <td>velit@nec.com</td>
-                                                <td>0309 690 7871</td>
-                                                <td>Ways</td>
-                                                <td>
-                                                    <span class="badge bg-success">Active</span>
-                                                </td>
-                                            </tr>
 
+                                            @foreach ($skripsi as $skrip)
+                                                <tr>
+                                                    <td>{{ $skrip->mahasiswa->nama }}</td>
+                                                    <td>{{ $skrip->mahasiswa->nim }}</td>
+                                                    <td>{{ $skrip->mahasiswa->doswal }}</td>
+                                                    <td>{{ $skrip->mahasiswa->angkatan }}</td>
+                                                    <td>
+                                                        <form
+                                                            action="/user/departemen/DataMahasiswa{{ $skrip->mahasiswa->user_id }}"
+                                                            method="POST">
+                                                            <a class="btn btn-primary" href="{{route('dept.studi', $skrip->mahasiswa->user_id)}}">Detil</a>
+                                                        </form>
+                                                    </td>
+                                                </tr>
+                                            @endforeach
 
                                         </tbody>
                                     </table>

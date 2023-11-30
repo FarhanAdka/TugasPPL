@@ -325,4 +325,12 @@ class OperatorController extends Controller
         // If no file is uploaded or an error occurred
         return redirect()->back()->with('error', 'Failed to import data.');
     }
+
+    public function destroyMahasiswa(string $id)
+    {
+        dd($id);
+        $user = User::findOrFail($id);
+        $user->delete();
+        return redirect('/user/operator/kelolaMahasiswa');
+    }
 }

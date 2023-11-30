@@ -124,18 +124,18 @@
                                                 <td>{{ $mhs->name }}</td>
                                                 <td>{{ $mhs->username }}</td>
                                                 <td>
-                                                    <form action="/user/operator/kelolaMahasiswa/{{ $mhs->id }}" method="POST">
+                                                    <form action="{{route('mahasiswa.destroy', $mhs->id)}}" method="POST">
                                                         
                                                         <a class="btn btn-primary"
                                                             href="/user/operator/kelolaMahasiswa/edit/{{ $mhs->id  }}">Edit</a>
                                                         @csrf 
                         
                                                         @method('DELETE')
-                                                        <button type="submit" class="btn btn-danger" action="">Delete</button>
-                                                        @endforeach
+                                                        <button type="submit" class="btn btn-danger">Delete</button>
                                                     </form>
                                                 </td>
                                             </tr>
+                                            @endforeach
                                         
                                     </tbody>
 

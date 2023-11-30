@@ -77,11 +77,19 @@ class DepartemenController extends Controller
 
     public function ProgresSkripsi()
     {
+        $skripsi = Skripsi::where('status', true)->get();
+        foreach ($skripsi as $s) {
+            $s->mahasiswa = Mahasiswa::where('id', $s->id_mahasiswa)->get()->first();
+            $s->mahasiswa->nim = User::where('id', $s->mahasiswa->user_id)->get()->first()->username;
+            $s->mahasiswa->doswal = User::where('id', $s->mahasiswa->doswal)->get()->first()->name;
+            $s->mahasiswa->nama = User::where('id', $s->mahasiswa->user_id)->get()->first()->name;
+        }
         $data = array (
             'active_home' => 'active',
             'Role' => 'Departemen',
             'UserName' => '\\\UserName///',
             'Title' => 'Progres Skripsi',
+            'skripsi' => $skripsi,
         );
          return view('Departemen/ProgresSkripsi', $data);
     }
