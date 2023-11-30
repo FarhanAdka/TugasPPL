@@ -111,28 +111,32 @@
                     <table class="table table-striped">
                         <thead>
                             <tr>
-                                <th>ID</th>
-                                <th>Nama</th>
-                                <!-- Sesuaikan dengan kolom-kolom yang ada pada model PKL -->
-                                <th>Action</th>
+                                <th>NIM</th>
+                                <th>Tanggal Lulus</th>
+                                
+                                <th>Nilai</th>
+                                <th>Scan Skripsi</th>
+                                <th>Status</th>
+                                <th width="280px">Action</th>
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach ($skripsi as $item)
+                            @foreach ($skripsi as $skrip)
                                 <tr>
-                                    <td>{{ $item->id }}</td>
-                                    <td>{{ $item->nama }}</td>
-                                    <!-- Sesuaikan dengan kolom-kolom yang ada pada model PKL -->
+                                    <td>{{ $skrip->id }}</td>
+                                    <td>{{ $skrip->tanggal_lulus }}</td>
+                                    
+                                    <td>{{ $skrip->nilai }}</td>
+                                    <td><a href="{{ route('skripsi.download', ['id'=> $skrip->id]) }}" target="_blank">Lihat</a></td>
+                                    <td>{{ $skrip->status ? "Sudah disetujui" : "Belum disetujui" }}</td>
                                     <td>
-                                        <form action="{{ route('Doswal.approveSkripsi', ['id' => $item->id]) }}" method="post">
-                                            @csrf
-                                            <button type="submit" class="btn btn-primary">Approve</button>
-                                        
-                                        <form action="{{ route('Doswal.deleteSingleSkripsi', ['id' => $item->id]) }}" method="post">
+                                        <form action="{{ route('Skripsi.delete',$skrip->id) }}" method="POST">
+                                
+                                            <a class="btn btn-primary" href="{{ route('Skripsi.approve',$skrip->id) }}">Approve</a>
                                             @csrf
                                             @method('DELETE')
                                             <button type="submit" class="btn btn-danger">Delete</button>
-                                        </form>
+                                        </form>    
                                     </td>
                                 </tr>
                             @endforeach
