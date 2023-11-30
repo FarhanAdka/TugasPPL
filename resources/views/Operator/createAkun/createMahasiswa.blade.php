@@ -125,6 +125,7 @@
                                         <label for="name" class="form-label">Nama</label>
                                         <input type="text" value="{{ old('name') }}" name="name"
                                             class="form-control">
+                                    </div>
                                     <div class="mb-3">
                                         <label for="angkatan" class="form-label">Angkatan</label>
                                         <select name="angkatan" class="form-select">

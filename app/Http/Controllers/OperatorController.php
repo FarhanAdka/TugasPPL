@@ -219,15 +219,35 @@ class OperatorController extends Controller
 
     function editMahasiswa(string $id){
         //dd($id);
-        $user = User::where('id', $id)->first();
+        $mahasiswa = Mahasiswa::where('user_id', $id)->first();
+        $mahasiswa->nim = User::where('id', $id)->first()->username;
+        $mahasiswa->name = User::where('id', $id)->first()->name;
+        //$mahasiswa->doswal = User::where('id', $mahasiswa->doswal)->first()->name;
+        $doswal = User::where('role', 'dosen_wali')->get();
         //dd($user);
         $data = array(
             'active_home' => 'active',
             'title' => 'Edit Akun Mahasiswa',
-            'user' => $user,
+            'mahasiswa' => $mahasiswa,
+            'doswal' => $doswal,
         );
         return view('operator/kelolaAkun/editMahasiswa', $data); 
     }
+
+    function updateStatus(Request $request, $id){
+        //dd($id);
+        $data = $request->all();
+        //dd($data);
+        $user = User::findOrFail($id);
+        $user->update($data);
+        $mahasiswa = Mahasiswa::where('user_id', $id)->first();
+        //dd($mahasiswa);
+        $mahasiswa->status = $data['status'];
+        $mahasiswa->angkatan = $data['angkatan'];
+        $mahasiswa->save();
+        return redirect('/user/operator/kelolaMahasiswa');
+    }
+
     function createDataMahasiswa()
     {
         $data = array(
