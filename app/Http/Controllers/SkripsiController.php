@@ -23,6 +23,31 @@ class SkripsiController extends Controller
 
     }
 
+    public function indexVerif(){
+        $skripsi = Skripsi::where('status', false)->get();
+        //dd($skripsi);
+        $data = [
+            'active_side' => 'active',
+            'title' => 'Verifikasi Skripsi',
+            'active_user' => 'active',
+            //'skripsi' => $skripsi
+        ];
+        return view('DosenWali.verifSkripsiindex', compact('skripsi'), $data);
+    }
+
+    public function indexDosen()
+    {
+        $skripsi = Skripsi::where('status', true)->get();
+        //dd($skripsi);
+        $data = [
+            'active_side' => 'active',
+            'title' => 'List Skripsi',
+            'active_user' => 'active',
+            //'skripsi' => $skripsi
+        ];
+        return view('DosenWali.Skripsiindex', compact('skripsi'), $data);
+    }
+
     public function create()
     {
         $skripsi = Skripsi::where('id_mahasiswa', auth()->user()->id)->get();
@@ -93,7 +118,7 @@ class SkripsiController extends Controller
 
         $skripsi->delete();
 
-        return redirect()->route('skripsi.index')->with('success', 'Data deleted successfully.'); // Ganti 'route_name' dengan nama rute yang ingin Anda tuju setelah penghapusan data.
+        return redirect()->back()->with('skripsi.index')->with('success', 'Data deleted successfully.'); // Ganti 'route_name' dengan nama rute yang ingin Anda tuju setelah penghapusan data.
     }
 
     public function download(string $id)
@@ -120,5 +145,20 @@ class SkripsiController extends Controller
 
         // Return the file as a response with headers to force download
         return response()->file($filePath);
+    }
+
+    public function approve($id){
+        $skripsi = Skripsi::find($id);
+        $skripsi->status = true;
+        $skripsi->save();
+        return redirect()->back()->with('success', 'Skripsi telah diapprove');
+    }
+    public function delete($id){
+        $skripsi=Skripsi::find($id);
+        if ($skripsi) {
+            $skripsi->delete();
+            return redirect()->back()->with('success', 'Skripsi telah dihapus');
+        }
+        return redirect()->back()->with('error', 'Skripsi tidak ditemukan');
     }
 }

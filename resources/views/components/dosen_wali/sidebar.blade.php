@@ -133,13 +133,13 @@
                         </a>
                         <ul class="submenu @if (isset($active_sub)) {{ $active_sub }} @endif">
                             <li class="submenu-item ">
-                                <a href="" class="submenu-link">
+                                <a href="/user/dosenWali/verifikasiSkripsi" class="submenu-link">
                                     <i class="bi bi-grid-fill"></i>
                                     <span>Permintaan Verifikasi</span>
                                 </a>
                             </li>
                             <li class="submenu-item @if (isset($active_sub)) {{ $active_sub }} @endif">
-                                <a href="" class="submenu-link">
+                                <a href="/user/dosenWali/Skripsi" class="submenu-link">
                                     <i class="bi bi-grid-fill"></i>
                                     <span>List Skripsi</span>
                                 </a>

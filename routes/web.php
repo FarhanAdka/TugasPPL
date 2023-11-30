@@ -112,6 +112,10 @@ Route::middleware(['auth'])->group(function (){
         Route::get('/user/dosenWali/PKL', [PKLController::class, 'indexDosen'])->name('indexPKL');
         Route::get('/user/dosenWali/approvePKL/{id}', [PKLController::class ,'approve'])->name('PKL.approve');
         Route::delete('/user/dosenWali/deletePKL/{id}', [PKLController::class ,'delete'])->name('PKL.delete');
+        Route::get('/user/dosenWali/verifikasiSkripsi', [SkripsiController::class, 'indexVerif'])->name('verifSkripsi');
+        Route::get('/user/dosenWali/Skripsi', [SkripsiController::class, 'indexDosen'])->name('indexSkripsi');
+        Route::get('/user/dosenWali/approveSkripsi/{id}', [SkripsiController::class ,'approve'])->name('Skripsi.approve');
+        Route::delete('/user/dosenWali/deleteSkripsi/{id}', [SkripsiController::class ,'delete'])->name('Skripsi.delete');
     });
     //Departemen
     Route::middleware(['userAkses:departemen'])->group(function (){
