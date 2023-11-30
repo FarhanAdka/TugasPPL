@@ -66,23 +66,43 @@
                     <li class="sidebar-item @if (isset($active_side)) {{ $active_side }} @endif has-sub">
                         <a href="#" class='sidebar-link'>
                             <i class="bi bi-collection-fill"></i>
-                            <span>Data Mahsiswa</span>
+                            <span>Data IRS</span>
                         </a>
                         <ul class="submenu @if (isset($active_sub)) {{ $active_sub }} @endif">
                             <li class="submenu-item ">
                                 <a href="/user/dosenWali/verifikasiIRS" class="submenu-link">
                                     <i class="bi bi-grid-fill"></i>
-                                    <span>IRS</span>
+                                    <span>Belum Di Approve</span>
                                 </a>
                             </li>
                             <li class="submenu-item @if (isset($active_sub)) {{ $active_sub }} @endif">
-                                <a href="/user/dosenWali/verifikasiKHS" class="submenu-link">
+                                <a href="" class="submenu-link">
                                     <i class="bi bi-grid-fill"></i>
-                                    <span>KHS</span>
+                                    <span>Sudah Di Approve</span>
                                 </a>
                             </li>
                         </ul>
-                    
+                    </li>
+
+                    <li class="sidebar-item @if (isset($active_side)) {{ $active_side }} @endif has-sub">
+                        <a href="#" class='sidebar-link'>
+                            <i class="bi bi-collection-fill"></i>
+                            <span>Data KHS</span>
+                        </a>
+                        <ul class="submenu @if (isset($active_sub)) {{ $active_sub }} @endif">
+                            <li class="submenu-item ">
+                                <a href="/user/dosenWali/verifikasiKHS" class="submenu-link">
+                                    <i class="bi bi-grid-fill"></i>
+                                    <span>Belum Di Approve</span>
+                                </a>
+                            </li>
+                            <li class="submenu-item @if (isset($active_sub)) {{ $active_sub }} @endif">
+                                <a href=" class="submenu-link">
+                                    <i class="bi bi-grid-fill"></i>
+                                    <span>Sudah Di Approve</span>
+                                </a>
+                            </li>
+                        </ul>
                     </li>
 
                     <li class="sidebar-item">
