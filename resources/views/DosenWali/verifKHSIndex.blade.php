@@ -20,7 +20,7 @@
     <script src="/assets/static/js/initTheme.js"></script>
 
     <div id="app">
-    <x-dosen_wali.sidebar />
+    <x-dosen_wali.sidebar />     
         <div id="main" class='layout-navbar navbar-fixed'>
             <header>
                 <nav class="navbar navbar-expand navbar-light navbar-top">
@@ -102,47 +102,45 @@
               </div>
     
               <section class="section">
-              <div class="card">
-                <div class="card-header">
-                  <h4 class="card-title">Default </h4>
-                </div>
-                <div class="card-body">
-                    @if ($skripsi->count() > 0)
-                    <table class="table table-striped">
-                        <thead>
-                            <tr>
-                                <th>ID</th>
-                                <th>Nama</th>
-                                <!-- Sesuaikan dengan kolom-kolom yang ada pada model PKL -->
-                                <th>Action</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            @foreach ($skripsi as $item)
+                <div class="card">
+                    <div class="card-header">
+                        <h4 class="card-title">Permintaan Verifikasi KHS</h4>
+                    </div>
+                    <div class="card-body">
+                        <table class="table table-bordered table-striped">
+                            <thead>
                                 <tr>
-                                    <td>{{ $item->id }}</td>
-                                    <td>{{ $item->nama }}</td>
-                                    <!-- Sesuaikan dengan kolom-kolom yang ada pada model PKL -->
+                                    <th>NIM</th>
+                                    <th>Semester</th>
+                                    <th>Jumlah SKS</th>
+                                    <th>Scan KHS</th>
+                                    <th>Status</th>
+                                    <th width="280px">Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach ($khs as $kh)
+                                <tr>
+                                    <td>{{ $kh->id_mahasiswa}}</td>
+                                    <td>{{ $kh->semester_aktif }}</td>
+                                    <td>{{ $kh->jumlah_sks }}</td>
+                                    <td><a href="{{route('khs.download', ['id'=> $ir->id])}}">Lihat</a></td>
+                                    <td>{{ $ir->status ? "Sudah disetujui" : "Belum disetujui" }}</td>
                                     <td>
-                                        <form action="{{ route('Doswal.approveSkripsi', ['id' => $item->id]) }}" method="post">
-                                            @csrf
-                                            <button type="submit" class="btn btn-primary">Approve</button>
-                                        
-                                        <form action="{{ route('Doswal.deleteSingleSkripsi', ['id' => $item->id]) }}" method="post">
+                                        <form action="{{ route('Doswal.deleteSingleIRS',$ir->id) }}" method="POST">
+                                
+                                            <a class="btn btn-primary" href="{{ route('Doswal.approveIRS',$ir->id) }}">Approve</a>
                                             @csrf
                                             @method('DELETE')
                                             <button type="submit" class="btn btn-danger">Delete</button>
-                                        </form>
+                                        </form>    
                                     </td>
                                 </tr>
-                            @endforeach
-                        </tbody>
-                    </table>
-                @else
-                    <p>Tidak ada data Skripsi yang perlu diverifikasi.</p>
-                @endif
+                                @endforeach
+                            </tbody>    
+                        </table>
+                    </div>
                 </div>
-              </div>
               </section>
 
             </div>
