@@ -113,13 +113,14 @@
                                             <div class="form-body">
                                                 <div class="col-12">
                                                     <div class="form-group">
-                                                        <label for="form-semester-aktif">Semester Aktif</label>
+                                                        <label for="form-semester-aktif">Semester Seminar</label>
                                                         <select id="semester_aktif" class="form-control"
                                                             name="semester_aktif">
                                                             <option value="" disabled selected hidden>Pilih
                                                                 Semester</option>
+                                                                
                                                             @foreach ($avail_semester as $s)
-                                                                <option value="{{ $s }}" {{isset($pkl->semester_aktif)}}>{{ $s }}
+                                                                <option value="{{ $s }}" {{isset($pkl->semester_aktif) && $pkl->semester_aktif == $s ? 'selected' : '' }}>{{ $s }}
                                                                 </option>
                                                             @endforeach
                                                         </select>
@@ -190,7 +191,7 @@
                                                     @endif
                                                     <button id="reset" type="reset"
                                                         class="btn btn-light-secondary me-1 mb-1"hidden>Reset</button>
-                                                    @if (isset($pkl->scan_pkl) && isset($pkl->tanggal_lulus) && isset($pkl->nilai))
+                                                    @if (isset($pkl->scan_pkl) && isset($pkl->tanggal_lulus) && isset($pkl->nilai) && !($pkl->status))
                                                         <button id="toggleDisable" type="button"
                                                             class="btn btn-primary me-1 mb-1">Edit</button>
                                                     @endif

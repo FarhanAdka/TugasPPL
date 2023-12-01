@@ -13,10 +13,10 @@ class PKLController extends Controller
 {
     function index(){
         $pkl = PKL::where('id_mahasiswa', auth()->user()->id)->get()->first();
-        foreach ($pkl as $p) {
-            $p->mahasiswa = Mahasiswa::where('id', $p->id_mahasiswa)->get()->first();
-            $p->mahasiswa->nim = User::where('id', $p->mahasiswa->user_id)->get()->first()->username;
-        }
+        // dd($pkl->status);
+            $pkl->mahasiswa = Mahasiswa::where('user_id', $pkl->id_mahasiswa)->get()->first();
+            $pkl->mahasiswa->nim = User::where('id', $pkl->mahasiswa->user_id)->get()->first()->username;
+        
         //dd($pkl);
         $data = [
             'active_side' => 'active',
@@ -32,7 +32,7 @@ class PKLController extends Controller
     {
         $pkl = PKL::where('status', false)->whereNotNull('scan_pkl')->get();
         foreach ($pkl as $p) {
-            $p->mahasiswa = Mahasiswa::where('id', $p->id_mahasiswa)->get()->first();
+            $p->mahasiswa = Mahasiswa::where('user_id', $p->id_mahasiswa)->get()->first();
             $p->mahasiswa->nim = User::where('id', $p->mahasiswa->user_id)->get()->first()->username;
         }
         $data = [

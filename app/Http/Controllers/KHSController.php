@@ -31,7 +31,7 @@ class KHSController extends Controller
     {
         $khs = KHS::where('status', false)->get();
         foreach ($khs as $k) {
-            $k->mahasiswa = Mahasiswa::where('id', $k->id_mahasiswa)->get()->first();
+            $k->mahasiswa = Mahasiswa::where('user_id', $k->id_mahasiswa)->get()->first();
             $k->mahasiswa->nim = User::where('id', $k->mahasiswa->user_id)->get()->first()->username;
         }
         $data = [
@@ -49,7 +49,7 @@ class KHSController extends Controller
     {
         $khs = KHS::where('status', true)->get();
         foreach ($khs as $k) {
-            $k->mahasiswa = Mahasiswa::where('id', $k->id_mahasiswa)->get()->first();
+            $k->mahasiswa = Mahasiswa::where('user_id', $k->id_mahasiswa)->get()->first();
             $k->mahasiswa->nim = User::where('id', $k->mahasiswa->user_id)->get()->first()->username;
         }   
         $data = [

@@ -15,7 +15,7 @@ class SkripsiController extends Controller
     {
         $skripsi = Skripsi::where('id_mahasiswa', auth()->user()->id)->get()->first();
         foreach ($skripsi as $s) {
-            $s->mahasiswa = Mahasiswa::where('id', $s->id_mahasiswa)->get()->first();
+            $s->mahasiswa = Mahasiswa::where('user_id', $s->id_mahasiswa)->get()->first();
             $s->mahasiswa->nim = User::where('id', $s->mahasiswa->user_id)->get()->first()->username;
         }
         //dd($skripsi);

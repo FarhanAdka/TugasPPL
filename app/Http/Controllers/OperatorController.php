@@ -348,7 +348,7 @@ class OperatorController extends Controller
 
     public function destroyMahasiswa(string $id)
     {
-        dd($id);
+        //dd($id);
         $user = User::findOrFail($id);
         $user->delete();
         return redirect('/user/operator/kelolaMahasiswa');

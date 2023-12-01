@@ -38,7 +38,8 @@ class IRSController extends Controller
         // }
         $irs = IRS::where('status', false)->get();
         foreach ($irs as $ir) {
-            $ir->mahasiswa = Mahasiswa::where('id', $ir->id_mahasiswa)->get()->first();
+            // dd($ir->id_mahasiswa);
+            $ir->mahasiswa = Mahasiswa::where('user_id', $ir->id_mahasiswa)->get()->first();
             $ir->mahasiswa->nim = User::where('id', $ir->mahasiswa->user_id)->get()->first()->username;
         }
         $data = [
@@ -56,7 +57,7 @@ class IRSController extends Controller
     {
         $irs = IRS::where('status', true)->get();
         foreach ($irs as $ir) {
-            $ir->mahasiswa = Mahasiswa::where('id', $ir->id_mahasiswa)->get()->first();
+            $ir->mahasiswa = Mahasiswa::where('user_id', $ir->id_mahasiswa)->get()->first();
             $ir->mahasiswa->nim = User::where('id', $ir->mahasiswa->user_id)->get()->first()->username;
         }
         //dd($irs);
