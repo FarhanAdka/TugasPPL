@@ -14,7 +14,8 @@ class Skripsi extends Model
         'tanggal_lulus',
         'lama_studi',
         'status',
-        'scan_skripsi'
+        'scan_skripsi',
+        'semester',
     ];
 
     function user(){

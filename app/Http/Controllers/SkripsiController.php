@@ -14,10 +14,9 @@ class SkripsiController extends Controller
     function index()
     {
         $skripsi = Skripsi::where('id_mahasiswa', auth()->user()->id)->get()->first();
-        foreach ($skripsi as $s) {
-            $s->mahasiswa = Mahasiswa::where('user_id', $s->id_mahasiswa)->get()->first();
-            $s->mahasiswa->nim = User::where('id', $s->mahasiswa->user_id)->get()->first()->username;
-        }
+            $skripsi->mahasiswa = Mahasiswa::where('user_id', $skripsi->id_mahasiswa)->get()->first();
+            $skripsi->mahasiswa->nim = User::where('id', $skripsi->mahasiswa->user_id)->get()->first()->username;
+        
         //dd($skripsi);
         $data = [
             'active_side' => 'active',
@@ -33,7 +32,7 @@ class SkripsiController extends Controller
         $skripsi = Skripsi::where('status', false)->whereNotNull('scan_skripsi')->get();
         //dd($skripsi);
         foreach ($skripsi as $s) {
-            $s->mahasiswa = Mahasiswa::where('id', $s->id_mahasiswa)->get()->first();
+            $s->mahasiswa = Mahasiswa::where('user_id', $s->id_mahasiswa)->get()->first();
             $s->mahasiswa->nim = User::where('id', $s->mahasiswa->user_id)->get()->first()->username;
         }
         $data = [
@@ -48,6 +47,11 @@ class SkripsiController extends Controller
     public function indexDosen()
     {
         $skripsi = Skripsi::where('status', true)->get();
+        foreach ($skripsi as $s) {
+            $s->mahasiswa = Mahasiswa::where('user_id', $s->id_mahasiswa)->get()->first();
+            // dd($s->mahasiswa);
+            $s->mahasiswa->nim = User::where('id', $s->mahasiswa->user_id)->get()->first()->username;
+        }
         //dd($skripsi);
         $data = [
             'active_side' => 'active',

@@ -49,10 +49,15 @@ class PKLController extends Controller
     public function indexDosen()
     {
         $pkl = PKL::where('status', true)->get();
+        foreach ($pkl as $p) {
+            $p->mahasiswa = Mahasiswa::where('user_id', $p->id_mahasiswa)->get()->first();
+            $p->mahasiswa->nim = User::where('id', $p->mahasiswa->user_id)->get()->first()->username;
+        }
         $data = [
             'active_side' => 'active',
             'title' => 'List PKL',
             'active_user' => 'active',
+            'pkl' => $pkl
             // 'mahasiswa'=>$mahasiswa,
             // 'irs' => $irs
             // 'nim' => $nim

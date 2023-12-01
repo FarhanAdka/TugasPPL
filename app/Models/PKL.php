@@ -15,6 +15,7 @@ class PKL extends Model
         'tanggal_lulus',
         'status',
         'scan_pkl',
+        'semester',
     ];
 
     function user(){

@@ -114,13 +114,13 @@
                                                 <div class="col-12">
                                                     <div class="form-group">
                                                         <label for="form-semester-aktif">Semester Seminar</label>
-                                                        <select id="semester_aktif" class="form-control"
-                                                            name="semester_aktif">
+                                                        <select id="semester" class="form-control"
+                                                            name="semester">
                                                             <option value="" disabled selected hidden>Pilih
                                                                 Semester</option>
-                                                                
+
                                                             @foreach ($avail_semester as $s)
-                                                                <option value="{{ $s }}" {{isset($pkl->semester_aktif) && $pkl->semester_aktif == $s ? 'selected' : '' }}>{{ $s }}
+                                                                <option value="{{ $s }}" {{isset($pkl->semester) && $pkl->semester == $s ? 'selected' : '' }}>{{ $s }}
                                                                 </option>
                                                             @endforeach
                                                         </select>
