@@ -41,8 +41,9 @@ class SessionController extends Controller
             return redirect('user/departemen');
         }
     }
+    
     else{
-        return redirect('admin');
+        return redirect('')->withErrors('Email atau pasword tidak sesuai')->withInput();
     }
 }
     function logout(){

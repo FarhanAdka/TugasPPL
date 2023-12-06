@@ -2,11 +2,27 @@
 @section('section')
     <section class="section">
         <div class="card">
+            <div class="card-body">
+                <div class="col-12 col-lg-5">
+                    <div class="card-header">
+                        <h4>{{ $Title }}</h4>
+                    </div>
+                    <div class="card-body">
+                        <div id="chart-visitors-profile"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
+        <div class="card">
             <div class="card-header">
                 <h5 class="card-title">
                     {{ $Title }}
                 </h5>
             </div>
+
             <div class="card-body">
                 <table class="table table-striped" id="table1">
                     <thead>
@@ -61,6 +77,5 @@
                 </table>
             </div>
         </div>
-
     </section>
 @endsection

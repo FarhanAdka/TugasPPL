@@ -18,6 +18,7 @@
     {{-- TAMBAHAN ASSETS --}}
     <link rel="stylesheet" href="/assets/extensions/simple-datatables/style.css">
     <link rel="stylesheet" href="/assets/compiled/css/table-datatable.css">
+    <link rel="stylesheet" crossorigin href="/assets/compiled/css/iconly.css">
     {{-- --- --}}
 
 </head>
@@ -32,7 +33,8 @@
                     <div class="d-flex justify-content-between align-items-center">
                         <div class="logo">
                             {{-- PP LOGO APK --}}
-                            {{-- <a href="index.html"><img src="/assets/compiled/svg/logo.svg" alt="Logo" srcset=""></a> --}}
+                            <a href="index.html"><img src="/assets/compiled/png/logo.png" alt="Logo"
+                                    style="margin-left: 40px; width: 60px; height: auto;" srcset=""></a>
                         </div>
 
                         <div class="theme-toggle d-flex gap-2  align-items-center mt-2">
@@ -96,17 +98,17 @@
 
 
                         <li class="sidebar-item {{ $Title === 'Lulus Belum PKL' ? 'active' : '' }}">
-                            <a href="/user/departemen/LulusBelumPKL" class='sidebar-link'>
+                            <a href="/user/departemen/ProgresPKL" class='sidebar-link'>
                                 <i class="bi bi-grid-fill"></i>
-                                <span>Data Lulus belum PKL</span>
+                                <span>Lulus belum PKL</span>
                             </a>
                         </li>
 
 
                         <li class="sidebar-item {{ $Title === 'Lulus Belum Skripsi' ? 'active' : '' }}">
-                            <a href="/user/departemen/LulusBelumSkripsi" class='sidebar-link'>
+                            <a href="/user/departemen/ProgresSkripsi" class='sidebar-link'>
                                 <i class="bi bi-grid-fill"></i>
-                                <span>Data Lulus belum Skripsi</span>
+                                <span>Lulus belum Skripsi</span>
                             </a>
                         </li>
                     </ul>
@@ -289,6 +291,9 @@
         <!-- TAMBAHAN -->
         <script src="/assets/extensions/simple-datatables/umd/simple-datatables.js"></script>
         <script src="/assets/static/js/pages/simple-datatables.js"></script>
+
+        <script src="/assets/extensions/apexcharts/apexcharts.min.js"></script>
+        <script src="/assets/static/js/pages/dashboard.js"></script>
         {{-- --- --}}
 
 </body>

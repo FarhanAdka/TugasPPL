@@ -101,7 +101,7 @@ class UserController extends Controller
         $data = array (
             'active_home' => 'active',
             'Role' => 'Departemen',
-            'UserName' => '\\\UserName///',
+            'UserName' => 'INFORMATIKA',
             'Title' => 'Dashboard',
             'pkl' => $pkl,
             'skripsi' => $skripsi,
