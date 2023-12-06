@@ -51,7 +51,9 @@ class UserController extends Controller
             $tahun_shown[] = $i;
         }
 
-        //dd($mahasiswa);
+        // dd($mahasiswa);
+        $lulus_pkl = 0;
+        $lulus_skripsi = 0;
         foreach ($mahasiswa as $key => $value) {
             //$mahasiswa[$key]->name = User::where('id', $value[0]->user_id)->first()->name;
             $pkl[$key]['sudah'] = array();
@@ -61,26 +63,41 @@ class UserController extends Controller
             $skripsi[$key]['belum'] = array();
             foreach ($value as $key2 => $value2) {
                 //dd($key2);
-                $pkl[$key]['sudah'] = PKL::where('id_mahasiswa', $value2->user_id)->where('status', true)->get();
-                $pkl[$key]['belum'] = PKL::where('id_mahasiswa', $value2->user_id)->where('status', false)->get();
-                $skripsi[$key]['sudah'] = Skripsi::where('id_mahasiswa', $value2->user_id)->where('status', true)->get();
-                $skripsi[$key]['belum'] = Skripsi::where('id_mahasiswa', $value2->user_id)->where('status', false)->get();
-            }
-        }
-
-        foreach ($pkl as $key => $value) {
-            foreach ($value as $key2 => $value2) {
-                //dd($value2);
-                foreach ($value2 as $key3 => $value3) {
-                    $pkl[$key][$key2][$key3]->name = User::where('id', $value3->id_mahasiswa)->first()->name;
-                    $pkl[$key][$key2][$key3]->nim = User::where('id', $value3->id_mahasiswa)->first()->username;
-                    $skripsi[$key][$key2][$key3]->name = User::where('id', $value3->id_mahasiswa)->first()->name;
-                    $skripsi[$key][$key2][$key3]->nim = User::where('id', $value3->id_mahasiswa)->first()->username;
+                $data_pkl = PKL::where('id_mahasiswa', $value2->user_id)->get()->first();
+                // dd($value2->user_id);
+                $data_pkl->nama = User::where('id', $value2->user_id)->first()->name;
+                $data_pkl->nim = User::where('id', $value2->user_id)->first()->username;
+                $data_pkl->angkatan = $value2->angkatan;
+                // dd($data_pkl);
+                if ($data_pkl != null) {
+                    if ($data_pkl->status) {
+                        $pkl[$key]['sudah'][] = $data_pkl;
+                        $lulus_pkl++;
+                    } else {
+                        $pkl[$key]['belum'][] = $data_pkl;
+                    }
                 }
+
+                $data_skripsi = Skripsi::where('id_mahasiswa', $value2->user_id)->get()->first();
+                // dd($data_skripsi);
+                $data_skripsi->nama = User::where('id', $value2->user_id)->first()->name;
+                $data_skripsi->nim = User::where('id', $value2->user_id)->first()->username;
+                $data_skripsi->angkatan = $value2->angkatan;
+                if ($data_skripsi != null) {
+                    if ($data_skripsi->status) {
+                        $skripsi[$key]['sudah'][] = $data_skripsi;
+                        $lulus_skripsi++;
+                    } else {
+                        $skripsi[$key]['belum'][] = $data_skripsi;
+                    }
+                }
+
             }
         }
-
-        // dd($pkl);
+        
+        // dd($pkl[2021]['sudah'][0]);
+        // dd($skripsi);
+        // dd($tahun_shown);
         $data = array (
             'active_home' => 'active',
             'Role' => 'Departemen',
@@ -90,6 +107,8 @@ class UserController extends Controller
             'skripsi' => $skripsi,
             'tahun_shown' => $tahun_shown,
             'mahasiswa' => $mahasiswa,
+            'lulus_pkl' => $lulus_pkl,
+            'lulus_skripsi' => $lulus_skripsi,
         );
         return view('Departemen/homeDepartemen', $data);
     }
