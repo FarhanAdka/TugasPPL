@@ -19,59 +19,72 @@ class OperatorController extends Controller
     //Profile
     function profile()
     {
+        $userOp = User::where('id', auth()->user()->id)->get()->first();
         $data = array(
             'active_home' => 'active',
             'title' => 'Profile Operator',
+            'UserName' => $userOp->name
         );
-        return view('operator/profileOperator');
+        return view('operator/profileOperator', $data);
     }
 
     //Create Akun
     function createMahasiswa()
     {
+        $userOp = User::where('id', auth()->user()->id)->get()->first();
         $doswal = User::where('role', 'dosen_wali')->get();
         $data = array(
             'active_home' => 'active',
             'title' => 'Tambah Akun Mahasiswa',
             'doswal' => $doswal,
+            'UserName' => $userOp->name,
         );
         return view('operator/createAkun/createMahasiswa', $data);
     }
     function createdosenWali()
     {
+        $userOp = User::where('id', auth()->user()->id)->get()->first();
         $data = array(
             'active_home' => 'active',
             'title' => 'Tambah Akun Dosen Wali',
+            'UserName' => $userOp->name,
         );
-        return view('operator/createAkun/createdosenWali');
+        return view('operator/createAkun/createdosenWali', $data);
     }
     function createOperator()
     {
+        $userOp = User::where('id', auth()->user()->id)->get()->first();
         $data = array(
             'active_home' => 'active',
             'title' => 'Tambah Akun Operator',
+            'UserName' => $userOp->name,
         );
-        return view('operator/createAkun/createOperator');
+        return view('operator/createAkun/createOperator', $data);
     }
 
     //Kelola akun akun
     function kelolaMahasiswa()
     {
+        $userOp = User::where('id', auth()->user()->id)->get()->first();
         $mahasiswa = User::where('role', 'mahasiswa')->paginate(10);
         $data = array(
             'active_home' => 'active',
             'title' => 'Kelola Akun Mahasiswa',
             'mahasiswa' => $mahasiswa,
+            'UserName' => $userOp->name,
+
         );
         return view('operator/kelolaAkun/kelolaMahasiswa', $data);
     }
 
     
     function updateMahasiswa(Request $request, $id){
+        $userOp = User::where('id', auth()->user()->id)->get()->first();
         // Validasi input
         $request->validate([
             'username' => 'required',
             'name' => 'required',
+            'UserName' => $userOp->name,
             'password' => 'nullable|min:6', // Tambahkan nullable agar tidak wajib diisi
         ]);
     
@@ -101,19 +114,15 @@ class OperatorController extends Controller
 
 
 
-
-
-
-
-
-
     function keloladosenWali()
     {
+        $userOp = User::where('id', auth()->user()->id)->get()->first();
         $doswal = User::where('role', 'dosen_wali')->paginate(10);
         $data = array(
             'active_home' => 'active',
             'title' => 'Kelola Akun Dosen Wali',
             'doswal' => $doswal,
+            'UserName' => $userOp->name,
         );
         return view('operator/kelolaAkun/keloladosenWali', $data);
     }
@@ -121,11 +130,13 @@ class OperatorController extends Controller
     function editdosenWali($id){
         // Menggunakan findOrFail untuk menemukan data dosen wali berdasarkan ID
         $doswal = User::findOrFail($id);
-    
+        $userOp = User::where('id', auth()->user()->id)->get()->first();
         $data = array (
             'active_home' => 'active',
             'title' => 'Edit Akun Dosen Wali',
             'doswal' => $doswal,
+            'UserName' => $userOp->name,
+
         );
     
         return view('operator/kelolaAkun/editdosenWali', $data);
@@ -133,9 +144,11 @@ class OperatorController extends Controller
     
     function updatedosenWali(Request $request, $id){
         // Validasi input
+        $userOp = User::where('id', auth()->user()->id)->get()->first();
         $request->validate([
             'username' => 'required',
             'name' => 'required',
+            'UserName' => $userOp->name,
             'password' => 'nullable|min:6', // Tambahkan nullable agar tidak wajib diisi
         ]);
     
@@ -225,11 +238,14 @@ class OperatorController extends Controller
         //$mahasiswa->doswal = User::where('id', $mahasiswa->doswal)->first()->name;
         $doswal = User::where('role', 'dosen_wali')->get();
         //dd($user);
+        $userOp = User::where('id', auth()->user()->id)->get()->first();
         $data = array(
             'active_home' => 'active',
             'title' => 'Edit Akun Mahasiswa',
             'mahasiswa' => $mahasiswa,
             'doswal' => $doswal,
+            'UserName' => $userOp->name,
+
         );
         return view('operator/kelolaAkun/editMahasiswa', $data); 
     }
@@ -250,9 +266,12 @@ class OperatorController extends Controller
 
     function createDataMahasiswa()
     {
+        $userOp = User::where('id', auth()->user()->id)->get()->first();
         $data = array(
             'active_home' => 'active',
             'title' => 'Tambah Data Mahasiswa',
+            'UserName' => $userOp->name,
+
         );
         return view('operator/createAkun/createDataMahasiswa', $data);
     }

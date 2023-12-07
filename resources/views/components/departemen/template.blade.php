@@ -66,7 +66,7 @@
                         </div>
 
                         <div class="sidebar-toggler  x">
-                            <a href="pp" class="sidebar-hide d-xl-none d-block"><i
+                            <a href="#" class="sidebar-hide d-xl-none d-block"><i
                                     class="bi bi-x bi-middle"></i></a>
                         </div>
                     </div>
@@ -88,7 +88,7 @@
 
                         <li class="sidebar-item  {{ $Title === 'Data Mahasiswa' ? 'active' : '' }} ">
                             <a href="/user/departemen/DataMahasiswa" class='sidebar-link'>
-                                <i class="bi bi-grid-fill"></i>
+                                <i class="bi bi-floppy2-fill"></i>
                                 <span>Data Mahasiswa</span>
                             </a>
                         </li>
@@ -96,7 +96,7 @@
 
                         <li class="sidebar-item {{ $Title === 'Lulus Belum PKL' ? 'active' : '' }}">
                             <a href="/user/departemen/ProgresPKL" class='sidebar-link'>
-                                <i class="bi bi-grid-fill"></i>
+                                <i class="bi bi-box-seam-fill"></i>
                                 <span>Lulus belum PKL</span>
                             </a>
                         </li>
@@ -104,7 +104,7 @@
 
                         <li class="sidebar-item {{ $Title === 'Lulus Belum Skripsi' ? 'active' : '' }}">
                             <a href="/user/departemen/ProgresSkripsi" class='sidebar-link'>
-                                <i class="bi bi-grid-fill"></i>
+                                <i class="bi bi-box-fill"></i>
                                 <span>Lulus belum Skripsi</span>
                             </a>
                         </li>
@@ -158,10 +158,10 @@
                                                     class="icon-mid bi bi-person me-2"></i> MyProfile</a>
                                         </li>
 
-                                        <li>
+                                        {{-- <li>
                                             <a class="dropdown-item" href="/user/departemen/Settings"><i
                                                     class="icon-mid bi bi-gear me-2"></i> Settings</a>
-                                        </li>
+                                        </li> --}}
 
                                         <li>
                                             <hr class="dropdown-divider">

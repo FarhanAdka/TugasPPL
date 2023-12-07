@@ -108,24 +108,25 @@
                                     </li>
                                     <li class="submenu-item {{ $title === 'Data KHS' ? 'active' : '' }}">
                                         <a href="{{ route('KHS.index') }}" class="submenu-link">
-                                            <span>Data KHS</span>
+                                            <span>Data KHS </span>
                                         </a>
                                     </li>
                                 </ul>
                             </li>
 
 
-                            <li class="sidebar-item {{ $title === 'PKL' ? 'active' : '' }}">
+                            <li class="sidebar-item {{ $title === 'Isi PKL' ? 'active' : '' }}">
                                 <a href="/user/mahasiswa/PKL" class='sidebar-link'>
-                                    <i class="bi bi-box-seam-fill"></i>
-                                    <span>Data PKL</span>
+                                    <i class="bi bi-journal-bookmark-fill"></i>
+                                    {{-- <i class="bi bi-box-seam-fill"></i> --}}
+                                    <span>Isi PKL</span>
                                 </a>
                             </li>
 
-                            <li class="sidebar-item {{ $title === 'skripsi' ? 'active' : '' }}">
+                            <li class="sidebar-item {{ $title === 'Isi Skripsi' ? 'active' : '' }}">
                                 <a href="/user/mahasiswa/Skripsi" class='sidebar-link'>
-                                    <i class="bi bi-box-fill"></i>
-                                    <span>Data Skripsi</span>
+                                    <i class="bi bi-journals"></i>
+                                    <span>Isi Skripsi</span>
                                 </a>
                             </li>
                         </ul>

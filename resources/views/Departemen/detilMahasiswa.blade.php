@@ -6,13 +6,13 @@
                 <div class="card-body">
                     <div class="row">
                         <div class="col-md-3">
-                            <p class="text-small mb-2"><b>NIM : </b>{{ $user->username }}</p>
+                            <p class="text-small mb-2"><b>Nama : </b>{{ $user->name }}</p>
                         </div>
                     </div>
 
                     <div class="row">
                         <div class="col-md-3">
-                            <p class="text-small mb-2"><b>Nama : </b> {{ $user->name }}</p>
+                            <p class="text-small mb-2"><b>NIM : </b> {{ $user->username }}</p>
                         </div>
                     </div>
 

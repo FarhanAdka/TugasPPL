@@ -76,7 +76,7 @@ class SkripsiController extends Controller
         $data = array(
             'active_side' => 'active',
             'active_user' => 'active',
-            'title' => 'Isi skripsi',
+            'title' => 'Isi Skripsi',
             'skripsi' => $skripsi->first(),
             'UserName' => $userMhs->name,
 

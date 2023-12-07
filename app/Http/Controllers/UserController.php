@@ -27,11 +27,14 @@ class UserController extends Controller
     }
 
     function operator(){
+        $userOp = User::where('id', auth()->user()->id)->get()->first();
         $data = array (
             'active_side' => 'active',
             'active_sub' => 'active',
             'active_user' => 'active',
             'title' => 'Operator',
+            'UserName' => $userOp->name
+
         );
         return view('Operator/homeOperator', $data);
     }

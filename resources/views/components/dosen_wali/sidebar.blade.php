@@ -127,8 +127,8 @@
                                 <i class="bi bi-box-seam-fill"></i>
                                 <span>Data PKL</span>
                             </a>
-                            <ul class="submenu {{ $title === 'Verifikasi PKL' ? 'active' : '' }}">
-                                <li class="submenu-item ">
+                            <ul class="submenu ">
+                                <li class="submenu-item {{ $title === 'Verifikasi PKL' ? 'active' : '' }} ">
                                     <a href="/user/dosenWali/verifikasiPKL" class="submenu-link">
                                         <span>Verifikasi PKL</span>
                                     </a>
@@ -147,8 +147,8 @@
                                 <i class="bi bi-box-fill"></i>
                                 <span>Data Skripsi</span>
                             </a>
-                            <ul class="submenu {{ $title === 'Verifikasi Skripsi' ? 'active' : '' }}">
-                                <li class="submenu-item ">
+                            <ul class="submenu ">
+                                <li class="submenu-item {{ $title === 'Verifikasi Skripsi' ? 'active' : '' }} ">
                                     <a href="/user/dosenWali/verifikasiSkripsi" class="submenu-link">
                                         <span>Verifikasi Skripsi</span>
                                     </a>
