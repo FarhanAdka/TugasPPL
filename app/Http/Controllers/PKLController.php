@@ -12,6 +12,8 @@ use Redirect;
 class PKLController extends Controller
 {
     function index(){
+        $userMhs = User::where('id', auth()->user()->id)->get()->first();
+        
         $pkl = PKL::where('id_mahasiswa', auth()->user()->id)->get()->first();
         // dd($pkl->status);
             $pkl->mahasiswa = Mahasiswa::where('user_id', $pkl->id_mahasiswa)->get()->first();
@@ -22,7 +24,8 @@ class PKLController extends Controller
             'active_side' => 'active',
             'title' => 'Data PKL',
             'active_user' => 'active',
-            'pkl' => $pkl
+            'pkl' => $pkl,
+            'UserName' => $userMhs->name,
         ];
         return redirect()->route('PKL.create');
 
@@ -30,6 +33,8 @@ class PKLController extends Controller
 
     public function indexVerif()
     {
+        $userMhs = User::where('id', auth()->user()->id)->get()->first();
+        
         $pkl = PKL::where('status', false)->whereNotNull('scan_pkl')->get();
         foreach ($pkl as $p) {
             $p->mahasiswa = Mahasiswa::where('user_id', $p->id_mahasiswa)->get()->first();
@@ -39,6 +44,7 @@ class PKLController extends Controller
             'active_side' => 'active',
             'title' => 'Permintaan Verifikasi PKL',
             'active_user' => 'active',
+            'UserName' => $userMhs->name,
             // 'mahasiswa'=>$mahasiswa,
             // 'irs' => $irs
             // 'nim' => $nim
@@ -48,6 +54,8 @@ class PKLController extends Controller
 
     public function indexDosen()
     {
+        $userMhs = User::where('id', auth()->user()->id)->get()->first();
+        
         $pkl = PKL::where('status', true)->get();
         foreach ($pkl as $p) {
             $p->mahasiswa = Mahasiswa::where('user_id', $p->id_mahasiswa)->get()->first();
@@ -57,7 +65,8 @@ class PKLController extends Controller
             'active_side' => 'active',
             'title' => 'List PKL',
             'active_user' => 'active',
-            'pkl' => $pkl
+            'pkl' => $pkl,
+            'UserName' => $userMhs->name,
             // 'mahasiswa'=>$mahasiswa,
             // 'irs' => $irs
             // 'nim' => $nim
@@ -67,6 +76,8 @@ class PKLController extends Controller
     }
     public function create()
     {
+        $userMhs = User::where('id', auth()->user()->id)->get()->first();
+        
         $pkl = PKL::where('id_mahasiswa', auth()->user()->id)->get();
         //dd($pkl);
         $avail_semester = [1,2,3,4,5,6,7,8,9,10,11,12,13,14];
@@ -77,6 +88,7 @@ class PKLController extends Controller
             'title' => 'Isi PKL',
             'pkl' => $pkl->first(),
             'avail_semester' => $avail_semester,
+            'UserName' => $userMhs->name,
 
         );
         return view('Mahasiswa/PKL', $data);
@@ -84,22 +96,28 @@ class PKLController extends Controller
     public function show(string $id)
     {
         {
+            $userMhs = User::where('id', auth()->user()->id)->get()->first();
+            
             $data = [
                 'active_side' => 'active',
                 'title' => 'Data PKL',
                 'active_user' => 'active',
+                'UserName' => $userMhs->name,
             ];
             return view('mahasiswa/DataPKL', $data);
         }
     }
     public function edit(string $id)
     {
+        $userMhs = User::where('id', auth()->user()->id)->get()->first();
+        
         $pkl = PKL::where('id_mahasiswa', auth()->user()->id)->get();
         $data = [
             'active_side' => 'active',
             'title' => 'Edit PKL',
             'active_user' => 'active',
-            'pkl' => $pkl
+            'pkl' => $pkl,
+            'UserName' => $userMhs->name,
         ];
         return view('mahasiswa/EditPKL', $data);
     }

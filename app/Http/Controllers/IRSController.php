@@ -17,11 +17,13 @@ class IRSController extends Controller
     public function index()
     {
         $irs = IRS::where('id_mahasiswa', auth()->user()->id)->get();
+        $userMhs = User::where('id', auth()->user()->id)->get()->first();
         $data = [
                 'active_side' => 'active',
                 'title' => 'Data IRS',
                 'active_user' => 'active',
                 'irs' => $irs,
+                'UserName' => $userMhs->name,
             ];
         //dd($irs);
         return view('mahasiswa/DataIRS', $data);
@@ -36,6 +38,8 @@ class IRSController extends Controller
         //     $irsMahasiswa = IRS::where('id_mahasiswa', $mhs->id)->where('status', true)->get();
         //     $irs = $irs->merge($irsMahasiswa); // Menggabungkan PKL dari setiap mahasiswa ke dalam satu koleksi
         // }
+        $userMhs = User::where('id', auth()->user()->id)->get()->first();
+        
         $irs = IRS::where('status', false)->get();
         foreach ($irs as $ir) {
             // dd($ir->id_mahasiswa);
@@ -46,6 +50,7 @@ class IRSController extends Controller
             'active_side' => 'active',
             'title' => 'Permintaan Verifikasi IRS',
             'active_user' => 'active',
+            'UserName' => $userMhs->name,
             // 'mahasiswa'=>$mahasiswa,
             // 'irs' => $irs
             // 'nim' => $nim
@@ -55,6 +60,8 @@ class IRSController extends Controller
 
     public function indexDosen()
     {
+        $userMhs = User::where('id', auth()->user()->id)->get()->first();
+       
         $irs = IRS::where('status', true)->get();
         foreach ($irs as $ir) {
             $ir->mahasiswa = Mahasiswa::where('user_id', $ir->id_mahasiswa)->get()->first();
@@ -65,6 +72,7 @@ class IRSController extends Controller
             'active_side' => 'active',
             'title' => 'Data IRS',
             'active_user' => 'active',
+            'UserName' => $userMhs->name,
             // 'mahasiswa'=>$mahasiswa,
             // 'irs' => $irs
             // 'nim' => $nim
@@ -78,6 +86,7 @@ class IRSController extends Controller
      */
     public function create()
     {
+        $userMhs = User::where('id', auth()->user()->id)->get()->first();
         $semester = IRS::where('id_mahasiswa', auth()->user()->id)->pluck('semester_aktif')->toArray();
         sort($semester);
         //dd($semester);
@@ -88,6 +97,7 @@ class IRSController extends Controller
             'active_user' => 'active',
             'title' => 'Isi IRS',
             'avail_semester' => $avail_semester,
+            'UserName' => $userMhs->name,
         );
         //dd($avail_semester);
         return view('Mahasiswa/IsiIRS', $data);
@@ -120,10 +130,13 @@ class IRSController extends Controller
      */
     public function show(string $id)
     {
+        $userMhs = User::where('id', auth()->user()->id)->get()->first();
+        
         $data = [
             'active_side' => 'active',
             'title' => 'Data IRS',
             'active_user' => 'active',
+            'UserName' => $userMhs->name,
         ];
         return view('mahasiswa/DataIRS', $data);
     }
@@ -133,6 +146,8 @@ class IRSController extends Controller
      */
     public function edit(string $id)
     {
+        $userMhs = User::where('id', auth()->user()->id)->get()->first();
+        
         $irs = IRS::find($id);
         $semester = IRS::where('id_mahasiswa', auth()->user()->id)->pluck('semester_aktif')->toArray();
         $avail_semester = array_diff_assoc(['1', '2', '3', '4', '5', '6', '7', '8'], $semester);
@@ -142,6 +157,7 @@ class IRSController extends Controller
             'active_user' => 'active',
             'irs' => $irs,
             'avail_semester' => $avail_semester,
+            'UserName' => $userMhs->name,
         ];
         return view('mahasiswa/EditIRS', $data);
     }

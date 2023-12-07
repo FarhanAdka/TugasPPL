@@ -16,9 +16,12 @@ class UserController extends Controller
     }
 
     function mahasiswa(){
-        $data = array (
+        $userMhs = User::where('id', auth()->user()->id)->get()->first();
+        $data = array
+         (
             'active_home' => 'active',
             'title' => 'Mahasiswa',
+            'UserName' => $userMhs->name
         );
         return view('Mahasiswa/homeMahasiswa', $data);
     }

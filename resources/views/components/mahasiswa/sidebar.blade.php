@@ -4,7 +4,8 @@
             <div class="sidebar-header position-relative">
                 <div class="d-flex justify-content-between align-items-center">
                     <div class="logo"></div>
-
+                    <a href="index.html"><img src="/assets/compiled/png/logo.png" alt="Logo"
+                            style="margin-left: 40px; width: 60px; height: auto;" srcset=""></a>
                     <div class="theme-toggle d-flex gap-2 align-items-center mt-2">
                         <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
                             aria-hidden="true" role="img" class="iconify iconify--system-uicons" width="20"
@@ -51,26 +52,24 @@
 
                         <li class="sidebar-item">
                             <a href="/user/mahasiswa/profile" class='sidebar-link'>
-                                <i class="bi bi-grid-fill"></i>
+                                <i class="bi bi-person-circle"></i>
                                 <span>Profile</span>
                             </a>
                         </li>
 
                         <li class="sidebar-item @if (isset($active_side)) {{ $active_side }} @endif has-sub">
                             <a href="#" class='sidebar-link'>
-                                <i class="bi bi-collection-fill"></i>
+                                <i class="bi bi-file-earmark-text-fill"></i>
                                 <span>IRS</span>
                             </a>
                             <ul class="submenu @if (isset($active_sub)) {{ $active_sub }} @endif">
                                 <li class="submenu-item ">
                                     <a href="{{ route('IRS.create') }}" class="submenu-link">
-                                        <i class="bi bi-grid-fill"></i>
                                         <span>Isi IRS</span>
                                     </a>
                                 </li>
                                 <li class="submenu-item @if (isset($active_user)) {{ $active_user }} @endif">
                                     <a href="{{ route('IRS.index') }}" class="submenu-link">
-                                        <i class="bi bi-grid-fill"></i>
                                         <span>Data IRS</span>
                                     </a>
                                 </li>
@@ -79,19 +78,17 @@
 
                         <li class="sidebar-item has-sub">
                             <a href="#" class='sidebar-link'>
-                                <i class="bi bi-collection-fill"></i>
+                                <i class="bi bi-file-post-fill"></i>
                                 <span>KHS</span>
                             </a>
                             <ul class="submenu">
                                 <li class="submenu-item">
                                     <a href="{{ route('KHS.create') }}" class="submenu-link">
-                                        <i class="bi bi-grid-fill"></i>
                                         <span>Isi KHS</span>
                                     </a>
                                 </li>
                                 <li class="submenu-item">
                                     <a href="{{ route('KHS.index') }}" class="submenu-link">
-                                        <i class="bi bi-grid-fill"></i>
                                         <span>Data KHS</span>
                                     </a>
                                 </li>
@@ -101,14 +98,14 @@
 
                         <li class="sidebar-item">
                             <a href="/user/mahasiswa/PKL" class='sidebar-link'>
-                                <i class="bi bi-collection-fill"></i>
+                                <i class="bi bi-box-seam-fill"></i>
                                 <span>Data PKL</span>
                             </a>
                         </li>
 
                         <li class="sidebar-item">
                             <a href="/user/mahasiswa/Skripsi" class='sidebar-link'>
-                                <i class="bi bi-collection-fill"></i>
+                                <i class="bi bi-box-fill"></i>
                                 <span>Data Skripsi</span>
                             </a>
                         </li>
