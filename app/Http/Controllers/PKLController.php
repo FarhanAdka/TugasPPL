@@ -12,7 +12,7 @@ use Redirect;
 class PKLController extends Controller
 {
     function index(){
-        $userMhs = User::where('id', auth()->user()->id)->get()->first();
+        $user = User::where('id', auth()->user()->id)->get()->first();
         
         $pkl = PKL::where('id_mahasiswa', auth()->user()->id)->get()->first();
         // dd($pkl->status);
@@ -25,7 +25,7 @@ class PKLController extends Controller
             'title' => 'Data PKL',
             'active_user' => 'active',
             'pkl' => $pkl,
-            'UserName' => $userMhs->name,
+            'UserName' => $user->name,
         ];
         return redirect()->route('PKL.create');
 
@@ -33,7 +33,7 @@ class PKLController extends Controller
 
     public function indexVerif()
     {
-        $userMhs = User::where('id', auth()->user()->id)->get()->first();
+        $userDoswal = User::where('id', auth()->user()->id)->get()->first();
         
         $pkl = PKL::where('status', false)->whereNotNull('scan_pkl')->get();
         foreach ($pkl as $p) {
@@ -42,9 +42,9 @@ class PKLController extends Controller
         }
         $data = [
             'active_side' => 'active',
-            'title' => 'Permintaan Verifikasi PKL',
+            'title' => 'Verifikasi PKL',
             'active_user' => 'active',
-            'UserName' => $userMhs->name,
+            'UserName' => $userDoswal->name,
             // 'mahasiswa'=>$mahasiswa,
             // 'irs' => $irs
             // 'nim' => $nim
@@ -54,7 +54,7 @@ class PKLController extends Controller
 
     public function indexDosen()
     {
-        $userMhs = User::where('id', auth()->user()->id)->get()->first();
+        $userDoswal = User::where('id', auth()->user()->id)->get()->first();
         
         $pkl = PKL::where('status', true)->get();
         foreach ($pkl as $p) {
@@ -66,7 +66,7 @@ class PKLController extends Controller
             'title' => 'List PKL',
             'active_user' => 'active',
             'pkl' => $pkl,
-            'UserName' => $userMhs->name,
+            'UserName' => $userDoswal->name,
             // 'mahasiswa'=>$mahasiswa,
             // 'irs' => $irs
             // 'nim' => $nim

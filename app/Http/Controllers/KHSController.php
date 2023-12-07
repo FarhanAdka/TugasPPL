@@ -32,7 +32,7 @@ class KHSController extends Controller
 
     public function indexVerif()
     {
-        $userMhs = User::where('id', auth()->user()->id)->get()->first();
+        $userDoswal = User::where('id', auth()->user()->id)->get()->first();
         
         $khs = KHS::where('status', false)->get();
         foreach ($khs as $k) {
@@ -41,9 +41,9 @@ class KHSController extends Controller
         }
         $data = [
             'active_side' => 'active',
-            'title' => 'Permintaan Verifikasi KHS',
+            'title' => 'Verifikasi KHS',
             'active_user' => 'active',
-            'UserName' => $userMhs->name,
+            'UserName' => $userDoswal->name,
             // 'mahasiswa'=>$mahasiswa,
             // 'irs' => $irs
             // 'nim' => $nim
@@ -53,7 +53,7 @@ class KHSController extends Controller
 
     public function indexDosen()
     {
-        $userMhs = User::where('id', auth()->user()->id)->get()->first();
+        $userDoswal = User::where('id', auth()->user()->id)->get()->first();
         
         $khs = KHS::where('status', true)->get();
         foreach ($khs as $k) {
@@ -64,7 +64,7 @@ class KHSController extends Controller
             'active_side' => 'active',
             'title' => 'List KHS',
             'active_user' => 'active',
-            'UserName' => $userMhs->name,
+            'UserName' => $userDoswal->name,
             // 'mahasiswa'=>$mahasiswa,
             // 'irs' => $irs
             // 'nim' => $nim

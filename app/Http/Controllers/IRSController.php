@@ -38,7 +38,7 @@ class IRSController extends Controller
         //     $irsMahasiswa = IRS::where('id_mahasiswa', $mhs->id)->where('status', true)->get();
         //     $irs = $irs->merge($irsMahasiswa); // Menggabungkan PKL dari setiap mahasiswa ke dalam satu koleksi
         // }
-        $userMhs = User::where('id', auth()->user()->id)->get()->first();
+        $userDoswal = User::where('id', auth()->user()->id)->get()->first();
         
         $irs = IRS::where('status', false)->get();
         foreach ($irs as $ir) {
@@ -48,9 +48,9 @@ class IRSController extends Controller
         }
         $data = [
             'active_side' => 'active',
-            'title' => 'Permintaan Verifikasi IRS',
+            'title' => 'Verifikasi IRS',
             'active_user' => 'active',
-            'UserName' => $userMhs->name,
+            'UserName' => $userDoswal->name,
             // 'mahasiswa'=>$mahasiswa,
             // 'irs' => $irs
             // 'nim' => $nim
@@ -60,7 +60,7 @@ class IRSController extends Controller
 
     public function indexDosen()
     {
-        $userMhs = User::where('id', auth()->user()->id)->get()->first();
+        $userDoswal = User::where('id', auth()->user()->id)->get()->first();
        
         $irs = IRS::where('status', true)->get();
         foreach ($irs as $ir) {
@@ -70,9 +70,9 @@ class IRSController extends Controller
         //dd($irs);
         $data = [
             'active_side' => 'active',
-            'title' => 'Data IRS',
+            'title' => 'List IRS',
             'active_user' => 'active',
-            'UserName' => $userMhs->name,
+            'UserName' => $userDoswal -> name,
             // 'mahasiswa'=>$mahasiswa,
             // 'irs' => $irs
             // 'nim' => $nim

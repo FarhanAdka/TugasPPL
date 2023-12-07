@@ -13,7 +13,7 @@ class SkripsiController extends Controller
 {
     function index()
     {
-        $userMhs = User::where('id', auth()->user()->id)->get()->first();
+        $user = User::where('id', auth()->user()->id)->get()->first();
         $skripsi = Skripsi::where('id_mahasiswa', auth()->user()->id)->get()->first();
             $skripsi->mahasiswa = Mahasiswa::where('user_id', $skripsi->id_mahasiswa)->get()->first();
             $skripsi->mahasiswa->nim = User::where('id', $skripsi->mahasiswa->user_id)->get()->first()->username;
@@ -21,17 +21,17 @@ class SkripsiController extends Controller
         //dd($skripsi);
         $data = [
             'active_side' => 'active',
-            'title' => 'Data skripsi',
+            'title' => 'Data Skripsi',
             'active_user' => 'active',
             'skripsi' => $skripsi,
-            'UserName' => $userMhs->name,
+            'UserName' => $user->name,
         ];
         return redirect()->route('skripsi.create');
 
     }
 
     public function indexVerif(){
-        $userMhs = User::where('id', auth()->user()->id)->get()->first();
+        $userDoswal = User::where('id', auth()->user()->id)->get()->first();
         $skripsi = Skripsi::where('status', false)->whereNotNull('scan_skripsi')->get();
         //dd($skripsi);
         foreach ($skripsi as $s) {
@@ -42,7 +42,7 @@ class SkripsiController extends Controller
             'active_side' => 'active',
             'title' => 'Verifikasi Skripsi',
             'active_user' => 'active',
-            'UserName' => $userMhs->name,
+            'UserName' => $userDoswal->name,
             //'skripsi' => $skripsi
         ];
         return view('DosenWali.verifSkripsiindex', compact('skripsi'), $data);
@@ -50,7 +50,7 @@ class SkripsiController extends Controller
 
     public function indexDosen()
     {
-        $userMhs = User::where('id', auth()->user()->id)->get()->first();
+        $userDoswal = User::where('id', auth()->user()->id)->get()->first();
         $skripsi = Skripsi::where('status', true)->get();
         foreach ($skripsi as $s) {
             $s->mahasiswa = Mahasiswa::where('user_id', $s->id_mahasiswa)->get()->first();
@@ -62,7 +62,7 @@ class SkripsiController extends Controller
             'active_side' => 'active',
             'title' => 'List Skripsi',
             'active_user' => 'active',
-            'UserName' => $userMhs->name,
+            'UserName' => $userDoswal->name,
             //'skripsi' => $skripsi
         ];
         return view('DosenWali.Skripsiindex', compact('skripsi'), $data);

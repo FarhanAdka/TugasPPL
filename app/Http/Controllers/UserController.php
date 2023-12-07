@@ -37,9 +37,12 @@ class UserController extends Controller
     }
 
     function dosenWali(){
+        $userDoswal = User::where('id', auth()->user()->id)->get()->first();
         $data = array (
             'active_home' => 'active',
             'title' => 'Dosen Wali',
+            'UserName' => $userDoswal->name,
+
         );
         return view('DosenWali/homedosenWali', $data);
     }
