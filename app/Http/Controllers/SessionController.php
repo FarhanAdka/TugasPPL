@@ -41,6 +41,7 @@ class SessionController extends Controller
             return redirect('user/departemen');
         }
     }
+    
     else{
         return redirect('/')->withInput()->with('pesan',"Username atau Password salah");
     }

@@ -13,6 +13,7 @@ class SkripsiController extends Controller
 {
     function index()
     {
+        $user = User::where('id', auth()->user()->id)->get()->first();
         $skripsi = Skripsi::where('id_mahasiswa', auth()->user()->id)->get()->first();
             $skripsi->mahasiswa = Mahasiswa::where('user_id', $skripsi->id_mahasiswa)->get()->first();
             $skripsi->mahasiswa->nim = User::where('id', $skripsi->mahasiswa->user_id)->get()->first()->username;
@@ -20,15 +21,17 @@ class SkripsiController extends Controller
         //dd($skripsi);
         $data = [
             'active_side' => 'active',
-            'title' => 'Data skripsi',
+            'title' => 'Data Skripsi',
             'active_user' => 'active',
-            'skripsi' => $skripsi
+            'skripsi' => $skripsi,
+            'UserName' => $user->name,
         ];
         return redirect()->route('skripsi.create');
 
     }
 
     public function indexVerif(){
+        $userDoswal = User::where('id', auth()->user()->id)->get()->first();
         $skripsi = Skripsi::where('status', false)->whereNotNull('scan_skripsi')->get();
         //dd($skripsi);
         foreach ($skripsi as $s) {
@@ -39,6 +42,7 @@ class SkripsiController extends Controller
             'active_side' => 'active',
             'title' => 'Verifikasi Skripsi',
             'active_user' => 'active',
+            'UserName' => $userDoswal->name,
             //'skripsi' => $skripsi
         ];
         return view('DosenWali.verifSkripsiindex', compact('skripsi'), $data);
@@ -46,6 +50,7 @@ class SkripsiController extends Controller
 
     public function indexDosen()
     {
+        $userDoswal = User::where('id', auth()->user()->id)->get()->first();
         $skripsi = Skripsi::where('status', true)->get();
         foreach ($skripsi as $s) {
             $s->mahasiswa = Mahasiswa::where('user_id', $s->id_mahasiswa)->get()->first();
@@ -57,6 +62,7 @@ class SkripsiController extends Controller
             'active_side' => 'active',
             'title' => 'List Skripsi',
             'active_user' => 'active',
+            'UserName' => $userDoswal->name,
             //'skripsi' => $skripsi
         ];
         return view('DosenWali.Skripsiindex', compact('skripsi'), $data);
@@ -64,35 +70,43 @@ class SkripsiController extends Controller
 
     public function create()
     {
+        $userMhs = User::where('id', auth()->user()->id)->get()->first();
         $skripsi = Skripsi::where('id_mahasiswa', auth()->user()->id)->get();
         //dd($skripsi);
         $data = array(
             'active_side' => 'active',
             'active_user' => 'active',
-            'title' => 'Isi skripsi',
-            'skripsi' => $skripsi->first()
+            'title' => 'Isi Skripsi',
+            'skripsi' => $skripsi->first(),
+            'UserName' => $userMhs->name,
 
         );
         return view('Mahasiswa/skripsi', $data);
     }
     public function show(string $id)
-    { {
+    { 
+        {
+            $userMhs = User::where('id', auth()->user()->id)->get()->first();
             $data = [
                 'active_side' => 'active',
                 'title' => 'Data Skripsi',
                 'active_user' => 'active',
+                'UserName' => $userMhs->name,
             ];
             return view('mahasiswa/Dataskripsi', $data);
         }
     }
     public function edit(string $id)
     {
+        $userMhs = User::where('id', auth()->user()->id)->get()->first();
         $skripsi = skripsi::where('id_mahasiswa', auth()->user()->id)->get();
         $data = [
             'active_side' => 'active',
             'title' => 'Edit skripsi',
             'active_user' => 'active',
-            'skripsi' => $skripsi
+            'skripsi' => $skripsi,
+            'UserName' => $userMhs->name,
+
         ];
         return view('mahasiswa/Editskripsi', $data);
     }

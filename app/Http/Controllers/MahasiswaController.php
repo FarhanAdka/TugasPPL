@@ -83,7 +83,7 @@ class MahasiswaController extends Controller
     function PKL(){
         $data = array (
             'active_home' => 'active',
-            'title' => 'Mahasiswa',
+            'title' => 'Data PKL',
         );
         return view('Mahasiswa/PKL', $data);
     }
@@ -91,7 +91,7 @@ class MahasiswaController extends Controller
     function Skripsi(){
         $data = array (
             'active_home' => 'active',
-            'title' => 'Mahasiswa',
+            'title' => 'Data Skripsi',
         );
         return view('Mahasiswa/Skripsi', $data);
     }

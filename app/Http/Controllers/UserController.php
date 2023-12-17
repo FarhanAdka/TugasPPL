@@ -27,27 +27,36 @@ class UserController extends Controller
     }
 
     function mahasiswa(){
-        $data = array (
+        $userMhs = User::where('id', auth()->user()->id)->get()->first();
+        $data = array
+         (
             'active_home' => 'active',
             'title' => 'Mahasiswa',
+            'UserName' => $userMhs->name
         );
         return view('Mahasiswa/homeMahasiswa', $data);
     }
 
     function operator(){
+        $userOp = User::where('id', auth()->user()->id)->get()->first();
         $data = array (
             'active_side' => 'active',
             'active_sub' => 'active',
             'active_user' => 'active',
             'title' => 'Operator',
+            'UserName' => $userOp->name
+
         );
         return view('Operator/homeOperator', $data);
     }
 
     function dosenWali(){
+        $userDoswal = User::where('id', auth()->user()->id)->get()->first();
         $data = array (
             'active_home' => 'active',
             'title' => 'Dosen Wali',
+            'UserName' => $userDoswal->name,
+
         );
         return view('DosenWali/homedosenWali', $data);
     }
@@ -112,7 +121,7 @@ class UserController extends Controller
         $data = array (
             'active_home' => 'active',
             'Role' => 'Departemen',
-            'UserName' => '\\\UserName///',
+            'UserName' => 'INFORMATIKA',
             'Title' => 'Dashboard',
             'pkl' => $pkl,
             'skripsi' => $skripsi,

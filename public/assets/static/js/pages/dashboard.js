@@ -37,6 +37,7 @@ var optionsProfileVisit = {
     ],
   },
 }
+
 let optionsVisitorsProfile = {
   series: [70, 30],
   labels: ["Male", "Female"],
@@ -47,12 +48,12 @@ let optionsVisitorsProfile = {
     height: "350px",
   },
   legend: {
-    position: "bottom",
+    position: "right",
   },
   plotOptions: {
     pie: {
       donut: {
-        size: "30%",
+        size: "10%",
       },
     },
   },

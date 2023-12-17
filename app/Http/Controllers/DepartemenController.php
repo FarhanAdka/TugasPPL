@@ -35,7 +35,7 @@ class DepartemenController extends Controller
         $data = array (
             'active_home' => 'active',
             'Role' => 'Departemen',
-            'UserName' => '\\\UserName///',
+            'UserName' => 'INFORMATIKA',
             'Title' => 'Data Mahasiswa',
             'mahasiswa' => $mahasiswa,
         );
@@ -48,7 +48,7 @@ class DepartemenController extends Controller
         $data = array (
             'active_home' => 'active',
             'Role' => 'Departemen',
-            'UserName' => '\\\UserName///',
+            'UserName' => 'INFORMATIKA',
             'Title' => 'Profil Departemen',
         );
          return view('Departemen/ProfilDepartemen', $data);
@@ -68,8 +68,8 @@ class DepartemenController extends Controller
         $data = array (
             'active_home' => 'active',
             'Role' => 'Departemen',
-            'UserName' => '\\\UserName///',
-            'Title' => 'Progres PKL',
+            'UserName' => 'INFORMATIKA',
+            'Title' => 'Lulus Belum PKL',
             'pkl' => $pkl,
         );
          return view('Departemen/ProgresPKL', $data);
@@ -87,8 +87,8 @@ class DepartemenController extends Controller
         $data = array (
             'active_home' => 'active',
             'Role' => 'Departemen',
-            'UserName' => '\\\UserName///',
-            'Title' => 'Progres Skripsi',
+            'UserName' => 'INFORMATIKA',
+            'Title' => 'Lulus Belum Skripsi',
             'skripsi' => $skripsi,
         );
          return view('Departemen/ProgresSkripsi', $data);
@@ -123,7 +123,7 @@ class DepartemenController extends Controller
         $data = array (
             'active_home' => 'active',
             'Role' => 'Departemen',
-            'UserName' => '\\\UserName///',
+            'UserName' => 'INFORMATIKA',
             'Title' => 'Progres Studi',
             'user' => $user,
             'mahasiswa' => $mahasiswa,

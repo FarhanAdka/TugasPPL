@@ -2,8 +2,9 @@
             <div class="sidebar-wrapper active">
                 <div class="sidebar-header position-relative">
                     <div class="d-flex justify-content-between align-items-center">
-                        <div class="logo">
-                        </div>
+                        <div class="logo"></div>
+                        <a href="index.html"><img src="/assets/compiled/png/logo.png" alt="Logo"
+                                style="margin-left: 40px; width: 60px; height: auto;" srcset=""></a>
 
                         <div class="theme-toggle d-flex gap-2  align-items-center mt-2">
                             <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
@@ -47,10 +48,16 @@
                     <ul class="menu">
                         <li class="sidebar-title">Menu</li>
 
+                        <li class="sidebar-item @if (isset($active_home)) {{ $active_home }} @endif">
+                            <a href="/user/operator/" class='sidebar-link'>
+                                <i class="bi bi-grid-fill"></i>
+                                <span>Dashboard</span>
+                            </a>
+                        </li>
 
                         <li class="sidebar-item @if (isset($active_home)) {{ $active_home }} @endif has-sub">
                             <a href="#" class='sidebar-link'>
-                                <i class="bi bi-collection-fill"></i>
+                                <i class="bi bi-person-fill-add"></i>
                                 <span>Tambah Akun</span>
                             </a>
 
@@ -72,7 +79,8 @@
                                 </li>
 
                                 <li class="submenu-item  ">
-                                    <a href="{{route('datamhs.create')}}" class="submenu-link">Tambah Data Mahasiswa</a>
+                                    <a href="{{ route('datamhs.create') }}" class="submenu-link">Tambah Data
+                                        Mahasiswa</a>
                                 </li>
 
 
@@ -82,7 +90,7 @@
 
                         <li class="sidebar-item  has-sub">
                             <a href="#" class='sidebar-link'>
-                                <i class="bi bi-collection-fill"></i>
+                                <i class="bi bi-person-lines-fill"></i>
                                 <span>Kelola Akun</span>
                             </a>
 

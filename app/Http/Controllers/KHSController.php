@@ -16,12 +16,15 @@ class KHSController extends Controller
      */
     public function index()
     {
+        $userMhs = User::where('id', auth()->user()->id)->get()->first();
+        
         $khs = KHS::where('id_mahasiswa', auth()->user()->id)->get();
         $data = [
             'active_side' => 'active',
             'title' => 'Data KHS',
             'active_user' => 'active',
             'khs' => $khs,
+            'UserName' => $userMhs->name,
         ];
 
         return view('mahasiswa/DataKHS', $data);
@@ -29,6 +32,8 @@ class KHSController extends Controller
 
     public function indexVerif()
     {
+        $userDoswal = User::where('id', auth()->user()->id)->get()->first();
+        
         $khs = KHS::where('status', false)->get();
         foreach ($khs as $k) {
             $k->mahasiswa = Mahasiswa::where('user_id', $k->id_mahasiswa)->get()->first();
@@ -36,8 +41,9 @@ class KHSController extends Controller
         }
         $data = [
             'active_side' => 'active',
-            'title' => 'Permintaan Verifikasi KHS',
+            'title' => 'Verifikasi KHS',
             'active_user' => 'active',
+            'UserName' => $userDoswal->name,
             // 'mahasiswa'=>$mahasiswa,
             // 'irs' => $irs
             // 'nim' => $nim
@@ -47,6 +53,8 @@ class KHSController extends Controller
 
     public function indexDosen()
     {
+        $userDoswal = User::where('id', auth()->user()->id)->get()->first();
+        
         $khs = KHS::where('status', true)->get();
         foreach ($khs as $k) {
             $k->mahasiswa = Mahasiswa::where('user_id', $k->id_mahasiswa)->get()->first();
@@ -56,6 +64,7 @@ class KHSController extends Controller
             'active_side' => 'active',
             'title' => 'List KHS',
             'active_user' => 'active',
+            'UserName' => $userDoswal->name,
             // 'mahasiswa'=>$mahasiswa,
             // 'irs' => $irs
             // 'nim' => $nim
@@ -69,6 +78,8 @@ class KHSController extends Controller
      */
     public function create()
     {
+        $userMhs = User::where('id', auth()->user()->id)->get()->first();
+        
         $semester = KHS::where('id_mahasiswa', auth()->user()->id)->pluck('semester_aktif')->toArray();
         sort($semester);
         //dd($semester);
@@ -78,6 +89,7 @@ class KHSController extends Controller
             'active_user' => 'active',
             'title' => 'Isi KHS',
             'avail_semester' => $avail_semester,
+            'UserName' => $userMhs->name,
         );
         return view('Mahasiswa/IsiKHS', $data);
     }
@@ -109,10 +121,13 @@ class KHSController extends Controller
      */
     public function show(string $id)
     { {
+        $userMhs = User::where('id', auth()->user()->id)->get()->first();
+        
             $data = [
                 'active_side' => 'active',
                 'title' => 'Data KHS',
                 'active_user' => 'active',
+                'UserName' => $userMhs->name,
             ];
             return view('mahasiswa/DataKHS', $data);
         }
@@ -123,6 +138,8 @@ class KHSController extends Controller
      */
     public function edit(string $id)
     {
+        $userMhs = User::where('id', auth()->user()->id)->get()->first();
+        
         $khs = KHS::find($id);
         $semester = KHS::where('id_mahasiswa', auth()->user()->id)->pluck('semester_aktif')->toArray();
         $avail_semester = array_diff_assoc(['1', '2', '3', '4', '5', '6', '7', '8'], $semester);
@@ -132,6 +149,7 @@ class KHSController extends Controller
             'active_user' => 'active',
             'khs' => $khs,
             'avail_semester' => $avail_semester,
+            'UserName' => $userMhs->name,
         ];
         return view('mahasiswa/EditKHS', $data);
     }
