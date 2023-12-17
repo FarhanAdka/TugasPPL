@@ -20,7 +20,7 @@ class DepartemenController extends Controller
 
     public function DataMHS()
     {
-        $mahasiswa = User::where('role', 'mahasiswa')->paginate(10);
+        $mahasiswa = User::where('role', 'mahasiswa')->get();
         //dd($mahasiswa[0]);
         foreach ($mahasiswa as $mhs){
             $mhs->mahasiswa = Mahasiswa::where('user_id', $mhs->id)->first();
@@ -103,8 +103,20 @@ class DepartemenController extends Controller
         $smt_irs = $irs->pluck('semester_aktif')->toArray();
         $smt_khs = $khs->pluck('semester_aktif')->toArray();
         $smt = array_unique(array_intersect($smt_irs, $smt_khs));
-        $smt_pkl = PKL::where('id_mahasiswa', $mahasiswa->user_id)->pluck('semester')->toArray();
-        $smt_skripsi = Skripsi::where('id_mahasiswa', $mahasiswa->user_id)->pluck('lama_studi')->toArray();
+        if (PKL::where('id_mahasiswa', $mahasiswa->user_id)->first() != null){
+            $smt_pkl = PKL::where('id_mahasiswa', $mahasiswa->user_id)->first()->semester;
+        }
+        else{
+            $smt_pkl = 0;
+        }
+        // dd(Skripsi::where('id_mahasiswa', $mahasiswa->user_id)->first()->status);
+        if (Skripsi::where('id_mahasiswa', $mahasiswa->user_id)->first()->status == true){
+            $smt_skripsi = Skripsi::where('id_mahasiswa', $mahasiswa->user_id)->first()->semester;
+        }
+        else{
+            $smt_skripsi = 0;
+        }
+        // dd($smt_skripsi);
         //dd($smt_skripsi[0]);
         $doswal = User::where('id', $mahasiswa->doswal)->first();
         //dd(isset($khs[]));
@@ -119,8 +131,8 @@ class DepartemenController extends Controller
             'irs' => $irs,
             'nama_doswal'=>$doswal->name,
             'smt' => $smt,
-            'smt_pkl' => $smt_pkl[0],
-            'smt_skripsi' => $smt_skripsi[0],
+            'smt_pkl' => $smt_pkl,
+            'smt_skripsi' => $smt_skripsi,
         );
         return view('Departemen/detilMahasiswa', $data);
         //dd($khs);

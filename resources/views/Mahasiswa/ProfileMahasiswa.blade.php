@@ -141,9 +141,9 @@
                                                 
                                                 <div class="form-group">
                                                     <label for="Nama">Nama</label>
-                                                    <input type="text" class="form-control" id="Nama"
+                                                    <input type="text" class="form-control" id="Nama" name="nama"
                                                     value="{{ $userMhs->name }}" placeholder="Enter your name . . ."
-                                                    required>
+                                                    >
                                                 </div>
                                                 <div class="form-group">
                                                     <label for="Email">Email</label>

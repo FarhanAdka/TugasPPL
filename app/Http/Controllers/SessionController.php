@@ -42,7 +42,7 @@ class SessionController extends Controller
         }
     }
     else{
-        return redirect('admin');
+        return redirect('/')->withInput()->with('pesan',"Username atau Password salah");
     }
 }
     function logout(){
