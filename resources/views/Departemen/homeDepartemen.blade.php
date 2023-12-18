@@ -1,156 +1,59 @@
 @extends('components/departemen/template')
 @section('section')
-    <div class="col-6 col-lg-12">
-        <div class="card">
-            <div class="card-body d-flex flex-column justify-content-center align-items-center">
-                <div class="row text-center">
-                    <h6 class="text-muted font-semibold">
-                        - Progres PKL Seluruh Mahasiswa Aktif -
-                    </h6>
-                    <h6 class="text-muted">
-                        Total Mahasiswa Lulus
-                    </h6>
-                    <h4>
-                        {{ $lulus_pkl }}
-                    </h4>
+    <div class="row">
+        <div class="col-6 col-lg-3 col-md-6">
+            <div class="card">
+                <div class="card-body px-4 py-4-5">
+                    <div class="row">
+                        <a href="/user/departemen/DataMahasiswa">
+                            <div class="col-md-4 col-lg-12 col-xl-12 col-xxl-12 d-flex justify-content-start">
+                                <div class="stats-icon purple mb-2 text-center w-100"
+                                    style="height: 100px; justify-content-start">
+                                    <i class="bi bi-floppy2-fill mx-3 mb-4 "></i>
+                                    <h6 class="text-white font-semibold mx-0 mb-0"> Data Mahasiswa </h6>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
                 </div>
             </div>
-
-
-            <div class="card-body ">
-                <div class="table-responsive mx-4 display: inline-block;">
-                    <table class="table table-bordered" style="text-align: center; ">
-
-                        <thead>
-                            <tr>
-                                <th scope="col" colspan="100%" class="h4">Angkatan</th>
-                            </tr>
-                            <tr>
-                                <th> Tahun </th>
-                                @foreach ($tahun_shown as $tahun)
-                                    <th scope="col" colspan="2">{{ $tahun }}</th>
-                                @endforeach
-                            </tr>
-                            <tr>
-                                <th>Status PKL</th>
-                                @foreach ($tahun_shown as $tahun)
-                                    <th scope="col" colspan="1">Belum</th>
-                                    <th scope="col" colspan="1">Sudah</th>
-                                @endforeach
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>Total</td>
-                                @foreach ($tahun_shown as $tahun)
-                                    <td>
-                                        <a href="#" data-bs-toggle="modal"
-                                            data-bs-target="#belumPKL{{ $tahun }}">
-                                            {{ sizeof($pkl[$tahun]['belum']) }}
-                                        </a>
-                                    </td>
-                                    <td>
-                                        <a href="#" data-bs-toggle="modal"
-                                            data-bs-target="#sudahPKL{{ $tahun }}">
-                                            {{ sizeof($pkl[$tahun]['sudah']) }}
-                                        </a>
-                                    </td>
-                                @endforeach
-                            </tr>
-
-                        </tbody>
-                    </table>
-                </div>
-                <div class="modal-footer mx-4 my-4">
-                    <button type="button" class="btn btn-primary">Cetak</button>
-                </div>
-            </div>
-            <script>
-                function cektak() {
-                    // Logika untuk mencetak tabel
-                    // Misalnya, Anda dapat menggunakan window.print()
-
-                }
-            </script>
         </div>
-    </div>
 
+        <div class="col-6 col-lg-3 col-md-6">
 
-
-
-
-    <div class="col-6 col-lg-12">
-        <div class="card">
-            <div class="card-body d-flex flex-column justify-content-center align-items-center">
-                <div class="row text-center">
-                    <h6 class="text-muted font-semibold">
-                        - Progres Skripsi Seluruh Mahasiswa Aktif -
-                    </h6>
-                    <h6 class="text-muted">
-                        Total Mahasiswa Lulus
-                    </h6>
-                    <h4>
-                        {{ $lulus_skripsi }}
-                    </h4>
+            <div class="card">
+                <div class="card-body px-4 py-4-5">
+                    <div class="row">
+                        <a href="/user/departemen/ProgresPKL">
+                            <div class="col-md-4 col-lg-12 col-xl-12 col-xxl-12 d-flex justify-content-start">
+                                <div class="stats-icon blue mb-2 text-center w-100 100"
+                                    style="height: 100px; justify-content-start">
+                                    <i class="bi bi-box-seam-fill mx-3 mb-4 "></i>
+                                    <h6 class="text-white font-semibold mx-0 mb-0"> Data Progres PKL </h6>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
                 </div>
             </div>
+        </div>
 
-
-
-            <div class="card-body ">
-                <div class="table-responsive mx-4 display: inline-block;">
-                    <table class="table table-bordered" style="text-align: center; ">
-
-                        <thead>
-                            <tr>
-                                <th scope="col" colspan="100%" class="h4">Angkatan</th>
-                            </tr>
-                            <tr>
-                                <th> Tahun </th>
-                                @foreach ($tahun_shown as $tahun)
-                                    <th scope="col" colspan="2">{{ $tahun }}</th>
-                                @endforeach
-                            </tr>
-                            <tr>
-                                <th>Status Skripsi</th>
-                                @foreach ($tahun_shown as $tahun)
-                                    <th scope="col" colspan="1">Belum</th>
-                                    <th scope="col" colspan="1">Sudah</th>
-                                @endforeach
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>Total</td>
-                                @foreach ($tahun_shown as $tahun)
-                                    <td>
-                                        <a href="#" data-bs-toggle="modal"
-                                            data-bs-target="#belumSkripsi{{ $tahun }}">
-                                            {{ sizeof($skripsi[$tahun]['belum']) }}
-                                        </a>
-                                    </td>
-                                    <td>
-                                        <a href="#" data-bs-toggle="modal"
-                                            data-bs-target="#sudahSkripsi{{ $tahun }}">
-                                            {{ sizeof($skripsi[$tahun]['sudah']) }}
-                                        </a>
-                                    </td>
-                                @endforeach
-                            </tr>
-
-                        </tbody>
-                    </table>
-                </div>
-                <div class="modal-footer mx-4 my-4">
-                    <button type="button" class="btn btn-primary">Cetak</button>
+        <div class="col-6 col-lg-3 col-md-6">
+            <div class="card">
+                <div class="card-body px-4 py-4-5">
+                    <div class="row">
+                        <a href="/user/departemen/ProgresSkripsi">
+                            <div class="col-md-4 col-lg-12 col-xl-12 col-xxl-12 d-flex justify-content-start">
+                                <div class="stats-icon green mb-2 text-center w-100"
+                                    style="height: 100px; justify-content-start">
+                                    <i class="bi bi-box-fill mx-3 mb-4 "></i>
+                                    <h6 class="text-white font-semibold mx-0 mb-0"> Data Progres Skripsi </h6>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
                 </div>
             </div>
-            <script>
-                function cektak() {
-                    // Logika untuk mencetak tabel
-                    // Misalnya, Anda dapat menggunakan window.print()
-                }
-            </script>
         </div>
     </div>
 @endsection

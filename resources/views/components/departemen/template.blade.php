@@ -97,7 +97,7 @@
                         <li class="sidebar-item {{ $Title === 'Lulus Belum PKL' ? 'active' : '' }}">
                             <a href="/user/departemen/ProgresPKL" class='sidebar-link'>
                                 <i class="bi bi-box-seam-fill"></i>
-                                <span>Lulus belum PKL</span>
+                                <span>Data Progres PKL</span>
                             </a>
                         </li>
 
@@ -105,7 +105,7 @@
                         <li class="sidebar-item {{ $Title === 'Lulus Belum Skripsi' ? 'active' : '' }}">
                             <a href="/user/departemen/ProgresSkripsi" class='sidebar-link'>
                                 <i class="bi bi-box-fill"></i>
-                                <span>Lulus belum Skripsi</span>
+                                <span>Data Progres Skripsi</span>
                             </a>
                         </li>
                     </ul>
@@ -185,14 +185,13 @@
                         <div class="page-title">
                             <div class="row">
                                 <div class="col-12 col-md-6 order-md-1 order-last">
-                                    <h3>{{ $Role }}</h3>
-                                    <p class="text-subtitle text-muted">Navbar will appear on the top of the page.</p>
+                                    <h3>Departemen INFORMATIKA</h3>
+                                    <p class="text-subtitle text-muted">Fakultas Sains dan Matematika</p>
                                 </div>
                                 <div class="col-12 col-md-6 order-md-2 order-first">
                                     <nav aria-label="breadcrumb" class="breadcrumb-header float-start float-lg-end">
                                         <ol class="breadcrumb">
-                                            <li class="breadcrumb-item"><a
-                                                    href="/user/departemen">{{ $Role }}</a></li>
+                                            <li class="breadcrumb-item"><a href="/user/departemen">Dashboard</a></li>
                                             <li class="breadcrumb-item active" aria-current="page">
                                                 {{ $Title }}</li>
                                         </ol>

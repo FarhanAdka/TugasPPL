@@ -27,11 +27,10 @@
                         <div class="card">
                             <div class="card-body px-4 py-4-5">
                                 <a href="/user/dosenWali/profil">
-                                    <div class="col-md-4 col-lg-12 col-xl-12 col-xxl-5 d-flex justify-content-start">
-                                        <div
-                                            class="stats-icon bg-secondary blue mb-2 text-center w-100">
+                                    <div class="col-md-4 col-lg-12 col-xl-12 col-xxl-12 d-flex justify-content-start">
+                                        <div class="stats-icon bg-secondary blue mb-2 text-center w-100">
                                             <i class="bi bi-person-circle mx-3 mb-4 "></i>
-                                            <h6 class="text-muted font-semibold mx-0 mb-0"> Profil </h6>
+                                            <h6 class="text-white font-semibold mx-0 mb-0"> Profil </h6>
                                         </div>
                                     </div>
                                 </a>
@@ -48,19 +47,19 @@
                             <div class="card-body px-4 py-4-5">
                                 <div class="row">
                                     <a href="/user/dosenWali/verifikasiIRS">
-                                        <div class="col-md-4 col-lg-12 col-xl-12 col-xxl-5 d-flex justify-content-start">
+                                        <div class="col-md-4 col-lg-12 col-xl-12 col-xxl-12 d-flex justify-content-start">
                                             <div class="stats-icon purple mb-2 text-center w-100 justify-content-start">
                                                 <i class="bi bi-file-earmark-text mx-3 mb-4 "></i>
-                                                <h6 class="text-muted font-semibold mx-0 mb-0"> Verifikasi IRS </h6>
+                                                <h6 class="text-white font-semibold mx-0 mb-0"> Verifikasi IRS </h6>
                                             </div>
                                         </div>
                                     </a>
 
                                     <a href="/user/dosenWali/IRS">
-                                        <div class="col-md-4 col-lg-12 col-xl-12 col-xxl-5 d-flex justify-content-start">
+                                        <div class="col-md-4 col-lg-12 col-xl-12 col-xxl-12 d-flex justify-content-start">
                                             <div class="stats-icon purple mb-2 text-center w-100 justify-content-start">
                                                 <i class="bi bi-file-earmark-text-fill mx-3 mb-4 "></i>
-                                                <h6 class="text-muted font-semibold mx-0 mb-0"> List IRS </h6>
+                                                <h6 class="text-white font-semibold mx-0 mb-0"> List IRS </h6>
                                             </div>
                                         </div>
                                     </a>
@@ -74,19 +73,19 @@
                             <div class="card-body px-4 py-4-5">
                                 <div class="row">
                                     <a href="/user/dosenWali/verifikasiKHS">
-                                        <div class="col-md-4 col-lg-12 col-xl-12 col-xxl-5 d-flex justify-content-start">
+                                        <div class="col-md-4 col-lg-12 col-xl-12 col-xxl-12 d-flex justify-content-start">
                                             <div class="stats-icon blue mb-2 text-center w-100 justify-content-start">
                                                 <i class="bi bi-file-post mx-3 mb-4 "></i>
-                                                <h6 class="text-muted font-semibold mx-0 mb-0"> Verifikasi KHS </h6>
+                                                <h6 class="text-white font-semibold mx-0 mb-0"> Verifikasi KHS </h6>
                                             </div>
                                         </div>
                                     </a>
 
                                     <a href="/user/dosenWali/KHS">
-                                        <div class="col-md-4 col-lg-12 col-xl-12 col-xxl-5 d-flex justify-content-start">
+                                        <div class="col-md-4 col-lg-12 col-xl-12 col-xxl-12 d-flex justify-content-start">
                                             <div class="stats-icon blue mb-2 text-center w-100 justify-content-start">
                                                 <i class="bi bi-file-post-fill mx-3 mb-4 "></i>
-                                                <h6 class="text-muted font-semibold mx-0 mb-0"> List KHS </h6>
+                                                <h6 class="text-white font-semibold mx-0 mb-0"> List KHS </h6>
                                             </div>
                                         </div>
                                     </a>
@@ -100,19 +99,19 @@
                             <div class="card-body px-4 py-4-5">
                                 <div class="row">
                                     <a href="/user/dosenWali/verifikasiPKL">
-                                        <div class="col-md-4 col-lg-12 col-xl-12 col-xxl-5 d-flex justify-content-start">
+                                        <div class="col-md-4 col-lg-12 col-xl-12 col-xxl-12 d-flex justify-content-start">
                                             <div class="stats-icon green mb-2 text-center w-100 justify-content-start">
                                                 <i class="bi bi-journal-bookmark-fill mx-3 mb-4 "></i>
-                                                <h6 class="text-muted font-semibold mx-0 mb-0"> Verifikasi PKL </h6>
+                                                <h6 class="text-white font-semibold mx-0 mb-0"> Verifikasi PKL </h6>
                                             </div>
                                         </div>
                                     </a>
 
                                     <a href="/user/dosenWali/KHS">
-                                        <div class="col-md-4 col-lg-12 col-xl-12 col-xxl-5 d-flex justify-content-start">
+                                        <div class="col-md-4 col-lg-12 col-xl-12 col-xxl-12 d-flex justify-content-start">
                                             <div class="stats-icon green mb-2 text-center w-100 justify-content-start">
                                                 <i class="bi bi-box-seam-fill mx-3 mb-4 "></i>
-                                                <h6 class="text-muted font-semibold mx-0 mb-0"> List KHS </h6>
+                                                <h6 class="text-white font-semibold mx-0 mb-0"> List KHS </h6>
                                             </div>
                                         </div>
                                     </a>
@@ -127,19 +126,19 @@
                             <div class="card-body px-4 py-4-5">
                                 <div class="row">
                                     <a href="/user/dosenWali/verifikasiSkripsi">
-                                        <div class="col-md-4 col-lg-12 col-xl-12 col-xxl-5 d-flex justify-content-start">
+                                        <div class="col-md-4 col-lg-12 col-xl-12 col-xxl-12 d-flex justify-content-start">
                                             <div class="stats-icon red mb-2 text-center w-100 justify-content-start">
                                                 <i class="bi bi-journals mx-3 mb-4 "></i>
-                                                <h6 class="text-muted font-semibold mx-0 mb-0"> Verifikasi Skripsi </h6>
+                                                <h6 class="text-white font-semibold mx-0 mb-0"> Verifikasi Skripsi </h6>
                                             </div>
                                         </div>
                                     </a>
 
                                     <a href="/user/dosenWali/Skripsi">
-                                        <div class="col-md-4 col-lg-12 col-xl-12 col-xxl-5 d-flex justify-content-start">
+                                        <div class="col-md-4 col-lg-12 col-xl-12 col-xxl-12 d-flex justify-content-start">
                                             <div class="stats-icon red mb-2 text-center w-100 justify-content-start">
                                                 <i class="bi bi-box-seam-fill mx-3 mb-4 "></i>
-                                                <h6 class="text-muted font-semibold mx-0 mb-0"> List Skripsi </h6>
+                                                <h6 class="text-white font-semibold mx-0 mb-0"> List Skripsi </h6>
                                             </div>
                                         </div>
                                     </a>

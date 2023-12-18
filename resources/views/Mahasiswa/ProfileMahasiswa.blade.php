@@ -35,43 +35,6 @@
                             </div>
                         </div>
                     </div>
-
-
-
-<<<<<<< HEAD
-                            <div class="card">
-                                <div class="card-body">
-                                    <div class="row">
-                                        <div class="col-md-6">
-                                                <form action="{{route('mahasiswa.update')}}" method="POST">
-                                                @csrf
-                                                <div class="form-group">
-                                                    <label for="NIM">NIM</label>
-                                                    <input type="text" class="form-control" id="NIM"
-                                                    value="{{ $userMhs->username }}" placeholder="Enter email" disabled>
-                                                </div>
-                                                
-                                                
-                                                <div class="form-group">
-                                                    <label for="Nama">Nama</label>
-                                                    <input type="text" class="form-control" id="Nama" name="nama"
-                                                    value="{{ $userMhs->name }}" placeholder="Enter your name . . ."
-                                                    >
-                                                </div>
-                                                <div class="form-group">
-                                                    <label for="Email">Email</label>
-                                                    <input type="text" class="form-control" id="Email" name="email"
-                                                    value="{{ $mahasiswa->email }}"placeholder="Enter your email . . ."
-                                                    required>
-                                                </div>
-                                                
-                                                <div class="form-group">
-                                                    <label for="no_telp">No Telepon</label>
-                                                    <input type="text" class="form-control" id="no_telp" name="no_hp"
-                                                    value="{{ $mahasiswa->no_hp }}"placeholder="Enter your No Telepon . . ."
-                                                    required>
-                                                </div>
-=======
                     <div class="card">
                         <div class="card-body">
                             <div class="row">
@@ -83,7 +46,6 @@
                                             <input type="text" class="form-control" id="NIM"
                                                 value="{{ $userMhs->username }}" placeholder="Enter email" disabled>
                                         </div>
->>>>>>> 4fd861e194ffe7255dd0a4221646fb08ae5e38e7
 
 
                                         <div class="form-group">
