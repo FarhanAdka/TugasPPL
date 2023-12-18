@@ -203,8 +203,8 @@
                                         </li>
 
                                         <li>
-                                            <a class="dropdown-item" href="/user/dosenWali/profile"><i
-                                                    class="icon-mid bi bi-person me-2"></i> MyProfile</a>
+                                            <a class="dropdown-item" href="/user/dosenWali/setting"><i
+                                                    class="icon-mid bi bi-person me-2"></i> Setting</a>
                                         </li>
 
                                         <li>

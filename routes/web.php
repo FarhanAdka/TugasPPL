@@ -120,6 +120,7 @@ Route::middleware(['auth'])->group(function (){
         Route::get('/user/dosenWali/Skripsi', [SkripsiController::class, 'indexDosen'])->name('indexSkripsi');
         Route::get('/user/dosenWali/approveSkripsi/{id}', [SkripsiController::class ,'approve'])->name('Skripsi.approve');
         Route::delete('/user/dosenWali/deleteSkripsi/{id}', [SkripsiController::class ,'delete'])->name('Skripsi.delete');
+        // Route::get('/user/dosenWali/setting', )
         
     });
     //Departemen

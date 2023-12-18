@@ -16,12 +16,14 @@ class MahasiswaController extends Controller
         $doswal = User::where('id', $mahasiswa->first()->doswal)->get()->first();
         //dd($mahasiswa);
         $data = array (
+            // dd($mahasiswa->foto);
             'active_home' => 'active',
             'title' => 'Profile',
             'mahasiswa' => $mahasiswa,
             'userMhs' => $userMhs,
             'nama_doswal' => $doswal->name,
             'UserName' => $userMhs->name,
+            'foto' => $mahasiswa->foto,
             
         );
         //dd($doswal);

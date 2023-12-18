@@ -24,6 +24,7 @@ return new class extends Migration {
             $table->year('angkatan')->nullable();
             $table->string('jalur_masuk')->nullable();
             $table->enum('status', ['Aktif','Cuti','Mangkir','Do','Undur_diri','Lulus','Meninggal_dunia'])->default('Aktif');
+            $table->string('foto')->nullable()->default('/assets/compiled/jpg/1.jpg');
             $table->timestamps();
         });
     }
