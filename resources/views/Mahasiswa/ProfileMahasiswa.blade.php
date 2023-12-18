@@ -11,7 +11,7 @@
                     <div class="col-12 col-md-6 order-md-2 order-first">
                         <nav aria-label="breadcrumb" class="breadcrumb-header float-start float-lg-end">
                             <ol class="breadcrumb">
-                                <li class="breadcrumb-item"><a href="index.html">Dashboard</a></li>
+                                <li class="breadcrumb-item"><a href="/user/mahasiswa/">Dashboard</a></li>
                                 <li class="breadcrumb-item active" aria-current="page">Profile</li>
                             </ol>
                         </nav>
@@ -305,4 +305,15 @@
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js"></script>
 
+    {{-- <script>
+        $(document).ready(function() {
+            $('#Kabupaten').select2({
+                placeholder: 'Search for Kabupaten',
+                allowClear: true,
+                tags: true,
+                tokenSeparators: [',', ' '],
+                dropdownParent: $('#Kabupaten').parent()
+            });
+        });
+    </script> --}}
 @endsection

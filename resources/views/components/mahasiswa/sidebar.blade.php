@@ -67,10 +67,10 @@
                         <ul class="menu">
                             <li class="sidebar-title">Menu</li>
 
-                            <li class="sidebar-item {{ $title === 'Profile' ? 'active' : '' }}">
-                                <a href="/user/mahasiswa/profile" class='sidebar-link'>
-                                    <i class="bi bi-person-circle"></i>
-                                    <span>Profile</span>
+                            <li class="sidebar-item {{ $title === 'Dhasbord' ? 'active' : '' }}">
+                                <a href="/user/mahasiswa/" class='sidebar-link'>
+                                    <i class="bi bi-grid-fill"></i>
+                                    <span>Dhasboard</span>
                                 </a>
                             </li>
 

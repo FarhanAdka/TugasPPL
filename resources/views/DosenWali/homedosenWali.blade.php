@@ -6,7 +6,7 @@
                 <div class="row">
                     <div class="col-12 col-md-6 order-md-1 order-last">
                         <h3>{{ $title }}</h3>
-                        <p class="text-subtitle text-muted">Navbar will appear on the top of the page.
+                        {{-- <p class="text-subtitle text-muted">Navbar will appear on the top of the page. --}}
                         </p>
                     </div>
                     <div class="col-12 col-md-6 order-md-2 order-first">
@@ -22,7 +22,138 @@
                 </div>
             </div>
             <section class="section">
-                <div class="card">
+                <div class="row">
+                    <div class="col-12 col-lg-12 col-md-12">
+                        <div class="card">
+                            <div class="card-body px-4 py-4-5">
+                                <a href="/user/dosenWali/profil">
+                                    <div class="col-md-4 col-lg-12 col-xl-12 col-xxl-5 d-flex justify-content-start">
+                                        <div
+                                            class="stats-icon bg-secondary blue mb-2 text-center w-100">
+                                            <i class="bi bi-person-circle mx-3 mb-4 "></i>
+                                            <h6 class="text-muted font-semibold mx-0 mb-0"> Profil </h6>
+                                        </div>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+
+                <div class="row">
+                    <div class="col-6 col-lg-3 col-md-6">
+                        <div class="card">
+                            <div class="card-body px-4 py-4-5">
+                                <div class="row">
+                                    <a href="/user/dosenWali/verifikasiIRS">
+                                        <div class="col-md-4 col-lg-12 col-xl-12 col-xxl-5 d-flex justify-content-start">
+                                            <div class="stats-icon purple mb-2 text-center w-100 justify-content-start">
+                                                <i class="bi bi-file-earmark-text mx-3 mb-4 "></i>
+                                                <h6 class="text-muted font-semibold mx-0 mb-0"> Verifikasi IRS </h6>
+                                            </div>
+                                        </div>
+                                    </a>
+
+                                    <a href="/user/dosenWali/IRS">
+                                        <div class="col-md-4 col-lg-12 col-xl-12 col-xxl-5 d-flex justify-content-start">
+                                            <div class="stats-icon purple mb-2 text-center w-100 justify-content-start">
+                                                <i class="bi bi-file-earmark-text-fill mx-3 mb-4 "></i>
+                                                <h6 class="text-muted font-semibold mx-0 mb-0"> List IRS </h6>
+                                            </div>
+                                        </div>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-6 col-lg-3 col-md-6">
+                        <div class="card">
+                            <div class="card-body px-4 py-4-5">
+                                <div class="row">
+                                    <a href="/user/dosenWali/verifikasiKHS">
+                                        <div class="col-md-4 col-lg-12 col-xl-12 col-xxl-5 d-flex justify-content-start">
+                                            <div class="stats-icon blue mb-2 text-center w-100 justify-content-start">
+                                                <i class="bi bi-file-post mx-3 mb-4 "></i>
+                                                <h6 class="text-muted font-semibold mx-0 mb-0"> Verifikasi KHS </h6>
+                                            </div>
+                                        </div>
+                                    </a>
+
+                                    <a href="/user/dosenWali/KHS">
+                                        <div class="col-md-4 col-lg-12 col-xl-12 col-xxl-5 d-flex justify-content-start">
+                                            <div class="stats-icon blue mb-2 text-center w-100 justify-content-start">
+                                                <i class="bi bi-file-post-fill mx-3 mb-4 "></i>
+                                                <h6 class="text-muted font-semibold mx-0 mb-0"> List KHS </h6>
+                                            </div>
+                                        </div>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-6 col-lg-3 col-md-6">
+                        <div class="card">
+                            <div class="card-body px-4 py-4-5">
+                                <div class="row">
+                                    <a href="/user/dosenWali/verifikasiPKL">
+                                        <div class="col-md-4 col-lg-12 col-xl-12 col-xxl-5 d-flex justify-content-start">
+                                            <div class="stats-icon green mb-2 text-center w-100 justify-content-start">
+                                                <i class="bi bi-journal-bookmark-fill mx-3 mb-4 "></i>
+                                                <h6 class="text-muted font-semibold mx-0 mb-0"> Verifikasi PKL </h6>
+                                            </div>
+                                        </div>
+                                    </a>
+
+                                    <a href="/user/dosenWali/KHS">
+                                        <div class="col-md-4 col-lg-12 col-xl-12 col-xxl-5 d-flex justify-content-start">
+                                            <div class="stats-icon green mb-2 text-center w-100 justify-content-start">
+                                                <i class="bi bi-box-seam-fill mx-3 mb-4 "></i>
+                                                <h6 class="text-muted font-semibold mx-0 mb-0"> List KHS </h6>
+                                            </div>
+                                        </div>
+                                    </a>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-6 col-lg-3 col-md-6">
+                        <div class="card">
+                            <div class="card-body px-4 py-4-5">
+                                <div class="row">
+                                    <a href="/user/dosenWali/verifikasiSkripsi">
+                                        <div class="col-md-4 col-lg-12 col-xl-12 col-xxl-5 d-flex justify-content-start">
+                                            <div class="stats-icon red mb-2 text-center w-100 justify-content-start">
+                                                <i class="bi bi-journals mx-3 mb-4 "></i>
+                                                <h6 class="text-muted font-semibold mx-0 mb-0"> Verifikasi Skripsi </h6>
+                                            </div>
+                                        </div>
+                                    </a>
+
+                                    <a href="/user/dosenWali/Skripsi">
+                                        <div class="col-md-4 col-lg-12 col-xl-12 col-xxl-5 d-flex justify-content-start">
+                                            <div class="stats-icon red mb-2 text-center w-100 justify-content-start">
+                                                <i class="bi bi-box-seam-fill mx-3 mb-4 "></i>
+                                                <h6 class="text-muted font-semibold mx-0 mb-0"> List Skripsi </h6>
+                                            </div>
+                                        </div>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+
+
+
+                {{-- <div class="card">
                     <div class="card-header">
                         <h4 class="card-title">Default </h4>
                     </div>
@@ -35,7 +166,7 @@
                         Placeat delectus
                         quibusdam ratione ullam!
                     </div>
-                </div>
+                </div> --}}
             </section>
         </div>
     </div>

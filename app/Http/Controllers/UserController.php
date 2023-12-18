@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\Mahasiswa;
 use App\Models\PKL;
 use App\Models\Skripsi;
+use App\Models\IRS;
+use App\Models\KHS;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -28,10 +30,30 @@ class UserController extends Controller
 
     function mahasiswa(){
         $userMhs = User::where('id', auth()->user()->id)->get()->first();
+        $user = User::where('id', auth()->user()->id)->first();
+        $doswal = User::where('id', auth()->user()->id)->first();
+        $mahasiswa = Mahasiswa::where('user_id', auth()->user()->id)->first();
+        $khs = KHS::where('id_mahasiswa', $mahasiswa->user_id)->get();
+        $irs = IRS::where('id_mahasiswa', $mahasiswa->user_id)->get();
+        $smt_irs = $irs->pluck('semester_aktif')->toArray();
+        $smt_khs = $khs->pluck('semester_aktif')->toArray();
+        $smt = array_unique(array_intersect($smt_irs, $smt_khs));
+        $smt_pkl = PKL::where('id_mahasiswa', $mahasiswa->user_id)->pluck('semester')->toArray();
+        $smt_skripsi = Skripsi::where('id_mahasiswa', $mahasiswa->user_id)->pluck('lama_studi')->toArray();
+
+        
+
         $data = array
          (
             'active_home' => 'active',
-            'title' => 'Mahasiswa',
+            'user' => $user,
+            'Role' => 'Mahasiswa',
+            'title' => 'Dhasbord',
+            'nama_doswal'=>$doswal->name,
+            'mahasiswa' => $mahasiswa,
+            'smt' => $smt,
+            'smt_pkl' => $smt_pkl[0],
+            'smt_skripsi' => $smt_skripsi[0],
             'UserName' => $userMhs->name
         );
         return view('Mahasiswa/homeMahasiswa', $data);
