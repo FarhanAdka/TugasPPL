@@ -35,10 +35,6 @@
                             </div>
                         </div>
                     </div>
-
-
-
-<<<<<<< HEAD
                             <div class="card">
                                 <div class="card-body">
                                     <div class="row">
@@ -71,19 +67,6 @@
                                                     value="{{ $mahasiswa->no_hp }}"placeholder="Enter your No Telepon . . ."
                                                     required>
                                                 </div>
-=======
-                    <div class="card">
-                        <div class="card-body">
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <form action="{{ route('mahasiswa.update') }}" method="POST">
-                                        @csrf
-                                        <div class="form-group">
-                                            <label for="NIM">NIM</label>
-                                            <input type="text" class="form-control" id="NIM"
-                                                value="{{ $userMhs->username }}" placeholder="Enter email" disabled>
-                                        </div>
->>>>>>> 4fd861e194ffe7255dd0a4221646fb08ae5e38e7
 
 
                                         <div class="form-group">
@@ -151,8 +134,8 @@
                                                     <label for="Kabupaten" class="form-label">Kabupaten
                                                         Kota</label>
                                                     <select name="kab_kota" id="Kabupaten" class="form-control" required>
-                                                        <option value="">Pilih Kabupaten/Kota</option>
                                                         <!-- Add other options here -->
+                                                        <option value="">Pilih Kabupaten/Kota</option>
                                                     </select>
                                                 </div>
                                             </div>
@@ -322,15 +305,4 @@
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js"></script>
 
-    <script>
-        $(document).ready(function() {
-            $('#Kabupaten').select2({
-                placeholder: 'Search for Kabupaten',
-                allowClear: true,
-                tags: true,
-                tokenSeparators: [',', ' '],
-                dropdownParent: $('#Kabupaten').parent()
-            });
-        });
-    </script>
 @endsection
