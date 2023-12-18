@@ -14,7 +14,18 @@ use Illuminate\Support\Facades\Auth;
 class UserController extends Controller
 {
     function index(){
-        return view('admin');
+        if (Auth::check()) {
+            if (Auth::user()->role == 'mahasiswa') {
+                return redirect('user/mahasiswa/');
+            } elseif (Auth::user()->role == 'operator') {
+                return redirect('user/operator');
+            } elseif (Auth::user()->role == 'dosen_wali') {
+                return redirect('user/dosenWali');
+            } elseif (Auth::user()->role == 'departemen') {
+                return redirect('user/departemen');
+            }
+        }
+        return view('login');
     }
 
     function mahasiswa(){

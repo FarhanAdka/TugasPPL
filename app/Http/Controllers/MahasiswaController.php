@@ -32,9 +32,11 @@ class MahasiswaController extends Controller
 
     function update(Request $request){
         $data = $request->all();
+        // dd($data);
         $user = User::where('id', auth()->user()->id)->get()->first();
         $mhs = Mahasiswa::where('user_id', auth()->user()->id)->get()->first();
         $user->has_setup = true;
+        $user->name = $data['nama'];
         $user->save();
         //dd($mhs);
         $mhs->update($data);

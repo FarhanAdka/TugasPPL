@@ -43,7 +43,7 @@ class SessionController extends Controller
     }
     
     else{
-        return redirect('')->withErrors('Email atau pasword tidak sesuai')->withInput();
+        return redirect('/')->withInput()->with('pesan',"Username atau Password salah");
     }
 }
     function logout(){
