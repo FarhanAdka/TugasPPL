@@ -25,10 +25,10 @@
                         <div class="card">
                             <div class="card-body px-4 py-4-5">
                                 <a href="/user/mahasiswa/profile">
-                                    <div class="col-md-4 col-lg-12 col-xl-12 col-xxl-5 d-flex justify-content-start">
+                                    <div class="col-md-4 col-lg-12 col-xl-12 col-xxl-12 d-flex justify-content-start">
                                         <div class="stats-icon bg-secondary blue mb-2 text-center w-100">
                                             <i class="bi bi-person-circle mx-3 mb-4 "></i>
-                                            <h6 class="text-muted font-semibold mx-0 mb-0"> Profil </h6>
+                                            <h6 class="text-white font-semibold mx-0 mb-0"> Profil </h6>
                                         </div>
                                     </div>
                                 </a>
@@ -43,19 +43,19 @@
                             <div class="card-body px-4 py-4-5">
                                 <div class="row">
                                     <a href="{{ route('IRS.create') }}">
-                                        <div class="col-md-4 col-lg-12 col-xl-12 col-xxl-5 d-flex justify-content-start">
+                                        <div class="col-md-4 col-lg-12 col-xl-12 col-xxl-12 d-flex justify-content-start">
                                             <div class="stats-icon purple mb-2 text-center w-100 justify-content-start">
                                                 <i class="bi bi-file-earmark-text mx-3 mb-4 "></i>
-                                                <h6 class="text-muted font-semibold mx-0 mb-0"> Isi IRS </h6>
+                                                <h6 class="text-white font-semibold mx-0 mb-0"> Isi IRS </h6>
                                             </div>
                                         </div>
                                     </a>
 
                                     <a href="{{ route('IRS.index') }}">
-                                        <div class="col-md-4 col-lg-12 col-xl-12 col-xxl-5 d-flex justify-content-start">
+                                        <div class="col-md-4 col-lg-12 col-xl-12 col-xxl-12 d-flex justify-content-start">
                                             <div class="stats-icon purple mb-2 text-center w-100 justify-content-start">
                                                 <i class="bi bi-file-earmark-text-fill mx-3 mb-4 "></i>
-                                                <h6 class="text-muted font-semibold mx-0 mb-0"> Data IRS </h6>
+                                                <h6 class="text-white font-semibold mx-0 mb-0"> Data IRS </h6>
                                             </div>
                                         </div>
                                     </a>
@@ -70,19 +70,19 @@
                             <div class="card-body px-4 py-4-5">
                                 <div class="row">
                                     <a href="{{ route('KHS.create') }}">
-                                        <div class="col-md-4 col-lg-12 col-xl-12 col-xxl-5 d-flex justify-content-start">
+                                        <div class="col-md-4 col-lg-12 col-xl-12 col-xxl-12 d-flex justify-content-start">
                                             <div class="stats-icon blue mb-2 text-center w-100 justify-content-start">
                                                 <i class="bi bi-file-post mx-3 mb-4 "></i>
-                                                <h6 class="text-muted font-semibold mx-0 mb-0"> Isi KHS </h6>
+                                                <h6 class="text-white font-semibold mx-0 mb-0"> Isi KHS </h6>
                                             </div>
                                         </div>
                                     </a>
 
                                     <a href="{{ route('KHS.index') }}">
-                                        <div class="col-md-4 col-lg-12 col-xl-12 col-xxl-5 d-flex justify-content-start">
+                                        <div class="col-md-4 col-lg-12 col-xl-12 col-xxl-12 d-flex justify-content-start">
                                             <div class="stats-icon blue mb-2 text-center w-100 justify-content-start">
                                                 <i class="bi bi-file-post-fill mx-3 mb-4 "></i>
-                                                <h6 class="text-muted font-semibold mx-0 mb-0"> Data KHS </h6>
+                                                <h6 class="text-white font-semibold mx-0 mb-0"> Data KHS </h6>
                                             </div>
                                         </div>
                                     </a>
@@ -96,11 +96,11 @@
                             <div class="card-body px-4 py-4-5">
                                 <div class="row">
                                     <a href="/user/mahasiswa/PKL">
-                                        <div class="col-md-4 col-lg-12 col-xl-12 col-xxl-5 d-flex justify-content-start">
+                                        <div class="col-md-4 col-lg-12 col-xl-12 col-xxl-12 d-flex justify-content-start">
                                             <div class="stats-icon green mb-2 text-center w-100"
                                                 style="height: 100px; justify-content-start">
                                                 <i class="bi bi-journal-bookmark-fill mx-3 mb-4 "></i>
-                                                <h6 class="text-muted font-semibold mx-0 mb-0"> Isi PKL </h6>
+                                                <h6 class="text-white font-semibold mx-0 mb-0"> Isi PKL </h6>
                                             </div>
                                         </div>
                                     </a>
@@ -114,11 +114,11 @@
                             <div class="card-body px-4 py-4-5">
                                 <div class="row">
                                     <a href="/user/mahasiswa/Skripsi">
-                                        <div class="col-md-4 col-lg-12 col-xl-12 col-xxl-5 d-flex justify-content-start">
+                                        <div class="col-md-4 col-lg-12 col-xl-12 col-xxl-12 d-flex justify-content-start">
                                             <div class="stats-icon red mb-2 text-center w-100"
                                                 style="height: 100px; justify-content-start">
                                                 <i class="bi bi-journals mx-3 mb-4 "></i>
-                                                <h6 class="text-muted font-semibold mx-0 mb-0"> Isi Skripsi </h6>
+                                                <h6 class="text-white font-semibold mx-0 mb-0"> Isi Skripsi </h6>
                                             </div>
                                         </div>
                                     </a>

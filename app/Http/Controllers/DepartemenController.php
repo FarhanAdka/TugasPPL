@@ -20,11 +20,121 @@ class DepartemenController extends Controller
 
     public function DataMHS()
     {
-        $mahasiswa = User::where('role', 'mahasiswa')->get();
+        //$pkl = PKL::all();
+        $current_year = date('Y');
+        //dd($current_year);
+        $tahun_shown = array();
+        for ($i = intval($current_year); $i >= intval($current_year) - 6; $i--) {
+            $mahasiswa[$i] = Mahasiswa::where('angkatan', strval($i))->get();
+            $tahun_shown[] = $i;
+        }
+
+        // dd($mahasiswa);
+        $mhs_Aktif = 0;
+        $mhs_Cuti = 0;
+        $mhs_Mangkir = 0;
+        $mhs_DO = 0;
+        $mhs_UndurDiri = 0;
+        $mhs_Lulus = 0;
+        $mhs_Meninggal = 0;
+        $lulus_pkl = 0;
+        $lulus_skripsi = 0;
+        foreach ($mahasiswa as $key => $value) {
+            //$mahasiswa[$key]->name = User::where('id', $value[0]->user_id)->first()->name;
+            $pkl[$key]['sudah'] = array();
+            $pkl[$key]['belum'] = array();
+            $status[$key]['Aktif'] = array();
+            $status[$key]['Cuti'] = array();
+            $status[$key]['Mangkir'] = array();
+            $status[$key]['DO'] = array();
+            $status[$key]['UndurDiri'] = array();
+            $status[$key]['Lulus'] = array();
+            $status[$key]['MeninggalDunia'] = array();
+            //$pkl[$key]['belum'] = array();
+            $skripsi[$key]['sudah'] = array();
+            $skripsi[$key]['belum'] = array();
+            foreach ($value as $key2 => $value2) {
+                //dd($key2);
+                $data_pkl = PKL::where('id_mahasiswa', $value2->user_id)->get()->first();
+                // dd($value2->user_id);
+                $data_pkl->nama = User::where('id', $value2->user_id)->first()->name;
+                $data_pkl->nim = User::where('id', $value2->user_id)->first()->username;
+                $data_pkl->angkatan = $value2->angkatan;
+                // dd($data_pkl);
+                if ($data_pkl != null) {
+                    if ($data_pkl->status) {
+                        $pkl[$key]['sudah'][] = $data_pkl;
+                        $lulus_pkl++;
+                    } else {
+                        $pkl[$key]['belum'][] = $data_pkl;
+                    }
+                }
+
+                $data_skripsi = Skripsi::where('id_mahasiswa', $value2->user_id)->get()->first();
+                // dd($data_skripsi);
+                $data_skripsi->nama = User::where('id', $value2->user_id)->first()->name;
+                $data_skripsi->nim = User::where('id', $value2->user_id)->first()->username;
+                $data_skripsi->angkatan = $value2->angkatan;
+                if ($data_skripsi != null) {
+                    if ($data_skripsi->status) {
+                        $skripsi[$key]['sudah'][] = $data_skripsi;
+                        $lulus_skripsi++;
+                    } else {
+                        $skripsi[$key]['belum'][] = $data_skripsi;
+                    }
+                }
+
+
+                $data_status = Mahasiswa::where('user_id', $value2->user_id)->get()->first();
+                // dd($data_skripsi);
+                $data_status->nama = User::where('id', $value2->user_id)->first()->name;
+                $data_status->nim = User::where('id', $value2->user_id)->first()->username;
+                $data_status->angkatan = $value2->angkatan;
+                // if ($data_status != null) {
+                //     if ($data_status->status) {
+                //         $status[$key]['Aktif'][] = $data_status;
+                //         $mhs_Aktif++;
+                //     } else {
+                //         $skripsi[$key]['belum'][] = $data_skripsi;
+                //     }
+                // }
+                if ($data_status != null) {
+                    if ($data_status->status == "Aktif") {
+                        $status[$key]['Aktif'][] = $data_status;
+                        $mhs_Aktif++;
+                    } elseif ($data_status->status == "Cuti") {
+                        $status[$key]['Cuti'][] = $data_status;
+                        $mhs_Cuti++;
+                    } elseif ($data_status->status == "Mangkir") {
+                        $status[$key]['Mangkir'][] = $data_status;
+                        $mhs_Mangkir++;
+                    } elseif ($data_status->status == "DO") {
+                        $status[$key]['DO'][] = $data_status;
+                        $mhs_DO++;
+                    } elseif ($data_status->status == "Undur Diri") {
+                        $status[$key]['UndurDiri'][] = $data_status;
+                        $mhs_UndurDiri++;
+                    } elseif ($data_status->status == "Lulus") {
+                        $status[$key]['Lulus'][] = $data_status;
+                        $mhs_Lulus++;
+                    } else {
+                        $skripsi[$key]['Meninggal'][] = $data_skripsi;
+                        $mhs_Meninggal++;
+                    }
+                }
+                
+                
+
+            }
+        }
+
+
+        $mahasiswaa = User::where('role', 'mahasiswa')->get();
         //dd($mahasiswa[0]);
-        foreach ($mahasiswa as $mhs){
-            $mhs->mahasiswa = Mahasiswa::where('user_id', $mhs->id)->first();
-            $mhs->doswal = User::where('id', $mhs->mahasiswa->doswal)->first()->name;
+        foreach ($mahasiswaa as $mhs){
+            $mhs->mahasiswaa = Mahasiswa::where('user_id', $mhs->id)->first();
+            $mhs->doswal = User::where('id', $mhs->mahasiswaa->doswal)->first()->name;
+            $mhs->user_id = User::where('id', $mhs->mahasiswaa->user_id)->first()->username;
             //var_dump($mhs->doswal);
             //dd($mhs->doswal);
         }
@@ -37,7 +147,21 @@ class DepartemenController extends Controller
             'Role' => 'Departemen',
             'UserName' => 'INFORMATIKA',
             'Title' => 'Data Mahasiswa',
+            'mahasiswaa' => $mahasiswaa,
             'mahasiswa' => $mahasiswa,
+            'pkl' => $pkl,
+            'skripsi' => $skripsi,
+            'status' => $status,
+            'mhs_Aktif' => $mhs_Aktif,
+            'mhs_Cuti' => $mhs_Cuti,
+            'mhs_Mangkir' => $mhs_Mangkir,
+            'mhs_DO' => $mhs_DO,
+            'mhs_UndurDiri' => $mhs_UndurDiri,
+            'mhs_Lulus' => $mhs_Lulus,
+            'mhs_Meninggal' => $mhs_Meninggal,
+            'tahun_shown' => $tahun_shown,
+            'lulus_pkl' => $lulus_pkl,
+            'lulus_skripsi' => $lulus_skripsi,
         );
         //
         return view('Departemen/DataMahasiswa', $data);
@@ -57,39 +181,167 @@ class DepartemenController extends Controller
 
     public function ProgresPKL()
     {
-        $pkl = PKL::where('status', true)->get();
-        foreach ($pkl as $p) {
+        //$pkl = PKL::all();
+        $current_year = date('Y');
+        //dd($current_year);
+        $tahun_shown = array();
+        for ($i = intval($current_year); $i >= intval($current_year) - 6; $i--) {
+            $mahasiswa[$i] = Mahasiswa::where('angkatan', strval($i))->get();
+            $tahun_shown[] = $i;
+        }
+
+        // dd($mahasiswa);
+        $lulus_pkl = 0;
+        $lulus_skripsi = 0;
+        foreach ($mahasiswa as $key => $value) {
+            //$mahasiswa[$key]->name = User::where('id', $value[0]->user_id)->first()->name;
+            $pkl[$key]['sudah'] = array();
+            $pkl[$key]['belum'] = array();
+            //$pkl[$key]['belum'] = array();
+            $skripsi[$key]['sudah'] = array();
+            $skripsi[$key]['belum'] = array();
+            foreach ($value as $key2 => $value2) {
+                //dd($key2);
+                $data_pkl = PKL::where('id_mahasiswa', $value2->user_id)->get()->first();
+                // dd($value2->user_id);
+                $data_pkl->nama = User::where('id', $value2->user_id)->first()->name;
+                $data_pkl->nim = User::where('id', $value2->user_id)->first()->username;
+                $data_pkl->angkatan = $value2->angkatan;
+                // dd($data_pkl);
+                if ($data_pkl != null) {
+                    if ($data_pkl->status) {
+                        $pkl[$key]['sudah'][] = $data_pkl;
+                        $lulus_pkl++;
+                    } else {
+                        $pkl[$key]['belum'][] = $data_pkl;
+                    }
+                }
+
+                $data_skripsi = Skripsi::where('id_mahasiswa', $value2->user_id)->get()->first();
+                // dd($data_skripsi);
+                $data_skripsi->nama = User::where('id', $value2->user_id)->first()->name;
+                $data_skripsi->nim = User::where('id', $value2->user_id)->first()->username;
+                $data_skripsi->angkatan = $value2->angkatan;
+                if ($data_skripsi != null) {
+                    if ($data_skripsi->status) {
+                        $skripsi[$key]['sudah'][] = $data_skripsi;
+                        $lulus_skripsi++;
+                    } else {
+                        $skripsi[$key]['belum'][] = $data_skripsi;
+                    }
+                }
+
+            }
+        }
+        $pkll = PKL::where('status', true)->get();
+        foreach ($pkll as $p) {
             $p->mahasiswa = Mahasiswa::where('id', $p->id_mahasiswa)->get()->first();
             $p->mahasiswa->nim = User::where('id', $p->mahasiswa->user_id)->get()->first()->username;
             $p->mahasiswa->doswal = User::where('id', $p->mahasiswa->doswal)->get()->first()->name;
             $p->mahasiswa->nama = User::where('id', $p->mahasiswa->user_id)->get()->first()->name;
         }
-        //dd($pkl);
+        // dd($pkl[2021]['sudah'][0]);
+        // dd($skripsi);
+        // dd($tahun_shown);
         $data = array (
             'active_home' => 'active',
             'Role' => 'Departemen',
             'UserName' => 'INFORMATIKA',
             'Title' => 'Lulus Belum PKL',
             'pkl' => $pkl,
+            'skripsi' => $skripsi,
+            'tahun_shown' => $tahun_shown,
+            'mahasiswa' => $mahasiswa,
+            'lulus_pkl' => $lulus_pkl,
+            'lulus_skripsi' => $lulus_skripsi,
+            'pkll' => $pkll,
         );
          return view('Departemen/ProgresPKL', $data);
     }
 
     public function ProgresSkripsi()
     {
-        $skripsi = Skripsi::where('status', true)->get();
-        foreach ($skripsi as $s) {
+        //$pkl = PKL::all();
+        $current_year = date('Y');
+        //dd($current_year);
+        $tahun_shown = array();
+        for ($i = intval($current_year); $i >= intval($current_year) - 6; $i--) {
+            $mahasiswa[$i] = Mahasiswa::where('angkatan', strval($i))->get();
+            $tahun_shown[] = $i;
+        }
+
+        // dd($mahasiswa);
+        $lulus_pkl = 0;
+        $lulus_skripsi = 0;
+        foreach ($mahasiswa as $key => $value) {
+            //$mahasiswa[$key]->name = User::where('id', $value[0]->user_id)->first()->name;
+            $pkl[$key]['sudah'] = array();
+            $pkl[$key]['belum'] = array();
+            //$pkl[$key]['belum'] = array();
+            $skripsi[$key]['sudah'] = array();
+            $skripsi[$key]['belum'] = array();
+            foreach ($value as $key2 => $value2) {
+                //dd($key2);
+                $data_pkl = PKL::where('id_mahasiswa', $value2->user_id)->get()->first();
+                // dd($value2->user_id);
+                $data_pkl->nama = User::where('id', $value2->user_id)->first()->name;
+                $data_pkl->nim = User::where('id', $value2->user_id)->first()->username;
+                $data_pkl->angkatan = $value2->angkatan;
+                // dd($data_pkl);
+                if ($data_pkl != null) {
+                    if ($data_pkl->status) {
+                        $pkl[$key]['sudah'][] = $data_pkl;
+                        $lulus_pkl++;
+                    } else {
+                        $pkl[$key]['belum'][] = $data_pkl;
+                    }
+                }
+
+                $data_skripsi = Skripsi::where('id_mahasiswa', $value2->user_id)->get()->first();
+                // dd($data_skripsi);
+                $data_skripsi->nama = User::where('id', $value2->user_id)->first()->name;
+                $data_skripsi->nim = User::where('id', $value2->user_id)->first()->username;
+                $data_skripsi->angkatan = $value2->angkatan;
+                if ($data_skripsi != null) {
+                    if ($data_skripsi->status) {
+                        $skripsi[$key]['sudah'][] = $data_skripsi;
+                        $lulus_skripsi++;
+                    } else {
+                        $skripsi[$key]['belum'][] = $data_skripsi;
+                    }
+                }
+
+            }
+        }
+        $pkll = PKL::where('status', true)->get();
+        foreach ($pkll as $p) {
+            $p->mahasiswa = Mahasiswa::where('id', $p->id_mahasiswa)->get()->first();
+            $p->mahasiswa->nim = User::where('id', $p->mahasiswa->user_id)->get()->first()->username;
+            $p->mahasiswa->doswal = User::where('id', $p->mahasiswa->doswal)->get()->first()->name;
+            $p->mahasiswa->nama = User::where('id', $p->mahasiswa->user_id)->get()->first()->name;
+        }
+        $skripsii = Skripsi::where('status', true)->get();
+        foreach ($skripsii as $s) {
             $s->mahasiswa = Mahasiswa::where('id', $s->id_mahasiswa)->get()->first();
             $s->mahasiswa->nim = User::where('id', $s->mahasiswa->user_id)->get()->first()->username;
             $s->mahasiswa->doswal = User::where('id', $s->mahasiswa->doswal)->get()->first()->name;
             $s->mahasiswa->nama = User::where('id', $s->mahasiswa->user_id)->get()->first()->name;
         }
+
+      
         $data = array (
             'active_home' => 'active',
             'Role' => 'Departemen',
             'UserName' => 'INFORMATIKA',
             'Title' => 'Lulus Belum Skripsi',
+            'skripsii' => $skripsii,
+            'pkl' => $pkl,
             'skripsi' => $skripsi,
+            'tahun_shown' => $tahun_shown,
+            'mahasiswa' => $mahasiswa,
+            'lulus_pkl' => $lulus_pkl,
+            'lulus_skripsi' => $lulus_skripsi,
+            'pkll' => $pkll,
         );
          return view('Departemen/ProgresSkripsi', $data);
     }
