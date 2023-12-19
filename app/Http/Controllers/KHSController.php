@@ -147,6 +147,7 @@ class KHSController extends Controller
         $khs = KHS::find($id);
         $semester = KHS::where('id_mahasiswa', auth()->user()->id)->pluck('semester_aktif')->toArray();
         $avail_semester = array_diff_assoc(['1', '2', '3', '4', '5', '6', '7', '8'], $semester);
+        $foto = Mahasiswa::where('user_id', auth()->user()->id)->get()->first();
         $data = [
             'active_side' => 'active',
             'title' => 'Edit KHS',
@@ -154,6 +155,7 @@ class KHSController extends Controller
             'khs' => $khs,
             'avail_semester' => $avail_semester,
             'UserName' => $userMhs->name,
+            'foto' => $foto->foto,
         ];
         return view('mahasiswa/EditKHS', $data);
     }

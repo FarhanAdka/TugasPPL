@@ -182,6 +182,9 @@
                             </tbody>
                         </table>
                     </div>
+                            <div class="d-flex justify-content-end mt-3">
+            <button type="button" class="btn btn-primary">Cetak</button>
+        </div>
                 </div>
             </div>
         </div>

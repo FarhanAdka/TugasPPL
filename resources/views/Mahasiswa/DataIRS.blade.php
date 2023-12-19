@@ -46,9 +46,9 @@
                                         <td>
                                             @if (!$ir->status)
                                                 <!-- Check if status is not true -->
-                                                <form action="{{ route('KHS.destroy', $ir->id) }}" method="POST">
+                                                <form action="{{ route('IRS.destroy', $ir->id) }}" method="POST">
                                                     <a class="btn btn-primary"
-                                                        href="{{ route('KHS.edit', $ir->id) }}">Edit</a>
+                                                        href="{{ route('IRS.edit', $ir->id) }}">Edit</a>
                                                     @csrf
                                                     @method('DELETE')
                                                     <button type="submit" class="btn btn-danger">Delete</button>

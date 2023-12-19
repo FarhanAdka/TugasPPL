@@ -4,7 +4,7 @@
         <div class="row">
             <div class="card">
                 <div class="card-body">
-                    <div class="row">
+                    {{-- <div class="row">
                         <div class="p-2 col-md-3">
                             <p class="text-small mb-2"><b>NIM</b></p>
                             <p>{{ $user->username }}</p>
@@ -20,6 +20,38 @@
                         <div class="p-2 col-md-3">
                             <p class="text-small mb-2"> <b>Angkatan</b></p>
                             <p>{{ $mahasiswa->angkatan }}</p>
+                        </div>
+                    </div> --}}
+                    <div class="row">
+                        <div class="col-md-2">
+                            <p class="text-small mb-2"><b>Nama</b></p>
+                        </div>
+                        <div class="col-md-3">
+                            <p class="text-small mb-2"><b>: </b>{{ $user->name }}</p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-2">
+                            <p class="text-small mb-2"><b>NIM</b></p>
+                        </div>
+                        <div class="col-md-3">
+                            <p class="text-small mb-2"><b>: </b>{{ $user->username }}</p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-2">
+                            <p class="text-small mb-2"><b>Dosen Wali</b></p>
+                        </div>
+                        <div class="col-md-3">
+                            <p class="text-small mb-2"><b>: </b>{{ $nama_doswal }}</p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-2">
+                            <p class="text-small mb-2"><b>Angkatan</b></p>
+                        </div>
+                        <div class="col-md-3">
+                            <p class="text-small mb-2"><b>: </b>{{ $mahasiswa->angkatan }}</p>
                         </div>
                     </div>
                     <div class="text-center">

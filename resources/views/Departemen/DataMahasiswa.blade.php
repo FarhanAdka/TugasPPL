@@ -103,7 +103,7 @@
                                                                             <th scope="col">NIM</th>
                                                                             <th scope="col">Nama</th>
                                                                             <th scope="col">Angkatan</th>
-                                                                            <th scope="col">Nilai</th>
+                                                                            
                                                                         </tr>
                                                                     </thead>
                                                                     <tbody>
@@ -121,9 +121,7 @@
                                                                                 <td>
                                                                                     {{ $mahasiswa->angkatan }}
                                                                                 </td>
-                                                                                <td>
-                                                                                    {{ $mahasiswa->nilai }}
-                                                                                </td>
+
                                                                             </tr>
                                                                         @endforeach
                                                                     </tbody>
@@ -137,7 +135,7 @@
                                                         <div class="modal-footer">
                                                             <button type="button" class="btn btn-secondary"
                                                                 data-bs-dismiss="modal">Tutup</button>
-                                                            <button type="button" class="btn btn-primary">Cetak</button>
+
                                                         </div>
                                                     </div>
                                                 </div>
@@ -171,7 +169,6 @@
                                                                             <th scope="col">NIM</th>
                                                                             <th scope="col">Nama</th>
                                                                             <th scope="col">Angkatan</th>
-                                                                            <th scope="col">Nilai</th>
                                                                         </tr>
                                                                     </thead>
                                                                     <tbody>
@@ -189,9 +186,6 @@
                                                                                 <td>
                                                                                     {{ $mahasiswa->angkatan }}
                                                                                 </td>
-                                                                                <td>
-                                                                                    {{ $mahasiswa->nilai }}
-                                                                                </td>
                                                                             </tr>
                                                                         @endforeach
                                                                     </tbody>
@@ -205,7 +199,6 @@
                                                         <div class="modal-footer">
                                                             <button type="button" class="btn btn-secondary"
                                                                 data-bs-dismiss="modal">Tutup</button>
-                                                            <button type="button" class="btn btn-primary">Cetak</button>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -239,7 +232,7 @@
                                                                             <th scope="col">NIM</th>
                                                                             <th scope="col">Nama</th>
                                                                             <th scope="col">Angkatan</th>
-                                                                            <th scope="col">Nilai</th>
+                                                                            
                                                                         </tr>
                                                                     </thead>
                                                                     <tbody>
@@ -257,9 +250,7 @@
                                                                                 <td>
                                                                                     {{ $mahasiswa->angkatan }}
                                                                                 </td>
-                                                                                <td>
-                                                                                    {{ $mahasiswa->nilai }}
-                                                                                </td>
+
                                                                             </tr>
                                                                         @endforeach
                                                                     </tbody>
@@ -273,7 +264,7 @@
                                                         <div class="modal-footer">
                                                             <button type="button" class="btn btn-secondary"
                                                                 data-bs-dismiss="modal">Tutup</button>
-                                                            <button type="button" class="btn btn-primary">Cetak</button>
+
                                                         </div>
                                                     </div>
                                                 </div>
@@ -308,7 +299,7 @@
                                                                             <th scope="col">NIM</th>
                                                                             <th scope="col">Nama</th>
                                                                             <th scope="col">Angkatan</th>
-                                                                            <th scope="col">Nilai</th>
+                                                                            
                                                                         </tr>
                                                                     </thead>
                                                                     <tbody>
@@ -326,9 +317,7 @@
                                                                                 <td>
                                                                                     {{ $mahasiswa->angkatan }}
                                                                                 </td>
-                                                                                <td>
-                                                                                    {{ $mahasiswa->nilai }}
-                                                                                </td>
+
                                                                             </tr>
                                                                         @endforeach
                                                                     </tbody>
@@ -342,7 +331,7 @@
                                                         <div class="modal-footer">
                                                             <button type="button" class="btn btn-secondary"
                                                                 data-bs-dismiss="modal">Tutup</button>
-                                                            <button type="button" class="btn btn-primary">Cetak</button>
+
                                                         </div>
                                                     </div>
                                                 </div>
@@ -377,7 +366,7 @@
                                                                             <th scope="col">NIM</th>
                                                                             <th scope="col">Nama</th>
                                                                             <th scope="col">Angkatan</th>
-                                                                            <th scope="col">Nilai</th>
+                                                                            
                                                                         </tr>
                                                                     </thead>
                                                                     <tbody>
@@ -395,9 +384,7 @@
                                                                                 <td>
                                                                                     {{ $mahasiswa->angkatan }}
                                                                                 </td>
-                                                                                <td>
-                                                                                    {{ $mahasiswa->nilai }}
-                                                                                </td>
+
                                                                             </tr>
                                                                         @endforeach
                                                                     </tbody>
@@ -411,7 +398,7 @@
                                                         <div class="modal-footer">
                                                             <button type="button" class="btn btn-secondary"
                                                                 data-bs-dismiss="modal">Tutup</button>
-                                                            <button type="button" class="btn btn-primary">Cetak</button>
+
                                                         </div>
                                                     </div>
                                                 </div>
@@ -445,7 +432,7 @@
                                                                             <th scope="col">NIM</th>
                                                                             <th scope="col">Nama</th>
                                                                             <th scope="col">Angkatan</th>
-                                                                            <th scope="col">Nilai</th>
+                                                                            
                                                                         </tr>
                                                                     </thead>
                                                                     <tbody>
@@ -463,9 +450,7 @@
                                                                                 <td>
                                                                                     {{ $mahasiswa->angkatan }}
                                                                                 </td>
-                                                                                <td>
-                                                                                    {{ $mahasiswa->nilai }}
-                                                                                </td>
+
                                                                             </tr>
                                                                         @endforeach
                                                                     </tbody>
@@ -479,7 +464,7 @@
                                                         <div class="modal-footer">
                                                             <button type="button" class="btn btn-secondary"
                                                                 data-bs-dismiss="modal">Tutup</button>
-                                                            <button type="button" class="btn btn-primary">Cetak</button>
+
                                                         </div>
                                                     </div>
                                                 </div>
@@ -513,7 +498,7 @@
                                                                             <th scope="col">NIM</th>
                                                                             <th scope="col">Nama</th>
                                                                             <th scope="col">Angkatan</th>
-                                                                            <th scope="col">Nilai</th>
+                                                                            
                                                                         </tr>
                                                                     </thead>
                                                                     <tbody>
@@ -531,9 +516,7 @@
                                                                                 <td>
                                                                                     {{ $mahasiswa->angkatan }}
                                                                                 </td>
-                                                                                <td>
-                                                                                    {{ $mahasiswa->nilai }}
-                                                                                </td>
+
                                                                             </tr>
                                                                         @endforeach
                                                                     </tbody>
@@ -547,7 +530,7 @@
                                                         <div class="modal-footer">
                                                             <button type="button" class="btn btn-secondary"
                                                                 data-bs-dismiss="modal">Tutup</button>
-                                                            <button type="button" class="btn btn-primary">Cetak</button>
+
                                                         </div>
                                                     </div>
                                                 </div>

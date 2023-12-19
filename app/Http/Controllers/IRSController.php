@@ -155,6 +155,8 @@ class IRSController extends Controller
         $irs = IRS::find($id);
         $semester = IRS::where('id_mahasiswa', auth()->user()->id)->pluck('semester_aktif')->toArray();
         $avail_semester = array_diff_assoc(['1', '2', '3', '4', '5', '6', '7', '8'], $semester);
+        //dd($avail_semester);
+        $foto = Mahasiswa::where('user_id', auth()->user()->id)->get()->first();
         $data = [
             'active_side' => 'active',
             'title' => 'Edit IRS',
@@ -162,6 +164,7 @@ class IRSController extends Controller
             'irs' => $irs,
             'avail_semester' => $avail_semester,
             'UserName' => $userMhs->name,
+            'foto' => $foto->foto,
         ];
         return view('mahasiswa/EditIRS', $data);
     }
