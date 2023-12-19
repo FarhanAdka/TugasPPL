@@ -19,12 +19,14 @@ class KHSController extends Controller
         $userMhs = User::where('id', auth()->user()->id)->get()->first();
         
         $khs = KHS::where('id_mahasiswa', auth()->user()->id)->get();
+        $foto = Mahasiswa::where('user_id', auth()->user()->id)->get()->first();
         $data = [
             'active_side' => 'active',
             'title' => 'Data KHS',
             'active_user' => 'active',
             'khs' => $khs,
             'UserName' => $userMhs->name,
+            'foto' => $foto->foto,
         ];
 
         return view('mahasiswa/DataKHS', $data);
@@ -84,12 +86,14 @@ class KHSController extends Controller
         sort($semester);
         //dd($semester);
         $avail_semester = array_diff_assoc([1, 2, 3, 4, 5, 6, 7, 8], $semester);
+        $foto = Mahasiswa::where('user_id', auth()->user()->id)->get()->first();
         $data = array(
             'active_side' => 'active',
             'active_user' => 'active',
             'title' => 'Isi KHS',
             'avail_semester' => $avail_semester,
             'UserName' => $userMhs->name,
+            'foto' => $foto->foto,
         );
         return view('Mahasiswa/IsiKHS', $data);
     }

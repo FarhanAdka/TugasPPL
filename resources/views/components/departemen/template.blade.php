@@ -30,7 +30,7 @@
                     <div class="d-flex justify-content-between align-items-center">
                         <div class="logo">
                             {{-- PP LOGO APK --}}
-                            <a href="index.html"><img src="/assets/compiled/png/logo.png" alt="Logo"
+                            <a href="{{route('login')}}"><img src="/assets/compiled/png/logo.png" alt="Logo"
                                     style="margin-left: 40px; width: 60px; height: auto;" srcset=""></a>
                         </div>
 

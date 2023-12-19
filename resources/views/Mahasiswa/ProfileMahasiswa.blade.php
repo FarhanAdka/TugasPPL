@@ -40,26 +40,6 @@
                                         <div class="form-group">
                                             <label for="Nama">Nama</label>
                                             <input type="text" class="form-control" id="Nama" name="nama"
-                                                value="{{ $userMhs->name }}" placeholder="Enter your name . . .">
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="Email">Email</label>
-                                            <input type="text" class="form-control" id="Email" name="email"
-                                                value="{{ $mahasiswa->email }}"placeholder="Enter your email . . ."
-                                                required>
-                                        </div>
-
-                                        <div class="form-group">
-                                            <label for="no_telp">No Telepon</label>
-                                            <input type="text" class="form-control" id="no_telp" name="no_hp"
-                                                value="{{ $mahasiswa->no_hp }}"placeholder="Enter your No Telepon . . ."
-                                                required>
-                                        </div>
-
-
-                                        <div class="form-group">
-                                            <label for="Nama">Nama</label>
-                                            <input type="text" class="form-control" id="Nama"
                                                 value="{{ $userMhs->name }}" placeholder="Enter your name . . ." required>
                                         </div>
                                         <div class="form-group">

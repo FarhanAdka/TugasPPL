@@ -13,6 +13,8 @@
                  aria-hidden="true">
                  <div class="modal-dialog">
                      <div class="modal-content">
+                        <form action="{{route('mahasiswa.photo')}}" method="POST" enctype="multipart/form-data">
+                        @csrf
                          <div class="modal-header">
                              <h5 class="modal-title" id="exampleModalLabel">Ganti Foto Profil
                              </h5>
@@ -27,7 +29,7 @@
                                  <!-- Optional: Adding mb-2 for some margin between the image and input -->
                                  <h5 for="formFile" class="form-label mb-2">Pilih Foto
                                      Profil</h5>
-                                 <input type="file" class="form-control" id="formFile" onchange="updateAvatar()">
+                                 <input type="file" class="form-control" id="formFile" onchange="updateAvatar()" required>
                              </div>
                          </div>
                          <script>
@@ -41,15 +43,8 @@
                                  const input = document.getElementById('formFile');
                                  const img = document.getElementById('avatarImg');
 
-                                 if (input.files && input.files[0]) {
-                                     const reader = new FileReader();
-
-                                     reader.onload = function(e) {
-                                         img.src = e.target.result;
-                                     };
-
-                                     reader.readAsDataURL(input.files[0]);
-                                 }
+                                 input.value = '';
+                                 img.src = '{{ $foto }}';
                                  // console.log(img)
                              }
 
@@ -72,10 +67,11 @@
 
                          <div class="modal-footer">
                              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
-                             <button type="button" class="btn btn-primary">Simpan
+                             <button type="submit" class="btn btn-primary">Simpan
                                  perubahan</button>
 
                          </div>
+                        </form>
                      </div>
                  </div>
              </div>

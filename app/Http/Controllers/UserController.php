@@ -54,7 +54,8 @@ class UserController extends Controller
             'smt' => $smt,
             'smt_pkl' => $smt_pkl[0],
             'smt_skripsi' => $smt_skripsi[0],
-            'UserName' => $userMhs->name
+            'UserName' => $userMhs->name,
+            'foto' => $mahasiswa->foto,
         );
         return view('Mahasiswa/homeMahasiswa', $data);
     }
