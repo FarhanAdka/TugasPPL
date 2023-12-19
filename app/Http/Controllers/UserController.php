@@ -31,8 +31,8 @@ class UserController extends Controller
     function mahasiswa(){
         $userMhs = User::where('id', auth()->user()->id)->get()->first();
         $user = User::where('id', auth()->user()->id)->first();
-        $doswal = User::where('id', auth()->user()->id)->first();
         $mahasiswa = Mahasiswa::where('user_id', auth()->user()->id)->first();
+        $doswal = User::where('id', $mahasiswa->first()->doswal)->get()->first();
         $khs = KHS::where('id_mahasiswa', $mahasiswa->user_id)->get();
         $irs = IRS::where('id_mahasiswa', $mahasiswa->user_id)->get();
         $smt_irs = $irs->pluck('semester_aktif')->toArray();
@@ -49,7 +49,7 @@ class UserController extends Controller
             'user' => $user,
             'Role' => 'Mahasiswa',
             'title' => 'Dhasbord',
-            'nama_doswal'=>$doswal->name,
+            'nama_doswal'=> $doswal->name,
             'mahasiswa' => $mahasiswa,
             'smt' => $smt,
             'smt_pkl' => $smt_pkl[0],
@@ -66,7 +66,7 @@ class UserController extends Controller
             'active_side' => 'active',
             'active_sub' => 'active',
             'active_user' => 'active',
-            'title' => 'Operator',
+            'title' => 'Dashboard',
             'UserName' => $userOp->name
 
         );
