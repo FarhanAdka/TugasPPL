@@ -71,6 +71,7 @@ class SkripsiController extends Controller
     public function create()
     {
         $userMhs = User::where('id', auth()->user()->id)->get()->first();
+        $foto = Mahasiswa::where('user_id', auth()->user()->id)->get()->first();
         $skripsi = Skripsi::where('id_mahasiswa', auth()->user()->id)->get();
         //dd($skripsi);
         $data = array(
@@ -79,7 +80,7 @@ class SkripsiController extends Controller
             'title' => 'Isi Skripsi',
             'skripsi' => $skripsi->first(),
             'UserName' => $userMhs->name,
-
+            'foto' => $foto->foto,
         );
         return view('Mahasiswa/skripsi', $data);
     }

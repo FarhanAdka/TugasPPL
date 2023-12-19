@@ -24,7 +24,7 @@
                 <div class="sidebar-header position-relative">
                     <div class="d-flex justify-content-between align-items-center">
                         <div class="logo"></div>
-                        <a href="index.html"><img src="/assets/compiled/png/logo.png" alt="Logo"
+                        <a href="{{route('login')}}"><img src="/assets/compiled/png/logo.png" alt="Logo"
                                 style="margin-left: 40px; width: 60px; height: auto;" srcset=""></a>
                         <div class="theme-toggle d-flex gap-2 align-items-center mt-2">
                             <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
@@ -203,8 +203,8 @@
                                         </li>
 
                                         <li>
-                                            <a class="dropdown-item" href="/user/dosenWali/profile"><i
-                                                    class="icon-mid bi bi-person me-2"></i> MyProfile</a>
+                                            <a class="dropdown-item" href="/user/dosenWali/setting"><i
+                                                    class="icon-mid bi bi-person me-2"></i> Setting</a>
                                         </li>
 
                                         <li>

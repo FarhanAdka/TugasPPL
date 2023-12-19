@@ -79,6 +79,7 @@ class PKLController extends Controller
         $userMhs = User::where('id', auth()->user()->id)->get()->first();
         
         $pkl = PKL::where('id_mahasiswa', auth()->user()->id)->get();
+        $foto = Mahasiswa::where('user_id', auth()->user()->id)->get()->first();
         //dd($pkl);
         $avail_semester = [1,2,3,4,5,6,7,8,9,10,11,12,13,14];
         //dd($avail_semester);         
@@ -89,6 +90,7 @@ class PKLController extends Controller
             'pkl' => $pkl->first(),
             'avail_semester' => $avail_semester,
             'UserName' => $userMhs->name,
+            'foto' => $foto->foto,
 
         );
         return view('Mahasiswa/PKL', $data);
@@ -110,7 +112,6 @@ class PKLController extends Controller
     public function edit(string $id)
     {
         $userMhs = User::where('id', auth()->user()->id)->get()->first();
-        
         $pkl = PKL::where('id_mahasiswa', auth()->user()->id)->get();
         $data = [
             'active_side' => 'active',

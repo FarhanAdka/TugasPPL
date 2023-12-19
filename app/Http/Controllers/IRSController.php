@@ -18,12 +18,14 @@ class IRSController extends Controller
     {
         $irs = IRS::where('id_mahasiswa', auth()->user()->id)->get();
         $userMhs = User::where('id', auth()->user()->id)->get()->first();
+        $foto = Mahasiswa::where('user_id', auth()->user()->id)->get()->first();
         $data = [
                 'active_side' => 'active',
                 'title' => 'Data IRS',
                 'active_user' => 'active',
                 'irs' => $irs,
                 'UserName' => $userMhs->name,
+                'foto' => $foto->foto,
             ];
         //dd($irs);
         return view('mahasiswa/DataIRS', $data);
@@ -92,12 +94,14 @@ class IRSController extends Controller
         //dd($semester);
         $avail_semester = array_diff_assoc([1, 2, 3, 4, 5, 6, 7, 8], $semester);
         //dd($avail_semester);
+        $foto = Mahasiswa::where('user_id', auth()->user()->id)->get()->first();
         $data = array (
             'active_side' => 'active', 
             'active_user' => 'active',
             'title' => 'Isi IRS',
             'avail_semester' => $avail_semester,
             'UserName' => $userMhs->name,
+            'foto' => $foto->foto,
         );
         //dd($avail_semester);
         return view('Mahasiswa/IsiIRS', $data);

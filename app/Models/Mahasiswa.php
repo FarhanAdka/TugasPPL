@@ -22,6 +22,7 @@ class Mahasiswa extends Model
         'jalur_masuk',
         'status',
         'doswal',
+        'foto',
     ];
 
     function doswal()

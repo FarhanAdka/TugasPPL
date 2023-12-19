@@ -22,18 +22,7 @@
             <section class="section">
                 <div class="row">
                     <div class="col-12">
-                        <div class="card">
-                            <div class="card-body">
-                                <div class="d-flex justify-content-center align-items-center flex-column">
-                                    <div class="avatar avatar-2xl">
-                                        <img src="/assets/compiled/jpg/1.jpg" alt="Avatar">
-                                    </div>
-
-                                    <h3 class="mt-3">{{ $userMhs->name }}</h3>
-                                    <p class="text-small">Mahasiswa</p>
-                                </div>
-                            </div>
-                        </div>
+                        <x-mahasiswa.foto-profil :foto="$foto" :nama="$userMhs->name"/>
                     </div>
                     <div class="card">
                         <div class="card-body">
@@ -50,7 +39,7 @@
 
                                         <div class="form-group">
                                             <label for="Nama">Nama</label>
-                                            <input type="text" class="form-control" id="Nama"
+                                            <input type="text" class="form-control" id="Nama" name="nama"
                                                 value="{{ $userMhs->name }}" placeholder="Enter your name . . ." required>
                                         </div>
                                         <div class="form-group">
@@ -113,8 +102,8 @@
                                                     <label for="Kabupaten" class="form-label">Kabupaten
                                                         Kota</label>
                                                     <select name="kab_kota" id="Kabupaten" class="form-control" required>
-                                                        <option value="">Pilih Kabupaten/Kota</option>
                                                         <!-- Add other options here -->
+                                                        <option value="">Pilih Kabupaten/Kota</option>
                                                     </select>
                                                 </div>
                                             </div>

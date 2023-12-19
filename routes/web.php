@@ -55,6 +55,8 @@ Route::middleware(['auth'])->group(function (){
         Route::get('/user/mahasiswa/Skripsi', [SkripsiController::class, 'index']);
         Route::get('/user/mahasiswa/Skripsi/create', [SkripsiController::class, 'create'])->name('skripsi.create');
         Route::post('/user/mahasiswa/Skripsi', [SkripsiController::class, 'store'])->name('skripsi.store');
+        Route::post('/user/mahasiswa/settings', [MahasiswaController::class, 'updatePassword'])->name('mahasiswa.updatePassword');
+        Route::post('/user/mahasiswa/photo', [MahasiswaController::class, 'uploadFoto'])->name('mahasiswa.photo');
     });
     // Route::get('/user/mahasiswa',[userController::class,'mahasiswa'])->middleware('userAkses:mahasiswa');
     // Route::resource('/user/mahasiswa/IRS', IRSController::class)->middleware('userAkses:mahasiswa');
@@ -120,6 +122,7 @@ Route::middleware(['auth'])->group(function (){
         Route::get('/user/dosenWali/Skripsi', [SkripsiController::class, 'indexDosen'])->name('indexSkripsi');
         Route::get('/user/dosenWali/approveSkripsi/{id}', [SkripsiController::class ,'approve'])->name('Skripsi.approve');
         Route::delete('/user/dosenWali/deleteSkripsi/{id}', [SkripsiController::class ,'delete'])->name('Skripsi.delete');
+        // Route::get('/user/dosenWali/setting', )
         
     });
     //Departemen
