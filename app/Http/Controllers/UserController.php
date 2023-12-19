@@ -74,17 +74,99 @@ class UserController extends Controller
     }
 
     function dosenWali(){
+        $mahasiswaa = User::where('role', 'mahasiswa')->get();
+        //dd($mahasiswa[0]);
+        foreach ($mahasiswaa as $mhs){
+            $mhs->mahasiswaa = Mahasiswa::where('user_id', $mhs->id)->first();
+            $mhs->doswal = User::where('id', $mhs->mahasiswaa->doswal)->first()->name;
+            //var_dump($mhs->doswal);
+            //dd($mhs->doswal);
+        }
         $userDoswal = User::where('id', auth()->user()->id)->get()->first();
         $data = array (
             'active_home' => 'active',
             'title' => 'Dosen Wali',
             'UserName' => $userDoswal->name,
-
+            'mahasiswaa' => $mahasiswaa,
         );
         return view('DosenWali/homedosenWali', $data);
     }
+    
+    public function ProgresStudi(string $mahasiswa){
+        //dd($mahasiswa);
+        $user = User::where('id', $mahasiswa)->first();
+        $mahasiswa = Mahasiswa::where('user_id', $mahasiswa)->first();
+        $khs = KHS::where('id_mahasiswa', $mahasiswa->user_id)->get();
+        $irs = IRS::where('id_mahasiswa', $mahasiswa->user_id)->get();
+        $smt_irs = $irs->pluck('semester_aktif')->toArray();
+        $smt_khs = $khs->pluck('semester_aktif')->toArray();
+        $smt = array_unique(array_intersect($smt_irs, $smt_khs));
+        if (PKL::where('id_mahasiswa', $mahasiswa->user_id)->first() != null){
+            $smt_pkl = PKL::where('id_mahasiswa', $mahasiswa->user_id)->first()->semester;
+        }
+        else{
+            $smt_pkl = 0;
+        }
+        // dd(Skripsi::where('id_mahasiswa', $mahasiswa->user_id)->first()->status);
+        if (Skripsi::where('id_mahasiswa', $mahasiswa->user_id)->first()->status == true){
+            $smt_skripsi = Skripsi::where('id_mahasiswa', $mahasiswa->user_id)->first()->semester;
+        }
+        else{
+            $smt_skripsi = 0;
+        }
+        // dd($smt_skripsi);
+        //dd($smt_skripsi[0]);
+        $doswal = User::where('id', $mahasiswa->doswal)->first();
+        //dd(isset($khs[]));
+        $data = array (
+            'active_home' => 'active',
+            'Role' => 'Departemen',
+            'UserName' => 'INFORMATIKA',
+            'title' => 'Progres Studi',
+            'user' => $user,
+            'mahasiswa' => $mahasiswa,
+            'khs' => $khs,
+            'irs' => $irs,
+            'nama_doswal'=>$doswal->name,
+            'smt' => $smt,
+            'smt_pkl' => $smt_pkl,
+            'smt_skripsi' => $smt_skripsi,
+        );
+        return view('DosenWali/detilMahasiswa', $data);
+        //dd($khs);
+    }
+
+    function Profile(){
+        $userMhs = User::where('id', auth()->user()->id)->get()->first();
+        $mahasiswa = Mahasiswa::where('user_id', auth()->user()->id)->get()->first();
+        
+        $doswal = User::where('id', $mahasiswa->first()->doswal)->get()->first();
+        //dd($mahasiswa);
+        $hidden = 'hidden';
+        if($userMhs->has_setup){
+            $hidden = '';
+        }
+        $data = array (
+            // dd($mahasiswa->foto);
+            'active_home' => 'active',
+            'title' => 'Profile',
+            'mahasiswa' => $mahasiswa,
+            'userMhs' => $userMhs,
+            'nama_doswal' => $doswal->name,
+            'UserName' => $userMhs->name,
+            'foto' => $mahasiswa->foto,
+            'hidden' => $hidden,
+            
+        );
+        //dd($doswal);
+
+        
+        return view('DosenWali/profil', $data);
+    }
 
     function departemen(){
+        
+        
         //$pkl = PKL::all();
         $current_year = date('Y');
         //dd($current_year);
@@ -146,6 +228,7 @@ class UserController extends Controller
             'Role' => 'Departemen',
             'UserName' => 'INFORMATIKA',
             'Title' => 'Dashboard',
+            
             'pkl' => $pkl,
             'skripsi' => $skripsi,
             'tahun_shown' => $tahun_shown,

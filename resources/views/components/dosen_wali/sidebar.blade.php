@@ -13,6 +13,12 @@
     <link rel="stylesheet" href="/assets/compiled/css/app.css">
     <link rel="stylesheet" href="/assets/compiled/css/app-dark.css">
     <link rel="stylesheet" href="/assets/compiled/css/iconly.css">
+
+    {{-- TAMBAHAN ASSETS --}}
+    <link rel="stylesheet" href="/assets/extensions/simple-datatables/style.css">
+    <link rel="stylesheet" href="/assets/compiled/css/table-datatable.css">
+    <link rel="stylesheet" crossorigin href="/assets/compiled/css/iconly.css">
+
 </head>
 
 <body>
@@ -24,7 +30,7 @@
                 <div class="sidebar-header position-relative">
                     <div class="d-flex justify-content-between align-items-center">
                         <div class="logo"></div>
-                        <a href="{{route('login')}}"><img src="/assets/compiled/png/logo.png" alt="Logo"
+                        <a href="{{ route('login') }}"><img src="/assets/compiled/png/logo.png" alt="Logo"
                                 style="margin-left: 40px; width: 60px; height: auto;" srcset=""></a>
                         <div class="theme-toggle d-flex gap-2 align-items-center mt-2">
                             <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
@@ -252,6 +258,10 @@
         <script src="/assets/static/js/components/dark.js"></script>
         <script src="/assets/extensions/perfect-scrollbar/perfect-scrollbar.min.js"></script>
         <script src="/assets/compiled/js/app.js"></script>
+
+        <!-- TAMBAHAN -->
+        <script src="/assets/extensions/simple-datatables/umd/simple-datatables.js"></script>
+        <script src="/assets/static/js/pages/simple-datatables.js"></script>
 
 </body>
 

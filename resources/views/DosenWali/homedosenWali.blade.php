@@ -22,11 +22,11 @@
                 </div>
             </div>
             <section class="section">
-                <div class="row">
+                {{-- <div class="row">
                     <div class="col-12 col-lg-12 col-md-12">
                         <div class="card">
                             <div class="card-body px-4 py-4-5">
-                                <a href="/user/dosenWali/profil">
+                                <a href="/user/dosenWali/profile">
                                     <div class="col-md-4 col-lg-12 col-xl-12 col-xxl-12 d-flex justify-content-start">
                                         <div class="stats-icon bg-secondary blue mb-2 text-center w-100">
                                             <i class="bi bi-person-circle mx-3 mb-4 "></i>
@@ -37,7 +37,7 @@
                             </div>
                         </div>
                     </div>
-                </div>
+                </div> --}}
 
 
 
@@ -145,6 +145,43 @@
                                 </div>
                             </div>
                         </div>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-header">
+                        <h5 class="card-title">
+                            {{ $title }}
+                        </h5>
+                    </div>
+                    <div class="card-body">
+                        <table class="table table-striped" id="table1">
+                            <thead>
+                                <tr>
+                                    <th>Nama</th>
+                                    <th>NIM</th>
+                                    <th>Angkatan</th>
+                                    <th>Aksi</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+
+                                @foreach ($mahasiswaa as $mhs)
+                                    <tr>
+                                        <td>{{ $mhs->name }}</td>
+                                        <td>{{ $mhs->username }}</td>
+                                        <td>{{ $mhs->mahasiswaa->angkatan }}</td>
+                                        <td>
+                                            <form action="/user/dosenWali{{ $mhs->id }}" method="POST">
+                                                <a class="btn btn-primary"
+                                                    href="{{ route('dosw.studi', $mhs->id) }}">Detil</a>
+                                            </form>
+                                        </td>
+                                    </tr>
+                                @endforeach
+
+                            </tbody>
+                        </table>
                     </div>
                 </div>
 
