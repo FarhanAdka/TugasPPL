@@ -234,8 +234,11 @@ class DepartemenController extends Controller
             }
         }
         $pkll = PKL::where('status', true)->get();
+        // dd($pkll);
         foreach ($pkll as $p) {
-            $p->mahasiswa = Mahasiswa::where('id', $p->id_mahasiswa)->get()->first();
+            // dd($p->id_mahasiswa);
+            $p->mahasiswa = Mahasiswa::where('user_id', $p->id_mahasiswa)->get()->first();
+            // dd($p->mahasiswa);
             $p->mahasiswa->nim = User::where('id', $p->mahasiswa->user_id)->get()->first()->username;
             $p->mahasiswa->doswal = User::where('id', $p->mahasiswa->doswal)->get()->first()->name;
             $p->mahasiswa->nama = User::where('id', $p->mahasiswa->user_id)->get()->first()->name;
@@ -315,14 +318,14 @@ class DepartemenController extends Controller
         }
         $pkll = PKL::where('status', true)->get();
         foreach ($pkll as $p) {
-            $p->mahasiswa = Mahasiswa::where('id', $p->id_mahasiswa)->get()->first();
+            $p->mahasiswa = Mahasiswa::where('user_id', $p->id_mahasiswa)->get()->first();
             $p->mahasiswa->nim = User::where('id', $p->mahasiswa->user_id)->get()->first()->username;
             $p->mahasiswa->doswal = User::where('id', $p->mahasiswa->doswal)->get()->first()->name;
             $p->mahasiswa->nama = User::where('id', $p->mahasiswa->user_id)->get()->first()->name;
         }
         $skripsii = Skripsi::where('status', true)->get();
         foreach ($skripsii as $s) {
-            $s->mahasiswa = Mahasiswa::where('id', $s->id_mahasiswa)->get()->first();
+            $s->mahasiswa = Mahasiswa::where('user_id', $s->id_mahasiswa)->get()->first();
             $s->mahasiswa->nim = User::where('id', $s->mahasiswa->user_id)->get()->first()->username;
             $s->mahasiswa->doswal = User::where('id', $s->mahasiswa->doswal)->get()->first()->name;
             $s->mahasiswa->nama = User::where('id', $s->mahasiswa->user_id)->get()->first()->name;

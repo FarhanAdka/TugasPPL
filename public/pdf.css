@@ -1,0 +1,30 @@
+    body {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        margin: 0;
+    }
+
+    table {
+        border-collapse: collapse;
+        width: 80%;
+        /* Adjust as needed */
+        border: 1px solid #000;
+        /* Border for the table */
+        margin-top: 20px;
+        /* Space between paragraphs and table */
+    }
+
+    th,
+    td {
+        border: 1px solid #000;
+        /* Border for table cells */
+        padding: 8px;
+        text-align: left;
+    }
+
+    th {
+        text-align: center;
+        /* Justify center only for table headers */
+    }
