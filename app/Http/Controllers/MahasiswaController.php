@@ -115,11 +115,11 @@ class MahasiswaController extends Controller
     {
         
         $mhs = Mahasiswa::where('user_id', auth()->user()->id)->first(); // Using first() directly fetches the first record, no need for get().
-        dd($request->all());
+        // dd($request->all());
         if ($request->hasFile('foto')) {
             $fotoPath = $request->file('foto')->store('public/photos'); // Store the file in storage/app/public/photos
-            dd($fotoPath);
-            $fotoPath = str_replace('public/', '', $fotoPath); // Remove 'public/' from the path to store it properly in the database
+            // dd($fotoPath);
+            $fotoPath = str_replace('public/', '/storage/', $fotoPath); // Remove 'public/' from the path to store it properly in the database
             if ($mhs->foto != null && $mhs->foto != '/assets/compiled/jpg/1.jpg') {
                 Storage::delete($mhs->foto);
             }

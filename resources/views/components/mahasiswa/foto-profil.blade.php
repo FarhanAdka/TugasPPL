@@ -29,7 +29,7 @@
                                  <!-- Optional: Adding mb-2 for some margin between the image and input -->
                                  <h5 for="formFile" class="form-label mb-2">Pilih Foto
                                      Profil</h5>
-                                 <input type="file" class="form-control" id="formFile" onchange="updateAvatar()" required>
+                                 <input type="file" class="form-control" id="formFile" onchange="updateAvatar()" name="foto" required>
                              </div>
                          </div>
                          <script>
