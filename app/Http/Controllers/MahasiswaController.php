@@ -16,6 +16,10 @@ class MahasiswaController extends Controller
         
         $doswal = User::where('id', $mahasiswa->first()->doswal)->get()->first();
         //dd($mahasiswa);
+        $hidden = 'hidden';
+        if($userMhs->has_setup){
+            $hidden = '';
+        }
         $data = array (
             // dd($mahasiswa->foto);
             'active_home' => 'active',
@@ -25,6 +29,7 @@ class MahasiswaController extends Controller
             'nama_doswal' => $doswal->name,
             'UserName' => $userMhs->name,
             'foto' => $mahasiswa->foto,
+            'hidden' => $hidden,
             
         );
         //dd($doswal);
@@ -129,4 +134,13 @@ class MahasiswaController extends Controller
         $mhs->save();
         return redirect()->route('mahasiswa.profile');
     }
+
+    function updatePassword(Request $request){
+        $data = $request->all();
+        dd($data);
+        $user = User::where('id', auth()->user()->id)->get()->first();
+        $user->password = bcrypt($data['password']);
+        $user->save();
+        return redirect()->route('mahasiswa.profile');
+    }    
 }
