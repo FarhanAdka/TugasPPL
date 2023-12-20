@@ -54,19 +54,25 @@ class DummyUserSeeder extends Seeder
                     'doswal' => $dw_id,
                     'angkatan' => '2018',
                 ]
-                );
+            );
 
             PKL::create(
                 [
                     'id_mahasiswa' => $mhs_id,
                 ]
-                );
+            );
 
             Skripsi::create(
                 [
                     'id_mahasiswa' => $mhs_id,
                 ]
-                );
+            );
+
+            DosenWali::create(
+                [
+                    'user_id' => $dw_id,
+                ]
+            );
             
     }
 }

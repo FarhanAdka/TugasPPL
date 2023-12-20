@@ -222,7 +222,20 @@ class OperatorController extends Controller
         $data = $request->all();
         $data['role'] = 'dosen_wali';
         $data['password'] = bcrypt($data['password']);
-        User::create($data);
+        // Step 1: Create a new User record
+        $user = User::create($data);
+
+        // Step 2: Retrieve the User's ID
+        $user_id = $user->id;
+        // Step 3: Create a Mahasiswa record and associate it with the User's ID
+        DosenWali::create([
+            'user_id' => $user_id,
+            'email' => null,
+            'no_hp' => null,
+            'provinsi' => null,
+            'kab_kota' => null,
+            'alamat' => null,
+        ]);
         return redirect('/user/operator/keloladosenWali');
     }
 

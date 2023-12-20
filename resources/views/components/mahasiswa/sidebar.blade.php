@@ -70,7 +70,7 @@
                             <li class="sidebar-item {{ $title === 'Dhasbord' ? 'active' : '' }}">
                                 <a href="/user/mahasiswa/" class='sidebar-link'>
                                     <i class="bi bi-grid-fill"></i>
-                                    <span>Dhasboard</span>
+                                    <span>Dashboard</span>
                                 </a>
                             </li>
 

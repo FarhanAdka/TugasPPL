@@ -13,8 +13,13 @@ class DosenWali extends Model
     use HasFactory;
 
     protected $fillable = [
-        'username',
-        'nama'
+        'user_id',
+        'alamat',
+        'kab_kota',
+        'provinsi',
+        'no_hp',
+        'email',
+        'foto',
     ];
 
     function mahasiswa()

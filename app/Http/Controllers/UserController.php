@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\DosenWali;
 use App\Models\Mahasiswa;
 use App\Models\PKL;
 use App\Models\Skripsi;
@@ -137,31 +138,65 @@ class UserController extends Controller
     }
 
     function Profile(){
-        $userMhs = User::where('id', auth()->user()->id)->get()->first();
-        $mahasiswa = Mahasiswa::where('user_id', auth()->user()->id)->get()->first();
+        // $userMhs = User::where('id', auth()->user()->id)->get()->first();
+        // $mahasiswa = Mahasiswa::where('user_id', auth()->user()->id)->get()->first();
         
-        $doswal = User::where('id', $mahasiswa->first()->doswal)->get()->first();
-        //dd($mahasiswa);
+        // $doswal = User::where('id', $mahasiswa->first()->doswal)->get()->first();
+        // //dd($mahasiswa);
+        // $hidden = 'hidden';
+        // if($userMhs->has_setup){
+        //     $hidden = '';
+        // }
+        // $data = array (
+        //     // dd($mahasiswa->foto);
+        //     'active_home' => 'active',
+        //     'title' => 'Profile',
+        //     'mahasiswa' => $mahasiswa,
+        //     'userMhs' => $userMhs,
+        //     'nama_doswal' => $doswal->name,
+        //     'UserName' => $userMhs->name,
+        //     'foto' => $mahasiswa->foto,
+        //     'hidden' => $hidden,
+            
+        // );
+        //dd($doswal);
+        // Profile Doswal
+        $userDoswal = User::where('id', auth()->user()->id)->get()->first();
+        $doswal = DosenWali::where('user_id', auth()->user()->id)->get()->first();
         $hidden = 'hidden';
-        if($userMhs->has_setup){
+        if($userDoswal->has_setup){
             $hidden = '';
         }
         $data = array (
             // dd($mahasiswa->foto);
             'active_home' => 'active',
             'title' => 'Profile',
-            'mahasiswa' => $mahasiswa,
-            'userMhs' => $userMhs,
+            'doswal' => $doswal,
+            'userDoswal' => $userDoswal,
             'nama_doswal' => $doswal->name,
-            'UserName' => $userMhs->name,
-            'foto' => $mahasiswa->foto,
+            'UserName' => $userDoswal->name,
+            'foto' => $doswal->foto,
             'hidden' => $hidden,
             
         );
-        //dd($doswal);
 
         
-        return view('DosenWali/profil', $data);
+        return view('DosenWali/profileDosenWali', $data);
+    }
+    function update(Request $request){
+        $data = $request->all();
+        // dd($data);
+        $user = User::where('id', auth()->user()->id)->get()->first();
+        $doswal = DosenWali::where('user_id', auth()->user()->id)->get()->first();
+        $user->has_setup = true;
+        $user->name = $data['nama'];
+        $user->save();
+        //dd($mhs);
+        $doswal->update($data);
+        $doswal->save();
+
+        return redirect()->route('doswal.profile');
+        //dd($request->all());
     }
 
     function departemen(){

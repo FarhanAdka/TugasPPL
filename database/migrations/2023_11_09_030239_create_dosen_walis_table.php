@@ -13,7 +13,14 @@ return new class extends Migration
     {
         Schema::create('dosen_walis', function (Blueprint $table) {
             $table->id();
-            $table->foreign('id')->references('id')->on('users')->onDelete('cascade');
+            $table->bigInteger('user_id')->unsigned();
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+            $table->string('alamat')->nullable();
+            $table->string('kab_kota')->nullable();
+            $table->string('provinsi')->nullable();
+            $table->string('no_hp')->nullable();
+            $table->string('email')->nullable();
+            $table->string('foto')->nullable()->default('/assets/compiled/jpg/1.jpg');
             $table->timestamps();
         });
     }
