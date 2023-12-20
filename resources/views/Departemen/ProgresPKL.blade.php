@@ -171,7 +171,7 @@
                                                         <div class="modal-footer">
                                                             <button type="button" class="btn btn-secondary"
                                                                 data-bs-dismiss="modal">Tutup</button>
-                                                            <button type="button" class="btn btn-primary">Cetak</button>
+                                                            <button type="button" class="btn btn-primary"">Cetak</button>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -182,9 +182,9 @@
                             </tbody>
                         </table>
                     </div>
-        <div class="d-flex justify-content-end mt-3">
-            <button type="button" class="btn btn-primary">Cetak</button>
-        </div>
+                    <div class="d-flex justify-content-end mt-3">
+                        <a class="btn btn-primary" href="{{ route('dept.printRekapPKL')}}">Cetak</a>
+                    </div>
                 </div>
             </div>
         </div>
