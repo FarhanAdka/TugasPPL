@@ -1,20 +1,19 @@
 @extends('components/mahasiswa/sidebar')
 @section('section')
-
     <div id="main-content">
 
         <div class="page-heading">
             <div class="page-title">
                 <div class="row">
                     <div class="col-12 col-md-6 order-md-1 order-last">
-                        <h3>KHS</h3>
-                        <p class="text-subtitle text-muted">Edit KHS Mahasiswa</p>
+                        <h3> KHS </h3>
+                        <p class="text-subtitle text-muted">{{ $title }} Mahasiswa</p>
                     </div>
 
                     <div class="col-12 col-md-6 order-md-2 order-first">
                         <nav aria-label="breadcrumb" class="breadcrumb-header float-start float-lg-end">
                             <ol class="breadcrumb">
-                                <li class="breadcrumb-item"><a href="/user/mahasiswa/">Dashboard</a></li>
+                                <li class="breadcrumb-item"><a href="/user/mahasiswa/KHS">Data KHS</a></li>
                                 <li class="breadcrumb-item active" aria-current="page">Edit KHS</li>
                             </ol>
                         </nav>

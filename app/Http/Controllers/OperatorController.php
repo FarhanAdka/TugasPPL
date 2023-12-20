@@ -110,10 +110,6 @@ class OperatorController extends Controller
 
 
 
-
-
-
-
     function keloladosenWali()
     {
         $userOp = User::where('id', auth()->user()->id)->get()->first();
