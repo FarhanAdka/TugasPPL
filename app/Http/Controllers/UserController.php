@@ -35,7 +35,7 @@ class UserController extends Controller
         $userMhs = User::where('id', auth()->user()->id)->get()->first();
         $user = User::where('id', auth()->user()->id)->first();
         $mahasiswa = Mahasiswa::where('user_id', auth()->user()->id)->first();
-        $doswal = User::where('id', $mahasiswa->first()->doswal)->get()->first();
+        $doswal = User::where('id', $mahasiswa->doswal)->get()->first();
         $khs = KHS::where('id_mahasiswa', $mahasiswa->user_id)->get();
         $irs = IRS::where('id_mahasiswa', $mahasiswa->user_id)->get();
         $smt_irs = $irs->pluck('semester_aktif')->toArray();
@@ -305,13 +305,21 @@ class UserController extends Controller
                 'new_password' => ['required'],
             ]);
         } else {
-            return redirect()->route('doswal.settings')->with('error', 'Password lama salah');
+            if(auth()->user()->role == 'dosen_wali'){
+                return redirect()->route('doswal.settings')->withErrors(['old_password' => 'Password lama salah']);
+            }
+            elseif (auth()->user()->role == 'operator') {
+                # code...
+            }
+            else{
+                return redirect()->route('dept.settings')->withErrors(['old_password' => 'Password lama salah']);
+            }
         }
 
         $user = User::find(auth()->user()->id);
         // dd($user);
         $user->password = Hash::make($request->new_password);
         $user->save();
-        return redirect()->route('doswal.settings');
+        return redirect()->route('');
     }
 }

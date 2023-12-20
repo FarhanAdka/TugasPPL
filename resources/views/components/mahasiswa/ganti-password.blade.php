@@ -2,7 +2,7 @@
     <div class="card-body">
         <div class="row">
             <div class="col-md-6">
-                <form action="{{ route('mahasiswa.password') }}" method="POST">
+                <form action="{{ route('mahasiswa.setpass') }}" method="POST">
                     @csrf
                     @method('PUT')
                     <div class="mt-3">

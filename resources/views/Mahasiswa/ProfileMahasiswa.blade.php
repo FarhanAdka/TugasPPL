@@ -194,9 +194,7 @@
                             </div>
                         </div>
                     </div>
-                    <div {{$hidden}}>
-                        <x-mahasiswa.ganti-password />
-                    </div>
+
             </section>
 
         </div>

@@ -31,7 +31,7 @@ Route::middleware(['guest'])->group(function (){
 });
 Route::get('/home',function (){
     return redirect('/user');
-});
+})->name('home');
 
 Route::middleware(['auth'])->group(function (){
     //User
@@ -56,7 +56,8 @@ Route::middleware(['auth'])->group(function (){
         Route::get('/user/mahasiswa/Skripsi', [SkripsiController::class, 'index']);
         Route::get('/user/mahasiswa/Skripsi/create', [SkripsiController::class, 'create'])->name('skripsi.create');
         Route::post('/user/mahasiswa/Skripsi', [SkripsiController::class, 'store'])->name('skripsi.store');
-        Route::put('/user/mahasiswa/setPassword', [MahasiswaController::class, 'updatePassword'])->name('mahasiswa.password');
+        Route::put('/user/mahasiswa/setPassword', [MahasiswaController::class, 'updatePassword'])->name('mahasiswa.setpass');
+        Route::get('/user/mahasiswa/settings', [MahasiswaController::class, 'settingMhs'])->name('mahasiswa.settings');
         Route::post('/user/mahasiswa/photo', [MahasiswaController::class, 'uploadFoto'])->name('mahasiswa.photo');
     });
     // Route::get('/user/mahasiswa',[userController::class,'mahasiswa'])->middleware('userAkses:mahasiswa');
@@ -104,6 +105,8 @@ Route::middleware(['auth'])->group(function (){
 
         Route::put('/user/operator/kelolaMahasiswa/edit/{id}',[OperatorController::class,'updateMahasiswa'])->name('updateMahasiswa')->middleware('userAkses:operator');
         Route::get('/user/operator/kelolaMahasiswa/edit/{id}',[OperatorController::class,'editMahasiswa'])->middleware('userAkses:operator');
+        Route::get('/user/operator/settings',[OperatorController::class,'settings'])->name('operator.settings')->middleware('userAkses:operator');
+        Route::put('/user/operator/setPassword', [OperatorController::class, 'updatePassword'])->name('operator.setpass')->middleware('userAkses:operator');
     //Dosen Wali
     Route::middleware(['userAkses:dosen_wali'])->group(function (){
         Route::get('/user/dosenWali',[UserController::class,'dosenWali'])->middleware('userAkses:dosen_wali');

@@ -76,8 +76,9 @@
                  </div>
              </div>
 
-             <h3>{{ $nama }}</h3>
-             <p class="text-small">Mahasiswa</p>
+             <h3 class="mt-2 mb-1">{{ $nama }}</h3>
+             <p class="text-small mb-1">Mahasiswa</p>
+             <a class="text-small" href="{{route('mahasiswa.settings')}}">Set Password</a>
          </div>
      </div>
  </div>

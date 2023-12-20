@@ -9,6 +9,8 @@ use App\Models\User;
 use App\Models\Mahasiswa;
 use App\Models\DosenWali;
 
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 use League\Uri\UriTemplate\Operator;
 
 use Illuminate\Support\Facades\Storage;
@@ -380,5 +382,32 @@ class OperatorController extends Controller
         $user = User::findOrFail($id);
         $user->delete();
         return redirect('/user/operator/kelolaMahasiswa');
+    }
+
+    public function settings(){
+        $userOp = User::where('id', auth()->user()->id)->get()->first();
+        $data = array(
+            'active_side' => 'active',
+            'active_user' => 'active',
+            'title' => 'Setting',
+            'UserName' => $userOp->name,
+        );
+        return view('operator/settings', $data);
+    }
+
+    public function updatePassword(Request $request){
+        if (Auth::attempt(['username' => auth()->user()->username, 'password' => $request->old_password])) {
+            $request->validate([
+                'new_password' => ['required'],
+            ]);
+        } else {
+            return redirect()->back()->withErrors(['old_password' => 'Password lama salah']);
+        }
+
+        $user = User::find(auth()->user()->id);
+        // dd($user);
+        $user->password = Hash::make($request->new_password);
+        $user->save();
+        return redirect()->route('home');
     }
 }

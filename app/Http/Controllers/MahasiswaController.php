@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\Mahasiswa;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Storage;
 
 class MahasiswaController extends Controller
@@ -14,7 +16,7 @@ class MahasiswaController extends Controller
         $userMhs = User::where('id', auth()->user()->id)->get()->first();
         $mahasiswa = Mahasiswa::where('user_id', auth()->user()->id)->get()->first();
         
-        $doswal = User::where('id', $mahasiswa->first()->doswal)->get()->first();
+        $doswal = User::where('id', $mahasiswa->doswal)->get()->first();
         //dd($mahasiswa);
         $hidden = 'hidden';
         if($userMhs->has_setup){
@@ -136,11 +138,30 @@ class MahasiswaController extends Controller
     }
 
     function updatePassword(Request $request){
-        $data = $request->all();
-        dd($data);
-        $user = User::where('id', auth()->user()->id)->get()->first();
-        $user->password = bcrypt($data['password']);
+        if (Auth::attempt(['username' => auth()->user()->username, 'password' => $request->old_password])) {
+            $request->validate([
+                'new_password' => ['required'],
+            ]);
+        } else {
+            return redirect()->back()->withErrors(['old_password' => 'Password lama salah']);
+        }
+
+        $user = User::find(auth()->user()->id);
+        // dd($user);
+        $user->password = Hash::make($request->new_password);
         $user->save();
         return redirect()->route('mahasiswa.profile');
     }    
+
+    public function settingMhs(){
+        $foto = Mahasiswa::where('user_id', auth()->user()->id)->get()->first();
+        $data = array (
+            'active_side' => 'active',
+            'active_user' => 'active',
+            'title' => 'Setting',
+            'foto' => $foto->foto,
+            'UserName' => auth()->user()->name,
+        );
+        return view('Mahasiswa/settings', $data);
+    }
 }
