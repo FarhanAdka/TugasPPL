@@ -56,6 +56,73 @@ class PrintController extends Controller
         return $pdf->stream($tahun . '-lulus-pkl-' . $date . '.pdf');
     }
 
+    public function printBelumSkripsi(string $tahun)
+    {
+        $daftarmhs = Mahasiswa::where('angkatan', $tahun)->pluck('user_id')->toArray();
+
+        $daftarskripsi = [];
+        foreach ($daftarmhs as $mhs) {
+            $skripsi = Skripsi::where('id_mahasiswa', $mhs)->first();
+            if ($skripsi && $skripsi->status == false) {
+                $mahasiswa = Mahasiswa::where('user_id', $mhs)->first();
+                $mahasiswa->nim = User::where('id', $mhs)->first()->username;
+                $mahasiswa->nama = User::where('id', $mhs)->first()->name;
+                $mahasiswa->nilai = $skripsi->nilai;
+                $daftarskripsi[] = $mahasiswa;
+            }
+        }
+        // dd($daftarpkl)
+        $pdf = PDF::loadView('Prints/BelumSkripsi', ['skripsi' => $daftarskripsi, 'tahun' => $tahun]);
+        $date = date('d-m-Y');
+
+        return $pdf->stream($tahun . '-belum-skripsi-' . $date . '.pdf');
+    }
+
+    public function printLulusSkripsi(string $tahun)
+    {
+        $daftarmhs = Mahasiswa::where('angkatan', $tahun)->pluck('user_id')->toArray();
+
+        $daftarskripsi = [];
+        foreach ($daftarmhs as $mhs) {
+            $skripsi = Skripsi::where('id_mahasiswa', $mhs)->first();
+            if ($skripsi && $skripsi->status == true) {
+                $mahasiswa = Mahasiswa::where('user_id', $mhs)->first();
+                $mahasiswa->nim = User::where('id', $mhs)->first()->username;
+                $mahasiswa->nama = User::where('id', $mhs)->first()->name;
+                $mahasiswa->nilai = $skripsi->nilai;
+                $daftarskripsi[] = $mahasiswa;
+            }
+        }
+        // dd($daftarpkl)
+        $pdf = PDF::loadView('Prints/LulusSkripsi', ['skripsi' => $daftarskripsi, 'tahun' => $tahun]);
+        $date = date('d-m-Y');
+
+        return $pdf->stream($tahun . '-belum-skripsi-' . $date . '.pdf');
+    }
+
+
+    public function PrintRekapSkripsi(){
+        $current_year = date('Y');
+        //dd($current_year);
+        $tahun_shown = array();
+        for ($i = intval($current_year); $i >= intval($current_year) - 6; $i--) {
+            $tahun_shown[] = $i;
+        }
+        // dd($tahun_shown);
+        $skripsi = array();
+        foreach ($tahun_shown as $key => $tahun) {
+            $mhsperang = Mahasiswa::where('angkatan', $tahun)->pluck('user_id')->toArray();
+            $skripsi[$tahun]['sudah'] = Skripsi::whereIn('id_mahasiswa', $mhsperang)->where('status', true)->count();
+            $skripsi[$tahun]['belum'] = Skripsi::whereIn('id_mahasiswa', $mhsperang)->where('status', false)->count();
+        }
+        // dd($pkl);
+        $pdf = PDF::loadView('Prints/RekapSkripsi', ['skripsi' => $skripsi, 'tahun' => $tahun_shown])->setPaper('a4', 'landscape');
+        
+        $date = date('d-m-Y');
+
+        return $pdf->stream('rekap-skripsi-' . $date . '.pdf');
+    }
+
     public function PrintRekapPKL(){
         $current_year = date('Y');
         //dd($current_year);
@@ -96,6 +163,9 @@ class PrintController extends Controller
 
         $pdf = PDF::loadView('Prints/ProgresStudi', ['data' => $data])->setPaper('a4', 'portrait');;
         $date = date('d-m-Y');
+        // dd($data);
         return $pdf->stream($data['nim'] . '-progres-studi-' . $date . '.pdf');
     }
+
+
 }

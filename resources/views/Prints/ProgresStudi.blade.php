@@ -226,21 +226,21 @@
     <div class="container1">
         <div class="row">
             @for  ($i = 1; $i <= 6; $i++) 
-            <span class="{{$data['semester'][$i]['khs'] && $data['semester'][$i]['irs']? ($data['semester'][$i]['pkl'] ? ($data['semester'][$i]['skripsi'] ? 'green-box' : 'yellow-box') : 'blue-box') : 'red-box'}}">0{{$i}}</span>
+            <span class="{{$data['semester'][$i]['khs'] && $data['semester'][$i]['irs']? ($data['semester'][$i]['pkl'] ? 'yellow-box' : ($data['semester'][$i]['skripsi'] ? 'green-box' : 'blue-box')) : 'red-box'}}">0{{$i}}</span>
             @endfor
         </div>
     </div>
     <div class="container2">
         <div class="row">
             @for  ($i = 7; $i <= 12; $i++) 
-            <span class="{{$data['semester'][$i]['khs'] && $data['semester'][$i]['irs']? ($data['semester'][$i]['pkl'] ? ($data['semester'][$i]['skripsi'] ? 'green-box' : 'yellow-box') : 'blue-box') : 'red-box'}}">{{$i > 9 ? $i : '0'.$i }}</span>
+            <span class="{{$data['semester'][$i]['khs'] && $data['semester'][$i]['irs']? ($data['semester'][$i]['pkl'] ? 'yellow-box' : ($data['semester'][$i]['skripsi'] ? 'green-box' : 'blue-box')) : 'red-box'}}">{{$i > 9 ? $i : '0'.$i }}</span>
             @endfor
         </div>
     </div>
     <div class="container3">
         <div class="row">
             @for  ($i = 13; $i <= 14; $i++) 
-            <span class="{{$data['semester'][$i]['khs'] && $data['semester'][$i]['irs']? ($data['semester'][$i]['pkl'] ? ($data['semester'][$i]['skripsi'] ? 'green-box' : 'yellow-box') : 'blue-box') : 'red-box'}}">{{$i > 9 ? $i : '0'.$i }}</span>
+            <span class="{{$data['semester'][$i]['khs'] && $data['semester'][$i]['irs']? ($data['semester'][$i]['pkl'] ? 'yellow-box' : ($data['semester'][$i]['skripsi'] ? 'green-box' : 'blue-box')) : 'red-box'}}">{{$i > 9 ? $i : '0'.$i }}</span>
             @endfor
         </div>
     </div>

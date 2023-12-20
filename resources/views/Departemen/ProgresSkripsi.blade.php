@@ -102,7 +102,8 @@
                                                         <div class="modal-footer">
                                                             <button type="button" class="btn btn-secondary"
                                                                 data-bs-dismiss="modal">Tutup</button>
-                                                            <button type="button" class="btn btn-primary">Cetak</button>
+                                                            <a class="btn btn-primary"
+                                                                href="{{ route('dept.printBelumSkripsi', $tahun) }}">Cetak</a>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -171,7 +172,8 @@
                                                         <div class="modal-footer">
                                                             <button type="button" class="btn btn-secondary"
                                                                 data-bs-dismiss="modal">Tutup</button>
-                                                            <button type="button" class="btn btn-primary">Cetak</button>
+                                                            <a class="btn btn-primary"
+                                                                href="{{ route('dept.printLulusSkripsi', $tahun) }}">Cetak</a>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -182,9 +184,9 @@
                             </tbody>
                         </table>
                     </div>
-                            <div class="d-flex justify-content-end mt-3">
-            <button type="button" class="btn btn-primary">Cetak</button>
-        </div>
+                    <div class="d-flex justify-content-end mt-3">
+                        <a class="btn btn-primary" href="{{ route('dept.printRekapSkripsi') }}">Cetak</a>
+                    </div>
                 </div>
             </div>
         </div>

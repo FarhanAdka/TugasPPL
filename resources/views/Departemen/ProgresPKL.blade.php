@@ -106,7 +106,8 @@
                                                         <div class="modal-footer">
                                                             <button type="button" class="btn btn-secondary"
                                                                 data-bs-dismiss="modal">Tutup</button>
-                                                            <button type="button" class="btn btn-primary">Cetak</button>
+                                                            <a class="btn btn-primary"
+                                                                href="{{ route('dept.printLulusPKL', $tahun) }}">Cetak</a>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -171,7 +172,8 @@
                                                         <div class="modal-footer">
                                                             <button type="button" class="btn btn-secondary"
                                                                 data-bs-dismiss="modal">Tutup</button>
-                                                            <button type="button" class="btn btn-primary"">Cetak</button>
+                                                            <a class="btn btn-primary"
+                                                                href="{{ route('dept.printBelumPKL', $tahun) }}">Cetak</a>
                                                         </div>
                                                     </div>
                                                 </div>

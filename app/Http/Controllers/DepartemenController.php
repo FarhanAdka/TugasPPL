@@ -371,6 +371,8 @@ class DepartemenController extends Controller
         else{
             $smt_skripsi = 0;
         }
+        $skripsi = Skripsi::where('id_mahasiswa', $mahasiswa->user_id)->first();
+        $pkl = PKL::where('id_mahasiswa', $mahasiswa->user_id)->first();
         // dd($smt_skripsi);
         //dd($smt_skripsi[0]);
         $doswal = User::where('id', $mahasiswa->doswal)->first();
@@ -388,6 +390,8 @@ class DepartemenController extends Controller
             'smt' => $smt,
             'smt_pkl' => $smt_pkl,
             'smt_skripsi' => $smt_skripsi,
+            'skripsi' => $skripsi,
+            'pkl' => $pkl,
         );
         return view('Departemen/detilMahasiswa', $data);
         //dd($khs);
@@ -429,6 +433,57 @@ class DepartemenController extends Controller
 
         // Get the file path
         $filePath = storage_path('app/' . $khs->scan_khs);
+
+        // Check if the file exists
+        if (!file_exists($filePath)) {
+            return Redirect::back()->with('error', 'File not found');
+        }
+
+        // Set the appropriate headers to force download
+        $headers = [
+            'Content-Type' => 'application/octet-stream',
+        ];
+
+        // Return the file as a response with headers to force download
+        return response()->file($filePath);
+    }
+
+    public function PKL(string $id)
+    {
+        $pkl = PKL::find($id);
+
+        // Perform a check if the authenticated user has access to this file
+        if (auth()->user()->role != 'departemen') {
+            return Redirect::back()->with('error', 'Unauthorized access');
+        }
+
+        // Get the file path
+        $filePath = storage_path('app/' . $pkl->scan_pkl);
+
+        // Check if the file exists
+        if (!file_exists($filePath)) {
+            return Redirect::back()->with('error', 'File not found');
+        }
+
+        // Set the appropriate headers to force download
+        $headers = [
+            'Content-Type' => 'application/octet-stream',
+        ];
+
+        // Return the file as a response with headers to force download
+        return response()->file($filePath);
+    }
+
+    public function Skripsi(string $id){
+        $skripsi = Skripsi::find($id);
+
+        // Perform a check if the authenticated user has access to this file
+        if (auth()->user()->role != 'departemen') {
+            return Redirect::back()->with('error', 'Unauthorized access');
+        }
+
+        // Get the file path
+        $filePath = storage_path('app/' . $skripsi->scan_skripsi);
 
         // Check if the file exists
         if (!file_exists($filePath)) {

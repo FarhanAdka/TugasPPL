@@ -92,7 +92,7 @@ class IRSController extends Controller
         $semester = IRS::where('id_mahasiswa', auth()->user()->id)->pluck('semester_aktif')->toArray();
         sort($semester);
         //dd($semester);
-        $avail_semester = array_diff_assoc([1, 2, 3, 4, 5, 6, 7, 8], $semester);
+        $avail_semester = array_diff_assoc([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14], $semester);
         //dd($avail_semester);
         $foto = Mahasiswa::where('user_id', auth()->user()->id)->get()->first();
         $data = array (
@@ -154,7 +154,7 @@ class IRSController extends Controller
         
         $irs = IRS::find($id);
         $semester = IRS::where('id_mahasiswa', auth()->user()->id)->pluck('semester_aktif')->toArray();
-        $avail_semester = array_diff_assoc(['1', '2', '3', '4', '5', '6', '7', '8'], $semester);
+        $avail_semester = array_diff_assoc(['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', '13', '14'], $semester);
         //dd($avail_semester);
         $foto = Mahasiswa::where('user_id', auth()->user()->id)->get()->first();
         $data = [

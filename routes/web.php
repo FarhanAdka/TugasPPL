@@ -148,9 +148,14 @@ Route::middleware(['auth'])->group(function (){
         Route::get('/user/departemen/ProgresStudi/{ProgresStudi}',[DepartemenController::class,'ProgresStudi'])->name('dept.studi');
         Route::get('/user/departemen/KHS/{id}',[DepartemenController::class,'KHS'])->name('dept.KHS');
         Route::get('/user/departemen/IRS/{id}',[DepartemenController::class,'IRS'])->name('dept.IRS');
-        Route::get('/user/departemen/print/daftar/lulus/PKL/{tahun}',[PrintController::class,'printBelumPKL'])->name('dept.printBelumPKL');
-        Route::get('/user/departemen/print/daftar/belum/PKL/{tahun}', [PrintController::class, 'printLulusPKL'])->name('dept.printLulusPKL');
+        Route::get('/user/departemen/PKL/{id}',[DepartemenController::class,'PKL'])->name('dept.PKL');
+        Route::get('/user/departemen/Skripsi/{id}',[DepartemenController::class,'Skripsi'])->name('dept.Skripsi');
+        Route::get('/user/departemen/print/daftar/belum/PKL/{tahun}',[PrintController::class,'printBelumPKL'])->name('dept.printBelumPKL');
+        Route::get('/user/departemen/print/daftar/;ulus/PKL/{tahun}', [PrintController::class, 'printLulusPKL'])->name('dept.printLulusPKL');
+        Route::get('/user/departemen/print/daftar/belum/Skripsi/{tahun}', [PrintController::class, 'printBelumSkripsi'])->name('dept.printBelumSkripsi');
+        Route::get('/user/departemen/print/daftar/lulus/Skripsi/{tahun}', [PrintController::class, 'printLulusSkripsi'])->name('dept.printLulusSkripsi');
         Route::get('/user/departemen/print/rekap/PKL', [PrintController::class, 'printRekapPKL'])->name('dept.printRekapPKL');
+        Route::get('/user/departemen/print/rekap/Skripsi', [PrintController::class, 'printRekapSkripsi'])->name('dept.printRekapSkripsi');
         Route::get('/user/departemen/print/progstud/{mahasiswa}', [PrintController::class, 'printProgresStudi'])->name('dept.printProgStudi');
     });
     Route::get('/logout',[SessionController::class, 'logout']);

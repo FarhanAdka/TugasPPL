@@ -108,6 +108,25 @@
                                                                 role="tab" aria-controls="profile"
                                                                 aria-selected="false">KHS</button>
                                                         </li>
+                                                        @if ($i + 1 == $smt_pkl)
+                                                            <li class="nav-item" role="presentation">
+                                                                <button class="nav-link" id="PKL-tab" data-bs-toggle="tab"
+                                                                    data-bs-target="#PKL{{ $i + 1 }}" type="button"
+                                                                    role="tab" aria-controls="contact"
+                                                                    aria-selected="false">PKL</button>
+                                                            </li>
+                                                        @endif
+
+                                                        @if ($i + 1 == $smt_skripsi)
+                                                            <li class="nav-item" role="presentation">
+                                                                <button class="nav-link" id="Skripsi-tab"
+                                                                    data-bs-toggle="tab"
+                                                                    data-bs-target="#Skripsi{{ $i + 1 }}"
+                                                                    type="button" role="tab" aria-controls="contact"
+                                                                    aria-selected="false">Skripsi</button>
+                                                            </li>
+                                                        @endif
+
                                                     </ul>
                                                     <div class="tab-content" id="myTabContent">
                                                         <div class="tab-pane fade show active" id="IRS{{ $i + 1 }}"
@@ -146,6 +165,52 @@
                                                                     KHS</a>
                                                             </div>
                                                         </div>
+                                                        @if ($i + 1 == $smt_pkl)
+                                                            <div class="tab-pane fade" id="PKL{{ $i + 1 }}"
+                                                                role="tabpanel"
+                                                                aria-labelledby="PKL-tab-{{ $i + 1 }}">
+                                                                <div class="p-1">
+                                                                    <div class="p-1">
+                                                                        Nilai: {{ isset($pkl) ? $pkl->nilai : 0 }}
+                                                                    </div>
+                                                                    <div class="p-1">
+                                                                        Semester Seminar:
+                                                                        {{ $smt_pkl }}
+                                                                    </div>
+                                                                    <div class="p-1">
+                                                                        Tanggal Lulus:
+                                                                        {{ isset($pkl) ? $pkl->tanggal_lulus : '' }}
+                                                                    </div>
+                                                                    <a
+                                                                        href="{{ route('dept.PKL', isset($pkl) ? $pkl->id : '') }}">Lihat
+                                                                        PKL</a>
+                                                                </div>
+                                                            </div>
+                                                        @endif
+                                                        @if ($i + 1 == $smt_skripsi)
+                                                            <div class="tab-pane fade" id="Skripsi{{ $i + 1 }}"
+                                                                role="tabpanel"
+                                                                aria-labelledby="Skripsi-tab-{{ $i + 1 }}">
+                                                                <div class="p-1">
+                                                                    Nilai: {{ isset($skripsi) ? $skripsi->nilai : 0 }}
+                                                                </div>
+                                                                <div class="p-1">
+                                                                    Semester Sidang:
+                                                                    {{ $smt_skripsi }}
+                                                                </div>
+                                                                <div class="p-1">
+                                                                    Tanggal Lulus:
+                                                                    {{ isset($skripsi) ? $skripsi->tanggal_lulus : '' }}
+                                                                </div>
+
+                                                                <div class="p-1">
+                                                                    <a
+                                                                        href="{{ route('dept.Skripsi', isset($skripsi) ? $skripsi->id : '') }}">Lihat
+                                                                        Skripsi</a>
+                                                                </div>
+                                                            </div>
+                                                        @endif
+
                                                     </div>
 
                                                 </div>
@@ -160,7 +225,9 @@
                             </div>
                         @endfor
                     </div>
-
+                    <div class="d-flex justify-content-end mt-3">
+                        <a class="btn btn-primary" href="{{ route('dept.printProgStudi', ['mahasiswa' => $mahasiswa->user_id])  }}">Cetak</a>
+                    </div>
                 </div>
             </div>
         </div>
