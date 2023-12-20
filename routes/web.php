@@ -126,6 +126,10 @@ Route::middleware(['auth'])->group(function (){
         Route::get('/user/dosenWali/ProgresStudi/{ProgresStudi}',[UserController::class,'ProgresStudi'])->name('dosw.studi');
         Route::get('/user/dosenWali/profile',[UserController::class,'profile'])->name('doswal.profile');
         Route::post('/user/dosenWali/profile',[UserController::class,'update'])->name('doswal.update');
+        Route::get('/user/dosenWali/fileIRS/{id}', [IRSController::class, 'download'])->name('doswal.downloadirs');
+        Route::get('/user/dosenWali/fileKHS/{id}', [KHSController::class, 'download'])->name('doswal.downloadkhs');
+        Route::get('/user/dosenWali/filePKL/{id}', [PKLController::class, 'download'])->name('doswal.downloadpkl');
+        Route::get('/user/dosenWali/fileSkripsi/{id}', [SkripsiController::class, 'download'])->name('doswal.downloadskripsi');
         // Route::put('/user/dosenWali/setPassword', [UserController::class, 'updatePassword'])->name('doswal.password');
         // Route::post('/user/dosenWali/photo', [UserController::class, 'uploadFoto'])->name('doswal.photo');
 

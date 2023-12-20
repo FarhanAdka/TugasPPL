@@ -25,7 +25,7 @@
                         <h4 class="card-title">List IRS</h4>
                     </div>
                     <div class="card-body">
-                        <table class="table table-bordered table-striped">
+                        <table class="table table-bordered table-striped" id="table1">
                             <thead>
                                 <tr>
                                     <th>NIM</th>
@@ -41,7 +41,7 @@
                                         <td>{{ $ir->mahasiswa->nim }}</td>
                                         <td>{{ $ir->semester_aktif }}</td>
                                         <td>{{ $ir->jumlah_sks }}</td>
-                                        <td><a href="{{ route('irs.download', ['id' => $ir->id]) }}">Lihat</a></td>
+                                        <td><a href="{{ route('doswal.downloadirs', ['id' => $ir->id]) }}">Lihat</a></td>
                                         <td>{{ $ir->status ? 'Sudah disetujui' : 'Belum disetujui' }}</td>
                                     </tr>
                                 @endforeach

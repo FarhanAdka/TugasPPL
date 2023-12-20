@@ -26,7 +26,7 @@
                     </div>
                     <div class="card-body">
                         @if ($skripsi->count() > 0)
-                            <table class="table table-striped">
+                            <table class="table table-striped" id="table1">
                                 <thead>
                                     <tr>
                                         <th>NIM</th>
@@ -45,7 +45,7 @@
                                             <td>{{ $skrip->tanggal_lulus }}</td>
 
                                             <td>{{ $skrip->nilai }}</td>
-                                            <td><a href="{{ route('skripsi.download', ['id' => $skrip->id]) }}"
+                                            <td><a href="{{ route('doswal.downloadskripsi', ['id' => $skrip->id])  }}"
                                                     target="_blank">Lihat</a></td>
                                             <td>{{ $skrip->status ? 'Sudah disetujui' : 'Belum disetujui' }}</td>
                                             <td>

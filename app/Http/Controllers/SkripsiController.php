@@ -73,6 +73,7 @@ class SkripsiController extends Controller
         $userMhs = User::where('id', auth()->user()->id)->get()->first();
         $foto = Mahasiswa::where('user_id', auth()->user()->id)->get()->first();
         $skripsi = Skripsi::where('id_mahasiswa', auth()->user()->id)->get();
+        $avail_semester = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14];
         //dd($skripsi);
         $data = array(
             'active_side' => 'active',
@@ -81,6 +82,7 @@ class SkripsiController extends Controller
             'skripsi' => $skripsi->first(),
             'UserName' => $userMhs->name,
             'foto' => $foto->foto,
+            'avail_semester' => $avail_semester,
         );
         return view('Mahasiswa/skripsi', $data);
     }
@@ -101,12 +103,14 @@ class SkripsiController extends Controller
     {
         $userMhs = User::where('id', auth()->user()->id)->get()->first();
         $skripsi = skripsi::where('id_mahasiswa', auth()->user()->id)->get();
+        $avail_semester = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14];
         $data = [
             'active_side' => 'active',
             'title' => 'Edit skripsi',
             'active_user' => 'active',
             'skripsi' => $skripsi,
             'UserName' => $userMhs->name,
+            'avail_semester' => $avail_semester,
 
         ];
         return view('mahasiswa/Editskripsi', $data);
@@ -155,7 +159,7 @@ class SkripsiController extends Controller
         $skripsi = Skripsi::find($id);
 
         // Perform a check if the authenticated user has access to this file
-        if (auth()->user()->id != $skripsi->id_mahasiswa) {
+        if (auth()->user()->id != $skripsi->id_mahasiswa && auth()->user()->role != 'dosen_wali' && auth()->user()->role != 'departemen') {
             return Redirect::back()->with('error', 'Unauthorized access');
         }
 

@@ -38,7 +38,7 @@
                                             <div class="col-12">
                                                 <div class="form-group">
                                                     <label for="form-semester-aktif">Semester Aktif</label>
-                                                    <select id="semester_aktif" class="form-control" name="semester_aktif">
+                                                    <select id="semester_aktif" class="form-control" name="semester_aktif" disabled>
                                                         <option value="{{ $khs->semester_aktif }}" selected>
                                                             {{ $khs->semester_aktif }}</option>
                                                         <?php

@@ -25,7 +25,7 @@
                         <h4 class="card-title">List KHS</h4>
                     </div>
                     <div class="card-body">
-                        <table class="table table-bordered table-striped">
+                        <table class="table table-bordered table-striped" id="table1">
                             <thead>
                                 <tr>
                                     <th>NIM</th>
@@ -47,7 +47,7 @@
                                         <td>{{ $kh->sks_kumulatif }}</td>
                                         <td>{{ $kh->ip }}</td>
                                         <td>{{ $kh->ipk }}</td>
-                                        <td><a href="{{ route('khs.download', ['id' => $kh->id]) }}">Lihat</a></td>
+                                        <td><a href="{{ route('doswal.downloadkhs', ['id' => $kh->id])  }}">Lihat</a></td>
                                         <td>{{ $kh->status ? 'Sudah disetujui' : 'Belum disetujui' }}</td>
                                     </tr>
                                 @endforeach

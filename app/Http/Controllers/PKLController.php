@@ -165,7 +165,7 @@ class PKLController extends Controller
         $pkl = PKL::find($id);
 
         // Perform a check if the authenticated user has access to this file
-        if (auth()->user()->id != $pkl->id_mahasiswa) {
+        if (auth()->user()->id != $pkl->id_mahasiswa && auth()->user()->role != 'dosen_wali' && auth()->user()->role != 'departemen') {
             return Redirect::back()->with('error', 'Unauthorized access');
         }
 

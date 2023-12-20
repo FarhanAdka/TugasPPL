@@ -203,8 +203,9 @@ class IRSController extends Controller
     {
         $irs = IRS::find($id);
 
+        // dd(auth()->user()->role=='dosen_wali' || auth()->user()->id != $irs->id_mahasiswa);
         // Perform a check if the authenticated user has access to this file
-        if (auth()->user()->id != $irs->id_mahasiswa) {
+        if (auth()->user()->id != $irs->id_mahasiswa && auth()->user()->role != 'dosen_wali' && auth()->user()->role != 'departemen') {
             return Redirect::back()->with('error', 'Unauthorized access');
         }
 

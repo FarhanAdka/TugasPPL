@@ -35,6 +35,17 @@
                                         <div class="col-12">
                                             <div class="form-group">
                                                 <label for="form-semester-aktif">Semester Seminar</label>
+                                                @if (isset($pkl->semester))
+                                                    <select id="semester" class="form-control" name="semester" disabled>
+                                                        <option value="{{ $pkl->semester }}" selected>
+                                                            {{ $pkl->semester }}</option>
+                                                        <?php
+                                                        for ($i = 1; $i <= 14; $i++) {
+                                                            echo "<option value='$i'>$i</option>";
+                                                        }
+                                                        ?>
+                                                    </select>
+                                                @else
                                                 <select id="semester" class="form-control" name="semester">
                                                     <option value="" disabled selected hidden>Pilih
                                                         Semester</option>
@@ -46,6 +57,7 @@
                                                         </option>
                                                     @endforeach
                                                 </select>
+                                                @endif
                                             </div>
                                         </div>
                                         <div class="col-12">
@@ -124,6 +136,8 @@
                                     var editButton = document.getElementById('edit');
                                     var resetButton = document.getElementById('reset');
                                     var toggleButton = document.getElementById('toggleDisable');
+                                    // var tanggalLulus = document.getElementById('tanggal_lulus');
+                                    var semester = document.getElementById('semester');
                                     var file = document.getElementById('scan_pkl');
                                     var label = document.getElementById('label_edit');
 
@@ -136,6 +150,8 @@
                                     toggleButton.textContent = toggleButton.textContent === 'Edit' ?
                                         'Cancel' : 'Edit';
 
+                                    // Toggle the disabled attribute on each input
+                                    semester.disabled = !semester.disabled; // Toggle the disabled attribute on each input
                                     // Loop through each input and toggle the disabled attribute
                                     inputs.forEach(function(input) {
                                         if (input.disabled) {

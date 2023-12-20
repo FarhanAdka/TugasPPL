@@ -33,6 +33,7 @@
                                     @csrf
                                     <div class="form-body">
                                         <div class="col-12">
+                                            
                                             <div class="form-group">
                                                 <label for="tanggal_lulus">Tanggal Lulus</label>
                                                 @if (isset($skripsi->tanggal_lulus))
@@ -43,6 +44,35 @@
                                                     <input type="date" id="tanggal_lulus" class="form-control"
                                                         name="tanggal_lulus" placeholder="Tanggal Lulus"
                                                         value="{{ $skripsi->tanggal_lulus }}">
+                                                @endif
+                                            </div>
+                                        </div>
+                                        
+                                        <div class="col-12">
+                                            <div class="form-group">
+                                                <label for="form-semester-aktif">Semester Sidang</label>
+                                                @if (isset($skripsi->semester))
+                                                    <select id="semester" class="form-control" name="semester" disabled>
+                                                        <option value="{{ $skripsi->semester }}" selected>
+                                                            {{ $skripsi->semester }}</option>
+                                                        <?php
+                                                        for ($i = 1; $i <= 14; $i++) {
+                                                            echo "<option value='$i'>$i</option>";
+                                                        }
+                                                        ?>
+                                                    </select>
+                                                @else
+                                                <select id="semester" class="form-control" name="semester">
+                                                    <option value="" disabled selected hidden>Pilih
+                                                        Semester</option>
+
+                                                    @foreach ($avail_semester as $s)
+                                                        <option value="{{ $s }}"
+                                                            {{ isset($skripsi->semester) && $skripsi->semester == $s ? 'selected' : '' }}>
+                                                            {{ $s }}
+                                                        </option>
+                                                    @endforeach
+                                                </select>
                                                 @endif
                                             </div>
                                         </div>
@@ -109,6 +139,7 @@
                                     var toggleButton = document.getElementById('toggleDisable');
                                     var file = document.getElementById('scan_skripsi');
                                     var label = document.getElementById('label_edit');
+                                    var semester = document.getElementById('semester');
                                     // Toggle the buttons' hidden state
                                     editButton.hidden = !editButton.hidden;
                                     resetButton.hidden = !resetButton.hidden;
@@ -118,6 +149,8 @@
                                     toggleButton.textContent = toggleButton.textContent === 'Edit' ?
                                         'Cancel' : 'Edit';
 
+                                    // Toggle the semester's disabled state
+                                    semester.disabled = !semester.disabled;
                                     // Loop through each input and toggle the disabled attribute
                                     inputs.forEach(function(input) {
                                         if (input.disabled) {

@@ -25,14 +25,13 @@
                         <h4 class="card-title">List Skripsi</h4>
                     </div>
                     <div class="card-body">
-                        <table class="table table-bordered table-striped">
+                        <table class="table table-bordered table-striped" id="table1">
                             <thead>
                                 <tr>
                                     <th>NIM</th>
                                     <th>Tanggal Lulus</th>
-
                                     <th>Nilai</th>
-                                    <th>Scan KHS</th>
+                                    <th>Scan Skripsi</th>
                                     <th>Status</th>
                                 </tr>
                             </thead>
@@ -43,7 +42,7 @@
                                         <td>{{ $skrip->tanggal_lulus }}</td>
 
                                         <td>{{ $skrip->nilai }}</td>
-                                        <td><a href="{{ route('skripsi.download', ['id' => $skrip->id]) }}">Lihat</a></td>
+                                        <td><a href="{{ route('doswal.downloadskripsi', ['id' => $skrip->id])  }}">Lihat</a></td>
                                         <td>{{ $skrip->status ? 'Sudah disetujui' : 'Belum disetujui' }}</td>
                                     </tr>
                                 @endforeach
