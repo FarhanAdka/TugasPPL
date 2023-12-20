@@ -130,7 +130,8 @@ Route::middleware(['auth'])->group(function (){
         Route::get('/user/dosenWali/fileKHS/{id}', [KHSController::class, 'download'])->name('doswal.downloadkhs');
         Route::get('/user/dosenWali/filePKL/{id}', [PKLController::class, 'download'])->name('doswal.downloadpkl');
         Route::get('/user/dosenWali/fileSkripsi/{id}', [SkripsiController::class, 'download'])->name('doswal.downloadskripsi');
-        // Route::put('/user/dosenWali/setPassword', [UserController::class, 'updatePassword'])->name('doswal.password');
+        Route::put('/user/dosenWali/setPassword', [UserController::class, 'updatePassword'])->name('doswal.setpass');
+        Route::get('/user/dosenWali/settings', [UserController::class, 'settingDoswal'])->name('doswal.settings');
         // Route::post('/user/dosenWali/photo', [UserController::class, 'uploadFoto'])->name('doswal.photo');
 
         Route::get('/user/dosenWali/DataMahasiswa',[UserController::class,'dataMHS']);
@@ -157,6 +158,8 @@ Route::middleware(['auth'])->group(function (){
         Route::get('/user/departemen/print/rekap/PKL', [PrintController::class, 'printRekapPKL'])->name('dept.printRekapPKL');
         Route::get('/user/departemen/print/rekap/Skripsi', [PrintController::class, 'printRekapSkripsi'])->name('dept.printRekapSkripsi');
         Route::get('/user/departemen/print/progstud/{mahasiswa}', [PrintController::class, 'printProgresStudi'])->name('dept.printProgStudi');
+        Route::get('/user/departemen/settings',[UserController::class,'settingDept'])->name('dept.settings');
+        Route::put('/user/departemen/setPassword', [UserController::class, 'updatePassword'])->name('dept.setpass');
     });
     Route::get('/logout',[SessionController::class, 'logout']);
 });

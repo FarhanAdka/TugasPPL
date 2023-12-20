@@ -209,8 +209,8 @@
                                         </li>
 
                                         <li>
-                                            <a class="dropdown-item" href="/user/dosenWali/setting"><i
-                                                    class="icon-mid bi bi-person me-2"></i> Setting</a>
+                                            <a class="dropdown-item" href="{{route('doswal.settings')}}"><i
+                                                    class="icon-mid bi bi-person me-2"></i> Ganti Password</a>
                                         </li>
 
                                         <li>

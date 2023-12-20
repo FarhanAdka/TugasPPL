@@ -11,6 +11,8 @@ use App\Models\KHS;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Validation\Rules\Password;
 
 class UserController extends Controller
 {
@@ -272,5 +274,44 @@ class UserController extends Controller
             'lulus_skripsi' => $lulus_skripsi,
         );
         return view('Departemen/homeDepartemen', $data);
+    }
+
+    public function settingDoswal(){
+        $data = array (
+            'active_home' => 'active',
+            'Role' => 'Dosen Wali',
+            'UserName' => auth()->user()->name,
+            'title' => 'Settings',
+        );
+        return view('DosenWali/settings', $data);
+    }
+
+    public function settingDept()
+    {
+        $data = array(
+            'active_home' => 'active',
+            'Role' => 'Departemen',
+            'UserName' => auth()->user()->name,
+            'Title' => 'Settings',
+        );
+        return view('Departemen/settings', $data);
+    }
+
+    public function updatePassword(Request $request)
+    {
+        // dd($request->new_password);
+        if (Auth::attempt(['username' => auth()->user()->username, 'password' => $request->old_password])) {
+            $request->validate([
+                'new_password' => ['required'],
+            ]);
+        } else {
+            return redirect()->route('doswal.settings')->with('error', 'Password lama salah');
+        }
+
+        $user = User::find(auth()->user()->id);
+        // dd($user);
+        $user->password = Hash::make($request->new_password);
+        $user->save();
+        return redirect()->route('doswal.settings');
     }
 }

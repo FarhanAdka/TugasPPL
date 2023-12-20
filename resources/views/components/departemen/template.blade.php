@@ -154,8 +154,8 @@
                                         </li>
 
                                         <li>
-                                            <a class="dropdown-item" href="/user/departemen/ProfilDepartemen"><i
-                                                    class="icon-mid bi bi-person me-2"></i> MyProfile</a>
+                                            <a class="dropdown-item" href="{{route('dept.settings')}}"><i
+                                                    class="icon-mid bi bi-person me-2"></i> Ganti Password</a>
                                         </li>
 
                                         {{-- <li>
