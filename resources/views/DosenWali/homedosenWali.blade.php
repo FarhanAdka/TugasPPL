@@ -166,15 +166,15 @@
                             </thead>
                             <tbody>
 
-                                @foreach ($mahasiswaa as $mhs)
+                                @foreach ($mahasiswa as $mhs)
                                     <tr>
-                                        <td>{{ $mhs->name }}</td>
-                                        <td>{{ $mhs->username }}</td>
-                                        <td>{{ $mhs->mahasiswaa->angkatan }}</td>
+                                        <td>{{ $mhs->nama }}</td>
+                                        <td>{{ $mhs->nim }}</td>
+                                        <td>{{ $mhs->angkatan }}</td>
                                         <td>
                                             <form action="/user/dosenWali{{ $mhs->id }}" method="POST">
                                                 <a class="btn btn-primary"
-                                                    href="{{ route('dosw.studi', $mhs->id) }}">Detil</a>
+                                                    href="{{ route('dosw.studi', $mhs->user_id) }}">Detil</a>
                                             </form>
                                         </td>
                                     </tr>

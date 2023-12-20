@@ -75,20 +75,20 @@ class UserController extends Controller
     }
 
     function dosenWali(){
-        $mahasiswaa = User::where('role', 'mahasiswa')->get();
-        //dd($mahasiswa[0]);
-        foreach ($mahasiswaa as $mhs){
-            $mhs->mahasiswaa = Mahasiswa::where('user_id', $mhs->id)->first();
-            $mhs->doswal = User::where('id', $mhs->mahasiswaa->doswal)->first()->name;
-            //var_dump($mhs->doswal);
-            //dd($mhs->doswal);
+        $mahasiswa = Mahasiswa::where('doswal', auth()->user()->id)->get();
+        foreach ($mahasiswa as $mhs) {
+            $mhs->nim = User::where('id', $mhs->user_id)->get()->first()->username;
+            $mhs->nama = User::where('id', $mhs->user_id)->get()->first()->name;
+            $mhs->dosen_wali = User::where('id', $mhs->doswal)->get()->first()->name;
         }
-        $userDoswal = User::where('id', auth()->user()->id)->get()->first();
+        
+        // dd($mahasiswaa);
+
         $data = array (
             'active_home' => 'active',
             'title' => 'Dosen Wali',
-            'UserName' => $userDoswal->name,
-            'mahasiswaa' => $mahasiswaa,
+            'UserName' => auth()->user()->name,
+            'mahasiswa' => $mahasiswa,
         );
         return view('DosenWali/homedosenWali', $data);
     }
