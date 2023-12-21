@@ -6,7 +6,7 @@
                 <div class="row">
                     <div class="col-12 col-md-6 order-md-1 order-last">
                         <h3>{{ $title }}</h3>
-                        <p class="text-subtitle text-muted">Navbar will appear on the top of the page.</p>
+                        {{-- <p class="text-subtitle text-muted">Navbar will appear on the top of the page.</p> --}}
                     </div>
                     <div class="col-12 col-md-6 order-md-2 order-first">
                         <nav aria-label="breadcrumb" class="breadcrumb-header float-start float-lg-end">
@@ -45,7 +45,7 @@
                                             <td>{{ $skrip->tanggal_lulus }}</td>
 
                                             <td>{{ $skrip->nilai }}</td>
-                                            <td><a href="{{ route('doswal.downloadskripsi', ['id' => $skrip->id])  }}"
+                                            <td><a href="{{ route('doswal.downloadskripsi', ['id' => $skrip->id]) }}"
                                                     target="_blank">Lihat</a></td>
                                             <td>{{ $skrip->status ? 'Sudah disetujui' : 'Belum disetujui' }}</td>
                                             <td>

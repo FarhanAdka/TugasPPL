@@ -208,9 +208,12 @@
                                             <h6 class="dropdown-header">Hello, {{ $UserName }}!</h6>
                                         </li>
 
+                                        <li><a class="dropdown-item" href="/user/dosenWali/profile"><i
+                                                    class="icon-mid bi bi-person me-2"></i> MyProfile</a></li>
+
                                         <li>
-                                            <a class="dropdown-item" href="{{route('doswal.settings')}}"><i
-                                                    class="icon-mid bi bi-person me-2"></i> Ganti Password</a>
+                                            <a class="dropdown-item" href="{{ route('doswal.settings') }}"><i
+                                                    class="icon-mid bi bi-key-fill"></i> Ganti Password</a>
                                         </li>
 
                                         <li>
