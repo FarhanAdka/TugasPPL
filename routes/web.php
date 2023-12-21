@@ -135,7 +135,7 @@ Route::middleware(['auth'])->group(function (){
         Route::get('/user/dosenWali/fileSkripsi/{id}', [SkripsiController::class, 'download'])->name('doswal.downloadskripsi');
         Route::put('/user/dosenWali/setPassword', [UserController::class, 'updatePassword'])->name('doswal.setpass');
         Route::get('/user/dosenWali/settings', [UserController::class, 'settingDoswal'])->name('doswal.settings');
-        // Route::post('/user/dosenWali/photo', [UserController::class, 'uploadFoto'])->name('doswal.photo');
+        Route::post('/user/dosenWali/photo', [UserController::class, 'uploadFoto'])->name('doswal.photo');
 
         Route::get('/user/dosenWali/DataMahasiswa',[UserController::class,'dataMHS']);
 

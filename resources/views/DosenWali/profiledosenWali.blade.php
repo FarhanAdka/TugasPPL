@@ -21,9 +21,9 @@
 
             <section class="section">
                 <div class="row">
-                    {{-- <div class="col-12">
-                        <x-doswal.foto-profil :foto="$foto" :nama="$userDoswal->name"/>
-                    </div> --}}
+                    <div class="col-12">
+                        <x-dosen_wali.foto-profil :foto="$foto" :nama="$userDoswal->name"/>
+                    </div>
                     <div class="card">
                         <div class="card-body">
                             <div class="row">
@@ -154,9 +154,9 @@
                             </div>
                         </div>
                     </div>
-                    {{-- <div {{$hidden}}>
-                        <x-doswal.ganti-password />
-                    </div> --}}
+                    <div {{$hidden}}>
+                        <x-dosen_wali.ganti-password />
+                    </div>
             </section>
 
         </div>
