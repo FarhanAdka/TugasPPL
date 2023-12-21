@@ -264,6 +264,7 @@ class OperatorController extends Controller
     function updateStatus(Request $request, $id){
         //dd($id);
         $data = $request->all();
+        // dd($data);
         //dd($data);
         $user = User::findOrFail($id);
         $user->update($data);
@@ -271,6 +272,7 @@ class OperatorController extends Controller
         //dd($mahasiswa);
         $mahasiswa->status = $data['status'];
         $mahasiswa->angkatan = $data['angkatan'];
+        $mahasiswa->doswal = $data['doswal'];
         $mahasiswa->save();
         return redirect('/user/operator/kelolaMahasiswa');
     }

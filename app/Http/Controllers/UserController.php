@@ -32,17 +32,29 @@ class UserController extends Controller
     }
 
     function mahasiswa(){
-        $userMhs = User::where('id', auth()->user()->id)->get()->first();
         $user = User::where('id', auth()->user()->id)->first();
         $mahasiswa = Mahasiswa::where('user_id', auth()->user()->id)->first();
-        $doswal = User::where('id', $mahasiswa->doswal)->get()->first();
-        $khs = KHS::where('id_mahasiswa', $mahasiswa->user_id)->get();
-        $irs = IRS::where('id_mahasiswa', $mahasiswa->user_id)->get();
+        $khs = KHS::where('id_mahasiswa', auth()->user()->id)->get();
+        $irs = IRS::where('id_mahasiswa', auth()->user()->id)->get();
         $smt_irs = $irs->pluck('semester_aktif')->toArray();
         $smt_khs = $khs->pluck('semester_aktif')->toArray();
         $smt = array_unique(array_intersect($smt_irs, $smt_khs));
-        $smt_pkl = PKL::where('id_mahasiswa', $mahasiswa->user_id)->pluck('semester')->toArray();
-        $smt_skripsi = Skripsi::where('id_mahasiswa', $mahasiswa->user_id)->pluck('lama_studi')->toArray();
+        if (PKL::where('id_mahasiswa', auth()->user()->id)->first() != null) {
+            $smt_pkl = PKL::where('id_mahasiswa', $mahasiswa->user_id)->first()->semester;
+        } else {
+            $smt_pkl = 0;
+        }
+        // dd(Skripsi::where('id_mahasiswa', $mahasiswa->user_id)->first()->status);
+        if (Skripsi::where('id_mahasiswa', auth()->user()->id)->first()->status == true) {
+            $smt_skripsi = Skripsi::where('id_mahasiswa', auth()->user()->id)->first()->semester;
+        } else {
+            $smt_skripsi = 0;
+        }
+        $skripsi = Skripsi::where('id_mahasiswa', auth()->user()->id)->first();
+        $pkl = PKL::where('id_mahasiswa', auth()->user()->id)->first();
+        // dd($smt_skripsi);
+        //dd($smt_skripsi[0]);
+        $doswal = User::where('id', $mahasiswa->doswal)->first();
 
         
 
@@ -55,9 +67,9 @@ class UserController extends Controller
             'nama_doswal'=> $doswal->name,
             'mahasiswa' => $mahasiswa,
             'smt' => $smt,
-            'smt_pkl' => $smt_pkl[0],
-            'smt_skripsi' => $smt_skripsi[0],
-            'UserName' => $userMhs->name,
+            'smt_pkl' => $smt_pkl,
+            'smt_skripsi' => $smt_skripsi,
+            'UserName' => auth()->user()->id,
             'foto' => $mahasiswa->foto,
         );
         return view('Mahasiswa/homeMahasiswa', $data);
@@ -120,6 +132,8 @@ class UserController extends Controller
         // dd($smt_skripsi);
         //dd($smt_skripsi[0]);
         $doswal = User::where('id', $mahasiswa->doswal)->first();
+        $pkl = PKL::where('id_mahasiswa', $mahasiswa->user_id)->first();
+        $skripsi = Skripsi::where('id_mahasiswa', $mahasiswa->user_id)->first();
         //dd(isset($khs[]));
         $data = array (
             'active_home' => 'active',
@@ -134,6 +148,8 @@ class UserController extends Controller
             'smt' => $smt,
             'smt_pkl' => $smt_pkl,
             'smt_skripsi' => $smt_skripsi,
+            'skripsi' => $skripsi,
+            'pkl'=> $pkl,
         );
         return view('DosenWali/detilMahasiswa', $data);
         //dd($khs);

@@ -46,10 +46,10 @@ class DepartemenController extends Controller
             $status[$key]['Aktif'] = array();
             $status[$key]['Cuti'] = array();
             $status[$key]['Mangkir'] = array();
-            $status[$key]['DO'] = array();
-            $status[$key]['UndurDiri'] = array();
+            $status[$key]['Do'] = array();
+            $status[$key]['Undur_diri'] = array();
             $status[$key]['Lulus'] = array();
-            $status[$key]['MeninggalDunia'] = array();
+            $status[$key]['Meninggal_dunia'] = array();
             //$pkl[$key]['belum'] = array();
             $skripsi[$key]['sudah'] = array();
             $skripsi[$key]['belum'] = array();
@@ -108,17 +108,17 @@ class DepartemenController extends Controller
                     } elseif ($data_status->status == "Mangkir") {
                         $status[$key]['Mangkir'][] = $data_status;
                         $mhs_Mangkir++;
-                    } elseif ($data_status->status == "DO") {
-                        $status[$key]['DO'][] = $data_status;
+                    } elseif ($data_status->status == "Do") {
+                        $status[$key]['Do'][] = $data_status;
                         $mhs_DO++;
-                    } elseif ($data_status->status == "Undur Diri") {
-                        $status[$key]['UndurDiri'][] = $data_status;
+                    } elseif ($data_status->status == "Undur_diri") {
+                        $status[$key]['Undur_diri'][] = $data_status;
                         $mhs_UndurDiri++;
                     } elseif ($data_status->status == "Lulus") {
                         $status[$key]['Lulus'][] = $data_status;
                         $mhs_Lulus++;
                     } else {
-                        $skripsi[$key]['Meninggal'][] = $data_skripsi;
+                        $skripsi[$key]['Meninggal_dunia'][] = $data_skripsi;
                         $mhs_Meninggal++;
                     }
                 }
@@ -156,7 +156,7 @@ class DepartemenController extends Controller
             'mhs_Cuti' => $mhs_Cuti,
             'mhs_Mangkir' => $mhs_Mangkir,
             'mhs_DO' => $mhs_DO,
-            'mhs_UndurDiri' => $mhs_UndurDiri,
+            'mhs_Undur_diri' => $mhs_UndurDiri,
             'mhs_Lulus' => $mhs_Lulus,
             'mhs_Meninggal' => $mhs_Meninggal,
             'tahun_shown' => $tahun_shown,

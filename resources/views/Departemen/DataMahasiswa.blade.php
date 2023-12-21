@@ -26,15 +26,15 @@
                                 <h4>{{ $mhs_DO }}</h4>
                             </div>
                             <div class="col">
-                                <h6 class="text-muted">UndurDiri</h6>
-                                <h4>{{ $mhs_UndurDiri }}</h4>
+                                <h6 class="text-muted">Undur_diri</h6>
+                                <h4>{{ $mhs_Undur_diri }}</h4>
                             </div>
                             <div class="col">
                                 <h6 class="text-muted">Lulus</h6>
                                 <h4>{{ $mhs_Lulus }}</h4>
                             </div>
                             <div class="col">
-                                <h6 class="text-muted">MeninggalDunia</h6>
+                                <h6 class="text-muted">Meninggal_dunia</h6>
                                 <h4>{{ $mhs_Meninggal }}</h4>
                             </div>
                         </div>
@@ -64,9 +64,9 @@
                                         <th scope="col" colspan="1">Cuti</th>
                                         <th scope="col" colspan="1">Mangkir</th>
                                         <th scope="col" colspan="1">DO</th>
-                                        <th scope="col" colspan="1">UndurDiri</th>
+                                        <th scope="col" colspan="1">Undur_diri</th>
                                         <th scope="col" colspan="1">Lulus</th>
-                                        <th scope="col" colspan="1">MeninggalDunia</th>
+                                        <th scope="col" colspan="1">Meninggal_dunia</th>
                                     @endforeach
                                 </tr>
                             </thead>
@@ -274,7 +274,7 @@
                                         <td>
                                             <a href="#" data-bs-toggle="modal"
                                                 data-bs-target="#statusDO{{ $tahun }}">
-                                                {{ sizeof($status[$tahun]['DO']) }}
+                                                {{ sizeof($status[$tahun]['Do']) }}
                                             </a>
                                             {{-- Modal --}}
                                             <div class="modal fade" id="statusDO{{ $tahun }}" tabindex="-1"
@@ -291,7 +291,7 @@
                                                                 data-bs-dismiss="modal" aria-label="Close"></button>
                                                         </div>
                                                         <div class="modal-body">
-                                                            @if ($status[$tahun]['DO'])
+                                                            @if ($status[$tahun]['Do'])
                                                                 <table class="table table-striped">
                                                                     <thead>
                                                                         <tr>
@@ -303,7 +303,7 @@
                                                                         </tr>
                                                                     </thead>
                                                                     <tbody>
-                                                                        @foreach ($status[$tahun]['DO'] as $mahasiswa)
+                                                                        @foreach ($status[$tahun]['Do'] as $mahasiswa)
                                                                             <tr>
                                                                                 <th scope="row">
                                                                                     {{ $loop->iteration }}
@@ -340,25 +340,25 @@
                                         </td>
                                         <td>
                                             <a href="#" data-bs-toggle="modal"
-                                                data-bs-target="#statusUndurDiri{{ $tahun }}">
-                                                {{ sizeof($status[$tahun]['UndurDiri']) }}
+                                                data-bs-target="#statusUndur_diri{{ $tahun }}">
+                                                {{ sizeof($status[$tahun]['Undur_diri']) }}
                                             </a>
                                             {{-- Modal --}}
-                                            <div class="modal fade" id="statusUndurDiri{{ $tahun }}"
+                                            <div class="modal fade" id="statusUndur_diri{{ $tahun }}"
                                                 tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                                 <div class="modal-dialog">
                                                     <div class="modal-content">
                                                         <div class="modal-header">
                                                             <h5 class="modal-title" id="exampleModalLabel">
                                                                 Daftar Mahasiswa
-                                                                yang Status UndurDiri Angkatan
+                                                                yang Status Undur_diri Angkatan
                                                                 {{ $tahun }}
                                                             </h5>
                                                             <button type="button" class="btn-close"
                                                                 data-bs-dismiss="modal" aria-label="Close"></button>
                                                         </div>
                                                         <div class="modal-body">
-                                                            @if ($status[$tahun]['UndurDiri'])
+                                                            @if ($status[$tahun]['Undur_diri'])
                                                                 <table class="table table-striped">
                                                                     <thead>
                                                                         <tr>
@@ -370,7 +370,7 @@
                                                                         </tr>
                                                                     </thead>
                                                                     <tbody>
-                                                                        @foreach ($status[$tahun]['UndurDiri'] as $mahasiswa)
+                                                                        @foreach ($status[$tahun]['Undur_diri'] as $mahasiswa)
                                                                             <tr>
                                                                                 <th scope="row">
                                                                                     {{ $loop->iteration }}
@@ -473,7 +473,7 @@
                                         <td>
                                             <a href="#" data-bs-toggle="modal"
                                                 data-bs-target="#statusMeninggalDunia{{ $tahun }}">
-                                                {{ sizeof($status[$tahun]['MeninggalDunia']) }}
+                                                {{ sizeof($status[$tahun]['Meninggal_dunia']) }}
                                             </a>
                                             {{-- Modal --}}
                                             <div class="modal fade" id="statusMeninggalDunia{{ $tahun }}"
@@ -483,14 +483,14 @@
                                                         <div class="modal-header">
                                                             <h5 class="modal-title" id="exampleModalLabel">
                                                                 Daftar Mahasiswa
-                                                                yang Status MeninggalDunia Angkatan
+                                                                yang Status Meninggal_dunia Angkatan
                                                                 {{ $tahun }}
                                                             </h5>
                                                             <button type="button" class="btn-close"
                                                                 data-bs-dismiss="modal" aria-label="Close"></button>
                                                         </div>
                                                         <div class="modal-body">
-                                                            @if ($status[$tahun]['MeninggalDunia'])
+                                                            @if ($status[$tahun]['Meninggal_dunia'])
                                                                 <table class="table table-striped">
                                                                     <thead>
                                                                         <tr>
@@ -502,7 +502,7 @@
                                                                         </tr>
                                                                     </thead>
                                                                     <tbody>
-                                                                        @foreach ($status[$tahun]['MeninggalDunia'] as $mahasiswa)
+                                                                        @foreach ($status[$tahun]['Meninggal_dunia'] as $mahasiswa)
                                                                             <tr>
                                                                                 <th scope="row">
                                                                                     {{ $loop->iteration }}

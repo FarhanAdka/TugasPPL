@@ -68,13 +68,13 @@
                             <div class="mb-3">
                                 <label for="status" class="form-label">Status</label>
                                 <select name="status" class="form-select">
-                                    <option value="Aktif">Aktif</option>
-                                    <option value="Cuti">Cuti</option>
-                                    <option value="Mangkir">Mangkir</option>
-                                    <option value="DO">DO</option>
-                                    <option value="Undur Diri">Undur Diri</option>
-                                    <option value="Lulus">Lulus</option>
-                                    <option value="Meninggal">Meninggal</option>
+                                    <option value="1" {{$mahasiswa->status == 'Aktif' ?  'selected' : ''}}>Aktif</option>
+                                    <option value="2" {{$mahasiswa->status == 'Cuti' ?  'selected' : ''}}>Cuti</option>
+                                    <option value="3" {{$mahasiswa->status == 'Mangkir' ?  'selected' : ''}}>Mangkir</option>
+                                    <option value="4" {{$mahasiswa->status == 'Do' ?  'selected' : ''}} >DO</option>
+                                    <option value="5" {{$mahasiswa->status == 'Undur_diri' ?  'selected' : ''}}>Undur Diri</option>
+                                    <option value="6" {{$mahasiswa->status == 'Lulus' ?  'selected' : ''}}>Lulus</option>
+                                    <option value="7" {{$mahasiswa->status == 'Meninggal_dunia' ?  'selected' : ''}}>Meninggal</option>
                                 </select>
                             </div>
                             <div class="mb-3 d-grid">
