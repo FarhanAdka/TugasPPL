@@ -31,7 +31,7 @@
                                     <form action="{{ route('doswal.update') }}" method="POST">
                                         @csrf
                                         <div class="form-group">
-                                            <label for="NIP">NIM</label>
+                                            <label for="NIP">NIP</label>
                                             <input type="text" class="form-control" id="NIP"
                                                 value="{{ $userDoswal->username }}" placeholder="Enter email" disabled>
                                         </div>
